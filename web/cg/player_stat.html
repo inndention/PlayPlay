@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=1920, initial-scale=1.0">
+    <title>Player Stat Card</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            width: 1920px; height: 1080px; overflow: hidden;
+            background: transparent;
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+        }
+        .stat-card {
+            position: absolute;
+            bottom: 80px;
+            left: 60px;
+            width: 480px;
+            background: rgba(8, 12, 24, 0.95);
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.6);
+        }
+        .card-header {
+            background: linear-gradient(90deg, var(--team-color, #1e40af), rgba(30,64,175,0.4));
+            padding: 16px 24px;
+            display: flex;
+            align-items: center;
+            gap: 16px;
+        }
+        .player-number {
+            font-size: 52px;
+            font-weight: 900;
+            color: rgba(255,255,255,0.15);
+            line-height: 1;
+            font-variant-numeric: tabular-nums;
+        }
+        .player-info {}
+        .team-name {
+            font-size: 12px;
+            font-weight: 700;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            color: rgba(255,255,255,0.6);
+            margin-bottom: 2px;
+        }
+        .player-name {
+            font-size: 36px;
+            font-weight: 800;
+            color: #fff;
+            line-height: 1;
+            text-transform: uppercase;
+        }
+        .player-position {
+            font-size: 15px;
+            font-weight: 500;
+            color: rgba(255,255,255,0.5);
+            margin-top: 2px;
+        }
+        .stats-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            gap: 1px;
+            background: rgba(255,255,255,0.06);
+        }
+        .stat-item {
+            background: rgba(8, 12, 24, 0.95);
+            padding: 16px;
+            text-align: center;
+        }
+        .stat-value {
+            font-size: 38px;
+            font-weight: 900;
+            color: #fff;
+            line-height: 1;
+            font-variant-numeric: tabular-nums;
+        }
+        .stat-label {
+            font-size: 11px;
+            font-weight: 600;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: #475569;
+            margin-top: 4px;
+        }
+        .accent-line {
+            height: 3px;
+            background: var(--team-color, #1e40af);
+        }
+    </style>
+</head>
+<body>
+    <div class="stat-card" id="statCard" data-cg-auto>
+        <div class="card-header">
+            <div class="player-number" id="playerNumber">#23</div>
+            <div class="player-info">
+                <div class="team-name" id="teamName" data-field="team">Los Angeles Lakers</div>
+                <div class="player-name" id="playerName" data-field="name">LeBron James</div>
+                <div class="player-position" id="playerPos" data-field="position">Small Forward</div>
+            </div>
+        </div>
+        <div class="stats-grid">
+            <div class="stat-item">
+                <div class="stat-value" id="stat1Val" data-field="stat1">28.5</div>
+                <div class="stat-label" id="stat1Label">PTS</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-value" id="stat2Val" data-field="stat2">8.3</div>
+                <div class="stat-label" id="stat2Label">REB</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-value" id="stat3Val" data-field="stat3">6.8</div>
+                <div class="stat-label" id="stat3Label">AST</div>
+            </div>
+        </div>
+        <div class="accent-line" id="accentLine"></div>
+    </div>
+    <script src="js/cg-animations.js"></script>
+    <script>
+        const p = new URLSearchParams(window.location.search);
+        const name     = p.get('name')     || 'LeBron James';
+        const team     = p.get('team')     || 'Los Angeles Lakers';
+        const position = p.get('position') || 'Small Forward';
+        const number   = p.get('number')   || '23';
+        const color    = p.get('color')    || '552583';
+        const stat1    = p.get('stat1')    || '28.5';
+        const stat1l   = p.get('stat1label') || 'PTS';
+        const stat2    = p.get('stat2')    || '8.3';
+        const stat2l   = p.get('stat2label') || 'REB';
+        const stat3    = p.get('stat3')    || '6.8';
+        const stat3l   = p.get('stat3label') || 'AST';
+
+        document.getElementById('playerName').textContent = name;
+        document.getElementById('teamName').textContent   = team;
+        document.getElementById('playerPos').textContent  = position;
+        document.getElementById('playerNumber').textContent = '#' + number;
+        document.getElementById('stat1Val').textContent   = stat1;
+        document.getElementById('stat1Label').textContent = stat1l;
+        document.getElementById('stat2Val').textContent   = stat2;
+        document.getElementById('stat2Label').textContent = stat2l;
+        document.getElementById('stat3Val').textContent   = stat3;
+        document.getElementById('stat3Label').textContent = stat3l;
+
+        const c = '#' + color.replace('#','');
+        document.getElementById('statCard').style.setProperty('--team-color', c);
+        document.getElementById('accentLine').style.background = c;
+    </script>
+</body>
+</html>

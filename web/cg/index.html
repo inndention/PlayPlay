@@ -1,0 +1,1094 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Broadcast CG Control Center</title>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="css/cg-control.css?v=3">
+    <style>
+        /* Config panel layout */
+        #configPanel {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .config-body {
+            flex: 1 1 0;
+            min-height: 240px;
+            overflow-y: auto;
+            overflow-x: hidden;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="app-container">
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <div class="logo">
+                <span class="logo-icon">📺</span>
+                <span class="logo-text">CG Control</span>
+            </div>
+
+            <nav class="category-nav">
+                <div class="nav-section">
+                    <div class="nav-section-title">Template Categories</div>
+                    <button class="nav-item active" data-category="all">
+                        <span class="nav-icon">◉</span> All Templates
+                    </button>
+                    <button class="nav-item" data-category="lower-thirds">
+                        <span class="nav-icon">▭</span> Lower Thirds
+                    </button>
+                    <button class="nav-item" data-category="banners">
+                        <span class="nav-icon">▬</span> Banners
+                    </button>
+                    <button class="nav-item" data-category="fullscreen">
+                        <span class="nav-icon">⬜</span> Fullscreen
+                    </button>
+                    <button class="nav-item" data-category="tickers">
+                        <span class="nav-icon">↔</span> Tickers
+                    </button>
+                    <button class="nav-item" data-category="score-bugs">
+                        <span class="nav-icon">⚽</span> Score Bugs
+                    </button>
+                    <button class="nav-item" data-category="weather">
+                        <span class="nav-icon">☁</span> Weather
+                    </button>
+                    <button class="nav-item" data-category="bugs">
+                        <span class="nav-icon">🔵</span> Bugs & Overlays
+                    </button>
+                    <button class="nav-item" data-category="social">
+                        <span class="nav-icon">📱</span> Social
+                    </button>
+                    <button class="nav-item" data-category="special">
+                        <span class="nav-icon">⚡</span> Special
+                    </button>
+                    <button class="nav-item" data-category="election">
+                        <span class="nav-icon">🗳</span> Election
+                    </button>
+                    <button class="nav-item" data-category="streaming">
+                        <span class="nav-icon">🎙</span> Streaming
+                    </button>
+                    <button class="nav-item" data-category="advertising">
+                        <span class="nav-icon">📢</span> Advertising
+                    </button>
+                    <button class="nav-item" data-category="sports-extended">
+                        <span class="nav-icon">🏅</span> Sports+
+                    </button>
+                    <button class="nav-item" data-category="custom">
+                        <span class="nav-icon">🔧</span> Custom
+                    </button>
+                </div>
+
+                <div class="nav-section">
+                    <div class="nav-section-title">Tools</div>
+                    <button class="nav-item" id="btnRemoteTextManager">
+                        <span class="nav-icon">🌐</span> Remote Text
+                    </button>
+                    <button class="nav-item" id="btnAnimationPresets">
+                        <span class="nav-icon">✨</span> Anim Presets
+                    </button>
+                    <button class="nav-item" id="btnOutputMonitor">
+                        <span class="nav-icon">📡</span> Output Monitor
+                    </button>
+                    <button class="nav-item" id="btnRundown">
+                        <span class="nav-icon">📋</span> Rundown
+                    </button>
+                    <button class="nav-item" id="btnTemplateBuilder">
+                        <span class="nav-icon">🔨</span> Builder
+                    </button>
+                    <button class="nav-item" id="btnNdiSwitcher">
+                        <span class="nav-icon">🎚️</span> NDI Switcher
+                    </button>
+                    <button class="nav-item" id="btnMediaLibrary">
+                        <span class="nav-icon">🎬</span> Media Library
+                    </button>
+                    <button class="nav-item" id="btnPGMMonitor">
+                        <span class="nav-icon">📺</span> PGM Monitor
+                    </button>
+                    <button class="nav-item" id="btnAsRun">
+                        <span class="nav-icon">⏱</span> As-Run
+                    </button>
+                    <button class="nav-item" id="btnApiDocs">
+                        <span class="nav-icon">📖</span> API Docs
+                    </button>
+                </div>
+            </nav>
+
+            <div class="sidebar-footer">
+                <div class="connection-status">
+                    <span class="status-dot" id="statusDot"></span>
+                    <span class="status-text" id="statusText">Connecting...</span>
+                </div>
+                <div class="ws-status" id="wsStatus"></div>
+            </div>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <!-- Header -->
+            <header class="header">
+                <div class="header-left">
+                    <h1 class="page-title">Template Library</h1>
+                    <span class="template-count" id="templateCount">0 templates</span>
+                </div>
+                <div class="header-right">
+                    <div class="view-toggle">
+                        <button class="view-btn active" id="btnGridView" title="Grid View">⊞</button>
+                        <button class="view-btn" id="btnListView" title="List View">☰</button>
+                    </div>
+                    <div class="search-box">
+                        <span class="search-icon">⌕</span>
+                        <input type="text" id="searchInput" placeholder="Search templates...">
+                    </div>
+                    <button class="btn btn-secondary" id="btnRefresh">
+                        <span>↻</span> Refresh
+                    </button>
+                </div>
+            </header>
+
+            <!-- Active Output Bar -->
+            <div class="active-output-bar" id="activeOutputBar" style="display:none;">
+                <div class="active-output-info">
+                    <span class="active-dot"></span>
+                    <span class="active-label">ON AIR:</span>
+                    <span class="active-template-name" id="activeTemplateName">—</span>
+                </div>
+                <div class="active-output-actions">
+                    <button class="btn btn-small btn-danger-sm" id="btnClearOutput">✕ Clear</button>
+                    <button class="btn btn-small" id="btnReplayOutput">↺ Replay</button>
+                </div>
+            </div>
+
+            <!-- Template Grid -->
+            <div class="content-area">
+                <div class="template-grid" id="templateGrid">
+                    <!-- Templates will be inserted here -->
+                </div>
+            </div>
+        </main>
+
+        <!-- Right Panel - Configuration -->
+        <aside class="config-panel" id="configPanel">
+            <div class="config-header">
+                <h2 class="config-title" id="configTitle">Configure Template</h2>
+                <button class="btn-close" id="btnCloseConfig">×</button>
+            </div>
+
+            <!-- Tab Navigation -->
+            <div class="config-tabs">
+                <button class="config-tab active" data-tab="params">Parameters</button>
+                <button class="config-tab" data-tab="animation">Animation</button>
+                <button class="config-tab" data-tab="remote">Remote Text</button>
+            </div>
+
+            <!-- Preview -->
+            <div class="config-preview">
+                <div class="preview-container">
+                    <iframe id="previewFrame" src="" frameborder="0"></iframe>
+                    <div class="preview-overlay">
+                        <span class="preview-label">Live Preview</span>
+                    </div>
+                </div>
+                <div class="preview-controls">
+                    <button class="btn btn-small" id="btnReplayPreview">↺ Replay</button>
+                    <button class="btn btn-small" id="btnFullscreenPreview">⛶ Fullscreen</button>
+                    <button class="btn btn-small" id="btnCopyUrl">🔗 Copy URL</button>
+                </div>
+            </div>
+
+            <!-- Tab Body (scrollable) -->
+            <div class="config-body">
+
+                <!-- Tab: Parameters -->
+                <div class="config-tab-content active" id="tab-params">
+                    <div class="config-form">
+                        <form id="templateForm">
+                            <div class="form-fields" id="formFields">
+                                <!-- Dynamic form fields will be inserted here -->
+                            </div>
+
+                            <!-- Output Channel Selector -->
+                            <div class="channel-selector">
+                                <label class="form-label">Output Channel <span class="channel-status-badge"
+                                        id="channelStatusBadge" style="display:none"></span></label>
+                                <div class="channel-tabs">
+                                    <button type="button" class="channel-tab active" data-channel="main">Main</button>
+                                    <button type="button" class="channel-tab"
+                                        data-channel="secondary">Secondary</button>
+                                    <button type="button" class="channel-tab" data-channel="web">Web</button>
+                                    <button type="button" class="channel-tab" data-channel="preview">Preview</button>
+                                </div>
+                            </div>
+
+                            <!-- TAKE — on-air action -->
+                            <div class="take-section">
+                                <button type="button" class="btn-take" id="btnTake" title="Send to Program output (T)">
+                                    TAKE
+                                </button>
+                            </div>
+
+                            <div class="form-actions">
+                                <button type="button" class="btn btn-primary" id="btnDeploy">
+                                    <span>🚀</span> Deploy
+                                </button>
+                                <button type="button" class="btn btn-secondary" id="btnUpdatePreview">
+                                    <span>👁</span> Preview
+                                </button>
+                                <button type="button" class="btn btn-secondary" id="btnAddToRundown">
+                                    <span>📋</span> Rundown
+                                </button>
+                            </div>
+
+                            <!-- Presets -->
+                            <div class="preset-section">
+                                <div class="preset-header">
+                                    <span class="form-label" style="margin:0">Presets</span>
+                                    <button type="button" class="btn btn-small" id="btnSavePreset">Save Current</button>
+                                </div>
+                                <div class="preset-row">
+                                    <select class="form-select" id="presetSelect" title="Load a preset">
+                                        <option value="">— load preset —</option>
+                                    </select>
+                                    <button type="button" class="btn btn-small btn-danger-sm" id="btnDeletePreset"
+                                        title="Delete selected preset">✕</button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+
+                <!-- Tab: Animation -->
+                <div class="config-tab-content" id="tab-animation">
+                    <div class="config-form">
+                        <div class="form-section-title">Animation In</div>
+                        <div class="form-group">
+                            <label class="form-label">Animation Type</label>
+                            <div class="anim-grid" id="animInGrid">
+                                <button class="anim-btn" data-anim="phase" data-dir="in"><span class="anim-icon">✦</span><span>Phase</span></button>
+                                <button class="anim-btn active" data-anim="none" data-dir="in">
+                                    <span class="anim-icon">⬜</span>
+                                    <span>None</span>
+                                </button>
+                                <button class="anim-btn" data-anim="fade" data-dir="in">
+                                    <span class="anim-icon">◌</span>
+                                    <span>Fade</span>
+                                </button>
+                                <button class="anim-btn" data-anim="slide-left" data-dir="in">
+                                    <span class="anim-icon">→</span>
+                                    <span>Slide Left</span>
+                                </button>
+                                <button class="anim-btn" data-anim="slide-right" data-dir="in">
+                                    <span class="anim-icon">←</span>
+                                    <span>Slide Right</span>
+                                </button>
+                                <button class="anim-btn" data-anim="slide-up" data-dir="in">
+                                    <span class="anim-icon">↑</span>
+                                    <span>Slide Up</span>
+                                </button>
+                                <button class="anim-btn" data-anim="slide-down" data-dir="in">
+                                    <span class="anim-icon">↓</span>
+                                    <span>Slide Down</span>
+                                </button>
+                                <button class="anim-btn" data-anim="wipe-left" data-dir="in">
+                                    <span class="anim-icon">▶</span>
+                                    <span>Wipe Left</span>
+                                </button>
+                                <button class="anim-btn" data-anim="wipe-right" data-dir="in">
+                                    <span class="anim-icon">◀</span>
+                                    <span>Wipe Right</span>
+                                </button>
+                                <button class="anim-btn" data-anim="bounce" data-dir="in">
+                                    <span class="anim-icon">⤴</span>
+                                    <span>Bounce</span>
+                                </button>
+                                <button class="anim-btn" data-anim="zoom" data-dir="in">
+                                    <span class="anim-icon">⊕</span>
+                                    <span>Zoom</span>
+                                </button>
+                                <button class="anim-btn" data-anim="flip" data-dir="in">
+                                    <span class="anim-icon">↕</span>
+                                    <span>Flip</span>
+                                </button>
+                                <button class="anim-btn" data-anim="typewriter" data-dir="in">
+                                    <span class="anim-icon">⌨</span>
+                                    <span>Typewriter</span>
+                                </button>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="form-label">Duration (ms)</label>
+                            <div class="form-row">
+                                <div>
+                                    <input type="number" id="animInDuration" class="form-input" value="600" min="100"
+                                        max="5000" step="100">
+                                    <span class="form-hint">In duration</span>
+                                </div>
+                                <div>
+                                    <input type="number" id="animDelay" class="form-input" value="0" min="0" max="10000"
+                                        step="100">
+                                    <span class="form-hint">Delay (ms)</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="form-label">Easing</label>
+                            <select id="animEasing" class="form-select">
+                                <option value="ease">Ease</option>
+                                <option value="ease-in">Ease In</option>
+                                <option value="ease-out" selected>Ease Out</option>
+                                <option value="ease-in-out">Ease In-Out</option>
+                                <option value="linear">Linear</option>
+                                <option value="cubic-bezier(0.34,1.56,0.64,1)">Spring</option>
+                                <option value="cubic-bezier(0.68,-0.55,0.27,1.55)">Elastic</option>
+                            </select>
+                        </div>
+
+                        <div class="form-section-title" style="margin-top:16px;">Animation Out</div>
+                        <div class="form-group">
+                            <label class="form-label">Animation Type</label>
+                            <div class="anim-grid" id="animOutGrid">
+                                <button class="anim-btn" data-anim="phase" data-dir="out"><span class="anim-icon">✦</span><span>Phase</span></button>
+                                <button class="anim-btn active" data-anim="none" data-dir="out">
+                                    <span class="anim-icon">⬜</span>
+                                    <span>None</span>
+                                </button>
+                                <button class="anim-btn" data-anim="fade" data-dir="out">
+                                    <span class="anim-icon">◌</span>
+                                    <span>Fade</span>
+                                </button>
+                                <button class="anim-btn" data-anim="slide-left" data-dir="out">
+                                    <span class="anim-icon">←</span>
+                                    <span>Slide Left</span>
+                                </button>
+                                <button class="anim-btn" data-anim="slide-right" data-dir="out">
+                                    <span class="anim-icon">→</span>
+                                    <span>Slide Right</span>
+                                </button>
+                                <button class="anim-btn" data-anim="slide-up" data-dir="out">
+                                    <span class="anim-icon">↑</span>
+                                    <span>Slide Up</span>
+                                </button>
+                                <button class="anim-btn" data-anim="slide-down" data-dir="out">
+                                    <span class="anim-icon">↓</span>
+                                    <span>Slide Down</span>
+                                </button>
+                                <button class="anim-btn" data-anim="wipe-left" data-dir="out">
+                                    <span class="anim-icon">◀</span>
+                                    <span>Wipe Left</span>
+                                </button>
+                                <button class="anim-btn" data-anim="wipe-right" data-dir="out">
+                                    <span class="anim-icon">▶</span>
+                                    <span>Wipe Right</span>
+                                </button>
+                                <button class="anim-btn" data-anim="zoom" data-dir="out">
+                                    <span class="anim-icon">⊖</span>
+                                    <span>Zoom Out</span>
+                                </button>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="form-label">Out Duration (ms)</label>
+                            <input type="number" id="animOutDuration" class="form-input" value="400" min="100"
+                                max="5000" step="100">
+                        </div>
+
+                        <div class="form-section-title" style="margin-top:16px;">Display Duration</div>
+                        <div class="form-group">
+                            <label class="form-label">Auto-hide After</label>
+                            <div class="form-row">
+                                <div>
+                                    <select id="autoHide" class="form-select">
+                                        <option value="0">Manual (no auto-hide)</option>
+                                        <option value="3000">3 seconds</option>
+                                        <option value="5000">5 seconds</option>
+                                        <option value="8000">8 seconds</option>
+                                        <option value="10000">10 seconds</option>
+                                        <option value="15000">15 seconds</option>
+                                        <option value="30000">30 seconds</option>
+                                        <option value="60000">1 minute</option>
+                                        <option value="custom">Custom...</option>
+                                    </select>
+                                </div>
+                                <div id="customDurationGroup" style="display:none;">
+                                    <input type="number" id="customDuration" class="form-input" value="5000" min="500"
+                                        step="500" placeholder="ms">
+                                    <span class="form-hint">milliseconds</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="form-label">Loop</label>
+                            <div class="toggle-row">
+                                <label class="toggle-switch">
+                                    <input type="checkbox" id="animLoop">
+                                    <span class="toggle-slider"></span>
+                                </label>
+                                <span class="toggle-label">Loop animation</span>
+                            </div>
+                        </div>
+
+                        <div class="form-actions">
+                            <button type="button" class="btn btn-secondary" id="btnPreviewAnim">
+                                <span>▶</span> Preview Animation
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Tab: Remote Text -->
+                <div class="config-tab-content" id="tab-remote">
+                    <div class="config-form">
+                        <div class="form-group">
+                            <label class="form-label">Remote Text Source</label>
+                            <div class="toggle-row">
+                                <label class="toggle-switch">
+                                    <input type="checkbox" id="remoteTextEnabled">
+                                    <span class="toggle-slider"></span>
+                                </label>
+                                <span class="toggle-label">Enable remote text</span>
+                            </div>
+                        </div>
+
+                        <div id="remoteTextConfig">
+                            <div class="form-group">
+                                <label class="form-label">Source Type</label>
+                                <select id="remoteSourceType" class="form-select">
+                                    <option value="url">URL / REST API</option>
+                                    <option value="websocket">WebSocket</option>
+                                    <option value="rss">RSS Feed</option>
+                                    <option value="server">CG Server Variable</option>
+                                </select>
+                            </div>
+
+                            <div class="form-group" id="remoteUrlGroup">
+                                <label class="form-label">Source URL</label>
+                                <input type="url" id="remoteUrl" class="form-input"
+                                    placeholder="https://api.example.com/text">
+                            </div>
+
+                            <div class="form-group" id="remoteWsGroup" style="display:none;">
+                                <label class="form-label">WebSocket URL</label>
+                                <input type="text" id="remoteWsUrl" class="form-input"
+                                    placeholder="ws://localhost:8060">
+                            </div>
+
+                            <div class="form-group">
+                                <label class="form-label">Target Field</label>
+                                <select id="remoteTargetField" class="form-select">
+                                    <!-- Populated dynamically based on template params -->
+                                </select>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="form-label">JSON Path (optional)</label>
+                                <input type="text" id="remoteJsonPath" class="form-input"
+                                    placeholder="e.g. data.text or items[0].title">
+                                <span class="form-hint">Leave empty to use raw response</span>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="form-label">Refresh Interval</label>
+                                <select id="remoteRefreshInterval" class="form-select">
+                                    <option value="0">No auto-refresh</option>
+                                    <option value="5000">Every 5 seconds</option>
+                                    <option value="10000">Every 10 seconds</option>
+                                    <option value="30000">Every 30 seconds</option>
+                                    <option value="60000">Every minute</option>
+                                    <option value="300000">Every 5 minutes</option>
+                                </select>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="form-label">Transform (JavaScript)</label>
+                                <textarea id="remoteTransform" class="form-textarea"
+                                    placeholder="// Optional: transform the fetched value&#10;// value = fetched text&#10;// return transformed string&#10;return value.toUpperCase();"
+                                    style="font-family: 'JetBrains Mono', monospace; font-size: 12px;"></textarea>
+                                <span class="form-hint">Access raw value via <code>value</code> variable</span>
+                            </div>
+
+                            <div class="remote-status" id="remoteStatus">
+                                <span class="remote-status-dot" id="remoteStatusDot"></span>
+                                <span id="remoteStatusText">Not connected</span>
+                            </div>
+
+                            <div class="form-actions">
+                                <button type="button" class="btn btn-secondary" id="btnTestRemote">
+                                    <span>🔌</span> Test Connection
+                                </button>
+                                <button type="button" class="btn btn-primary" id="btnApplyRemote">
+                                    <span>✓</span> Apply & Deploy
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                </div><!-- end config-body -->
+
+                <div class="config-output">
+                    <div class="output-header">
+                        <span>Output URL</span>
+                        <button type="button" class="btn btn-small" id="btnCopyFullUrl">Copy</button>
+                    </div>
+                    <div class="output-url" id="outputUrl">No template selected</div>
+
+                    <!-- OBS Browser Sources (static URLs) -->
+                    <div class="obs-urls">
+                        <div class="obs-section-label">OBS Browser Sources</div>
+                        <div class="obs-url-row">
+                            <span class="obs-url-badge preview">Preview</span>
+                            <span class="obs-url-value">http://localhost:3060/obs-preview.html</span>
+                            <button type="button" class="btn btn-small" id="btnCopyObsPreview">Copy</button>
+                        </div>
+                        <div class="obs-url-row">
+                            <span class="obs-url-badge program">Program</span>
+                            <span class="obs-url-value">http://localhost:3060/obs-program.html</span>
+                            <button type="button" class="btn btn-small" id="btnCopyObsProgram">Copy</button>
+                        </div>
+                    </div>
+                </div>
+        </aside>
+    </div>
+
+    <!-- Toast Notifications -->
+    <div class="toast-container" id="toastContainer"></div>
+
+    <!-- Remote Text Manager Modal -->
+    <div class="modal" id="remoteTextModal">
+        <div class="modal-content modal-wide">
+            <div class="modal-header">
+                <h2>🌐 Remote Text Manager</h2>
+                <button class="btn-close" id="btnCloseRemoteModal">×</button>
+            </div>
+            <div class="modal-body">
+                <div class="remote-manager-grid">
+                    <div class="remote-manager-left">
+                        <div class="section-header">
+                            <h3>Active Data Sources</h3>
+                            <button class="btn btn-small btn-primary-sm" id="btnAddDataSource">+ Add Source</button>
+                        </div>
+                        <div class="data-source-list" id="dataSourceList">
+                            <div class="empty-state">No data sources configured</div>
+                        </div>
+                    </div>
+                    <div class="remote-manager-right">
+                        <h3>Add Data Source</h3>
+                        <div class="form-group">
+                            <label class="form-label">Name</label>
+                            <input type="text" id="dsName" class="form-input" placeholder="My News Feed">
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">Type</label>
+                            <select id="dsType" class="form-select">
+                                <option value="url">REST API / URL</option>
+                                <option value="websocket">WebSocket</option>
+                                <option value="rss">RSS Feed</option>
+                                <option value="static">Static Text</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">URL / Value</label>
+                            <input type="text" id="dsUrl" class="form-input" placeholder="https://...">
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">JSON Path</label>
+                            <input type="text" id="dsJsonPath" class="form-input" placeholder="data.items[0].text">
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">Refresh (seconds)</label>
+                            <input type="number" id="dsRefresh" class="form-input" value="30" min="1">
+                        </div>
+                        <button class="btn btn-primary" id="btnSaveDataSource">Save Data Source</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Animation Presets Modal -->
+    <div class="modal" id="animPresetsModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>✨ Animation Presets</h2>
+                <button class="btn-close" id="btnCloseAnimModal">×</button>
+            </div>
+            <div class="modal-body">
+                <div class="preset-grid" id="presetGrid">
+                    <!-- Populated by JS -->
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Output Monitor Modal -->
+    <div class="modal" id="outputMonitorModal">
+        <div class="modal-content modal-wide">
+            <div class="modal-header">
+                <h2>📡 Output Monitor</h2>
+                <button class="btn-close" id="btnCloseOutputModal">×</button>
+            </div>
+            <div class="modal-body">
+                <div class="output-monitor">
+                    <div class="monitor-channel-tabs" id="monitorChannelTabs">
+                        <!-- Populated by JS -->
+                    </div>
+                    <div class="monitor-screen" id="monitorScreen">
+                        <iframe id="monitorFrame" src="" frameborder="0" title="Output Monitor"></iframe>
+                        <div class="monitor-overlay">
+                            <span class="monitor-label">OUTPUT</span>
+                        </div>
+                    </div>
+                    <div class="monitor-controls">
+                        <div class="monitor-info" id="monitorInfo">No active output</div>
+                        <div class="monitor-actions">
+                            <button type="button" class="btn btn-secondary" id="btnMonitorClear">✕ Clear
+                                Channel</button>
+                            <button type="button" class="btn btn-secondary" id="btnMonitorRefresh">↻ Refresh</button>
+                        </div>
+                    </div>
+                    <div class="deployment-history">
+                        <h3>Recent Deployments</h3>
+                        <div class="history-list" id="historyList">
+                            <div class="empty-state">No deployments yet</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Rundown / Playlist Modal -->
+    <div class="modal" id="rundownModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>📋 Show Rundown</h2>
+                <button type="button" class="btn-close" id="btnCloseRundownModal">×</button>
+            </div>
+            <div class="modal-body">
+                <div class="rundown-toolbar">
+                    <select class="form-select" id="rundownPlaylistSelect" title="Select playlist"></select>
+                    <button type="button" class="btn btn-small" id="btnRundownNew">+ New</button>
+                    <button type="button" class="btn btn-small btn-danger-sm" id="btnRundownDelete">Delete</button>
+                    <button type="button" class="btn btn-small btn-accent" id="btnRundownAddCurrent"
+                        title="Add currently configured template">+ Add Current</button>
+                </div>
+                <div class="rundown-item-list" id="rundownItemList">
+                    <div class="rundown-empty">No items. Select a template, configure it, then click "+ Add Current".
+                    </div>
+                </div>
+                <div class="rundown-playback">
+                    <button type="button" class="rundown-ctrl-btn" id="btnRundownPrev" title="Previous (F3)">⏮</button>
+                    <button type="button" class="rundown-ctrl-btn play" id="btnRundownPlay"
+                        title="Play from start (F1)">▶ Play</button>
+                    <button type="button" class="rundown-ctrl-btn" id="btnRundownNext" title="Next item (F2)">⏭</button>
+                    <button type="button" class="rundown-ctrl-btn stop" id="btnRundownStop" title="Stop (F4)">⏹</button>
+                    <span class="rundown-kbd-hint">F1=Play F2=Next F3=Prev F4=Stop</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Template Builder Modal -->
+    <div class="modal" id="builderModal">
+        <div class="modal-content modal-wide">
+            <div class="modal-header">
+                <h2>🔨 Template Builder</h2>
+                <button type="button" class="btn-close" id="btnCloseBuilderModal">×</button>
+            </div>
+            <div class="modal-body">
+                <!-- Step indicator -->
+                <div class="builder-steps">
+                    <div class="builder-step-dot active" title="Step 1: Info">1</div>
+                    <div class="builder-step-connector"></div>
+                    <div class="builder-step-dot" title="Step 2: Layout">2</div>
+                    <div class="builder-step-connector"></div>
+                    <div class="builder-step-dot" title="Step 3: Fields">3</div>
+                    <div class="builder-step-connector"></div>
+                    <div class="builder-step-dot" title="Step 4: Style">4</div>
+                </div>
+                <div class="builder-step-labels">
+                    <span>Info</span><span>Layout</span><span>Fields</span><span>Style</span>
+                </div>
+                <!-- Dynamic step content -->
+                <div id="builderStepBody" class="builder-step-body"></div>
+                <!-- Footer nav -->
+                <div class="builder-footer">
+                    <button type="button" class="btn btn-secondary" id="builderBackBtn" style="display:none">←
+                        Back</button>
+                    <button type="button" class="btn btn-primary" id="builderNextBtn">Next →</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- API Documentation Modal -->
+    <div class="modal" id="apiModal">
+        <div class="modal-content modal-wide">
+            <div class="modal-header">
+                <h2>📖 API Endpoints</h2>
+                <button class="btn-close" id="btnCloseModal">×</button>
+            </div>
+            <div class="modal-body">
+                <div class="api-section">
+                    <h3>Deploy Template</h3>
+                    <div class="code-block">
+                        <code>POST /api/deploy</code>
+                        <pre>{
+  "template": "lower_third_modern",
+  "params": {
+    "name": "John Doe",
+    "title": "Senior Correspondent"
+  },
+  "animation": {
+    "in": "slide-left",
+    "out": "fade",
+    "duration": 600,
+    "easing": "ease-out"
+  }
+}</pre>
+                    </div>
+                </div>
+                <div class="api-section">
+                    <h3>List Templates</h3>
+                    <div class="code-block">
+                        <code>GET /api/templates</code>
+                    </div>
+                </div>
+                <div class="api-section">
+                    <h3>Clear Output</h3>
+                    <div class="code-block">
+                        <code>POST /api/clear</code>
+                    </div>
+                </div>
+                <div class="api-section">
+                    <h3>Remote Text Variables</h3>
+                    <div class="code-block">
+                        <code>GET /api/variables</code>
+                        <code>POST /api/variables/:name</code>
+                        <pre>{ "value": "Breaking: New story..." }</pre>
+                    </div>
+                </div>
+                <div class="api-section">
+                    <h3>WebSocket</h3>
+                    <div class="code-block">
+                        <code>ws://localhost:8060</code>
+                        <pre>// Subscribe to variable updates
+{ "type": "subscribe", "variable": "ticker_text" }
+
+// Push variable update
+{ "type": "variable", "name": "ticker_text", "value": "New text..." }</pre>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Media Library Modal -->
+    <div class="modal" id="mediaLibraryModal">
+        <div class="modal-content modal-wide media-library">
+            <div class="modal-header">
+                <h2>🎬 Media Library</h2>
+                <button class="btn-close" id="btnCloseMediaModal">×</button>
+            </div>
+            <div class="media-library-body">
+                <!-- Left: Asset Type Tree -->
+                <div class="media-type-panel">
+                    <div class="panel-header">Asset Types</div>
+                    <div class="asset-type-list">
+                        <div class="asset-type-item active" data-type="">All Media</div>
+                        <div class="asset-type-item" data-type="ad">Ads</div>
+                        <div class="asset-type-item" data-type="bumper">Bumpers</div>
+                        <div class="asset-type-item" data-type="program">Programs</div>
+                        <div class="asset-type-item" data-type="show">Shows</div>
+                        <div class="asset-type-item" data-type="weather">Weather</div>
+                        <div class="asset-type-item" data-type="obits">Obits</div>
+                        <div class="asset-type-item" data-type="live">Live</div>
+                        <div class="asset-type-item" data-type="id">IDs</div>
+                        <div class="asset-type-item" data-type="client">Client</div>
+                    </div>
+                </div>
+
+                <!-- Center: Media Grid -->
+                <div class="media-grid-panel">
+                    <div class="media-search-bar">
+                        <input type="text" id="mediaSearchInput" placeholder="Search media…" class="form-input">
+                        <label class="btn btn-primary media-upload-btn">
+                            + Import
+                            <input type="file" id="mediaFileInput"
+                                accept=".mp4,.mov,.mxf,.avi,.mkv,.wmv,.webm,.m4v,.ts,.mp3,.wav,.aac" multiple
+                                style="display:none">
+                        </label>
+                    </div>
+                    <div class="media-grid" id="mediaGrid">
+                        <div class="empty-state">No media imported yet. Click Import to add files.</div>
+                    </div>
+                </div>
+
+                <!-- Right: Detail Panel -->
+                <div class="media-detail-panel" id="mediaDetailPanel">
+                    <div class="empty-state">Select a media item to view details</div>
+                </div>
+            </div>
+            <!-- Upload progress -->
+            <div class="media-upload-progress" id="mediaUploadProgress" style="display:none">
+                <div class="upload-bar">
+                    <div class="upload-fill" id="mediaUploadFill"></div>
+                </div>
+                <span id="mediaUploadStatus">Uploading…</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- NDI Source Switcher Modal -->
+    <div class="modal" id="ndiSwitcherModal">
+        <div class="modal-content modal-wide ndi-switcher">
+            <div class="modal-header">
+                <h2>🎚️ NDI Source Switcher</h2>
+                <button class="btn-close" id="btnCloseNdiModal">×</button>
+            </div>
+
+            <div class="ndi-switcher-body">
+                <!-- TOP: Multiviewer Source Grid -->
+                <div class="ndi-multiviewer">
+                    <div class="multiviewer-header">
+                        <span class="panel-header">Sources</span>
+                        <button class="btn btn-small" id="btnRefreshNdiSources">Refresh</button>
+                    </div>
+                    <div class="ndi-sources-grid" id="ndiSourcesGrid">
+                        <div class="empty-state">Discovering NDI sources...</div>
+                    </div>
+                </div>
+
+                <!-- BOTTOM: Transition Controls + CG Slots + DDR Playlist -->
+                <div class="ndi-controls-row">
+                    <!-- Transition Controls -->
+                    <div class="ndi-transition-panel">
+                        <div class="transition-buttons">
+                            <button class="btn-cut" id="btnCut">CUT</button>
+                            <button class="btn-auto" id="btnAuto">AUTO</button>
+                        </div>
+                        <div class="transition-settings">
+                            <select id="transitionType" class="form-select">
+                                <option value="cut">Cut</option>
+                                <option value="fade">Fade</option>
+                                <option value="wipe">Wipe</option>
+                                <option value="slide">Slide</option>
+                            </select>
+                            <input type="number" id="transitionDuration" class="form-input" value="500" min="0"
+                                max="5000" placeholder="ms">
+                        </div>
+                        <div class="preset-buttons">
+                            <button class="btn-preset" data-preset="A">A</button>
+                            <button class="btn-preset" data-preset="B">B</button>
+                            <button class="btn-preset" data-preset="C">C</button>
+                            <button class="btn-preset" data-preset="D">D</button>
+                        </div>
+                        <div class="pgm-pvw-selectors"
+                            style="margin-top: 15px; display: flex; gap: 10px; align-items: center;">
+                            <label>Program:</label>
+                            <select id="programSourceSelect" class="form-select" style="width: 150px;"></select>
+                            <label>Preview:</label>
+                            <select id="previewSourceSelect" class="form-select" style="width: 150px;"></select>
+                            <label>Audio Vol:</label>
+                            <input type="range" id="masterAudioVolume" min="0" max="1" step="0.05" value="1"
+                                style="width: 100px;">
+                        </div>
+                        <audio id="masterAudioPlayer" autoplay></audio>
+                        <div class="cg-integration">
+                            <label class="toggle-switch toggle-sm">
+                                <input type="checkbox" id="cgDuringSwitch">
+                                <span class="toggle-slider"></span>
+                            </label>
+                            <span>CG on transition</span>
+                        </div>
+                    </div>
+
+                    <!-- CG Marriage Slots -->
+                    <div class="cg-slots-panel">
+                        <div class="panel-header">CG Slots</div>
+                        <div class="cg-slots-grid" id="cgSlotsGrid">
+                            <!-- Slot 1 -->
+                            <div class="cg-slot" id="cgSlot1" data-slot="1">
+                                <div class="cg-slot-num">CG 1</div>
+                                <div class="cg-slot-thumb" id="cgSlotThumb1">
+                                    <span class="cg-slot-empty">Empty</span>
+                                </div>
+                                <div class="cg-slot-title" id="cgSlotTitle1">—</div>
+                                <select class="cg-slot-mode form-select" id="cgSlotMode1" data-slot="1">
+                                    <option value="FOLLOW">FOLLOW</option>
+                                    <option value="LOCK">LOCK</option>
+                                    <option value="BOTH">BOTH</option>
+                                    <option value="NONE">NONE</option>
+                                </select>
+                                <div class="cg-slot-actions">
+                                    <button class="btn btn-small" onclick="openCGSlotPicker(1)">Pick</button>
+                                    <button class="btn btn-small btn-danger-sm" onclick="clearCGSlot(1)">✕</button>
+                                </div>
+                            </div>
+                            <!-- Slot 2 -->
+                            <div class="cg-slot" id="cgSlot2" data-slot="2">
+                                <div class="cg-slot-num">CG 2</div>
+                                <div class="cg-slot-thumb" id="cgSlotThumb2">
+                                    <span class="cg-slot-empty">Empty</span>
+                                </div>
+                                <div class="cg-slot-title" id="cgSlotTitle2">—</div>
+                                <select class="cg-slot-mode form-select" id="cgSlotMode2" data-slot="2">
+                                    <option value="FOLLOW">FOLLOW</option>
+                                    <option value="LOCK">LOCK</option>
+                                    <option value="BOTH">BOTH</option>
+                                    <option value="NONE">NONE</option>
+                                </select>
+                                <div class="cg-slot-actions">
+                                    <button class="btn btn-small" onclick="openCGSlotPicker(2)">Pick</button>
+                                    <button class="btn btn-small btn-danger-sm" onclick="clearCGSlot(2)">✕</button>
+                                </div>
+                            </div>
+                            <!-- Slot 3 -->
+                            <div class="cg-slot" id="cgSlot3" data-slot="3">
+                                <div class="cg-slot-num">CG 3</div>
+                                <div class="cg-slot-thumb" id="cgSlotThumb3">
+                                    <span class="cg-slot-empty">Empty</span>
+                                </div>
+                                <div class="cg-slot-title" id="cgSlotTitle3">—</div>
+                                <select class="cg-slot-mode form-select" id="cgSlotMode3" data-slot="3">
+                                    <option value="FOLLOW">FOLLOW</option>
+                                    <option value="LOCK">LOCK</option>
+                                    <option value="BOTH">BOTH</option>
+                                    <option value="NONE">NONE</option>
+                                </select>
+                                <div class="cg-slot-actions">
+                                    <button class="btn btn-small" onclick="openCGSlotPicker(3)">Pick</button>
+                                    <button class="btn btn-small btn-danger-sm" onclick="clearCGSlot(3)">✕</button>
+                                </div>
+                            </div>
+                            <!-- Slot 4 -->
+                            <div class="cg-slot" id="cgSlot4" data-slot="4">
+                                <div class="cg-slot-num">CG 4</div>
+                                <div class="cg-slot-thumb" id="cgSlotThumb4">
+                                    <span class="cg-slot-empty">Empty</span>
+                                </div>
+                                <div class="cg-slot-title" id="cgSlotTitle4">—</div>
+                                <select class="cg-slot-mode form-select" id="cgSlotMode4" data-slot="4">
+                                    <option value="FOLLOW">FOLLOW</option>
+                                    <option value="LOCK">LOCK</option>
+                                    <option value="BOTH">BOTH</option>
+                                    <option value="NONE">NONE</option>
+                                </select>
+                                <div class="cg-slot-actions">
+                                    <button class="btn btn-small" onclick="openCGSlotPicker(4)">Pick</button>
+                                    <button class="btn btn-small btn-danger-sm" onclick="clearCGSlot(4)">✕</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- DDR / Playlist -->
+                    <div class="ndi-playlist-panel">
+                        <div class="playlist-header">
+                            <span class="panel-header">DDR / Playlist</span>
+                            <div class="playlist-controls">
+                                <button class="btn btn-small" id="btnAddPlaylistItem">+</button>
+                                <button class="btn btn-small btn-danger-sm" id="btnPlaylistClear">Clear</button>
+                            </div>
+                        </div>
+                        <div class="playlist-items" id="playlistItems">
+                            <div class="empty-state">Empty</div>
+                        </div>
+                        <div class="playlist-playback">
+                            <button class="btn-playback" id="btnPlaylistPlay">▶</button>
+                            <button class="btn-playback" id="btnPlaylistPause">⏸</button>
+                            <button class="btn-playback" id="btnPlaylistStop">⏹</button>
+                            <label class="toggle-switch toggle-sm">
+                                <input type="checkbox" id="playlistLoop">
+                                <span class="toggle-slider"></span>
+                            </label>
+                            <span class="loop-label">Loop</span>
+                        </div>
+                        <div class="schedule-section">
+                            <label class="toggle-switch toggle-sm">
+                                <input type="checkbox" id="scheduleEnabled">
+                                <span class="toggle-slider"></span>
+                            </label>
+                            <span>ToH</span>
+                            <input type="time" id="scheduleTime" class="form-input form-input-sm" disabled>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- PGM Monitor Modal -->
+    <div class="modal" id="pgmMonitorModal">
+        <div class="modal-content modal-wide" style="max-width:1000px;">
+            <div class="modal-header">
+                <h2>📺 PGM Output Monitor</h2>
+                <button class="btn-close" id="btnClosePGMModal">×</button>
+            </div>
+            <div class="pgm-monitor-body">
+                <img id="pgmMonitorVideo" src="" alt="PGM Output"
+                    style="width:100%;flex:1;object-fit:contain;background:#000;display:block;">
+                <div class="pgm-monitor-bar">
+                    <div class="pgm-tally-dot"></div>
+                    <span class="pgm-source-label" id="pgmSourceLabel">No Source</span>
+                    <div style="display:flex;align-items:center;gap:8px;margin-left:auto;">
+                        <label style="font-size:12px;color:#aaa;">Gain (dB)</label>
+                        <input type="range" id="pgmGainSlider" min="-6" max="12" value="0" step="0.5"
+                            style="width:100px;">
+                        <span id="pgmGainValue"
+                            style="font-size:12px;font-family:monospace;color:#e8e8e8;min-width:36px;">0 dB</span>
+                    </div>
+                    <span class="pgm-timecode" id="pgmTimecode">00:00:00</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- As-Run Automation Modal -->
+    <div class="modal" id="asRunModal">
+        <div class="modal-content modal-wide" style="max-width:900px;">
+            <div class="modal-header">
+                <h2>⏱ As-Run Automation</h2>
+                <button class="btn-close" id="btnCloseAsRunModal">×</button>
+            </div>
+            <div class="as-run-body">
+                <!-- Left: Schedule List -->
+                <div class="as-run-schedule">
+                    <div class="as-run-toolbar">
+                        <span class="as-run-clock" id="asRunClock">00:00:00</span>
+                        <span class="as-run-status" id="asRunStatus">STOPPED</span>
+                        <button class="btn btn-small" id="btnAddAsRunEvent">+ Add Event</button>
+                        <button class="btn btn-small"
+                            style="background:rgba(34,197,94,0.2);color:#22c55e;border-color:rgba(34,197,94,0.4);"
+                            id="btnAsRunPlay">▶ Play</button>
+                        <button class="btn btn-small" id="btnAsRunPause" disabled>⏸ Pause</button>
+                        <button class="btn btn-small btn-danger-sm" id="btnAsRunStop" disabled>⏹ Stop</button>
+                    </div>
+                    <div class="as-run-events" id="asRunEvents">
+                        <div style="padding:20px;text-align:center;color:var(--text-muted);font-size:13px;">No events
+                            scheduled. Click + Add Event.</div>
+                    </div>
+                </div>
+                <!-- Right: Event Editor -->
+                <div class="as-run-editor">
+                    <div class="as-run-editor-inner" id="asRunEditorInner">
+                        <div class="as-run-empty-editor">Select an event to edit, or click + Add Event to create one.
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="js/cg-control.js"></script>
+</body>
+
+</html>

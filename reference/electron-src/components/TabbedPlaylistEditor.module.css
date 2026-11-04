@@ -1,0 +1,71 @@
+.container {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    background: var(--surface);
+    border-radius: var(--radius-md);
+    overflow: hidden;
+}
+
+.tabs {
+    display: flex;
+    gap: 0.25rem;
+    padding: 0.5rem;
+    background: var(--surface-highlight);
+    border-bottom: 1px solid var(--border);
+    overflow-x: auto;
+    flex-shrink: 0;
+}
+
+.tab {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.5rem 1rem;
+    background: var(--background);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-sm);
+    color: var(--text-secondary);
+    font-size: 0.85rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.2s;
+    white-space: nowrap;
+    flex-shrink: 0;
+}
+
+.tab:hover {
+    background: var(--surface);
+    color: var(--text-primary);
+    border-color: var(--accent);
+}
+
+.tabActive {
+    background: var(--accent);
+    color: var(--text-on-accent);
+    border-color: var(--accent);
+}
+
+.tabOffline {
+    opacity: 0.6;
+}
+
+.offlineBadge {
+    font-size: 0.7rem;
+    padding: 0.125rem 0.375rem;
+    background: rgba(255, 0, 0, 0.2);
+    border-radius: var(--radius-xs);
+    color: var(--danger);
+    font-weight: 600;
+}
+
+.editorContainer {
+    flex: 1;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+}
+
+
+
+

@@ -1,0 +1,17 @@
+<!-- PlayPlayButtonGallery (UXB-6): the gallery page, and the three legacy keys its shim panel compares, at their source-tree
+     paths, so gallery.qml's relative import "../../Play_Play_Native/qml/ui" resolves the same from qrc and from disk
+     (the source option). Theme.qml and its qmldir come along for the legacy keys' `import ".."`. The module itself is linked through
+     Play_Play_Native/ui-buttons.qrc (qrc:/qml/PlayPlay/Buttons). Linked only into PlayPlayButtonGallery. -->
+<RCC>
+  <qresource prefix="/">
+    <file alias="tools/buttongallery/gallery.qml">gallery.qml</file>
+    <file alias="Play_Play_Native/qml/qmldir">../../Play_Play_Native/qml/qmldir</file>
+    <file alias="Play_Play_Native/qml/Theme.qml">../../Play_Play_Native/qml/Theme.qml</file>
+    <file alias="Play_Play_Native/qml/ui/CButton.qml">../../Play_Play_Native/qml/ui/CButton.qml</file>
+    <file alias="Play_Play_Native/qml/ui/DeckButton.qml">../../Play_Play_Native/qml/ui/DeckButton.qml</file>
+    <file alias="Play_Play_Native/qml/ui/CToggle.qml">../../Play_Play_Native/qml/ui/CToggle.qml</file>
+    <file alias="tests/qml/buttons/legacy/CButton.qml">../../tests/qml/buttons/legacy/CButton.qml</file>
+    <file alias="tests/qml/buttons/legacy/DeckButton.qml">../../tests/qml/buttons/legacy/DeckButton.qml</file>
+    <file alias="tests/qml/buttons/legacy/CToggle.qml">../../tests/qml/buttons/legacy/CToggle.qml</file>
+  </qresource>
+</RCC>

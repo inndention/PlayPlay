@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=1920, initial-scale=1.0">
+    <title>Professional Angled Lower Third</title>
+    <style>
+        :root {
+            --primary: #00D9FF;
+            --secondary: #A855F7;
+            --accent: #FFD700;
+            --dark: #0F172A;
+            --white: #E8E8E8;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html, body {
+            width: 1920px;
+            height: 1080px;
+            overflow: hidden;
+            background: transparent;
+            font-family: 'Arial', sans-serif;
+        }
+
+        .lower-third {
+            position: absolute;
+            bottom: 100px;
+            left: 60px;
+            width: 750px;
+            height: 140px;
+            opacity: 0;
+            animation: slideIn 0.5s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+        }
+
+        @keyframes slideIn {
+            from {
+                transform: translateX(-100%);
+                opacity: 0;
+            }
+            to {
+                transform: translateX(0);
+                opacity: 1;
+            }
+        }
+
+        .lt-container {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            perspective: 1000px;
+        }
+
+        /* Main bar with angled clip */
+        .lt-bar {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+            clip-path: polygon(0 0, 100% 0, 95% 100%, 0 100%);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+            overflow: hidden;
+        }
+
+        /* Shimmer effect */
+        .lt-bar::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 50%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.4), transparent);
+            animation: shimmer 2.5s infinite;
+        }
+
+        @keyframes shimmer {
+            0% { left: -100%; }
+            50% { left: 100%; }
+            100% { left: 100%; }
+        }
+
+        /* Logo area */
+        .lt-logo {
+            position: absolute;
+            left: 12px;
+            top: 10px;
+            width: 120px;
+            height: 120px;
+            background: rgba(255, 255, 255, 0.15);
+            border-radius: 4px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 14px;
+            color: var(--white);
+            opacity: 0;
+            animation: fadeIn 0.5s 0.2s forwards;
+        }
+
+        @keyframes fadeIn {
+            to { opacity: 1; }
+        }
+
+        /* Text content */
+        .lt-text {
+            position: absolute;
+            left: 148px;
+            top: 10px;
+            height: 120px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            z-index: 2;
+        }
+
+        .lt-name {
+            font-size: 48px;
+            font-weight: 800;
+            color: var(--white);
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+            line-height: 1;
+            margin-bottom: 4px;
+        }
+
+        .lt-title {
+            font-size: 22px;
+            font-weight: 500;
+            color: #D0D0D0;
+            letter-spacing: 0.5px;
+        }
+
+        /* Accent line */
+        .lt-accent {
+            position: absolute;
+            right: 30px;
+            top: 50%;
+            width: 4px;
+            height: 80px;
+            background: var(--accent);
+            transform: translateY(-50%);
+            opacity: 0;
+            animation: slideInAccent 0.6s 0.3s forwards;
+        }
+
+        @keyframes slideInAccent {
+            from {
+                height: 0;
+                opacity: 0;
+            }
+            to {
+                height: 80px;
+                opacity: 1;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="lower-third" id="lowerThird" data-cg-auto>
+        <div class="lt-container">
+            <div class="lt-bar">
+                <div class="lt-logo" id="logoPlaceholder">LOGO</div>
+                <div class="lt-text">
+                    <div class="lt-name" id="nameText">John Smith</div>
+                    <div class="lt-title" id="titleText">Chief Correspondent</div>
+                </div>
+                <div class="lt-accent"></div>
+            </div>
+        </div>
+    </div>
+
+    <script src="js/cg-animations.js"></script>
+    <script>
+        const params = new URLSearchParams(window.location.search);
+        document.getElementById('nameText').textContent = params.get('name') || 'John Smith';
+        document.getElementById('titleText').textContent = params.get('title') || 'Chief Correspondent';
+    </script>
+</body>
+
+</html>

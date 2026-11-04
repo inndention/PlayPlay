@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=1920, initial-scale=1.0">
+    <title>Stock Market Ticker</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            width: 1920px;
+            height: 1080px;
+            overflow: hidden;
+            background: transparent;
+            font-family: 'Courier New', 'Consolas', monospace;
+        }
+
+        .ticker-container {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 60px;
+            background: linear-gradient(90deg, rgba(10, 10, 15, 0.98) 0%, rgba(15, 15, 20, 0.98) 100%);
+            border-bottom: 2px solid rgba(34, 197, 94, 0.5);
+            box-shadow: 0 4px 24px rgba(0, 0, 0, 0.6);
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+        }
+
+        .ticker-label {
+            background: rgba(0, 0, 0, 0.7);
+            padding: 0 30px;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            font-size: 18px;
+            font-weight: 700;
+            color: #22C55E;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            flex-shrink: 0;
+            border-right: 2px solid rgba(34, 197, 94, 0.3);
+        }
+
+        .ticker-content {
+            flex: 1;
+            overflow: hidden;
+            position: relative;
+            height: 100%;
+        }
+
+        .ticker-scroll {
+            position: absolute;
+            display: flex;
+            gap: 40px;
+            padding: 0 40px;
+            animation: scroll 40s linear infinite;
+            align-items: center;
+            height: 100%;
+        }
+
+        @keyframes scroll {
+            0% {
+                transform: translateX(0);
+            }
+
+            100% {
+                transform: translateX(-50%);
+            }
+        }
+
+        .stock-item {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            flex-shrink: 0;
+        }
+
+        .symbol {
+            font-size: 20px;
+            font-weight: 700;
+            color: white;
+            min-width: 70px;
+        }
+
+        .price {
+            font-size: 22px;
+            font-weight: 700;
+            color: white;
+        }
+
+        .change {
+            font-size: 18px;
+            font-weight: 700;
+            padding: 4px 10px;
+            border-radius: 4px;
+        }
+
+        .up {
+            color: #22C55E;
+            background: rgba(34, 197, 94, 0.2);
+        }
+
+        .down {
+            color: #EF4444;
+            background: rgba(239, 68, 68, 0.2);
+        }
+
+        .arrow {
+            font-size: 14px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="ticker-container">
+        <div class="ticker-label">MARKETS</div>
+        <div class="ticker-content">
+            <div class="ticker-scroll" id="tickerScroll"></div>
+        </div>
+    </div>
+
+    <script>
+        const params = new URLSearchParams(window.location.search);
+        const stocksParam = params.get('stocks') || '[{"symbol":"AAPL","price":"$150.25","change":"+2.5%"},{"symbol":"GOOGL","price":"$2850.50","change":"-1.2%"},{"symbol":"MSFT","price":"$320.75","change":"+0.8%"}]';
+
+        let stocks = [];
+        try {
+            stocks = JSON.parse(stocksParam);
+        } catch (e) {
+            stocks = [{ "symbol": "AAPL", "price": "$150.25", "change": "+2.5%" }];
+        }
+
+        const container = document.getElementById('tickerScroll');
+
+        // Duplicate stocks for seamless loop
+        const allStocks = [...stocks, ...stocks];
+
+        allStocks.forEach(stock => {
+            const item = document.createElement('div');
+            item.className = 'stock-item';
+
+            const isUp = stock.change.startsWith('+');
+            const changeClass = isUp ? 'up' : 'down';
+            const arrow = isUp ? '▲' : '▼';
+
+            item.innerHTML = `
+                <div class="symbol">${stock.symbol}</div>
+                <div class="price">${stock.price}</div>
+                <div class="change ${changeClass}">
+                    <span class="arrow">${arrow}</span> ${stock.change}
+                </div>
+            `;
+
+            container.appendChild(item);
+        });
+    </script>
+</body>
+
+</html>

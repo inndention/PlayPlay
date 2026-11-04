@@ -1,0 +1,517 @@
+/* SegmentEditor.module.css */
+
+.container {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    background: var(--background);
+    color: var(--text-primary);
+    overflow: hidden;
+}
+
+.playerSection {
+    flex: 0 0 40%;
+    display: flex;
+    background: black;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    min-height: 220px;
+    max-height: min(52vh, 360px);
+    overflow: hidden;
+}
+
+.video {
+    width: 100%;
+    height: 100%;
+    max-height: min(52vh, 360px);
+    max-width: 100%;
+    object-fit: contain;
+    object-position: center center;
+}
+
+.videoPlaceholder {
+    padding: 1.5rem;
+    color: var(--text-muted);
+    text-align: center;
+    font-size: 0.9rem;
+}
+
+.timelineSection {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    border-top: 1px solid var(--border);
+    background: var(--surface);
+    overflow: hidden;
+}
+
+.toolbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.5rem 1rem;
+    border-bottom: 1px solid var(--border);
+    background: var(--surface-highlight);
+}
+
+.toolGroup {
+    display: flex;
+    gap: 0.5rem;
+    align-items: center;
+}
+
+.autoGroup {
+    display: flex;
+    align-items: center;
+    gap: 0;
+}
+
+.autoGroup .btn {
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 0;
+    border-right: none;
+}
+
+.countInput {
+    width: 48px;
+    padding: 0.3rem 0.4rem;
+    font-size: 0.8rem;
+    border: 1px solid var(--border);
+    border-top-right-radius: var(--radius-sm);
+    border-bottom-right-radius: var(--radius-sm);
+    background: var(--surface);
+    color: var(--text-primary);
+    text-align: center;
+    -moz-appearance: textfield;
+}
+
+.countInput::-webkit-outer-spin-button,
+.countInput::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+.countInput:focus {
+    outline: none;
+    border-color: var(--accent);
+}
+
+.zoomControls {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    background: var(--background);
+    border-radius: var(--radius-sm);
+    padding: 0.1rem;
+    border: 1px solid var(--border);
+}
+
+.timelineContainer {
+    flex: 1;
+    overflow-x: auto;
+    overflow-y: hidden;
+    position: relative;
+    padding: 1rem 0;
+    user-select: none;
+    width: 100%;
+    /* Ensure it takes full width */
+    min-width: 0;
+    /* Allow shrinking */
+}
+
+.timelineTrack {
+    position: relative;
+    height: 100px;
+    margin-right: 50px;
+    /* End padding */
+}
+
+.filmstrip {
+    height: 100%;
+    white-space: nowrap;
+    position: absolute;
+    top: 0;
+    left: 0;
+    pointer-events: none;
+    opacity: 0.5;
+}
+
+.timeRuler {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 20px;
+    border-bottom: 1px solid var(--border);
+    font-size: 10px;
+    color: var(--text-muted);
+}
+
+.playhead {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    width: 2px;
+    background: var(--accent);
+    z-index: 10;
+    pointer-events: none;
+}
+
+.playheadDragHandle {
+    position: absolute;
+    top: 0;
+    width: 0;
+    height: 0;
+    border-left: 6px solid transparent;
+    border-right: 6px solid transparent;
+    border-top: 8px solid var(--accent);
+    transform: translateX(-5px);
+    cursor: ew-resize;
+}
+
+.segment {
+    position: absolute;
+    top: 28px;
+    height: 64px;
+    background: rgba(59, 130, 246, 0.38);
+    border: 1px solid rgba(255, 255, 255, 0.25);
+    border-radius: var(--radius-sm);
+    cursor: grab;
+    overflow: hidden;
+    color: white;
+    font-size: 11px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-shadow: 0 1px 2px black;
+}
+
+.segment.selected {
+    outline: 2px solid var(--accent);
+    background: rgba(59, 130, 246, 0.5);
+}
+
+.segmentLabel {
+    pointer-events: none;
+    padding: 0 18px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.handle {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    width: 10px;
+    background: rgba(0, 0, 0, 0.35);
+    cursor: ew-resize;
+}
+
+.handleLeft {
+    left: 0;
+}
+
+.handleRight {
+    right: 0;
+}
+
+.handle::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 2px;
+    height: 18px;
+    background: rgba(255, 255, 255, 0.6);
+    transform: translate(-50%, -50%);
+    border-radius: 2px;
+}
+
+.btn {
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+    padding: 0.3rem 0.6rem;
+    border-radius: var(--radius-sm);
+    font-size: 0.8rem;
+    font-weight: 600;
+    cursor: pointer;
+    border: 1px solid var(--border);
+    background: var(--surface);
+    color: var(--text-primary);
+}
+
+.btn:hover {
+    background: var(--surface-highlight);
+}
+
+.btnPrimary {
+    background: var(--accent);
+    color: white;
+    border-color: var(--accent);
+}
+
+.btnPrimary:hover {
+    background: var(--accent-hover);
+}
+
+.btnExport {
+    background: linear-gradient(135deg, #22c55e 0%, #16a34a 100%);
+    color: white;
+    border-color: #22c55e;
+}
+
+.btnExport:hover {
+    background: linear-gradient(135deg, #16a34a 0%, #15803d 100%);
+    border-color: #16a34a;
+}
+
+.btnExport:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+.btnActive {
+    background: var(--accent);
+    color: white;
+    border-color: var(--accent);
+}
+
+.separator {
+    width: 1px;
+    height: 24px;
+    background: var(--border);
+    margin: 0 0.25rem;
+}
+
+/* Timeline horizontal scroll styles */
+.timelineContainer {
+    flex: 1;
+    overflow-x: auto;
+    overflow-y: hidden;
+    position: relative;
+    padding: 1rem 0;
+    user-select: none;
+    width: 100%;
+    min-width: 0;
+    scrollbar-width: thin;
+    scrollbar-color: var(--border) transparent;
+}
+
+.timelineContainer::-webkit-scrollbar {
+    height: 8px;
+}
+
+.timelineContainer::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+.timelineContainer::-webkit-scrollbar-thumb {
+    background: var(--border);
+    border-radius: 4px;
+}
+
+.timelineContainer::-webkit-scrollbar-thumb:hover {
+    background: var(--text-muted);
+}
+
+/* Preview frame tooltip */
+.previewTooltip {
+    position: fixed;
+    bottom: 200px;
+    transform: translateX(-50%);
+    z-index: 1000;
+    pointer-events: none;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 4px;
+    animation: fadeIn 0.1s ease-out;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateX(-50%) translateY(5px); }
+    to { opacity: 1; transform: translateX(-50%) translateY(0); }
+}
+
+.previewImage {
+    width: 160px;
+    height: 90px;
+    object-fit: cover;
+    border-radius: var(--radius-sm);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
+    border: 2px solid var(--accent);
+}
+
+.previewTime {
+    background: rgba(0, 0, 0, 0.8);
+    color: white;
+    padding: 2px 8px;
+    border-radius: 4px;
+    font-size: 11px;
+    font-weight: 600;
+}
+
+/* Waveform */
+.waveformContainer {
+    height: 60px;
+    border-bottom: 1px solid var(--border);
+    background: var(--background);
+    position: relative;
+}
+
+.waveform {
+    width: 100%;
+    height: 100%;
+    display: block;
+}
+
+/* Collection Selector */
+.collectionSelector {
+    position: relative;
+}
+
+.collectionDropdown {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    margin-top: 4px;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-sm);
+    min-width: 250px;
+    max-height: 300px;
+    overflow-y: auto;
+    z-index: 1000;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+}
+
+.collectionItem {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0.5rem;
+    border-bottom: 1px solid var(--border);
+}
+
+.collectionItem:last-child {
+    border-bottom: none;
+}
+
+.collectionNameBtn {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.5rem;
+    background: transparent;
+    border: none;
+    color: var(--text-primary);
+    cursor: pointer;
+    text-align: left;
+    border-radius: var(--radius-sm);
+    font-size: 0.85rem;
+}
+
+.collectionNameBtn:hover {
+    background: var(--surface-highlight);
+}
+
+.segmentCount {
+    color: var(--text-muted);
+    font-size: 0.75rem;
+}
+
+.collectionActions {
+    display: flex;
+    gap: 0.25rem;
+}
+
+.iconBtn {
+    padding: 0.25rem;
+    background: transparent;
+    border: none;
+    color: var(--text-muted);
+    cursor: pointer;
+    border-radius: var(--radius-sm);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.iconBtn:hover {
+    background: var(--surface-highlight);
+    color: var(--text-primary);
+}
+
+.collectionInput {
+    display: flex;
+    gap: 0.25rem;
+    padding: 0.5rem;
+    border-top: 1px solid var(--border);
+}
+
+.collectionInput input {
+    flex: 1;
+    padding: 0.4rem;
+    background: var(--background);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-sm);
+    color: var(--text-primary);
+    font-size: 0.85rem;
+}
+
+.collectionInput input:focus {
+    outline: none;
+    border-color: var(--accent);
+}
+
+.btnActive {
+    background: var(--accent) !important;
+    color: white !important;
+    border-color: var(--accent) !important;
+}
+
+/* Joint handle between adjacent segments */
+.jointHandle {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%) rotate(45deg);
+    width: 12px;
+    height: 12px;
+    background: #f59e0b;
+    border: 2px solid #fff;
+    z-index: 20;
+    cursor: ew-resize;
+    border-radius: 2px;
+    transition: transform 0.1s, background 0.1s;
+}
+
+.jointHandle:hover {
+    background: #fbbf24;
+    transform: translateY(-50%) rotate(45deg) scale(1.3);
+    box-shadow: 0 0 8px rgba(251, 191, 36, 0.8);
+}
+
+/* Hold-zoom badge */
+.holdZoomBadge {
+    position: absolute;
+    top: 4px;
+    right: 8px;
+    background: #f59e0b;
+    color: #000;
+    font-size: 0.7rem;
+    font-weight: 700;
+    padding: 2px 8px;
+    border-radius: 99px;
+    pointer-events: none;
+    z-index: 30;
+    animation: pulseZoom 0.8s infinite alternate;
+}
+
+@keyframes pulseZoom {
+    from { opacity: 1; }
+    to { opacity: 0.6; }
+}

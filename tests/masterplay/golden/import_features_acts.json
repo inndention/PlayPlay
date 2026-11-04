@@ -1,0 +1,2205 @@
+{
+    "acts": [
+        {
+            "file": "import_features.in",
+            "lines": [
+                {
+                    "act": 0,
+                    "line": 54,
+                    "state": "placed"
+                },
+                {
+                    "act": 1,
+                    "line": 56,
+                    "state": "placed"
+                }
+            ],
+            "mediaId": "segshow",
+            "mode": "segments",
+            "path": "D:\\Media\\Prog\\Seg Show.mpg",
+            "title": "Seg Show"
+        },
+        {
+            "file": "import_features.in",
+            "lines": [
+                {
+                    "act": 0,
+                    "line": 49,
+                    "state": "placed"
+                },
+                {
+                    "act": 1,
+                    "line": 51,
+                    "state": "dropped"
+                },
+                {
+                    "act": 2,
+                    "line": 53,
+                    "state": "dropped"
+                }
+            ],
+            "mediaId": "show",
+            "mode": "collapsed",
+            "path": "D:\\Media\\Prog\\Show Open.mpg",
+            "title": "Show Open"
+        }
+    ],
+    "ambiguous": [
+    ],
+    "channel": "mptest",
+    "diagnostics": [
+        {
+            "code": "MP011",
+            "col": 2,
+            "days": [
+            ],
+            "file": "import_features.in",
+            "line": 69,
+            "message": "unknown instruction \"!FooBar\": kept verbatim; the importer passes it over",
+            "severity": "warning"
+        },
+        {
+            "code": "MP026",
+            "col": 1,
+            "days": [
+                "2025-09-11"
+            ],
+            "file": "import_features.in",
+            "line": 49,
+            "message": "act 0 of 'Show Open' airs as the whole programme (the library has no segments for it); later acts of it in this event are dropped, so only where the breaks fall moves",
+            "severity": "info"
+        },
+        {
+            "code": "MP026",
+            "col": 1,
+            "days": [
+                "2025-09-11"
+            ],
+            "file": "import_features.in",
+            "line": 51,
+            "message": "act 1 of 'Show Open' is part of the whole programme placed at line 49 (the library has no segments for it): define segments and re-import",
+            "severity": "info"
+        },
+        {
+            "code": "MP026",
+            "col": 1,
+            "days": [
+                "2025-09-11"
+            ],
+            "file": "import_features.in",
+            "line": 53,
+            "message": "act 2 of 'Show Open' is part of the whole programme placed at line 49 (the library has no segments for it): define segments and re-import",
+            "severity": "info"
+        }
+    ],
+    "dropped": [
+        {
+            "at": "06:25:30",
+            "day": "2025-09-11",
+            "durationSec": 1500,
+            "file": "import_features.in",
+            "kind": "media",
+            "line": 51,
+            "path": "D:\\Media\\Prog\\Show Open.mpg",
+            "reason": "actCollapsed",
+            "title": "Show Open"
+        },
+        {
+            "at": "06:26:30",
+            "day": "2025-09-11",
+            "durationSec": 1500,
+            "file": "import_features.in",
+            "kind": "media",
+            "line": 53,
+            "path": "D:\\Media\\Prog\\Show Open.mpg",
+            "reason": "actCollapsed",
+            "title": "Show Open"
+        }
+    ],
+    "errors": [
+    ],
+    "file": "import_features.in",
+    "folders": [
+    ],
+    "hours": [
+        {
+            "covered": true,
+            "events": 1,
+            "hard": 0,
+            "hourStartMs": 1757548800000,
+            "id": "2025-09-11-0",
+            "items": 0,
+            "plannedSec": 0,
+            "written": true
+        },
+        {
+            "covered": true,
+            "events": 1,
+            "hard": 0,
+            "hourStartMs": 1757552400000,
+            "id": "2025-09-11-1",
+            "items": 0,
+            "plannedSec": 0,
+            "written": true
+        },
+        {
+            "covered": true,
+            "events": 1,
+            "hard": 0,
+            "hourStartMs": 1757556000000,
+            "id": "2025-09-11-2",
+            "items": 0,
+            "plannedSec": 0,
+            "written": true
+        },
+        {
+            "covered": true,
+            "events": 1,
+            "hard": 0,
+            "hourStartMs": 1757559600000,
+            "id": "2025-09-11-3",
+            "items": 0,
+            "plannedSec": 0,
+            "written": true
+        },
+        {
+            "covered": true,
+            "events": 1,
+            "hard": 0,
+            "hourStartMs": 1757563200000,
+            "id": "2025-09-11-4",
+            "items": 0,
+            "plannedSec": 0,
+            "written": true
+        },
+        {
+            "covered": true,
+            "events": 1,
+            "hard": 0,
+            "hourStartMs": 1757566800000,
+            "id": "2025-09-11-5",
+            "items": 0,
+            "plannedSec": 0,
+            "written": true
+        },
+        {
+            "covered": true,
+            "events": 1,
+            "hard": 1,
+            "hourStartMs": 1757570400000,
+            "id": "2025-09-11-6",
+            "items": 6,
+            "plannedSec": 2820,
+            "written": true
+        },
+        {
+            "covered": true,
+            "events": 1,
+            "hard": 1,
+            "hourStartMs": 1757574000000,
+            "id": "2025-09-11-7",
+            "items": 1,
+            "plannedSec": 600,
+            "written": true
+        },
+        {
+            "covered": true,
+            "events": 1,
+            "hard": 0,
+            "hourStartMs": 1757577600000,
+            "id": "2025-09-11-8",
+            "items": 0,
+            "plannedSec": 0,
+            "written": true
+        },
+        {
+            "covered": true,
+            "events": 1,
+            "hard": 0,
+            "hourStartMs": 1757581200000,
+            "id": "2025-09-11-9",
+            "items": 0,
+            "plannedSec": 0,
+            "written": true
+        },
+        {
+            "covered": true,
+            "events": 1,
+            "hard": 0,
+            "hourStartMs": 1757584800000,
+            "id": "2025-09-11-10",
+            "items": 0,
+            "plannedSec": 0,
+            "written": true
+        },
+        {
+            "covered": true,
+            "events": 1,
+            "hard": 0,
+            "hourStartMs": 1757588400000,
+            "id": "2025-09-11-11",
+            "items": 0,
+            "plannedSec": 0,
+            "written": true
+        },
+        {
+            "covered": true,
+            "events": 1,
+            "hard": 0,
+            "hourStartMs": 1757592000000,
+            "id": "2025-09-11-12",
+            "items": 0,
+            "plannedSec": 0,
+            "written": true
+        },
+        {
+            "covered": true,
+            "events": 1,
+            "hard": 0,
+            "hourStartMs": 1757595600000,
+            "id": "2025-09-11-13",
+            "items": 0,
+            "plannedSec": 0,
+            "written": true
+        },
+        {
+            "covered": true,
+            "events": 1,
+            "hard": 0,
+            "hourStartMs": 1757599200000,
+            "id": "2025-09-11-14",
+            "items": 0,
+            "plannedSec": 0,
+            "written": true
+        },
+        {
+            "covered": true,
+            "events": 1,
+            "hard": 0,
+            "hourStartMs": 1757602800000,
+            "id": "2025-09-11-15",
+            "items": 0,
+            "plannedSec": 0,
+            "written": true
+        },
+        {
+            "covered": true,
+            "events": 1,
+            "hard": 0,
+            "hourStartMs": 1757606400000,
+            "id": "2025-09-11-16",
+            "items": 0,
+            "plannedSec": 0,
+            "written": true
+        },
+        {
+            "covered": true,
+            "events": 1,
+            "hard": 0,
+            "hourStartMs": 1757610000000,
+            "id": "2025-09-11-17",
+            "items": 0,
+            "plannedSec": 0,
+            "written": true
+        },
+        {
+            "covered": true,
+            "events": 1,
+            "hard": 0,
+            "hourStartMs": 1757613600000,
+            "id": "2025-09-11-18",
+            "items": 0,
+            "plannedSec": 0,
+            "written": true
+        },
+        {
+            "covered": true,
+            "events": 1,
+            "hard": 0,
+            "hourStartMs": 1757617200000,
+            "id": "2025-09-11-19",
+            "items": 0,
+            "plannedSec": 0,
+            "written": true
+        },
+        {
+            "covered": true,
+            "events": 1,
+            "hard": 0,
+            "hourStartMs": 1757620800000,
+            "id": "2025-09-11-20",
+            "items": 0,
+            "plannedSec": 0,
+            "written": true
+        },
+        {
+            "covered": true,
+            "events": 1,
+            "hard": 0,
+            "hourStartMs": 1757624400000,
+            "id": "2025-09-11-21",
+            "items": 0,
+            "plannedSec": 0,
+            "written": true
+        },
+        {
+            "covered": true,
+            "events": 1,
+            "hard": 0,
+            "hourStartMs": 1757628000000,
+            "id": "2025-09-11-22",
+            "items": 0,
+            "plannedSec": 0,
+            "written": true
+        },
+        {
+            "covered": true,
+            "events": 1,
+            "hard": 0,
+            "hourStartMs": 1757631600000,
+            "id": "2025-09-11-23",
+            "items": 0,
+            "plannedSec": 0,
+            "written": true
+        }
+    ],
+    "ingest": [
+    ],
+    "missing": [
+    ],
+    "mode": "dates",
+    "notes": [
+    ],
+    "onAirSlots": [
+    ],
+    "options": {
+        "breaks": "asScheduled",
+        "channel": "mptest",
+        "clearUncovered": false,
+        "collapseUnsegmentedActs": true,
+        "dayChange": "00:00:00",
+        "floatingSkipMaxLateSec": 300,
+        "followChangePlaylist": false,
+        "fps": 30,
+        "from": "2025-09-11",
+        "hourBoundary": "continue",
+        "hours": [
+        ],
+        "inputMap": {
+        },
+        "legacyDateOrder": "auto",
+        "maxDepth": 4,
+        "maxItems": 20000,
+        "maxUnrollItems": 20000,
+        "minItemSec": 0.5,
+        "missing": "drop",
+        "mode": "dates",
+        "networkInput": "",
+        "nowMs": 1756728000000,
+        "osd": "auto",
+        "repeat": "loop",
+        "samePriority": false,
+        "selectRandomOrder": "random",
+        "subPlaylists": "expand",
+        "timeShiftMin": 0,
+        "timeZone": "UTC",
+        "to": "2025-09-11",
+        "validate": true,
+        "validateFiles": false,
+        "weekdays": [
+        ]
+    },
+    "overlays": [
+    ],
+    "pods": [
+    ],
+    "sha256": "3359f3a296722abd212edd66931e948b3f25684c324dd7e11db14e503769a479",
+    "slotOrder": [
+        "2025-09-11-0",
+        "2025-09-11-1",
+        "2025-09-11-2",
+        "2025-09-11-3",
+        "2025-09-11-4",
+        "2025-09-11-5",
+        "2025-09-11-6",
+        "2025-09-11-7",
+        "2025-09-11-8",
+        "2025-09-11-9",
+        "2025-09-11-10",
+        "2025-09-11-11",
+        "2025-09-11-12",
+        "2025-09-11-13",
+        "2025-09-11-14",
+        "2025-09-11-15",
+        "2025-09-11-16",
+        "2025-09-11-17",
+        "2025-09-11-18",
+        "2025-09-11-19",
+        "2025-09-11-20",
+        "2025-09-11-21",
+        "2025-09-11-22",
+        "2025-09-11-23"
+    ],
+    "slots": {
+        "2025-09-11-0": {
+            "blockType": "general",
+            "channelId": "mptest",
+            "date": "2025-09-11",
+            "hour": 0,
+            "id": "2025-09-11-0",
+            "isLooping": false,
+            "items": [
+            ],
+            "keepProgramOrder": true,
+            "randomizeAds": false,
+            "showBlock": {
+                "masterplay": {
+                    "events": [
+                        {
+                            "carry": true,
+                            "carryDays": 1,
+                            "day": "2025-09-11",
+                            "eventTime": "07:00:00",
+                            "eventType": 0,
+                            "line": 46,
+                            "playMode": 1,
+                            "stamp": "0000-00-04T07:00:00",
+                            "start": "00:00:00",
+                            "unplaced": [
+                                {
+                                    "line": 47,
+                                    "raw": "D:\\Media\\Prog\\Talk.mpg",
+                                    "reason": "beforeWindow",
+                                    "state": "dropped"
+                                }
+                            ]
+                        }
+                    ],
+                    "file": "import_features.in",
+                    "sha256": "3359f3a296722abd212edd66931e948b3f25684c324dd7e11db14e503769a479"
+                }
+            },
+            "updatedAt": 0
+        },
+        "2025-09-11-1": {
+            "blockType": "general",
+            "channelId": "mptest",
+            "date": "2025-09-11",
+            "hour": 1,
+            "id": "2025-09-11-1",
+            "isLooping": false,
+            "items": [
+            ],
+            "keepProgramOrder": true,
+            "randomizeAds": false,
+            "showBlock": {
+                "masterplay": {
+                    "events": [
+                        {
+                            "carry": true,
+                            "carryDays": 1,
+                            "day": "2025-09-11",
+                            "eventTime": "07:00:00",
+                            "eventType": 0,
+                            "line": 46,
+                            "playMode": 1,
+                            "stamp": "0000-00-04T07:00:00",
+                            "start": "00:00:00"
+                        }
+                    ],
+                    "file": "import_features.in",
+                    "sha256": "3359f3a296722abd212edd66931e948b3f25684c324dd7e11db14e503769a479"
+                }
+            },
+            "updatedAt": 0
+        },
+        "2025-09-11-10": {
+            "blockType": "general",
+            "channelId": "mptest",
+            "date": "2025-09-11",
+            "hour": 10,
+            "id": "2025-09-11-10",
+            "isLooping": false,
+            "items": [
+            ],
+            "keepProgramOrder": true,
+            "randomizeAds": false,
+            "showBlock": {
+                "masterplay": {
+                    "events": [
+                        {
+                            "day": "2025-09-11",
+                            "eventType": 0,
+                            "line": 57,
+                            "playMode": 1,
+                            "stamp": "0000-00-05T07:00:00",
+                            "start": "07:00:00"
+                        }
+                    ],
+                    "file": "import_features.in",
+                    "sha256": "3359f3a296722abd212edd66931e948b3f25684c324dd7e11db14e503769a479"
+                }
+            },
+            "updatedAt": 0
+        },
+        "2025-09-11-11": {
+            "blockType": "general",
+            "channelId": "mptest",
+            "date": "2025-09-11",
+            "hour": 11,
+            "id": "2025-09-11-11",
+            "isLooping": false,
+            "items": [
+            ],
+            "keepProgramOrder": true,
+            "randomizeAds": false,
+            "showBlock": {
+                "masterplay": {
+                    "events": [
+                        {
+                            "day": "2025-09-11",
+                            "eventType": 0,
+                            "line": 57,
+                            "playMode": 1,
+                            "stamp": "0000-00-05T07:00:00",
+                            "start": "07:00:00"
+                        }
+                    ],
+                    "file": "import_features.in",
+                    "sha256": "3359f3a296722abd212edd66931e948b3f25684c324dd7e11db14e503769a479"
+                }
+            },
+            "updatedAt": 0
+        },
+        "2025-09-11-12": {
+            "blockType": "general",
+            "channelId": "mptest",
+            "date": "2025-09-11",
+            "hour": 12,
+            "id": "2025-09-11-12",
+            "isLooping": false,
+            "items": [
+            ],
+            "keepProgramOrder": true,
+            "randomizeAds": false,
+            "showBlock": {
+                "masterplay": {
+                    "events": [
+                        {
+                            "day": "2025-09-11",
+                            "eventType": 0,
+                            "line": 57,
+                            "playMode": 1,
+                            "stamp": "0000-00-05T07:00:00",
+                            "start": "07:00:00"
+                        }
+                    ],
+                    "file": "import_features.in",
+                    "sha256": "3359f3a296722abd212edd66931e948b3f25684c324dd7e11db14e503769a479"
+                }
+            },
+            "updatedAt": 0
+        },
+        "2025-09-11-13": {
+            "blockType": "general",
+            "channelId": "mptest",
+            "date": "2025-09-11",
+            "hour": 13,
+            "id": "2025-09-11-13",
+            "isLooping": false,
+            "items": [
+            ],
+            "keepProgramOrder": true,
+            "randomizeAds": false,
+            "showBlock": {
+                "masterplay": {
+                    "events": [
+                        {
+                            "day": "2025-09-11",
+                            "eventType": 0,
+                            "line": 57,
+                            "playMode": 1,
+                            "stamp": "0000-00-05T07:00:00",
+                            "start": "07:00:00"
+                        }
+                    ],
+                    "file": "import_features.in",
+                    "sha256": "3359f3a296722abd212edd66931e948b3f25684c324dd7e11db14e503769a479"
+                }
+            },
+            "updatedAt": 0
+        },
+        "2025-09-11-14": {
+            "blockType": "general",
+            "channelId": "mptest",
+            "date": "2025-09-11",
+            "hour": 14,
+            "id": "2025-09-11-14",
+            "isLooping": false,
+            "items": [
+            ],
+            "keepProgramOrder": true,
+            "randomizeAds": false,
+            "showBlock": {
+                "masterplay": {
+                    "events": [
+                        {
+                            "day": "2025-09-11",
+                            "eventType": 0,
+                            "line": 57,
+                            "playMode": 1,
+                            "stamp": "0000-00-05T07:00:00",
+                            "start": "07:00:00"
+                        }
+                    ],
+                    "file": "import_features.in",
+                    "sha256": "3359f3a296722abd212edd66931e948b3f25684c324dd7e11db14e503769a479"
+                }
+            },
+            "updatedAt": 0
+        },
+        "2025-09-11-15": {
+            "blockType": "general",
+            "channelId": "mptest",
+            "date": "2025-09-11",
+            "hour": 15,
+            "id": "2025-09-11-15",
+            "isLooping": false,
+            "items": [
+            ],
+            "keepProgramOrder": true,
+            "randomizeAds": false,
+            "showBlock": {
+                "masterplay": {
+                    "events": [
+                        {
+                            "day": "2025-09-11",
+                            "eventType": 0,
+                            "line": 57,
+                            "playMode": 1,
+                            "stamp": "0000-00-05T07:00:00",
+                            "start": "07:00:00"
+                        }
+                    ],
+                    "file": "import_features.in",
+                    "sha256": "3359f3a296722abd212edd66931e948b3f25684c324dd7e11db14e503769a479"
+                }
+            },
+            "updatedAt": 0
+        },
+        "2025-09-11-16": {
+            "blockType": "general",
+            "channelId": "mptest",
+            "date": "2025-09-11",
+            "hour": 16,
+            "id": "2025-09-11-16",
+            "isLooping": false,
+            "items": [
+            ],
+            "keepProgramOrder": true,
+            "randomizeAds": false,
+            "showBlock": {
+                "masterplay": {
+                    "events": [
+                        {
+                            "day": "2025-09-11",
+                            "eventType": 0,
+                            "line": 57,
+                            "playMode": 1,
+                            "stamp": "0000-00-05T07:00:00",
+                            "start": "07:00:00"
+                        }
+                    ],
+                    "file": "import_features.in",
+                    "sha256": "3359f3a296722abd212edd66931e948b3f25684c324dd7e11db14e503769a479"
+                }
+            },
+            "updatedAt": 0
+        },
+        "2025-09-11-17": {
+            "blockType": "general",
+            "channelId": "mptest",
+            "date": "2025-09-11",
+            "hour": 17,
+            "id": "2025-09-11-17",
+            "isLooping": false,
+            "items": [
+            ],
+            "keepProgramOrder": true,
+            "randomizeAds": false,
+            "showBlock": {
+                "masterplay": {
+                    "events": [
+                        {
+                            "day": "2025-09-11",
+                            "eventType": 0,
+                            "line": 57,
+                            "playMode": 1,
+                            "stamp": "0000-00-05T07:00:00",
+                            "start": "07:00:00"
+                        }
+                    ],
+                    "file": "import_features.in",
+                    "sha256": "3359f3a296722abd212edd66931e948b3f25684c324dd7e11db14e503769a479"
+                }
+            },
+            "updatedAt": 0
+        },
+        "2025-09-11-18": {
+            "blockType": "general",
+            "channelId": "mptest",
+            "date": "2025-09-11",
+            "hour": 18,
+            "id": "2025-09-11-18",
+            "isLooping": false,
+            "items": [
+            ],
+            "keepProgramOrder": true,
+            "randomizeAds": false,
+            "showBlock": {
+                "masterplay": {
+                    "events": [
+                        {
+                            "day": "2025-09-11",
+                            "eventType": 0,
+                            "line": 57,
+                            "playMode": 1,
+                            "stamp": "0000-00-05T07:00:00",
+                            "start": "07:00:00"
+                        }
+                    ],
+                    "file": "import_features.in",
+                    "sha256": "3359f3a296722abd212edd66931e948b3f25684c324dd7e11db14e503769a479"
+                }
+            },
+            "updatedAt": 0
+        },
+        "2025-09-11-19": {
+            "blockType": "general",
+            "channelId": "mptest",
+            "date": "2025-09-11",
+            "hour": 19,
+            "id": "2025-09-11-19",
+            "isLooping": false,
+            "items": [
+            ],
+            "keepProgramOrder": true,
+            "randomizeAds": false,
+            "showBlock": {
+                "masterplay": {
+                    "events": [
+                        {
+                            "day": "2025-09-11",
+                            "eventType": 0,
+                            "line": 57,
+                            "playMode": 1,
+                            "stamp": "0000-00-05T07:00:00",
+                            "start": "07:00:00"
+                        }
+                    ],
+                    "file": "import_features.in",
+                    "sha256": "3359f3a296722abd212edd66931e948b3f25684c324dd7e11db14e503769a479"
+                }
+            },
+            "updatedAt": 0
+        },
+        "2025-09-11-2": {
+            "blockType": "general",
+            "channelId": "mptest",
+            "date": "2025-09-11",
+            "hour": 2,
+            "id": "2025-09-11-2",
+            "isLooping": false,
+            "items": [
+            ],
+            "keepProgramOrder": true,
+            "randomizeAds": false,
+            "showBlock": {
+                "masterplay": {
+                    "events": [
+                        {
+                            "carry": true,
+                            "carryDays": 1,
+                            "day": "2025-09-11",
+                            "eventTime": "07:00:00",
+                            "eventType": 0,
+                            "line": 46,
+                            "playMode": 1,
+                            "stamp": "0000-00-04T07:00:00",
+                            "start": "00:00:00"
+                        }
+                    ],
+                    "file": "import_features.in",
+                    "sha256": "3359f3a296722abd212edd66931e948b3f25684c324dd7e11db14e503769a479"
+                }
+            },
+            "updatedAt": 0
+        },
+        "2025-09-11-20": {
+            "blockType": "general",
+            "channelId": "mptest",
+            "date": "2025-09-11",
+            "hour": 20,
+            "id": "2025-09-11-20",
+            "isLooping": false,
+            "items": [
+            ],
+            "keepProgramOrder": true,
+            "randomizeAds": false,
+            "showBlock": {
+                "masterplay": {
+                    "events": [
+                        {
+                            "day": "2025-09-11",
+                            "eventType": 0,
+                            "line": 57,
+                            "playMode": 1,
+                            "stamp": "0000-00-05T07:00:00",
+                            "start": "07:00:00"
+                        }
+                    ],
+                    "file": "import_features.in",
+                    "sha256": "3359f3a296722abd212edd66931e948b3f25684c324dd7e11db14e503769a479"
+                }
+            },
+            "updatedAt": 0
+        },
+        "2025-09-11-21": {
+            "blockType": "general",
+            "channelId": "mptest",
+            "date": "2025-09-11",
+            "hour": 21,
+            "id": "2025-09-11-21",
+            "isLooping": false,
+            "items": [
+            ],
+            "keepProgramOrder": true,
+            "randomizeAds": false,
+            "showBlock": {
+                "masterplay": {
+                    "events": [
+                        {
+                            "day": "2025-09-11",
+                            "eventType": 0,
+                            "line": 57,
+                            "playMode": 1,
+                            "stamp": "0000-00-05T07:00:00",
+                            "start": "07:00:00"
+                        }
+                    ],
+                    "file": "import_features.in",
+                    "sha256": "3359f3a296722abd212edd66931e948b3f25684c324dd7e11db14e503769a479"
+                }
+            },
+            "updatedAt": 0
+        },
+        "2025-09-11-22": {
+            "blockType": "general",
+            "channelId": "mptest",
+            "date": "2025-09-11",
+            "hour": 22,
+            "id": "2025-09-11-22",
+            "isLooping": false,
+            "items": [
+            ],
+            "keepProgramOrder": true,
+            "randomizeAds": false,
+            "showBlock": {
+                "masterplay": {
+                    "events": [
+                        {
+                            "day": "2025-09-11",
+                            "eventType": 0,
+                            "line": 57,
+                            "playMode": 1,
+                            "stamp": "0000-00-05T07:00:00",
+                            "start": "07:00:00"
+                        }
+                    ],
+                    "file": "import_features.in",
+                    "sha256": "3359f3a296722abd212edd66931e948b3f25684c324dd7e11db14e503769a479"
+                }
+            },
+            "updatedAt": 0
+        },
+        "2025-09-11-23": {
+            "blockType": "general",
+            "channelId": "mptest",
+            "date": "2025-09-11",
+            "hour": 23,
+            "id": "2025-09-11-23",
+            "isLooping": false,
+            "items": [
+            ],
+            "keepProgramOrder": true,
+            "randomizeAds": false,
+            "showBlock": {
+                "masterplay": {
+                    "events": [
+                        {
+                            "day": "2025-09-11",
+                            "eventType": 0,
+                            "line": 57,
+                            "playMode": 1,
+                            "stamp": "0000-00-05T07:00:00",
+                            "start": "07:00:00"
+                        }
+                    ],
+                    "file": "import_features.in",
+                    "sha256": "3359f3a296722abd212edd66931e948b3f25684c324dd7e11db14e503769a479"
+                }
+            },
+            "updatedAt": 0
+        },
+        "2025-09-11-3": {
+            "blockType": "general",
+            "channelId": "mptest",
+            "date": "2025-09-11",
+            "hour": 3,
+            "id": "2025-09-11-3",
+            "isLooping": false,
+            "items": [
+            ],
+            "keepProgramOrder": true,
+            "randomizeAds": false,
+            "showBlock": {
+                "masterplay": {
+                    "events": [
+                        {
+                            "carry": true,
+                            "carryDays": 1,
+                            "day": "2025-09-11",
+                            "eventTime": "07:00:00",
+                            "eventType": 0,
+                            "line": 46,
+                            "playMode": 1,
+                            "stamp": "0000-00-04T07:00:00",
+                            "start": "00:00:00"
+                        }
+                    ],
+                    "file": "import_features.in",
+                    "sha256": "3359f3a296722abd212edd66931e948b3f25684c324dd7e11db14e503769a479"
+                }
+            },
+            "updatedAt": 0
+        },
+        "2025-09-11-4": {
+            "blockType": "general",
+            "channelId": "mptest",
+            "date": "2025-09-11",
+            "hour": 4,
+            "id": "2025-09-11-4",
+            "isLooping": false,
+            "items": [
+            ],
+            "keepProgramOrder": true,
+            "randomizeAds": false,
+            "showBlock": {
+                "masterplay": {
+                    "events": [
+                        {
+                            "carry": true,
+                            "carryDays": 1,
+                            "day": "2025-09-11",
+                            "eventTime": "07:00:00",
+                            "eventType": 0,
+                            "line": 46,
+                            "playMode": 1,
+                            "stamp": "0000-00-04T07:00:00",
+                            "start": "00:00:00"
+                        }
+                    ],
+                    "file": "import_features.in",
+                    "sha256": "3359f3a296722abd212edd66931e948b3f25684c324dd7e11db14e503769a479"
+                }
+            },
+            "updatedAt": 0
+        },
+        "2025-09-11-5": {
+            "blockType": "general",
+            "channelId": "mptest",
+            "date": "2025-09-11",
+            "hour": 5,
+            "id": "2025-09-11-5",
+            "isLooping": false,
+            "items": [
+            ],
+            "keepProgramOrder": true,
+            "randomizeAds": false,
+            "showBlock": {
+                "masterplay": {
+                    "events": [
+                        {
+                            "carry": true,
+                            "carryDays": 1,
+                            "day": "2025-09-11",
+                            "eventTime": "07:00:00",
+                            "eventType": 0,
+                            "line": 46,
+                            "playMode": 1,
+                            "stamp": "0000-00-04T07:00:00",
+                            "start": "00:00:00"
+                        }
+                    ],
+                    "file": "import_features.in",
+                    "sha256": "3359f3a296722abd212edd66931e948b3f25684c324dd7e11db14e503769a479"
+                }
+            },
+            "updatedAt": 0
+        },
+        "2025-09-11-6": {
+            "blockType": "show",
+            "channelId": "mptest",
+            "date": "2025-09-11",
+            "hour": 6,
+            "id": "2025-09-11-6",
+            "isLooping": false,
+            "items": [
+                {
+                    "conflictPolicy": "truncate",
+                    "duration": 1500,
+                    "fixedOffsetSec": 0,
+                    "id": "mp-06148910bec9f957",
+                    "isLocked": false,
+                    "loop": false,
+                    "masterplay": {
+                        "act": {
+                            "collapsed": true,
+                            "index": 0
+                        },
+                        "anchor": {
+                            "eventType": 0,
+                            "start": "onTime",
+                            "time": "06:00:00"
+                        },
+                        "day": "2025-09-11",
+                        "event": "0000-00-05T06:00:00",
+                        "eventSrc": "import_features.in#48",
+                        "line": 49,
+                        "params": [
+                            "actinout=0"
+                        ],
+                        "raw": "D:\\Media\\Prog\\Show Open.mpg\tactinout=0",
+                        "resolvedBy": "path",
+                        "src": "import_features.in#49",
+                        "via": "mapped"
+                    },
+                    "mediaId": "show",
+                    "path": "D:\\Media\\Prog\\Show Open.mpg",
+                    "priority": 0,
+                    "timeIn": 0,
+                    "timeOut": 0,
+                    "timingMode": "hard_start",
+                    "title": "Show Open",
+                    "transitionType": "cut",
+                    "type": "program"
+                },
+                {
+                    "duration": 30,
+                    "id": "mp-f360136c4e938267",
+                    "isLocked": false,
+                    "loop": false,
+                    "masterplay": {
+                        "day": "2025-09-11",
+                        "event": "0000-00-05T06:00:00",
+                        "eventSrc": "import_features.in#48",
+                        "line": 50,
+                        "raw": "D:\\Media\\Spots\\Spot A.mpg",
+                        "resolvedBy": "path",
+                        "src": "import_features.in#50",
+                        "via": "mapped"
+                    },
+                    "mediaId": "spotA",
+                    "path": "D:\\Media\\Spots\\Spot A.mpg",
+                    "priority": 0,
+                    "timeIn": 0,
+                    "timeOut": 0,
+                    "timingMode": "soft_start",
+                    "title": "Spot A",
+                    "transitionType": "cut",
+                    "type": "ad"
+                },
+                {
+                    "duration": 60,
+                    "id": "mp-7b882bb1cac3ffaa",
+                    "isLocked": false,
+                    "loop": false,
+                    "masterplay": {
+                        "day": "2025-09-11",
+                        "event": "0000-00-05T06:00:00",
+                        "eventSrc": "import_features.in#48",
+                        "instructions": [
+                            {
+                                "line": 51,
+                                "raw": "D:\\Media\\Prog\\Show Open.mpg\tactinout=1",
+                                "reason": "actCollapsed",
+                                "state": "dropped"
+                            }
+                        ],
+                        "line": 52,
+                        "raw": "D:\\Media\\Spots\\Spot B.mpg",
+                        "resolvedBy": "path",
+                        "src": "import_features.in#52",
+                        "via": "mapped"
+                    },
+                    "mediaId": "spotB",
+                    "path": "D:\\Media\\Spots\\Spot B.mpg",
+                    "priority": 0,
+                    "timeIn": 0,
+                    "timeOut": 0,
+                    "timingMode": "soft_start",
+                    "title": "Spot B",
+                    "transitionType": "cut",
+                    "type": "ad"
+                },
+                {
+                    "duration": 1800,
+                    "id": "mp-5051adc16cd1731a",
+                    "isLocked": false,
+                    "loop": false,
+                    "masterplay": {
+                        "act": {
+                            "index": 0,
+                            "segmentId": "seg-a"
+                        },
+                        "day": "2025-09-11",
+                        "event": "0000-00-05T06:00:00",
+                        "eventSrc": "import_features.in#48",
+                        "instructions": [
+                            {
+                                "line": 53,
+                                "raw": "D:\\Media\\Prog\\Show Open.mpg\tactinout=2",
+                                "reason": "actCollapsed",
+                                "state": "dropped"
+                            }
+                        ],
+                        "line": 54,
+                        "params": [
+                            "actinout=0"
+                        ],
+                        "raw": "D:\\Media\\Prog\\Seg Show.mpg\tactinout=0",
+                        "resolvedBy": "path",
+                        "src": "import_features.in#54",
+                        "via": "mapped"
+                    },
+                    "mediaId": "segshow",
+                    "parentMediaId": "",
+                    "path": "D:\\Media\\Prog\\Seg Show.mpg",
+                    "priority": 0,
+                    "segmentId": "seg-a",
+                    "segmentLabel": "Act 1",
+                    "timeIn": 0,
+                    "timeOut": 0,
+                    "timingMode": "soft_start",
+                    "title": "Seg Show",
+                    "transitionType": "cut",
+                    "type": "program"
+                },
+                {
+                    "duration": 30,
+                    "id": "mp-53aa3b9b51704eaa",
+                    "isLocked": false,
+                    "loop": false,
+                    "masterplay": {
+                        "day": "2025-09-11",
+                        "event": "0000-00-05T06:00:00",
+                        "eventSrc": "import_features.in#48",
+                        "line": 55,
+                        "raw": "D:\\Media\\Spots\\Spot A.mpg",
+                        "resolvedBy": "path",
+                        "src": "import_features.in#55",
+                        "via": "mapped"
+                    },
+                    "mediaId": "spotA",
+                    "path": "D:\\Media\\Spots\\Spot A.mpg",
+                    "priority": 0,
+                    "timeIn": 0,
+                    "timeOut": 0,
+                    "timingMode": "soft_start",
+                    "title": "Spot A",
+                    "transitionType": "cut",
+                    "type": "ad"
+                },
+                {
+                    "duration": 1800,
+                    "id": "mp-2195e00d117e17a6",
+                    "isLocked": false,
+                    "loop": false,
+                    "masterplay": {
+                        "act": {
+                            "index": 1,
+                            "segmentId": "seg-b"
+                        },
+                        "day": "2025-09-11",
+                        "event": "0000-00-05T06:00:00",
+                        "eventSrc": "import_features.in#48",
+                        "line": 56,
+                        "params": [
+                            "actinout=1"
+                        ],
+                        "raw": "D:\\Media\\Prog\\Seg Show.mpg\tactinout=1",
+                        "resolvedBy": "path",
+                        "src": "import_features.in#56",
+                        "via": "mapped"
+                    },
+                    "mediaId": "segshow",
+                    "parentMediaId": "",
+                    "path": "D:\\Media\\Prog\\Seg Show.mpg",
+                    "priority": 0,
+                    "segmentId": "seg-b",
+                    "segmentLabel": "Act 2",
+                    "timeIn": 0,
+                    "timeOut": 0,
+                    "timingMode": "soft_start",
+                    "title": "Seg Show",
+                    "transitionType": "cut",
+                    "type": "program"
+                }
+            ],
+            "keepProgramOrder": true,
+            "randomizeAds": false,
+            "showBlock": {
+                "masterplay": {
+                    "events": [
+                        {
+                            "day": "2025-09-11",
+                            "eventType": 0,
+                            "line": 48,
+                            "name": "Acts Block",
+                            "playMode": 1,
+                            "stamp": "0000-00-05T06:00:00",
+                            "start": "06:00:00"
+                        }
+                    ],
+                    "file": "import_features.in",
+                    "sha256": "3359f3a296722abd212edd66931e948b3f25684c324dd7e11db14e503769a479"
+                },
+                "title": "Acts Block"
+            },
+            "updatedAt": 0
+        },
+        "2025-09-11-7": {
+            "blockType": "general",
+            "channelId": "mptest",
+            "date": "2025-09-11",
+            "hour": 7,
+            "id": "2025-09-11-7",
+            "isLooping": false,
+            "items": [
+                {
+                    "conflictPolicy": "truncate",
+                    "duration": 600,
+                    "fixedOffsetSec": 0,
+                    "id": "mp-39c56e79c31e5c66",
+                    "isLocked": false,
+                    "loop": false,
+                    "masterplay": {
+                        "anchor": {
+                            "eventType": 0,
+                            "start": "onTime",
+                            "time": "07:00:00"
+                        },
+                        "day": "2025-09-11",
+                        "event": "0000-00-05T07:00:00",
+                        "eventSrc": "import_features.in#57",
+                        "line": 58,
+                        "raw": "D:\\Media\\Prog\\Talk.mpg",
+                        "resolvedBy": "path",
+                        "src": "import_features.in#58",
+                        "via": "mapped"
+                    },
+                    "mediaId": "talk",
+                    "path": "D:\\Media\\Prog\\Talk.mpg",
+                    "priority": 0,
+                    "timeIn": 0,
+                    "timeOut": 0,
+                    "timingMode": "hard_start",
+                    "title": "Talk",
+                    "transitionType": "cut",
+                    "type": "program"
+                }
+            ],
+            "keepProgramOrder": true,
+            "randomizeAds": false,
+            "showBlock": {
+                "masterplay": {
+                    "events": [
+                        {
+                            "day": "2025-09-11",
+                            "eventType": 0,
+                            "line": 57,
+                            "playMode": 1,
+                            "stamp": "0000-00-05T07:00:00",
+                            "start": "07:00:00"
+                        }
+                    ],
+                    "file": "import_features.in",
+                    "sha256": "3359f3a296722abd212edd66931e948b3f25684c324dd7e11db14e503769a479"
+                }
+            },
+            "updatedAt": 0
+        },
+        "2025-09-11-8": {
+            "blockType": "general",
+            "channelId": "mptest",
+            "date": "2025-09-11",
+            "hour": 8,
+            "id": "2025-09-11-8",
+            "isLooping": false,
+            "items": [
+            ],
+            "keepProgramOrder": true,
+            "randomizeAds": false,
+            "showBlock": {
+                "masterplay": {
+                    "events": [
+                        {
+                            "day": "2025-09-11",
+                            "eventType": 0,
+                            "line": 57,
+                            "playMode": 1,
+                            "stamp": "0000-00-05T07:00:00",
+                            "start": "07:00:00"
+                        }
+                    ],
+                    "file": "import_features.in",
+                    "sha256": "3359f3a296722abd212edd66931e948b3f25684c324dd7e11db14e503769a479"
+                }
+            },
+            "updatedAt": 0
+        },
+        "2025-09-11-9": {
+            "blockType": "general",
+            "channelId": "mptest",
+            "date": "2025-09-11",
+            "hour": 9,
+            "id": "2025-09-11-9",
+            "isLooping": false,
+            "items": [
+            ],
+            "keepProgramOrder": true,
+            "randomizeAds": false,
+            "showBlock": {
+                "masterplay": {
+                    "events": [
+                        {
+                            "day": "2025-09-11",
+                            "eventType": 0,
+                            "line": 57,
+                            "playMode": 1,
+                            "stamp": "0000-00-05T07:00:00",
+                            "start": "07:00:00"
+                        }
+                    ],
+                    "file": "import_features.in",
+                    "sha256": "3359f3a296722abd212edd66931e948b3f25684c324dd7e11db14e503769a479"
+                }
+            },
+            "updatedAt": 0
+        }
+    },
+    "sources": [
+        {
+            "diagnostics": {
+                "error": 0,
+                "info": 0,
+                "warning": 1
+            },
+            "encoding": "utf8bom",
+            "events": 12,
+            "items": 65,
+            "ok": true,
+            "path": "import_features.in",
+            "root": true
+        }
+    ],
+    "stats": {
+        "acts": 2,
+        "carries": 1,
+        "continuations": 0,
+        "days": 1,
+        "diagnostics": {
+            "error": 0,
+            "info": 3,
+            "warning": 1
+        },
+        "dropped": {
+            "actCollapsed": 2
+        },
+        "events": 2,
+        "folderPicks": 0,
+        "hardStarts": 2,
+        "items": 7,
+        "joins": 0,
+        "liveItems": 0,
+        "loops": {
+            "events": 0,
+            "unrolledLines": 0
+        },
+        "overlays": 0,
+        "placed": 7,
+        "placements": {
+            "break": 0,
+            "folder": 0,
+            "info": 0,
+            "live": 0,
+            "media": 9,
+            "osd": 0,
+            "structural": 0,
+            "unsupported": 0
+        },
+        "plannedSec": 3420,
+        "pods": 0,
+        "resolver": {
+            "ambiguousFiles": 0,
+            "byResolvedBy": {
+                "hash": 0,
+                "name": 0,
+                "none": 0,
+                "path": 9
+            },
+            "emptyFolders": 0,
+            "files": 5,
+            "folderUses": 0,
+            "folders": 0,
+            "items": 9,
+            "live": 0,
+            "missingFiles": 0,
+            "pickedByFolder": 0,
+            "resolved": 9,
+            "urls": 0
+        },
+        "slots": {
+            "covered": 24,
+            "empty": 22,
+            "filtered": 0,
+            "looping": 0,
+            "onAir": 0,
+            "uncovered": 0,
+            "written": 24
+        },
+        "starts": {
+            "onTime": 2
+        },
+        "unsupported": 0,
+        "validation": {
+            "errors": 0,
+            "ok": 24,
+            "slots": 24,
+            "warnings": 46
+        },
+        "windows": 3
+    },
+    "unsupported": [
+    ],
+    "validation": [
+        {
+            "channelId": "mptest",
+            "errors": 0,
+            "gapSeconds": 3600,
+            "issues": [
+                {
+                    "code": "underfill",
+                    "itemId": "",
+                    "message": "3600.0 s unfilled (fill policy will cover it at playout)",
+                    "severity": "warning"
+                },
+                {
+                    "code": "gap",
+                    "itemId": "",
+                    "message": "gaps total 3600.0 s",
+                    "severity": "info"
+                },
+                {
+                    "code": "gap",
+                    "itemId": "",
+                    "message": "hour is empty; emergency loop will play",
+                    "severity": "warning"
+                }
+            ],
+            "ok": true,
+            "overrunSeconds": 0,
+            "slotId": "2025-09-11-0",
+            "totalSeconds": 0,
+            "warnings": 2
+        },
+        {
+            "channelId": "mptest",
+            "errors": 0,
+            "gapSeconds": 3600,
+            "issues": [
+                {
+                    "code": "underfill",
+                    "itemId": "",
+                    "message": "3600.0 s unfilled (fill policy will cover it at playout)",
+                    "severity": "warning"
+                },
+                {
+                    "code": "gap",
+                    "itemId": "",
+                    "message": "gaps total 3600.0 s",
+                    "severity": "info"
+                },
+                {
+                    "code": "gap",
+                    "itemId": "",
+                    "message": "hour is empty; emergency loop will play",
+                    "severity": "warning"
+                }
+            ],
+            "ok": true,
+            "overrunSeconds": 0,
+            "slotId": "2025-09-11-1",
+            "totalSeconds": 0,
+            "warnings": 2
+        },
+        {
+            "channelId": "mptest",
+            "errors": 0,
+            "gapSeconds": 3600,
+            "issues": [
+                {
+                    "code": "underfill",
+                    "itemId": "",
+                    "message": "3600.0 s unfilled (fill policy will cover it at playout)",
+                    "severity": "warning"
+                },
+                {
+                    "code": "gap",
+                    "itemId": "",
+                    "message": "gaps total 3600.0 s",
+                    "severity": "info"
+                },
+                {
+                    "code": "gap",
+                    "itemId": "",
+                    "message": "hour is empty; emergency loop will play",
+                    "severity": "warning"
+                }
+            ],
+            "ok": true,
+            "overrunSeconds": 0,
+            "slotId": "2025-09-11-2",
+            "totalSeconds": 0,
+            "warnings": 2
+        },
+        {
+            "channelId": "mptest",
+            "errors": 0,
+            "gapSeconds": 3600,
+            "issues": [
+                {
+                    "code": "underfill",
+                    "itemId": "",
+                    "message": "3600.0 s unfilled (fill policy will cover it at playout)",
+                    "severity": "warning"
+                },
+                {
+                    "code": "gap",
+                    "itemId": "",
+                    "message": "gaps total 3600.0 s",
+                    "severity": "info"
+                },
+                {
+                    "code": "gap",
+                    "itemId": "",
+                    "message": "hour is empty; emergency loop will play",
+                    "severity": "warning"
+                }
+            ],
+            "ok": true,
+            "overrunSeconds": 0,
+            "slotId": "2025-09-11-3",
+            "totalSeconds": 0,
+            "warnings": 2
+        },
+        {
+            "channelId": "mptest",
+            "errors": 0,
+            "gapSeconds": 3600,
+            "issues": [
+                {
+                    "code": "underfill",
+                    "itemId": "",
+                    "message": "3600.0 s unfilled (fill policy will cover it at playout)",
+                    "severity": "warning"
+                },
+                {
+                    "code": "gap",
+                    "itemId": "",
+                    "message": "gaps total 3600.0 s",
+                    "severity": "info"
+                },
+                {
+                    "code": "gap",
+                    "itemId": "",
+                    "message": "hour is empty; emergency loop will play",
+                    "severity": "warning"
+                }
+            ],
+            "ok": true,
+            "overrunSeconds": 0,
+            "slotId": "2025-09-11-4",
+            "totalSeconds": 0,
+            "warnings": 2
+        },
+        {
+            "channelId": "mptest",
+            "errors": 0,
+            "gapSeconds": 3600,
+            "issues": [
+                {
+                    "code": "underfill",
+                    "itemId": "",
+                    "message": "3600.0 s unfilled (fill policy will cover it at playout)",
+                    "severity": "warning"
+                },
+                {
+                    "code": "gap",
+                    "itemId": "",
+                    "message": "gaps total 3600.0 s",
+                    "severity": "info"
+                },
+                {
+                    "code": "gap",
+                    "itemId": "",
+                    "message": "hour is empty; emergency loop will play",
+                    "severity": "warning"
+                }
+            ],
+            "ok": true,
+            "overrunSeconds": 0,
+            "slotId": "2025-09-11-5",
+            "totalSeconds": 0,
+            "warnings": 2
+        },
+        {
+            "channelId": "mptest",
+            "errors": 0,
+            "gapSeconds": 780,
+            "issues": [
+                {
+                    "code": "underfill",
+                    "itemId": "",
+                    "message": "780.0 s unfilled (fill policy will cover it at playout)",
+                    "severity": "warning"
+                },
+                {
+                    "code": "gap",
+                    "itemId": "",
+                    "message": "gaps total 780.0 s",
+                    "severity": "info"
+                }
+            ],
+            "ok": true,
+            "overrunSeconds": 0,
+            "slotId": "2025-09-11-6",
+            "totalSeconds": 2820,
+            "warnings": 1
+        },
+        {
+            "channelId": "mptest",
+            "errors": 0,
+            "gapSeconds": 3000,
+            "issues": [
+                {
+                    "code": "underfill",
+                    "itemId": "",
+                    "message": "3000.0 s unfilled (fill policy will cover it at playout)",
+                    "severity": "warning"
+                },
+                {
+                    "code": "gap",
+                    "itemId": "",
+                    "message": "gaps total 3000.0 s",
+                    "severity": "info"
+                }
+            ],
+            "ok": true,
+            "overrunSeconds": 0,
+            "slotId": "2025-09-11-7",
+            "totalSeconds": 600,
+            "warnings": 1
+        },
+        {
+            "channelId": "mptest",
+            "errors": 0,
+            "gapSeconds": 3600,
+            "issues": [
+                {
+                    "code": "underfill",
+                    "itemId": "",
+                    "message": "3600.0 s unfilled (fill policy will cover it at playout)",
+                    "severity": "warning"
+                },
+                {
+                    "code": "gap",
+                    "itemId": "",
+                    "message": "gaps total 3600.0 s",
+                    "severity": "info"
+                },
+                {
+                    "code": "gap",
+                    "itemId": "",
+                    "message": "hour is empty; emergency loop will play",
+                    "severity": "warning"
+                }
+            ],
+            "ok": true,
+            "overrunSeconds": 0,
+            "slotId": "2025-09-11-8",
+            "totalSeconds": 0,
+            "warnings": 2
+        },
+        {
+            "channelId": "mptest",
+            "errors": 0,
+            "gapSeconds": 3600,
+            "issues": [
+                {
+                    "code": "underfill",
+                    "itemId": "",
+                    "message": "3600.0 s unfilled (fill policy will cover it at playout)",
+                    "severity": "warning"
+                },
+                {
+                    "code": "gap",
+                    "itemId": "",
+                    "message": "gaps total 3600.0 s",
+                    "severity": "info"
+                },
+                {
+                    "code": "gap",
+                    "itemId": "",
+                    "message": "hour is empty; emergency loop will play",
+                    "severity": "warning"
+                }
+            ],
+            "ok": true,
+            "overrunSeconds": 0,
+            "slotId": "2025-09-11-9",
+            "totalSeconds": 0,
+            "warnings": 2
+        },
+        {
+            "channelId": "mptest",
+            "errors": 0,
+            "gapSeconds": 3600,
+            "issues": [
+                {
+                    "code": "underfill",
+                    "itemId": "",
+                    "message": "3600.0 s unfilled (fill policy will cover it at playout)",
+                    "severity": "warning"
+                },
+                {
+                    "code": "gap",
+                    "itemId": "",
+                    "message": "gaps total 3600.0 s",
+                    "severity": "info"
+                },
+                {
+                    "code": "gap",
+                    "itemId": "",
+                    "message": "hour is empty; emergency loop will play",
+                    "severity": "warning"
+                }
+            ],
+            "ok": true,
+            "overrunSeconds": 0,
+            "slotId": "2025-09-11-10",
+            "totalSeconds": 0,
+            "warnings": 2
+        },
+        {
+            "channelId": "mptest",
+            "errors": 0,
+            "gapSeconds": 3600,
+            "issues": [
+                {
+                    "code": "underfill",
+                    "itemId": "",
+                    "message": "3600.0 s unfilled (fill policy will cover it at playout)",
+                    "severity": "warning"
+                },
+                {
+                    "code": "gap",
+                    "itemId": "",
+                    "message": "gaps total 3600.0 s",
+                    "severity": "info"
+                },
+                {
+                    "code": "gap",
+                    "itemId": "",
+                    "message": "hour is empty; emergency loop will play",
+                    "severity": "warning"
+                }
+            ],
+            "ok": true,
+            "overrunSeconds": 0,
+            "slotId": "2025-09-11-11",
+            "totalSeconds": 0,
+            "warnings": 2
+        },
+        {
+            "channelId": "mptest",
+            "errors": 0,
+            "gapSeconds": 3600,
+            "issues": [
+                {
+                    "code": "underfill",
+                    "itemId": "",
+                    "message": "3600.0 s unfilled (fill policy will cover it at playout)",
+                    "severity": "warning"
+                },
+                {
+                    "code": "gap",
+                    "itemId": "",
+                    "message": "gaps total 3600.0 s",
+                    "severity": "info"
+                },
+                {
+                    "code": "gap",
+                    "itemId": "",
+                    "message": "hour is empty; emergency loop will play",
+                    "severity": "warning"
+                }
+            ],
+            "ok": true,
+            "overrunSeconds": 0,
+            "slotId": "2025-09-11-12",
+            "totalSeconds": 0,
+            "warnings": 2
+        },
+        {
+            "channelId": "mptest",
+            "errors": 0,
+            "gapSeconds": 3600,
+            "issues": [
+                {
+                    "code": "underfill",
+                    "itemId": "",
+                    "message": "3600.0 s unfilled (fill policy will cover it at playout)",
+                    "severity": "warning"
+                },
+                {
+                    "code": "gap",
+                    "itemId": "",
+                    "message": "gaps total 3600.0 s",
+                    "severity": "info"
+                },
+                {
+                    "code": "gap",
+                    "itemId": "",
+                    "message": "hour is empty; emergency loop will play",
+                    "severity": "warning"
+                }
+            ],
+            "ok": true,
+            "overrunSeconds": 0,
+            "slotId": "2025-09-11-13",
+            "totalSeconds": 0,
+            "warnings": 2
+        },
+        {
+            "channelId": "mptest",
+            "errors": 0,
+            "gapSeconds": 3600,
+            "issues": [
+                {
+                    "code": "underfill",
+                    "itemId": "",
+                    "message": "3600.0 s unfilled (fill policy will cover it at playout)",
+                    "severity": "warning"
+                },
+                {
+                    "code": "gap",
+                    "itemId": "",
+                    "message": "gaps total 3600.0 s",
+                    "severity": "info"
+                },
+                {
+                    "code": "gap",
+                    "itemId": "",
+                    "message": "hour is empty; emergency loop will play",
+                    "severity": "warning"
+                }
+            ],
+            "ok": true,
+            "overrunSeconds": 0,
+            "slotId": "2025-09-11-14",
+            "totalSeconds": 0,
+            "warnings": 2
+        },
+        {
+            "channelId": "mptest",
+            "errors": 0,
+            "gapSeconds": 3600,
+            "issues": [
+                {
+                    "code": "underfill",
+                    "itemId": "",
+                    "message": "3600.0 s unfilled (fill policy will cover it at playout)",
+                    "severity": "warning"
+                },
+                {
+                    "code": "gap",
+                    "itemId": "",
+                    "message": "gaps total 3600.0 s",
+                    "severity": "info"
+                },
+                {
+                    "code": "gap",
+                    "itemId": "",
+                    "message": "hour is empty; emergency loop will play",
+                    "severity": "warning"
+                }
+            ],
+            "ok": true,
+            "overrunSeconds": 0,
+            "slotId": "2025-09-11-15",
+            "totalSeconds": 0,
+            "warnings": 2
+        },
+        {
+            "channelId": "mptest",
+            "errors": 0,
+            "gapSeconds": 3600,
+            "issues": [
+                {
+                    "code": "underfill",
+                    "itemId": "",
+                    "message": "3600.0 s unfilled (fill policy will cover it at playout)",
+                    "severity": "warning"
+                },
+                {
+                    "code": "gap",
+                    "itemId": "",
+                    "message": "gaps total 3600.0 s",
+                    "severity": "info"
+                },
+                {
+                    "code": "gap",
+                    "itemId": "",
+                    "message": "hour is empty; emergency loop will play",
+                    "severity": "warning"
+                }
+            ],
+            "ok": true,
+            "overrunSeconds": 0,
+            "slotId": "2025-09-11-16",
+            "totalSeconds": 0,
+            "warnings": 2
+        },
+        {
+            "channelId": "mptest",
+            "errors": 0,
+            "gapSeconds": 3600,
+            "issues": [
+                {
+                    "code": "underfill",
+                    "itemId": "",
+                    "message": "3600.0 s unfilled (fill policy will cover it at playout)",
+                    "severity": "warning"
+                },
+                {
+                    "code": "gap",
+                    "itemId": "",
+                    "message": "gaps total 3600.0 s",
+                    "severity": "info"
+                },
+                {
+                    "code": "gap",
+                    "itemId": "",
+                    "message": "hour is empty; emergency loop will play",
+                    "severity": "warning"
+                }
+            ],
+            "ok": true,
+            "overrunSeconds": 0,
+            "slotId": "2025-09-11-17",
+            "totalSeconds": 0,
+            "warnings": 2
+        },
+        {
+            "channelId": "mptest",
+            "errors": 0,
+            "gapSeconds": 3600,
+            "issues": [
+                {
+                    "code": "underfill",
+                    "itemId": "",
+                    "message": "3600.0 s unfilled (fill policy will cover it at playout)",
+                    "severity": "warning"
+                },
+                {
+                    "code": "gap",
+                    "itemId": "",
+                    "message": "gaps total 3600.0 s",
+                    "severity": "info"
+                },
+                {
+                    "code": "gap",
+                    "itemId": "",
+                    "message": "hour is empty; emergency loop will play",
+                    "severity": "warning"
+                }
+            ],
+            "ok": true,
+            "overrunSeconds": 0,
+            "slotId": "2025-09-11-18",
+            "totalSeconds": 0,
+            "warnings": 2
+        },
+        {
+            "channelId": "mptest",
+            "errors": 0,
+            "gapSeconds": 3600,
+            "issues": [
+                {
+                    "code": "underfill",
+                    "itemId": "",
+                    "message": "3600.0 s unfilled (fill policy will cover it at playout)",
+                    "severity": "warning"
+                },
+                {
+                    "code": "gap",
+                    "itemId": "",
+                    "message": "gaps total 3600.0 s",
+                    "severity": "info"
+                },
+                {
+                    "code": "gap",
+                    "itemId": "",
+                    "message": "hour is empty; emergency loop will play",
+                    "severity": "warning"
+                }
+            ],
+            "ok": true,
+            "overrunSeconds": 0,
+            "slotId": "2025-09-11-19",
+            "totalSeconds": 0,
+            "warnings": 2
+        },
+        {
+            "channelId": "mptest",
+            "errors": 0,
+            "gapSeconds": 3600,
+            "issues": [
+                {
+                    "code": "underfill",
+                    "itemId": "",
+                    "message": "3600.0 s unfilled (fill policy will cover it at playout)",
+                    "severity": "warning"
+                },
+                {
+                    "code": "gap",
+                    "itemId": "",
+                    "message": "gaps total 3600.0 s",
+                    "severity": "info"
+                },
+                {
+                    "code": "gap",
+                    "itemId": "",
+                    "message": "hour is empty; emergency loop will play",
+                    "severity": "warning"
+                }
+            ],
+            "ok": true,
+            "overrunSeconds": 0,
+            "slotId": "2025-09-11-20",
+            "totalSeconds": 0,
+            "warnings": 2
+        },
+        {
+            "channelId": "mptest",
+            "errors": 0,
+            "gapSeconds": 3600,
+            "issues": [
+                {
+                    "code": "underfill",
+                    "itemId": "",
+                    "message": "3600.0 s unfilled (fill policy will cover it at playout)",
+                    "severity": "warning"
+                },
+                {
+                    "code": "gap",
+                    "itemId": "",
+                    "message": "gaps total 3600.0 s",
+                    "severity": "info"
+                },
+                {
+                    "code": "gap",
+                    "itemId": "",
+                    "message": "hour is empty; emergency loop will play",
+                    "severity": "warning"
+                }
+            ],
+            "ok": true,
+            "overrunSeconds": 0,
+            "slotId": "2025-09-11-21",
+            "totalSeconds": 0,
+            "warnings": 2
+        },
+        {
+            "channelId": "mptest",
+            "errors": 0,
+            "gapSeconds": 3600,
+            "issues": [
+                {
+                    "code": "underfill",
+                    "itemId": "",
+                    "message": "3600.0 s unfilled (fill policy will cover it at playout)",
+                    "severity": "warning"
+                },
+                {
+                    "code": "gap",
+                    "itemId": "",
+                    "message": "gaps total 3600.0 s",
+                    "severity": "info"
+                },
+                {
+                    "code": "gap",
+                    "itemId": "",
+                    "message": "hour is empty; emergency loop will play",
+                    "severity": "warning"
+                }
+            ],
+            "ok": true,
+            "overrunSeconds": 0,
+            "slotId": "2025-09-11-22",
+            "totalSeconds": 0,
+            "warnings": 2
+        },
+        {
+            "channelId": "mptest",
+            "errors": 0,
+            "gapSeconds": 3600,
+            "issues": [
+                {
+                    "code": "underfill",
+                    "itemId": "",
+                    "message": "3600.0 s unfilled (fill policy will cover it at playout)",
+                    "severity": "warning"
+                },
+                {
+                    "code": "gap",
+                    "itemId": "",
+                    "message": "gaps total 3600.0 s",
+                    "severity": "info"
+                },
+                {
+                    "code": "gap",
+                    "itemId": "",
+                    "message": "hour is empty; emergency loop will play",
+                    "severity": "warning"
+                }
+            ],
+            "ok": true,
+            "overrunSeconds": 0,
+            "slotId": "2025-09-11-23",
+            "totalSeconds": 0,
+            "warnings": 2
+        }
+    ]
+}

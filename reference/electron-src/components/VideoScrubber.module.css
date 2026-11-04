@@ -1,0 +1,479 @@
+/* VideoScrubber - Professional Video Timeline Editor */
+
+.scrubberOverlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.95);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 10000;
+    padding: 20px;
+}
+
+.scrubber {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-lg);
+    width: 100%;
+    max-width: 1000px;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    box-shadow: 0 25px 50px rgba(0, 0, 0, 0.5);
+}
+
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 1.25rem;
+    border-bottom: 1px solid var(--border);
+    background: var(--surface-highlight);
+}
+
+.title {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    color: var(--accent);
+}
+
+.title h3 {
+    margin: 0;
+    font-size: 1rem;
+    font-weight: 600;
+    color: var(--text-primary);
+}
+
+.closeBtn {
+    background: transparent;
+    border: none;
+    color: var(--text-muted);
+    cursor: pointer;
+    padding: 0.25rem;
+    border-radius: var(--radius-sm);
+    transition: all 0.15s;
+}
+
+.closeBtn:hover {
+    background: var(--danger);
+    color: white;
+}
+
+/* Video Container */
+.videoContainer {
+    position: relative;
+    background: #000;
+    aspect-ratio: 16/9;
+    max-height: 400px;
+}
+
+.video {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+}
+
+.playOverlay {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(0, 0, 0, 0.4);
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.playOverlay:hover {
+    background: rgba(0, 0, 0, 0.3);
+}
+
+.playOverlay svg {
+    color: white;
+    opacity: 0.8;
+    transition: all 0.2s;
+}
+
+.playOverlay:hover svg {
+    opacity: 1;
+    transform: scale(1.1);
+}
+
+/* Waveform */
+.waveformContainer {
+    position: relative;
+    height: 60px;
+    background: var(--background);
+    border-bottom: 1px solid var(--border);
+}
+
+.waveform {
+    width: 100%;
+    height: 100%;
+}
+
+.waveformPlayhead {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    width: 2px;
+    background: var(--danger);
+    pointer-events: none;
+    z-index: 5;
+    box-shadow: 0 0 4px var(--danger);
+}
+
+/* Progress Bar */
+.progressContainer {
+    position: relative;
+    height: 28px;
+    padding: 10px 0;
+    background: var(--surface-highlight);
+    cursor: pointer;
+    user-select: none;
+}
+
+.markedRegion {
+    position: absolute;
+    top: 8px;
+    bottom: 8px;
+    background: rgba(34, 197, 94, 0.25);
+    border-left: 2px solid var(--success);
+    border-right: 2px solid var(--success);
+    pointer-events: none;
+}
+
+.markIn, .markOut {
+    position: absolute;
+    top: 4px;
+    bottom: 4px;
+    width: 3px;
+    pointer-events: none;
+    z-index: 6;
+}
+
+.markIn {
+    background: var(--success);
+    border-radius: 3px 0 0 3px;
+}
+
+.markOut {
+    background: var(--danger);
+    border-radius: 0 3px 3px 0;
+}
+
+.progressBar {
+    position: absolute;
+    top: 50%;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: var(--border);
+    border-radius: 2px;
+    transform: translateY(-50%);
+}
+
+.progressFill {
+    height: 100%;
+    background: linear-gradient(90deg, var(--accent) 0%, #60a5fa 100%);
+    border-radius: 2px;
+    transition: width 0.05s linear;
+}
+
+.progressHandle {
+    position: absolute;
+    top: 50%;
+    width: 14px;
+    height: 14px;
+    background: white;
+    border: 2px solid var(--accent);
+    border-radius: 50%;
+    transform: translate(-50%, -50%);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+    transition: transform 0.1s;
+    z-index: 10;
+}
+
+.progressHandle:hover {
+    transform: translate(-50%, -50%) scale(1.2);
+}
+
+/* Thumbnail Preview */
+.thumbnailPreview {
+    position: absolute;
+    bottom: 100%;
+    transform: translateX(-50%);
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-sm);
+    padding: 0.25rem 0.5rem;
+    margin-bottom: 8px;
+    pointer-events: none;
+    z-index: 20;
+    white-space: nowrap;
+}
+
+.thumbnailTime {
+    font-size: 0.75rem;
+    font-family: var(--font-mono);
+    color: var(--text-primary);
+}
+
+/* Timecode */
+.timecode {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.75rem 1.25rem;
+    background: var(--background);
+    font-family: var(--font-mono);
+    font-size: 0.9rem;
+}
+
+.currentTime {
+    color: var(--accent);
+    font-weight: 600;
+}
+
+.separator {
+    color: var(--text-muted);
+}
+
+.totalTime {
+    color: var(--text-secondary);
+}
+
+.markDisplay {
+    margin-left: auto;
+    padding: 0.2rem 0.5rem;
+    background: var(--surface-highlight);
+    border-radius: var(--radius-sm);
+    font-size: 0.75rem;
+    color: var(--success);
+}
+
+.markDisplay:last-of-type {
+    color: var(--danger);
+    margin-left: 0.5rem;
+}
+
+/* Controls */
+.controls {
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+    padding: 1rem 1.25rem;
+    border-top: 1px solid var(--border);
+}
+
+.playbackControls {
+    display: flex;
+    align-items: center;
+    gap: 0.25rem;
+}
+
+.playbackControls button, .markControls button {
+    background: transparent;
+    border: 1px solid var(--border);
+    color: var(--text-secondary);
+    width: 36px;
+    height: 36px;
+    border-radius: var(--radius-sm);
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.15s;
+}
+
+.playbackControls button:hover, .markControls button:hover {
+    background: var(--surface-highlight);
+    color: var(--text-primary);
+    border-color: var(--accent);
+}
+
+.playBtn {
+    width: 48px !important;
+    height: 48px !important;
+    background: var(--accent) !important;
+    border-color: var(--accent) !important;
+    color: white !important;
+    border-radius: 50% !important;
+}
+
+.playBtn:hover {
+    transform: scale(1.05);
+}
+
+.volumeControl {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.volumeControl button {
+    background: transparent;
+    border: none;
+    color: var(--text-secondary);
+    cursor: pointer;
+    padding: 0.25rem;
+}
+
+.volumeControl button:hover {
+    color: var(--text-primary);
+}
+
+.volumeSlider {
+    width: 80px;
+    height: 4px;
+    appearance: none;
+    background: var(--border);
+    border-radius: 2px;
+    outline: none;
+    cursor: pointer;
+}
+
+.volumeSlider::-webkit-slider-thumb {
+    appearance: none;
+    width: 12px;
+    height: 12px;
+    background: var(--accent);
+    border-radius: 50%;
+    cursor: pointer;
+}
+
+.markControls {
+    display: flex;
+    align-items: center;
+    gap: 0.35rem;
+    margin-left: auto;
+}
+
+.markControls button {
+    font-weight: 700;
+    font-size: 1.1rem;
+}
+
+.markControls button.active {
+    background: var(--success);
+    border-color: var(--success);
+    color: white;
+}
+
+.createSegmentBtn {
+    width: auto !important;
+    padding: 0 0.75rem !important;
+    gap: 0.35rem;
+    font-size: 0.8rem !important;
+    font-weight: 500 !important;
+    background: var(--accent) !important;
+    border-color: var(--accent) !important;
+    color: white !important;
+}
+
+/* Keyboard Shortcuts */
+.shortcuts {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1.5rem;
+    padding: 0.5rem;
+    background: var(--background);
+    border-top: 1px solid var(--border);
+    font-size: 0.75rem;
+    color: var(--text-muted);
+}
+
+.shortcuts kbd {
+    display: inline-block;
+    padding: 0.1rem 0.35rem;
+    background: var(--surface-highlight);
+    border: 1px solid var(--border);
+    border-radius: 3px;
+    font-family: var(--font-mono);
+    font-size: 0.7rem;
+    margin-right: 0.25rem;
+}
+
+/* Segment Dialog */
+.dialogOverlay {
+    position: absolute;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.7);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 100;
+}
+
+.dialog {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-md);
+    padding: 1.5rem;
+    min-width: 300px;
+}
+
+.dialog h4 {
+    margin: 0 0 0.5rem;
+    font-size: 1rem;
+    color: var(--text-primary);
+}
+
+.dialog p {
+    margin: 0 0 1rem;
+    font-size: 0.85rem;
+    color: var(--text-muted);
+    font-family: var(--font-mono);
+}
+
+.dialog input {
+    width: 100%;
+    padding: 0.5rem;
+    background: var(--background);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-sm);
+    color: var(--text-primary);
+    font-size: 0.9rem;
+    margin-bottom: 1rem;
+}
+
+.dialog input:focus {
+    outline: none;
+    border-color: var(--accent);
+}
+
+.dialogActions {
+    display: flex;
+    justify-content: flex-end;
+    gap: 0.5rem;
+}
+
+.dialogActions button {
+    padding: 0.4rem 0.75rem;
+    border-radius: var(--radius-sm);
+    font-size: 0.85rem;
+    cursor: pointer;
+}
+
+.dialogActions button:first-child {
+    background: transparent;
+    border: 1px solid var(--border);
+    color: var(--text-secondary);
+}
+
+.dialogActions .primaryBtn {
+    display: flex;
+    align-items: center;
+    gap: 0.25rem;
+    background: var(--accent);
+    border: none;
+    color: white;
+}
+
+.dialogActions .primaryBtn:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}

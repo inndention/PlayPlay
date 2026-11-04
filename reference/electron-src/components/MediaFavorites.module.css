@@ -1,0 +1,452 @@
+/* MediaFavorites - Favorites & Recent Access Panel */
+
+.container {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-md);
+    overflow: hidden;
+}
+
+.header {
+    padding: 0.75rem 1rem;
+    border-bottom: 1px solid var(--border);
+    background: var(--surface-highlight);
+}
+
+.tabs {
+    display: flex;
+    gap: 0.5rem;
+}
+
+.tab {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.5rem 0.75rem;
+    background: transparent;
+    border: 1px solid transparent;
+    border-radius: var(--radius-sm);
+    color: var(--text-secondary);
+    font-size: 0.85rem;
+    cursor: pointer;
+    transition: all 0.15s;
+}
+
+.tab:hover {
+    background: var(--background);
+    color: var(--text-primary);
+}
+
+.tab.active {
+    background: var(--accent);
+    border-color: var(--accent);
+    color: white;
+}
+
+.count {
+    padding: 0.1rem 0.35rem;
+    background: rgba(255, 255, 255, 0.15);
+    border-radius: 10px;
+    font-size: 0.7rem;
+    font-weight: 600;
+}
+
+.tab:not(.active) .count {
+    background: var(--surface-highlight);
+}
+
+/* Toolbar */
+.toolbar {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    padding: 0.5rem 0.75rem;
+    border-bottom: 1px solid var(--border);
+    background: var(--background);
+}
+
+.searchBox {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    flex: 1;
+    padding: 0.35rem 0.5rem;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-sm);
+}
+
+.searchBox svg {
+    color: var(--text-muted);
+}
+
+.searchBox input {
+    flex: 1;
+    background: transparent;
+    border: none;
+    outline: none;
+    color: var(--text-primary);
+    font-size: 0.8rem;
+}
+
+.viewToggle {
+    display: flex;
+    gap: 0.1rem;
+    background: var(--surface);
+    border-radius: var(--radius-sm);
+    padding: 0.1rem;
+}
+
+.viewToggle button {
+    padding: 0.35rem;
+    background: transparent;
+    border: none;
+    color: var(--text-muted);
+    cursor: pointer;
+    border-radius: var(--radius-sm);
+    transition: all 0.15s;
+}
+
+.viewToggle button:hover {
+    color: var(--text-primary);
+}
+
+.viewToggle button.active {
+    background: var(--accent);
+    color: white;
+}
+
+.sortControls {
+    display: flex;
+    align-items: center;
+    gap: 0.25rem;
+}
+
+.sortControls button {
+    padding: 0.25rem 0.5rem;
+    background: transparent;
+    border: 1px solid var(--border);
+    border-radius: var(--radius-sm);
+    color: var(--text-muted);
+    font-size: 0.7rem;
+    cursor: pointer;
+    transition: all 0.15s;
+}
+
+.sortControls button:hover {
+    background: var(--surface-highlight);
+    color: var(--text-primary);
+}
+
+.sortControls button.active {
+    background: var(--accent);
+    border-color: var(--accent);
+    color: white;
+}
+
+.sortDirection {
+    color: var(--text-muted);
+    display: flex;
+    align-items: center;
+}
+
+.clearBtn {
+    display: flex;
+    align-items: center;
+    gap: 0.35rem;
+    padding: 0.35rem 0.5rem;
+    background: transparent;
+    border: 1px solid var(--border);
+    border-radius: var(--radius-sm);
+    color: var(--text-muted);
+    font-size: 0.75rem;
+    cursor: pointer;
+    transition: all 0.15s;
+}
+
+.clearBtn:hover {
+    background: var(--danger);
+    border-color: var(--danger);
+    color: white;
+}
+
+/* Content */
+.content {
+    flex: 1;
+    overflow-y: auto;
+    padding: 0.75rem;
+}
+
+.empty {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    text-align: center;
+    color: var(--text-muted);
+    gap: 0.5rem;
+}
+
+.empty svg {
+    opacity: 0.3;
+    margin-bottom: 0.5rem;
+}
+
+.empty p {
+    margin: 0;
+    font-size: 0.9rem;
+    color: var(--text-secondary);
+}
+
+.empty span {
+    font-size: 0.75rem;
+}
+
+/* Grid View */
+.grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+    gap: 0.75rem;
+}
+
+.gridItem {
+    background: var(--background);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-sm);
+    overflow: hidden;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.gridItem:hover {
+    border-color: var(--accent);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+.thumbnail {
+    position: relative;
+    aspect-ratio: 16/9;
+    background: var(--surface-highlight);
+    overflow: hidden;
+}
+
+.thumbnail img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.placeholderThumb {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+    color: var(--text-muted);
+}
+
+.thumbnail .playBtn {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 40px;
+    height: 40px;
+    background: rgba(0, 0, 0, 0.7);
+    border: none;
+    border-radius: 50%;
+    color: white;
+    cursor: pointer;
+    opacity: 0;
+    transition: all 0.2s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.gridItem:hover .thumbnail .playBtn {
+    opacity: 1;
+}
+
+.thumbnail .playBtn:hover {
+    background: var(--accent);
+    transform: translate(-50%, -50%) scale(1.1);
+}
+
+.thumbnail .favoriteBtn {
+    position: absolute;
+    top: 0.35rem;
+    right: 0.35rem;
+    padding: 0.25rem;
+    background: rgba(0, 0, 0, 0.5);
+    border: none;
+    border-radius: var(--radius-sm);
+    color: var(--text-muted);
+    cursor: pointer;
+    opacity: 0;
+    transition: all 0.15s;
+}
+
+.gridItem:hover .thumbnail .favoriteBtn {
+    opacity: 1;
+}
+
+.thumbnail .favoriteBtn:hover,
+.thumbnail .favoriteBtn.active {
+    color: #fbbf24;
+    background: rgba(251, 191, 36, 0.2);
+}
+
+.duration {
+    position: absolute;
+    bottom: 0.35rem;
+    right: 0.35rem;
+    padding: 0.15rem 0.35rem;
+    background: rgba(0, 0, 0, 0.75);
+    border-radius: var(--radius-sm);
+    font-size: 0.65rem;
+    font-family: var(--font-mono);
+    color: white;
+}
+
+.itemInfo {
+    padding: 0.5rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.15rem;
+}
+
+.itemName {
+    font-size: 0.75rem;
+    font-weight: 500;
+    color: var(--text-primary);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.itemType {
+    display: flex;
+    align-items: center;
+    gap: 0.25rem;
+    font-size: 0.65rem;
+    color: var(--text-muted);
+    text-transform: capitalize;
+}
+
+/* List View */
+.content.listMode {
+    padding: 0.5rem;
+}
+
+.list {
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+}
+
+.listItem {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    padding: 0.5rem;
+    background: var(--background);
+    border: 1px solid transparent;
+    border-radius: var(--radius-sm);
+    cursor: pointer;
+    transition: all 0.15s;
+}
+
+.listItem:hover {
+    background: var(--surface-highlight);
+    border-color: var(--border);
+}
+
+.listThumb {
+    width: 64px;
+    height: 36px;
+    background: var(--surface-highlight);
+    border-radius: var(--radius-sm);
+    overflow: hidden;
+    flex-shrink: 0;
+}
+
+.listThumb img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.listThumb .placeholderThumb {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+}
+
+.listInfo {
+    flex: 1;
+    min-width: 0;
+}
+
+.listName {
+    display: block;
+    font-size: 0.8rem;
+    font-weight: 500;
+    color: var(--text-primary);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.listMeta {
+    display: flex;
+    align-items: center;
+    gap: 0.35rem;
+    font-size: 0.7rem;
+    color: var(--text-muted);
+    text-transform: capitalize;
+}
+
+.listActions {
+    display: flex;
+    align-items: center;
+    gap: 0.35rem;
+    opacity: 0;
+    transition: opacity 0.15s;
+}
+
+.listItem:hover .listActions {
+    opacity: 1;
+}
+
+.listActions button {
+    padding: 0.35rem;
+    background: transparent;
+    border: 1px solid var(--border);
+    border-radius: var(--radius-sm);
+    color: var(--text-muted);
+    cursor: pointer;
+    transition: all 0.15s;
+}
+
+.listActions button:hover {
+    background: var(--surface-highlight);
+    color: var(--text-primary);
+}
+
+.listActions .favoriteBtn.active {
+    color: #fbbf24;
+    border-color: #fbbf24;
+}
+
+.listActions .playBtn:hover {
+    background: var(--accent);
+    border-color: var(--accent);
+    color: white;
+}

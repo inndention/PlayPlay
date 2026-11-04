@@ -1,0 +1,464 @@
+/* Traffic Manager */
+
+.container {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    background: #0a0a0f;
+    color: #e0e0e0;
+}
+
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 16px 20px;
+    border-bottom: 1px solid #1a1a2e;
+}
+
+.title {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: #fff;
+    margin: 0;
+}
+
+.currentContext {
+    display: flex;
+    gap: 8px;
+}
+
+.daypartBadge,
+.hourBadge {
+    padding: 4px 10px;
+    border-radius: 4px;
+    font-size: 0.7rem;
+    font-weight: 600;
+}
+
+.daypartBadge {
+    background: rgba(139, 92, 246, 0.2);
+    color: #a78bfa;
+}
+
+.hourBadge {
+    background: rgba(59, 130, 246, 0.2);
+    color: #60a5fa;
+}
+
+/* Summary Cards */
+.summaryCards {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 12px;
+    padding: 16px 20px;
+    background: #0f0f14;
+}
+
+.summaryCard {
+    padding: 12px 16px;
+    background: #12121a;
+    border: 1px solid #1a1a2e;
+    border-radius: 8px;
+}
+
+.summaryLabel {
+    font-size: 0.65rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    color: #666;
+    margin-bottom: 4px;
+}
+
+.summaryValue {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: #fff;
+    font-family: 'JetBrains Mono', monospace;
+}
+
+/* Tabs */
+.tabs {
+    display: flex;
+    gap: 4px;
+    padding: 0 20px;
+    border-bottom: 1px solid #1a1a2e;
+}
+
+.tab {
+    padding: 10px 16px;
+    background: transparent;
+    border: none;
+    border-bottom: 2px solid transparent;
+    color: #666;
+    font-size: 0.8rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.tab:hover {
+    color: #aaa;
+}
+
+.tab.active {
+    color: #fff;
+    border-bottom-color: #8b5cf6;
+}
+
+/* Content */
+.content {
+    flex: 1;
+    overflow: hidden;
+}
+
+/* Pool View */
+.poolView {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+.poolHeader {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 12px 20px;
+    background: #0f0f14;
+    border-bottom: 1px solid #1a1a2e;
+}
+
+.poolHeaderLabel {
+    font-size: 0.7rem;
+    color: #666;
+}
+
+.sortSelect {
+    padding: 4px 8px;
+    background: #1a1a2e;
+    border: 1px solid #2a2a4e;
+    border-radius: 4px;
+    color: #aaa;
+    font-size: 0.75rem;
+    cursor: pointer;
+}
+
+.poolList {
+    flex: 1;
+    overflow-y: auto;
+    padding: 12px 20px;
+}
+
+.emptyPool {
+    padding: 40px;
+    text-align: center;
+    color: #555;
+    font-size: 0.85rem;
+}
+
+.poolItem {
+    margin-bottom: 8px;
+    padding: 12px;
+    background: #12121a;
+    border: 1px solid #1a1a2e;
+    border-radius: 8px;
+    transition: all 0.2s;
+}
+
+.poolItem:hover {
+    border-color: #2a2a4e;
+}
+
+.poolItem.ineligible {
+    opacity: 0.5;
+}
+
+.poolItemMain {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 8px;
+}
+
+.poolItemInfo {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+}
+
+.poolItemTitle {
+    font-weight: 600;
+    color: #fff;
+}
+
+.poolItemMeta {
+    font-size: 0.7rem;
+    color: #666;
+}
+
+.poolItemStats {
+    display: flex;
+    gap: 12px;
+}
+
+.statBox {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 4px 12px;
+    background: #0a0a0f;
+    border-radius: 4px;
+}
+
+.statLabel {
+    font-size: 0.55rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    color: #555;
+}
+
+.statValue {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: #aaa;
+}
+
+.statValue.complete {
+    color: #22c55e;
+}
+
+.statValue.behind {
+    color: #ef4444;
+}
+
+/* Probability bar */
+.probBar {
+    height: 4px;
+    background: #1a1a2e;
+    border-radius: 2px;
+    overflow: hidden;
+}
+
+.probBarFill {
+    height: 100%;
+    background: linear-gradient(90deg, #8b5cf6, #a78bfa);
+    border-radius: 2px;
+    transition: width 0.3s ease;
+}
+
+.ineligibleReason {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    margin-top: 8px;
+    padding: 6px 8px;
+    background: rgba(239, 68, 68, 0.1);
+    border-radius: 4px;
+    font-size: 0.7rem;
+    color: #ef4444;
+}
+
+/* Stats View */
+.statsView {
+    height: 100%;
+    overflow-y: auto;
+    padding: 16px 20px;
+}
+
+.statsGrid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 12px;
+}
+
+.statCard {
+    padding: 12px;
+    background: #12121a;
+    border: 1px solid #1a1a2e;
+    border-radius: 8px;
+}
+
+.statCardHeader {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+    padding-bottom: 8px;
+    border-bottom: 1px solid #1a1a2e;
+}
+
+.statCardTitle {
+    font-weight: 600;
+    color: #fff;
+    max-width: 180px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.statCardPlays {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.8rem;
+    color: #8b5cf6;
+}
+
+.statCardBody {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.statRow {
+    display: flex;
+    justify-content: space-between;
+    font-size: 0.75rem;
+}
+
+.statRow span:first-child {
+    color: #666;
+}
+
+.statRow span:last-child {
+    color: #aaa;
+    font-family: 'JetBrains Mono', monospace;
+}
+
+.daypartBreakdown {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 4px;
+    margin-top: 10px;
+    padding-top: 8px;
+    border-top: 1px solid #1a1a2e;
+}
+
+.daypartChip {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    padding: 2px 6px;
+    background: #1a1a2e;
+    border-radius: 3px;
+    font-size: 0.6rem;
+}
+
+.daypartChip span:first-child {
+    color: #666;
+}
+
+.daypartChip span:last-child {
+    color: #aaa;
+    font-family: 'JetBrains Mono', monospace;
+}
+
+/* Log View */
+.logView {
+    height: 100%;
+    overflow-y: auto;
+}
+
+.logList {
+    padding: 12px 20px;
+}
+
+.emptyLog {
+    padding: 40px;
+    text-align: center;
+    color: #555;
+}
+
+.logItem {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 8px 12px;
+    background: #12121a;
+    border-bottom: 1px solid #1a1a2e;
+    font-size: 0.75rem;
+}
+
+.logItem:first-child {
+    border-top-left-radius: 8px;
+    border-top-right-radius: 8px;
+}
+
+.logItem:last-child {
+    border-bottom-left-radius: 8px;
+    border-bottom-right-radius: 8px;
+    border-bottom: none;
+}
+
+.logTime {
+    font-family: 'JetBrains Mono', monospace;
+    color: #666;
+    width: 80px;
+}
+
+.logClass {
+    padding: 2px 8px;
+    border-radius: 3px;
+    font-size: 0.65rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    width: 80px;
+    text-align: center;
+}
+
+.logClass.commercial {
+    background: rgba(245, 158, 11, 0.2);
+    color: #f59e0b;
+}
+
+.logClass.promo {
+    background: rgba(139, 92, 246, 0.2);
+    color: #a78bfa;
+}
+
+.logClass.program {
+    background: rgba(34, 197, 94, 0.2);
+    color: #22c55e;
+}
+
+.logClass.filler {
+    background: rgba(107, 114, 128, 0.2);
+    color: #9ca3af;
+}
+
+.logMedia {
+    flex: 1;
+    color: #aaa;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.logDuration {
+    font-family: 'JetBrains Mono', monospace;
+    color: #666;
+    width: 50px;
+}
+
+.logPosition {
+    width: 70px;
+    color: #555;
+    font-size: 0.65rem;
+}
+
+.logStatus {
+    width: 20px;
+}
+
+.logStatus.complete {
+    color: #22c55e;
+}
+
+.logStatus.incomplete {
+    color: #ef4444;
+}
+
+
+

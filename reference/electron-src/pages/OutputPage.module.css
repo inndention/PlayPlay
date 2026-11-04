@@ -1,0 +1,36 @@
+/* Output Page - Optimized for OBS Capture */
+
+.container {
+    width: 100vw;
+    height: 100vh;
+    background: #000;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    
+    /* Force GPU compositing */
+    will-change: transform;
+    transform: translateZ(0);
+    backface-visibility: hidden;
+    
+    /* Prevent text selection and interaction */
+    user-select: none;
+    -webkit-user-select: none;
+    
+    /* Smooth rendering */
+    image-rendering: -webkit-optimize-contrast;
+    -webkit-font-smoothing: antialiased;
+}
+
+/* Ensure all child elements use GPU */
+.container * {
+    will-change: auto;
+    transform: translateZ(0);
+}
+
+/* Hide cursor for clean capture */
+.container:fullscreen {
+    cursor: none;
+}

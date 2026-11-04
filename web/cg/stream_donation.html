@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=1920, initial-scale=1.0">
+    <title>Donation Alert</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            width: 1920px; height: 1080px; overflow: hidden;
+            background: transparent;
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+        }
+        .donation-wrapper {
+            position: absolute;
+            top: 60px;
+            right: 60px;
+            width: 500px;
+        }
+        .donation-box {
+            background: rgba(8, 15, 30, 0.96);
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: 0 25px 60px rgba(0,0,0,0.7), 0 0 0 1px rgba(16,185,129,0.3);
+        }
+        .donation-header {
+            background: linear-gradient(90deg, #059669, #10b981);
+            padding: 14px 24px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+        .donation-icon { font-size: 28px; }
+        .donation-label {
+            font-size: 13px;
+            font-weight: 700;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            color: #fff;
+        }
+        .donation-body {
+            padding: 20px 24px;
+        }
+        .donor-row {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 10px;
+        }
+        .donor-name {
+            font-size: 36px;
+            font-weight: 800;
+            color: #fff;
+        }
+        .donation-amount {
+            font-size: 48px;
+            font-weight: 900;
+            color: #10b981;
+            line-height: 1;
+        }
+        .donation-currency {
+            font-size: 22px;
+            font-weight: 600;
+            color: #34d399;
+        }
+        .donation-message {
+            font-size: 20px;
+            color: #94a3b8;
+            font-style: italic;
+            margin-top: 6px;
+            padding-top: 10px;
+            border-top: 1px solid rgba(255,255,255,0.06);
+            line-height: 1.5;
+        }
+        .donation-message:empty { display: none; }
+        .shimmer-bar {
+            height: 3px;
+            background: linear-gradient(90deg, transparent, #10b981, transparent);
+            background-size: 200%;
+            animation: shimmer 1.5s ease infinite;
+        }
+        @keyframes shimmer {
+            0%   { background-position: -200% center; }
+            100% { background-position: 200% center; }
+        }
+    </style>
+</head>
+<body>
+    <div class="donation-wrapper" id="donationWrapper" data-cg-auto>
+        <div class="donation-box">
+            <div class="donation-header">
+                <span class="donation-icon">💚</span>
+                <span class="donation-label" id="donationLabel">New Donation</span>
+            </div>
+            <div class="donation-body">
+                <div class="donor-row">
+                    <span class="donor-name" id="donorName" data-field="donor">Anonymous</span>
+                    <div>
+                        <span class="donation-currency" id="currencySymbol">$</span><span class="donation-amount" id="donationAmount" data-field="amount">25.00</span>
+                    </div>
+                </div>
+                <div class="donation-message" id="donationMessage" data-field="message">Thank you for the great content!</div>
+            </div>
+            <div class="shimmer-bar"></div>
+        </div>
+    </div>
+    <script src="js/cg-animations.js"></script>
+    <script>
+        const p = new URLSearchParams(window.location.search);
+        const donor    = p.get('donor')    || 'Anonymous';
+        const amount   = p.get('amount')   || '25.00';
+        const message  = p.get('message')  || '';
+        const currency = p.get('currency') || '$';
+        const label    = p.get('label')    || 'New Donation';
+
+        document.getElementById('donorName').textContent       = donor;
+        document.getElementById('donationAmount').textContent  = amount;
+        document.getElementById('donationMessage').textContent = message;
+        document.getElementById('currencySymbol').textContent  = currency;
+        document.getElementById('donationLabel').textContent   = label;
+    </script>
+</body>
+</html>

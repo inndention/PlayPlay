@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=1920, initial-scale=1.0">
+    <title>Sports Score Bug</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            width: 1920px;
+            height: 1080px;
+            overflow: hidden;
+            background: transparent;
+            font-family: 'Roboto', 'Arial', sans-serif;
+        }
+
+        .score-bug {
+            position: absolute;
+            top: 30px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            background: linear-gradient(135deg, rgba(10, 10, 15, 0.95), rgba(20, 20, 30, 0.95));
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.8);
+            border: 2px solid rgba(0, 217, 255, 0.3);
+            animation: slideDown 0.5s ease-out forwards;
+            opacity: 0;
+        }
+
+        @keyframes slideDown {
+            to {
+                opacity: 1;
+                transform: translateX(-50%) translateY(0);
+            }
+        }
+
+        .team-section {
+            padding: 16px 24px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 8px;
+            min-width: 160px;
+            position: relative;
+        }
+
+        .team-section.winning {
+            background: linear-gradient(135deg, rgba(16, 185, 129, 0.2), rgba(5, 150, 105, 0.2));
+        }
+
+        .team-name {
+            font-size: 24px;
+            font-weight: 900;
+            color: white;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .team-score {
+            font-size: 48px;
+            font-weight: 900;
+            color: #00D9FF;
+            text-shadow: 0 0 20px rgba(0, 217, 255, 0.5);
+        }
+
+        .team-section.winning .team-score {
+            color: #10B981;
+            text-shadow: 0 0 20px rgba(16, 185, 129, 0.5);
+        }
+
+        .separator {
+            width: 2px;
+            background: linear-gradient(180deg, transparent, rgba(0, 217, 255, 0.5), transparent);
+        }
+
+        .game-info {
+            padding: 12px 24px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 4px;
+            background: rgba(0, 0, 0, 0.3);
+            min-width: 120px;
+        }
+
+        .period {
+            font-size: 18px;
+            font-weight: 700;
+            color: rgba(255, 255, 255, 0.8);
+            text-transform: uppercase;
+        }
+
+        .time {
+            font-size: 28px;
+            font-weight: 900;
+            color: white;
+            font-family: 'Courier New', monospace;
+        }
+
+        .time.running {
+            color: #00D9FF;
+            animation: timeGlow 2s infinite;
+        }
+
+        @keyframes timeGlow {
+
+            0%,
+            100% {
+                text-shadow: 0 0 10px rgba(0, 217, 255, 0.5);
+            }
+
+            50% {
+                text-shadow: 0 0 20px rgba(0, 217, 255, 0.8);
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="score-bug">
+        <div class="team-section" id="team1Section">
+            <div class="team-name" id="team1Name">HOME</div>
+            <div class="team-score" id="team1Score">0</div>
+        </div>
+        <div class="separator"></div>
+        <div class="game-info">
+            <div class="period" id="period">Q1</div>
+            <div class="time running" id="time">12:00</div>
+        </div>
+        <div class="separator"></div>
+        <div class="team-section" id="team2Section">
+            <div class="team-name" id="team2Name">AWAY</div>
+            <div class="team-score" id="team2Score">0</div>
+        </div>
+    </div>
+
+    <script>
+        const params = new URLSearchParams(window.location.search);
+        const team1 = params.get('team1') || 'HOME';
+        const score1 = parseInt(params.get('score1') || '0');
+        const team2 = params.get('team2') || 'AWAY';
+        const score2 = parseInt(params.get('score2') || '0');
+        const period = params.get('period') || 'Q1';
+        const time = params.get('time') || '12:00';
+
+        document.getElementById('team1Name').textContent = team1.toUpperCase();
+        document.getElementById('team1Score').textContent = score1;
+        document.getElementById('team2Name').textContent = team2.toUpperCase();
+        document.getElementById('team2Score').textContent = score2;
+        document.getElementById('period').textContent = period.toUpperCase();
+        document.getElementById('time').textContent = time;
+
+        // Highlight winning team
+        if (score1 > score2) {
+            document.getElementById('team1Section').classList.add('winning');
+        } else if (score2 > score1) {
+            document.getElementById('team2Section').classList.add('winning');
+        }
+    </script>
+</body>
+
+</html>

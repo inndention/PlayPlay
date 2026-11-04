@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=1920, initial-scale=1.0">
+    <title>Coming Up Next</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            width: 1920px;
+            height: 1080px;
+            overflow: hidden;
+            background: linear-gradient(135deg, #14141f 0%, #0a0a0f 100%);
+            font-family: 'Roboto', 'Arial', sans-serif;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .coming-up-container {
+            text-align: center;
+            max-width: 1400px;
+            animation: slideIn 0.8s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+            transform: translateY(-100%);
+        }
+
+        @keyframes slideIn {
+            to {
+                transform: translateY(0);
+            }
+        }
+
+        .label {
+            font-size: 56px;
+            font-weight: 700;
+            color: #00D9FF;
+            text-transform: uppercase;
+            letter-spacing: 6px;
+            margin-bottom: 40px;
+            text-shadow: 0 0 30px rgba(0, 217, 255, 0.5);
+        }
+
+        .title {
+            font-size: 96px;
+            font-weight: 900;
+            color: white;
+            text-transform: uppercase;
+            letter-spacing: 4px;
+            line-height: 1.2;
+            text-shadow: 0 4px 24px rgba(0, 0, 0, 0.6);
+        }
+
+        .decorative-line {
+            height: 6px;
+            width: 400px;
+            background: linear-gradient(90deg, transparent, #00D9FF, transparent);
+            margin: 50px auto 0;
+            animation: lineGlow 2s infinite;
+        }
+
+        @keyframes lineGlow {
+
+            0%,
+            100% {
+                box-shadow: 0 0 20px rgba(0, 217, 255, 0.5);
+            }
+
+            50% {
+                box-shadow: 0 0 40px rgba(0, 217, 255, 1);
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="coming-up-container">
+        <div class="label">COMING UP NEXT</div>
+        <div class="title" id="title">Segment Title</div>
+        <div class="decorative-line"></div>
+    </div>
+
+    <script>
+        const params = new URLSearchParams(window.location.search);
+        const title = params.get('title') || 'Segment Title';
+
+        document.getElementById('title').textContent = title.toUpperCase();
+    </script>
+</body>
+
+</html>

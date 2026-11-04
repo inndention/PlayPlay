@@ -1,0 +1,673 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CG Launcher</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg: #070b14;
+            --bg2: #0d1420;
+            --bg3: #111827;
+            --border: rgba(255,255,255,0.07);
+            --accent: #00d9ff;
+            --accent2: #a855f7;
+            --success: #10b981;
+            --warning: #f59e0b;
+            --danger: #ef4444;
+            --text: #e2e8f0;
+            --muted: #64748b;
+            --font: 'Inter', -apple-system, sans-serif;
+            --mono: 'JetBrains Mono', monospace;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: var(--font);
+            background: var(--bg);
+            color: var(--text);
+            min-height: 100vh;
+            padding: 24px;
+        }
+
+        /* ---- Header ---- */
+        .header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 28px;
+            padding-bottom: 20px;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .logo-row {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+        }
+
+        .logo-icon {
+            font-size: 36px;
+            line-height: 1;
+        }
+
+        .logo-text { font-size: 22px; font-weight: 800; color: #fff; }
+        .logo-sub  { font-size: 12px; color: var(--muted); margin-top: 2px; font-weight: 500; }
+
+        .server-status {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            background: var(--bg2);
+            border: 1px solid var(--border);
+            border-radius: 10px;
+            padding: 10px 18px;
+        }
+
+        .status-dot {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background: var(--muted);
+            transition: background 0.3s;
+            flex-shrink: 0;
+        }
+
+        .status-dot.online  { background: var(--success); box-shadow: 0 0 8px rgba(16,185,129,0.7); animation: pulse 1.5s infinite; }
+        .status-dot.offline { background: var(--danger);  box-shadow: 0 0 8px rgba(239,68,68,0.5); }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50%       { opacity: 0.5; }
+        }
+
+        .status-label  { font-size: 13px; font-weight: 600; }
+        .status-detail { font-size: 11px; color: var(--muted); font-family: var(--mono); }
+
+        /* ---- Grid ---- */
+        .grid { display: grid; gap: 16px; }
+        .grid-2 { grid-template-columns: 1fr 1fr; }
+        .grid-4 { grid-template-columns: repeat(4, 1fr); }
+
+        @media (max-width: 1100px) { .grid-4 { grid-template-columns: repeat(2, 1fr); } }
+        @media (max-width: 700px)  { .grid-4, .grid-2 { grid-template-columns: 1fr; } }
+
+        /* ---- Card ---- */
+        .card {
+            background: var(--bg2);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 20px;
+        }
+
+        .card-title {
+            font-size: 11px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: var(--muted);
+            margin-bottom: 14px;
+        }
+
+        /* ---- Channel Cards ---- */
+        .channel-card {
+            background: var(--bg2);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            overflow: hidden;
+            transition: border-color 0.2s;
+        }
+
+        .channel-card.active {
+            border-color: rgba(0,217,255,0.35);
+            box-shadow: 0 0 20px rgba(0,217,255,0.06);
+        }
+
+        .channel-header {
+            padding: 12px 16px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .channel-name {
+            font-size: 12px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: var(--muted);
+        }
+
+        .channel-badge {
+            font-size: 10px;
+            font-weight: 700;
+            border-radius: 20px;
+            padding: 2px 8px;
+            background: rgba(255,255,255,0.05);
+            color: var(--muted);
+            border: 1px solid var(--border);
+        }
+
+        .channel-badge.live {
+            background: rgba(16,185,129,0.15);
+            color: var(--success);
+            border-color: rgba(16,185,129,0.3);
+            animation: pulse 1.5s infinite;
+        }
+
+        .channel-body {
+            padding: 14px 16px;
+        }
+
+        .channel-template {
+            font-size: 15px;
+            font-weight: 700;
+            color: #fff;
+            margin-bottom: 4px;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        .channel-meta {
+            font-size: 11px;
+            color: var(--muted);
+            font-family: var(--mono);
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        .channel-empty {
+            font-size: 13px;
+            color: var(--muted);
+            font-style: italic;
+        }
+
+        .channel-actions {
+            padding: 10px 16px;
+            border-top: 1px solid var(--border);
+            display: flex;
+            gap: 6px;
+        }
+
+        /* ---- Buttons ---- */
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            padding: 9px 16px;
+            border-radius: 7px;
+            font-size: 13px;
+            font-weight: 600;
+            cursor: pointer;
+            border: none;
+            transition: all 0.15s;
+            text-decoration: none;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, var(--accent), #0090aa);
+            color: #000;
+        }
+        .btn-primary:hover { filter: brightness(1.1); }
+
+        .btn-secondary {
+            background: rgba(255,255,255,0.06);
+            border: 1px solid var(--border);
+            color: var(--text);
+        }
+        .btn-secondary:hover { background: rgba(255,255,255,0.1); }
+
+        .btn-danger {
+            background: rgba(239,68,68,0.12);
+            border: 1px solid rgba(239,68,68,0.25);
+            color: #f87171;
+        }
+        .btn-danger:hover { background: rgba(239,68,68,0.22); }
+
+        .btn-sm { padding: 5px 10px; font-size: 11px; }
+        .btn-full { width: 100%; justify-content: center; }
+
+        /* ---- Quick Launch ---- */
+        .launch-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 8px;
+        }
+
+        .launch-btn {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 12px 14px;
+            background: var(--bg3);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.15s;
+            text-decoration: none;
+            color: var(--text);
+        }
+
+        .launch-btn:hover {
+            background: rgba(255,255,255,0.06);
+            border-color: rgba(255,255,255,0.12);
+        }
+
+        .launch-icon { font-size: 22px; flex-shrink: 0; }
+
+        .launch-label {
+            font-size: 13px;
+            font-weight: 600;
+            color: #fff;
+        }
+
+        .launch-desc {
+            font-size: 11px;
+            color: var(--muted);
+            margin-top: 1px;
+        }
+
+        /* ---- Server info box ---- */
+        .info-box {
+            background: var(--bg3);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            padding: 14px 16px;
+            font-family: var(--mono);
+            font-size: 12px;
+            color: var(--muted);
+            line-height: 2;
+        }
+
+        .info-row { display: flex; justify-content: space-between; align-items: center; }
+        .info-key  { color: var(--muted); }
+        .info-val  { color: #fff; font-weight: 600; }
+        .info-val.green { color: var(--success); }
+        .info-val.cyan  { color: var(--accent); }
+
+        /* ---- Server down overlay ---- */
+        .offline-banner {
+            display: none;
+            background: rgba(239,68,68,0.08);
+            border: 1px solid rgba(239,68,68,0.2);
+            border-radius: 10px;
+            padding: 16px 20px;
+            margin-bottom: 16px;
+            font-size: 13px;
+            color: #fca5a5;
+            line-height: 1.7;
+        }
+
+        .offline-banner.visible { display: block; }
+
+        .offline-banner code {
+            background: rgba(0,0,0,0.4);
+            border-radius: 4px;
+            padding: 2px 8px;
+            font-family: var(--mono);
+            font-size: 12px;
+            color: #fbbf24;
+        }
+
+        /* ---- Last updated ---- */
+        .last-updated {
+            text-align: right;
+            font-size: 11px;
+            color: var(--muted);
+            margin-top: 20px;
+            font-family: var(--mono);
+        }
+
+        /* ---- History list ---- */
+        .history-list {
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+            max-height: 260px;
+            overflow-y: auto;
+        }
+
+        .history-item {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 8px 12px;
+            background: var(--bg3);
+            border-radius: 6px;
+            font-size: 12px;
+            border: 1px solid var(--border);
+        }
+
+        .history-name { font-weight: 600; color: #fff; }
+        .history-time { color: var(--muted); font-family: var(--mono); font-size: 11px; }
+        .history-ch   { font-size: 10px; font-weight: 700; padding: 2px 7px; border-radius: 10px; background: rgba(0,217,255,0.1); color: var(--accent); border: 1px solid rgba(0,217,255,0.2); }
+
+        .empty-state { color: var(--muted); font-size: 13px; padding: 16px; text-align: center; }
+    </style>
+</head>
+<body>
+
+<!-- Header -->
+<div class="header">
+    <div class="logo-row">
+        <span class="logo-icon">📺</span>
+        <div>
+            <div class="logo-text">CG Launcher</div>
+            <div class="logo-sub">Broadcast Graphics Control</div>
+        </div>
+    </div>
+    <div class="server-status">
+        <div class="status-dot" id="statusDot"></div>
+        <div>
+            <div class="status-label" id="statusLabel">Connecting…</div>
+            <div class="status-detail" id="statusDetail">localhost:3060</div>
+        </div>
+    </div>
+</div>
+
+<!-- Offline Banner -->
+<div class="offline-banner" id="offlineBanner">
+    <strong>Server is not running.</strong> Start the PLAY PLAY Supervisor, which serves this pack from the <code>web/cg</code> folder.
+</div>
+
+<!-- Channel Status -->
+<div style="margin-bottom:20px">
+    <div class="card-title">Output Channels</div>
+    <div class="grid grid-4" id="channelGrid">
+        <!-- populated by JS -->
+    </div>
+</div>
+
+<!-- Main grid -->
+<div class="grid grid-2" style="margin-bottom:20px">
+
+    <!-- Quick Launch -->
+    <div class="card">
+        <div class="card-title">Quick Launch</div>
+        <div class="launch-grid">
+            <a class="launch-btn" href="http://localhost:3060" target="_blank">
+                <span class="launch-icon">🎛</span>
+                <div>
+                    <div class="launch-label">Control Center</div>
+                    <div class="launch-desc">Template library &amp; deploy</div>
+                </div>
+            </a>
+            <button class="launch-btn" onclick="openOutput('main')">
+                <span class="launch-icon">📺</span>
+                <div>
+                    <div class="launch-label">Main Output</div>
+                    <div class="launch-desc">1920×1080 window</div>
+                </div>
+            </button>
+            <button class="launch-btn" onclick="openOutput('secondary')">
+                <span class="launch-icon">🖥</span>
+                <div>
+                    <div class="launch-label">Secondary Output</div>
+                    <div class="launch-desc">1920×1080 window</div>
+                </div>
+            </button>
+            <button class="launch-btn" onclick="openOutput('web')">
+                <span class="launch-icon">🌐</span>
+                <div>
+                    <div class="launch-label">Web Output</div>
+                    <div class="launch-desc">Streaming overlay</div>
+                </div>
+            </button>
+            <button class="launch-btn" onclick="openOutput('preview')">
+                <span class="launch-icon">👁</span>
+                <div>
+                    <div class="launch-label">Preview Output</div>
+                    <div class="launch-desc">Confidence monitor</div>
+                </div>
+            </button>
+            <button class="launch-btn" onclick="clearAll()">
+                <span class="launch-icon">✕</span>
+                <div>
+                    <div class="launch-label">Clear All</div>
+                    <div class="launch-desc">Wipe all channels</div>
+                </div>
+            </button>
+        </div>
+    </div>
+
+    <!-- Server Info -->
+    <div class="card">
+        <div class="card-title">Server Info</div>
+        <div class="info-box">
+            <div class="info-row">
+                <span class="info-key">HTTP</span>
+                <span class="info-val cyan">http://localhost:3060</span>
+            </div>
+            <div class="info-row">
+                <span class="info-key">WebSocket</span>
+                <span class="info-val cyan">ws://localhost:8060</span>
+            </div>
+            <div class="info-row">
+                <span class="info-key">Templates</span>
+                <span class="info-val green" id="infoTemplateCount">—</span>
+            </div>
+            <div class="info-row">
+                <span class="info-key">Active Channels</span>
+                <span class="info-val green" id="infoActiveChannels">—</span>
+            </div>
+            <div class="info-row">
+                <span class="info-key">WS Reconnect</span>
+                <span class="info-val green">Auto (3s)</span>
+            </div>
+            <div class="info-row">
+                <span class="info-key">Refresh</span>
+                <span class="info-val" id="infoRefreshRate">Every 3s</span>
+            </div>
+        </div>
+        <div style="margin-top:12px;display:flex;gap:8px">
+            <button class="btn btn-secondary btn-sm" onclick="poll()">↻ Refresh Now</button>
+            <button class="btn btn-danger btn-sm" onclick="clearAllChannels()">✕ Clear All Channels</button>
+        </div>
+    </div>
+</div>
+
+<!-- Deployment History -->
+<div class="card">
+    <div class="card-title">Recent Deployments</div>
+    <div class="history-list" id="historyList">
+        <div class="empty-state">No recent deployments</div>
+    </div>
+</div>
+
+<div class="last-updated" id="lastUpdated">—</div>
+
+<script>
+const API = 'http://localhost:3060/api';
+const CHANNELS = ['main','secondary','web','preview'];
+let channelData = { main: null, secondary: null, web: null, preview: null };
+let isOnline = false;
+let outputWindows = {};
+
+// ---- Open/reuse output window for a channel ----
+function openOutput(channel) {
+    const d = channelData[channel];
+    const url = d ? d.url : '';
+    if (outputWindows[channel] && !outputWindows[channel].closed) {
+        if (url) outputWindows[channel].location.href = url;
+        outputWindows[channel].focus();
+    } else {
+        outputWindows[channel] = window.open(url, `cg_output_${channel}`, 'width=1920,height=1080');
+    }
+}
+
+// ---- Clear single channel ----
+async function clearChannel(channel) {
+    try {
+        await fetch(`${API}/clear?channel=${channel}`, { method: 'POST' });
+        if (outputWindows[channel] && !outputWindows[channel].closed) {
+            outputWindows[channel].location.href = 'about:blank';
+        }
+        poll();
+    } catch {}
+}
+
+// ---- Clear all channels ----
+async function clearAllChannels() {
+    for (const ch of CHANNELS) await clearChannel(ch).catch(() => {});
+}
+
+window.clearAll = clearAllChannels;
+
+// ---- Redeploy a channel ----
+async function redeployChannel(channel) {
+    const d = channelData[channel];
+    if (!d) return;
+    try {
+        await fetch(`${API}/deploy?channel=${channel}`, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ template: d.template, params: d.params })
+        });
+        openOutput(channel);
+        poll();
+    } catch {}
+}
+
+// ---- Render channel cards ----
+function renderChannels() {
+    const grid = document.getElementById('channelGrid');
+    grid.innerHTML = CHANNELS.map(ch => {
+        const d = channelData[ch];
+        const label = ch.charAt(0).toUpperCase() + ch.slice(1);
+        const isActive = !!d;
+        return `
+        <div class="channel-card ${isActive ? 'active' : ''}">
+            <div class="channel-header">
+                <span class="channel-name">${label}</span>
+                <span class="channel-badge ${isActive ? 'live' : ''}">${isActive ? '● LIVE' : '○ IDLE'}</span>
+            </div>
+            <div class="channel-body">
+                ${isActive
+                    ? `<div class="channel-template">${d.name || d.template}</div>
+                       <div class="channel-meta">${new Date(d.timestamp).toLocaleTimeString()} · ${ch}</div>`
+                    : `<div class="channel-empty">No active output</div>`
+                }
+            </div>
+            <div class="channel-actions">
+                <button class="btn btn-secondary btn-sm" onclick="openOutput('${ch}')" ${!isActive ? 'disabled style="opacity:0.4"' : ''}>Open</button>
+                <button class="btn btn-secondary btn-sm" onclick="redeployChannel('${ch}')" ${!isActive ? 'disabled style="opacity:0.4"' : ''}>↺ Redeploy</button>
+                <button class="btn btn-danger btn-sm" onclick="clearChannel('${ch}')" ${!isActive ? 'disabled style="opacity:0.4"' : ''}>✕</button>
+            </div>
+        </div>`;
+    }).join('');
+}
+
+// ---- Render history ----
+function renderHistory(history) {
+    const list = document.getElementById('historyList');
+    if (!history || history.length === 0) {
+        list.innerHTML = '<div class="empty-state">No recent deployments</div>';
+        return;
+    }
+    list.innerHTML = history.slice(0, 15).map(item => `
+        <div class="history-item">
+            <span class="history-name">${item.name || item.template}</span>
+            <span class="history-ch">${item.channel || 'main'}</span>
+            <span class="history-time">${new Date(item.timestamp).toLocaleTimeString()}</span>
+        </div>`).join('');
+}
+
+// ---- Poll server state ----
+async function poll() {
+    try {
+        const [channelsRes, historyRes, templatesRes] = await Promise.all([
+            fetch(`${API}/channels`, { signal: AbortSignal.timeout(2000) }),
+            fetch(`${API}/history?limit=15`, { signal: AbortSignal.timeout(2000) }),
+            fetch(`${API}/templates`,  { signal: AbortSignal.timeout(2000) })
+        ]);
+
+        if (!channelsRes.ok) throw new Error('offline');
+
+        const [chData, histData, tmplData] = await Promise.all([
+            channelsRes.json(), historyRes.json(), templatesRes.json()
+        ]);
+
+        // Update channel data
+        channelData = chData.channels || { main: null, secondary: null, web: null, preview: null };
+
+        // Update UI — online
+        setOnline(true);
+        renderChannels();
+        renderHistory(histData.history || []);
+
+        const activeCount = Object.values(channelData).filter(v => v !== null).length;
+        document.getElementById('infoTemplateCount').textContent = (tmplData.count || '—') + ' templates';
+        document.getElementById('infoActiveChannels').textContent = `${activeCount} / ${CHANNELS.length}`;
+
+        // Sync open output windows with current URL
+        CHANNELS.forEach(ch => {
+            const d = channelData[ch];
+            const win = outputWindows[ch];
+            if (win && !win.closed && d && d.url) {
+                try {
+                    if (win.location.href !== d.url) win.location.href = d.url;
+                } catch { /* cross-origin, can't check */ }
+            }
+        });
+
+    } catch {
+        setOnline(false);
+        renderChannels();
+    }
+
+    document.getElementById('lastUpdated').textContent = 'Last updated: ' + new Date().toLocaleTimeString();
+}
+
+function setOnline(online) {
+    isOnline = online;
+    const dot    = document.getElementById('statusDot');
+    const label  = document.getElementById('statusLabel');
+    const detail = document.getElementById('statusDetail');
+    const banner = document.getElementById('offlineBanner');
+
+    dot.className = 'status-dot ' + (online ? 'online' : 'offline');
+    label.textContent  = online ? 'Server Online' : 'Server Offline';
+    detail.textContent = online ? 'localhost:3060 · ws:8080' : 'Not responding';
+    banner.classList.toggle('visible', !online);
+}
+
+// ---- WebSocket for live updates ----
+function connectWs() {
+    let ws;
+    try { ws = new WebSocket('ws://localhost:8060'); } catch { return; }
+
+    ws.onmessage = (e) => {
+        try {
+            const msg = JSON.parse(e.data);
+            if (msg.type === 'output' && msg.channel) {
+                channelData[msg.channel] = msg.data;
+                renderChannels();
+                // Push to open output window
+                const win = outputWindows[msg.channel];
+                if (win && !win.closed && msg.data && msg.data.url) {
+                    win.location.href = msg.data.url;
+                }
+            }
+            if (msg.type === 'cleared' && msg.channel) {
+                channelData[msg.channel] = null;
+                renderChannels();
+            }
+        } catch {}
+    };
+
+    ws.onclose = () => setTimeout(connectWs, 3000);
+}
+
+// ---- Init ----
+renderChannels(); // render empty immediately
+poll();
+setInterval(poll, 5000);
+connectWs();
+</script>
+</body>
+</html>

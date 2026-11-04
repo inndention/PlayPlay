@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=1920, initial-scale=1.0">
+    <title>Sponsor Bump</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            width: 1920px; height: 1080px; overflow: hidden;
+            background: transparent;
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+        }
+        .sponsor-bar {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            background: rgba(8, 12, 24, 0.96);
+            border-top: 2px solid rgba(255,255,255,0.06);
+            padding: 18px 80px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 40px;
+            backdrop-filter: blur(20px);
+        }
+        .brought-by {
+            font-size: 16px;
+            font-weight: 500;
+            color: #64748b;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            white-space: nowrap;
+        }
+        .divider {
+            width: 1px;
+            height: 40px;
+            background: rgba(255,255,255,0.1);
+        }
+        .sponsor-logo {
+            height: 50px;
+            width: auto;
+            object-fit: contain;
+            display: none;
+        }
+        .sponsor-logo.visible { display: block; }
+        .sponsor-name {
+            font-size: 36px;
+            font-weight: 800;
+            color: #fff;
+            letter-spacing: 0.5px;
+        }
+        .sponsor-tagline {
+            font-size: 16px;
+            color: #94a3b8;
+            font-weight: 400;
+            margin-top: 2px;
+        }
+        .accent-dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: var(--accent, #00d9ff);
+            flex-shrink: 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="sponsor-bar" id="sponsorBar" data-cg-auto>
+        <span class="brought-by" id="prefixText">Brought to you by</span>
+        <div class="divider"></div>
+        <div class="accent-dot" id="accentDot"></div>
+        <img id="sponsorLogo" class="sponsor-logo" src="" alt="Sponsor Logo">
+        <div>
+            <div class="sponsor-name" id="sponsorName" data-field="sponsor">Sponsor Name</div>
+            <div class="sponsor-tagline" id="sponsorTagline" data-field="tagline">Your trusted partner</div>
+        </div>
+    </div>
+    <script src="js/cg-animations.js"></script>
+    <script>
+        const p = new URLSearchParams(window.location.search);
+        const sponsor  = p.get('sponsor')  || 'Sponsor Name';
+        const tagline  = p.get('tagline')  || 'Your trusted partner';
+        const logo     = p.get('logo')     || '';
+        const prefix   = p.get('prefix')   || 'Brought to you by';
+        const color    = p.get('color')    || '00d9ff';
+
+        document.getElementById('sponsorName').textContent    = sponsor;
+        document.getElementById('sponsorTagline').textContent = tagline;
+        document.getElementById('prefixText').textContent     = prefix;
+        document.getElementById('accentDot').style.background = '#' + color.replace('#','');
+
+        if (logo) {
+            const logoEl = document.getElementById('sponsorLogo');
+            logoEl.src = logo;
+            logoEl.classList.add('visible');
+        }
+    </script>
+</body>
+</html>

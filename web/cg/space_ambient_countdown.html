@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=1920, initial-scale=1.0">
+    <title>Space Ambient Countdown</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html, body {
+            width: 1920px;
+            height: 1080px;
+            overflow: hidden;
+            background: #0A0E27;
+            font-family: 'Arial', sans-serif;
+        }
+
+        /* Starfield background */
+        .starfield {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+        }
+
+        .star {
+            position: absolute;
+            background: white;
+            border-radius: 50%;
+        }
+
+        /* Animated clouds */
+        .clouds {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            opacity: 0.6;
+        }
+
+        .cloud {
+            position: absolute;
+            width: 200px;
+            height: 60px;
+            background: radial-gradient(ellipse at 30% 50%, rgba(100, 150, 255, 0.4) 0%, transparent 70%);
+            border-radius: 100px;
+            filter: blur(20px);
+            animation: float linear infinite;
+        }
+
+        .cloud1 { top: 15%; left: -200px; animation-duration: 25s; }
+        .cloud2 { top: 30%; left: -200px; animation-duration: 35s; animation-delay: -10s; }
+        .cloud3 { top: 60%; left: -200px; animation-duration: 45s; animation-delay: -20s; }
+        .cloud4 { top: 75%; left: -200px; animation-duration: 30s; animation-delay: -15s; }
+
+        @keyframes float {
+            from { transform: translateX(0); }
+            to { transform: translateX(2000px); }
+        }
+
+        /* Central content */
+        .center-content {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            text-align: center;
+            opacity: 0;
+            animation: fadeInScale 0.8s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+        }
+
+        @keyframes fadeInScale {
+            from {
+                opacity: 0;
+                transform: translate(-50%, -50%) scale(0.8);
+            }
+            to {
+                opacity: 1;
+                transform: translate(-50%, -50%) scale(1);
+            }
+        }
+
+        .show-starts {
+            font-size: 48px;
+            font-weight: 700;
+            color: #00D9FF;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            text-shadow: 0 0 20px rgba(0, 217, 255, 0.5);
+            margin-bottom: 30px;
+        }
+
+        .countdown {
+            font-size: 120px;
+            font-weight: 900;
+            color: #FFD700;
+            font-family: 'Courier New', monospace;
+            letter-spacing: -2px;
+            text-shadow: 0 0 30px rgba(255, 215, 0, 0.6);
+            font-variant-numeric: tabular-nums;
+            line-height: 1;
+            margin-bottom: 20px;
+        }
+
+        .countdown-label {
+            font-size: 28px;
+            color: #A855F7;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            text-shadow: 0 0 15px rgba(168, 85, 247, 0.4);
+        }
+
+        /* Orbital ring decoration */
+        .orbit-ring {
+            position: absolute;
+            width: 500px;
+            height: 500px;
+            border: 2px solid rgba(0, 217, 255, 0.3);
+            border-radius: 50%;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%) rotateX(65deg);
+            animation: rotate 20s linear infinite;
+        }
+
+        @keyframes rotate {
+            from { transform: translate(-50%, -50%) rotateX(65deg) rotateZ(0deg); }
+            to { transform: translate(-50%, -50%) rotateX(65deg) rotateZ(360deg); }
+        }
+
+        .particle {
+            position: absolute;
+            width: 4px;
+            height: 4px;
+            background: #00D9FF;
+            border-radius: 50%;
+            animation: drift 8s ease-in-out infinite;
+        }
+
+        @keyframes drift {
+            0%, 100% { opacity: 0; }
+            50% { opacity: 1; }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="starfield" id="starfield"></div>
+    <div class="clouds">
+        <div class="cloud cloud1"></div>
+        <div class="cloud cloud2"></div>
+        <div class="cloud cloud3"></div>
+        <div class="cloud cloud4"></div>
+    </div>
+
+    <div class="orbit-ring"></div>
+
+    <div class="center-content" id="content">
+        <div class="show-starts">Show Starts In</div>
+        <div class="countdown" id="countdown">00:00:30</div>
+        <div class="countdown-label">seconds</div>
+    </div>
+
+    <script>
+        // Generate starfield
+        const starfield = document.getElementById('starfield');
+        for (let i = 0; i < 150; i++) {
+            const star = document.createElement('div');
+            star.className = 'star';
+            star.style.width = Math.random() * 3 + 'px';
+            star.style.height = star.style.width;
+            star.style.left = Math.random() * 100 + '%';
+            star.style.top = Math.random() * 100 + '%';
+            star.style.opacity = Math.random() * 0.7 + 0.3;
+            star.style.animation = `twinkle ${Math.random() * 3 + 2}s ease-in-out infinite`;
+            star.style.animationDelay = Math.random() * 2 + 's';
+            starfield.appendChild(star);
+        }
+
+        // Add twinkling animation
+        const style = document.createElement('style');
+        style.textContent = `
+            @keyframes twinkle {
+                0%, 100% { opacity: 0.3; }
+                50% { opacity: 1; }
+            }
+        `;
+        document.head.appendChild(style);
+
+        // Countdown timer
+        const params = new URLSearchParams(window.location.search);
+        let countdownSeconds = parseInt(params.get('seconds')) || 30;
+
+        function updateCountdown() {
+            const h = Math.floor(countdownSeconds / 3600);
+            const m = Math.floor((countdownSeconds % 3600) / 60);
+            const s = countdownSeconds % 60;
+            document.getElementById('countdown').textContent =
+                `${String(h).padStart(2, '0')}:${String(m).padStart(2, '0')}:${String(s).padStart(2, '0')}`;
+            if (countdownSeconds > 0) countdownSeconds--;
+        }
+
+        setInterval(updateCountdown, 1000);
+        updateCountdown();
+    </script>
+</body>
+
+</html>

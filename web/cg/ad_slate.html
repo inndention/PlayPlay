@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=1920, initial-scale=1.0">
+    <title>Ad Break Slate</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            width: 1920px; height: 1080px; overflow: hidden;
+            background: transparent;
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+        }
+        .slate {
+            width: 100%; height: 100%;
+            background: linear-gradient(135deg, #0a0f1e 0%, #141928 50%, #0a0f1e 100%);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 32px;
+        }
+        .ad-label {
+            font-size: 18px;
+            font-weight: 700;
+            letter-spacing: 6px;
+            text-transform: uppercase;
+            color: #475569;
+        }
+        .return-label {
+            font-size: 28px;
+            font-weight: 500;
+            color: #94a3b8;
+        }
+        .countdown-display {
+            font-size: 160px;
+            font-weight: 900;
+            color: #fff;
+            line-height: 1;
+            font-variant-numeric: tabular-nums;
+            text-shadow: 0 0 60px rgba(0, 217, 255, 0.3);
+        }
+        .countdown-unit {
+            font-size: 24px;
+            font-weight: 400;
+            color: #64748b;
+            letter-spacing: 3px;
+            margin-top: -12px;
+        }
+        .progress-track {
+            width: 600px;
+            height: 4px;
+            background: rgba(255,255,255,0.08);
+            border-radius: 2px;
+            overflow: hidden;
+        }
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, #00d9ff, #a855f7);
+            border-radius: 2px;
+            transition: width 1s linear;
+        }
+        .show-name {
+            font-size: 22px;
+            font-weight: 600;
+            color: #475569;
+            letter-spacing: 1px;
+        }
+    </style>
+</head>
+<body>
+    <div class="slate" id="slate" data-cg-auto>
+        <div class="ad-label" id="adLabel">Commercial Break</div>
+        <div class="countdown-display" id="countdownDisplay">60</div>
+        <div class="countdown-unit">SECONDS</div>
+        <div class="progress-track">
+            <div class="progress-fill" id="progressFill" style="width:100%"></div>
+        </div>
+        <div class="return-label" id="returnLabel">We'll be right back</div>
+        <div class="show-name" id="showName" data-field="show"></div>
+    </div>
+    <script src="js/cg-animations.js"></script>
+    <script>
+        const p = new URLSearchParams(window.location.search);
+        const duration   = parseInt(p.get('duration') || '60');
+        const label      = p.get('label')   || 'Commercial Break';
+        const returnText = p.get('return')  || "We'll be right back";
+        const show       = p.get('show')    || '';
+
+        document.getElementById('adLabel').textContent     = label;
+        document.getElementById('returnLabel').textContent = returnText;
+        document.getElementById('showName').textContent    = show;
+
+        let remaining = duration;
+        const displayEl = document.getElementById('countdownDisplay');
+        const fillEl    = document.getElementById('progressFill');
+
+        function tick() {
+            displayEl.textContent = remaining;
+            fillEl.style.width = (remaining / duration * 100) + '%';
+            if (remaining > 0) {
+                remaining--;
+                setTimeout(tick, 1000);
+            }
+        }
+        tick();
+    </script>
+</body>
+</html>

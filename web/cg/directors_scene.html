@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=1920, initial-scale=1.0">
+    <title>Director's Scene</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            width: 1920px;
+            height: 1080px;
+            overflow: hidden;
+            background: #0a0a0f;
+            font-family: 'Inter', sans-serif;
+            display: flex;
+            flex-direction: column;
+            padding: 40px;
+        }
+
+        /* Header */
+        .header {
+            background: linear-gradient(135deg, rgba(0, 217, 255, 0.2) 0%, rgba(168, 85, 247, 0.2) 100%);
+            border: 2px solid #00d9ff;
+            padding: 20px 40px;
+            border-radius: 12px;
+            margin-bottom: 30px;
+        }
+
+        .title {
+            font-size: 48px;
+            font-weight: 800;
+            background: linear-gradient(135deg, #00d9ff 0%, #a855f7 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            text-align: center;
+        }
+
+        /* Main Content */
+        .content {
+            display: grid;
+            grid-template-columns: 1fr 400px;
+            gap: 30px;
+            flex: 1;
+        }
+
+        /* Program Preview */
+        .program-preview {
+            background: #141419;
+            border: 3px solid #00d9ff;
+            border-radius: 12px;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .preview-label {
+            font-size: 24px;
+            font-weight: 700;
+            color: #00d9ff;
+            margin-bottom: 15px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        .preview-box {
+            flex: 1;
+            background: #000;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 32px;
+            color: #ffffff;
+            border: 2px solid rgba(0, 217, 255, 0.3);
+        }
+
+        /* Info Panel */
+        .info-panel {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        /* Current Camera */
+        .camera-indicator {
+            background: linear-gradient(135deg, rgba(168, 85, 247, 0.3) 0%, rgba(0, 217, 255, 0.3) 100%);
+            border: 3px solid #a855f7;
+            border-radius: 12px;
+            padding: 30px;
+            text-align: center;
+        }
+
+        .camera-label {
+            font-size: 20px;
+            color: rgba(255, 255, 255, 0.7);
+            margin-bottom: 10px;
+        }
+
+        .camera-name {
+            font-size: 56px;
+            font-weight: 900;
+            color: #ffffff;
+            text-transform: uppercase;
+            letter-spacing: 4px;
+        }
+
+        /* Break Timer */
+        .break-timer {
+            background: rgba(20, 20, 25, 0.9);
+            border: 3px solid #ff6600;
+            border-radius: 12px;
+            padding: 30px;
+            text-align: center;
+        }
+
+        .timer-label {
+            font-size: 20px;
+            color: rgba(255, 255, 255, 0.7);
+            margin-bottom: 10px;
+        }
+
+        .timer-display {
+            font-size: 64px;
+            font-weight: 900;
+            font-family: 'JetBrains Mono', monospace;
+            color: #ff6600;
+        }
+
+        .timer-display.warning {
+            color: #ff0055;
+            animation: pulse 1s infinite;
+        }
+
+        @keyframes pulse {
+
+            0%,
+            100% {
+                opacity: 1;
+                transform: scale(1);
+            }
+
+            50% {
+                opacity: 0.8;
+                transform: scale(1.05);
+            }
+        }
+
+        /* Next Up */
+        .next-up {
+            background: rgba(20, 20, 25, 0.9);
+            border: 2px solid rgba(0, 217, 255, 0.5);
+            border-radius: 12px;
+            padding: 25px;
+            flex: 1;
+        }
+
+        .next-label {
+            font-size: 18px;
+            color: #00d9ff;
+            margin-bottom: 15px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .next-item {
+            background: rgba(0, 217, 255, 0.1);
+            padding: 15px;
+            border-radius: 6px;
+            margin-bottom: 10px;
+            border-left: 4px solid #00d9ff;
+        }
+
+        .next-item-name {
+            font-size: 20px;
+            color: #ffffff;
+            font-weight: 600;
+            margin-bottom: 5px;
+        }
+
+        .next-item-time {
+            font-size: 16px;
+            color: rgba(255, 255, 255, 0.6);
+            font-family: 'JetBrains Mono', monospace;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="header">
+        <div class="title">🎬 DIRECTOR'S MONITOR</div>
+    </div>
+
+    <div class="content">
+        <!-- Program Preview -->
+        <div class="program-preview">
+            <div class="preview-label">📺 PROGRAM OUTPUT</div>
+            <div class="preview-box" id="programPreview">
+                Program Feed Preview
+            </div>
+        </div>
+
+        <!-- Info Panel -->
+        <div class="info-panel">
+            <!-- Current Camera -->
+            <div class="camera-indicator">
+                <div class="camera-label">ON AIR</div>
+                <div class="camera-name" id="currentCamera">CAMERA A</div>
+            </div>
+
+            <!-- Break Timer -->
+            <div class="break-timer">
+                <div class="timer-label">TIME TO LIVE</div>
+                <div class="timer-display" id="breakTimer">00:00</div>
+            </div>
+
+            <!-- Next Up -->
+            <div class="next-up">
+                <div class="next-label">⏭️ NEXT UP</div>
+                <div id="nextUpList">
+                    <div class="next-item">
+                        <div class="next-item-name">Interview Segment</div>
+                        <div class="next-item-time">02:30 remaining</div>
+                    </div>
+                    <div class="next-item">
+                        <div class="next-item-name">Commercial Break</div>
+                        <div class="next-item-time">05:00 remaining</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Accept data via postMessage or URL params
+        const params = new URLSearchParams(window.location.search);
+
+        let currentCamera = params.get('camera') || 'CAMERA A';
+        let breakTime = parseInt(params.get('breakTime') || '60');
+        let breakTimestamp = Date.now();
+
+        document.getElementById('currentCamera').textContent = currentCamera;
+
+        // Update break timer
+        function updateBreakTimer() {
+            const elapsed = Math.floor((Date.now() - breakTimestamp) / 1000);
+            const remaining = Math.max(0, breakTime - elapsed);
+
+            const mins = Math.floor(remaining / 60);
+            const secs = remaining % 60;
+            const display = `${String(mins).padStart(2, '0')}:${String(secs).padStart(2, '0')}`;
+
+            const timerEl = document.getElementById('breakTimer');
+            timerEl.textContent = display;
+
+            // Add warning class when < 10 seconds
+            if (remaining < 10 && remaining > 0) {
+                timerEl.classList.add('warning');
+            } else {
+                timerEl.classList.remove('warning');
+            }
+        }
+
+        updateBreakTimer();
+        setInterval(updateBreakTimer, 100);
+
+        // Listen for updates via postMessage
+        window.addEventListener('message', (event) => {
+            if (event.data.type === 'updateCamera') {
+                currentCamera = event.data.camera;
+                document.getElementById('currentCamera').textContent = currentCamera;
+            }
+            if (event.data.type === 'updateBreakTime') {
+                breakTime = event.data.time;
+                breakTimestamp = Date.now();
+            }
+        });
+    </script>
+</body>
+
+</html>

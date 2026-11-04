@@ -1,0 +1,298 @@
+.joinScreen {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    background: linear-gradient(135deg, var(--surface) 0%, var(--surface-highlight) 100%);
+    padding: var(--spacing-lg);
+}
+
+.joinCard {
+    width: 100%;
+    max-width: 500px;
+    padding: var(--spacing-2xl);
+    background: var(--surface-highlight);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-xl);
+}
+
+.logo {
+    display: flex;
+    justify-content: center;
+    margin-bottom: var(--spacing-lg);
+    color: var(--accent);
+}
+
+.joinCard h1 {
+    margin: 0 0 var(--spacing-sm) 0;
+    text-align: center;
+    font-size: 2rem;
+    font-weight: 700;
+}
+
+.subtitle {
+    text-align: center;
+    color: var(--text-secondary);
+    margin-bottom: var(--spacing-xl);
+}
+
+.joinForm {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-lg);
+}
+
+.inputGroup {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-sm);
+}
+
+.inputGroup label {
+    font-size: 0.875rem;
+    font-weight: 600;
+    color: var(--text-secondary);
+}
+
+.inputGroup input {
+    padding: var(--spacing-md);
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-md);
+    color: var(--text-primary);
+    font-size: 1rem;
+    outline: none;
+}
+
+.inputGroup input:focus {
+    border-color: var(--accent);
+    box-shadow: 0 0 0 2px rgba(59, 130, 246, 0.2);
+}
+
+.joinButton {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: var(--spacing-sm);
+    padding: var(--spacing-md);
+    background: var(--accent);
+    border: none;
+    border-radius: var(--radius-md);
+    color: white;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all var(--transition-base);
+}
+
+.joinButton:hover:not(:disabled) {
+    background: #2563eb;
+}
+
+.joinButton:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+.interface {
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+    background: var(--surface);
+    color: var(--text-primary);
+    overflow: hidden;
+}
+
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: var(--spacing-md) var(--spacing-lg);
+    background: var(--surface-highlight);
+    border-bottom: 1px solid var(--border);
+}
+
+.headerLeft {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-md);
+}
+
+.guestName {
+    font-size: 1.25rem;
+    font-weight: 600;
+}
+
+.liveBadge {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-xs);
+    padding: var(--spacing-xs) var(--spacing-md);
+    background: var(--danger);
+    color: white;
+    border-radius: var(--radius-md);
+    font-size: 0.875rem;
+    font-weight: 600;
+    animation: pulse 2s ease-in-out infinite;
+}
+
+@keyframes pulse {
+    0%, 100% {
+        opacity: 1;
+        transform: scale(1);
+    }
+    50% {
+        opacity: 0.8;
+        transform: scale(1.05);
+    }
+}
+
+.countdownBadge {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-xs);
+    padding: var(--spacing-xs) var(--spacing-md);
+    background: var(--warning);
+    color: white;
+    border-radius: var(--radius-md);
+    font-size: 1rem;
+    font-weight: 700;
+    font-variant-numeric: tabular-nums;
+}
+
+.mainContent {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: var(--spacing-xl);
+    padding: var(--spacing-xl);
+}
+
+.videoContainer {
+    position: relative;
+    width: 100%;
+    max-width: 800px;
+    aspect-ratio: 16 / 9;
+    background: var(--surface-highlight);
+    border: 2px solid var(--border);
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+}
+
+.video {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.videoPlaceholder {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: var(--spacing-md);
+    background: var(--surface);
+    color: var(--text-secondary);
+}
+
+.controls {
+    width: 100%;
+    max-width: 600px;
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-lg);
+}
+
+.deviceControls {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-md);
+}
+
+.deviceGroup {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-md);
+}
+
+.deviceGroup label {
+    width: 100px;
+    font-size: 0.875rem;
+    font-weight: 600;
+    color: var(--text-secondary);
+}
+
+.deviceGroup select {
+    flex: 1;
+    padding: var(--spacing-sm) var(--spacing-md);
+    background: var(--surface-highlight);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-md);
+    color: var(--text-primary);
+}
+
+.toggleButton {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 48px;
+    height: 48px;
+    background: var(--success);
+    border: none;
+    border-radius: var(--radius-md);
+    color: white;
+    cursor: pointer;
+    transition: all var(--transition-base);
+}
+
+.toggleButton.off {
+    background: var(--danger);
+}
+
+.pttControl {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-sm);
+    padding: var(--spacing-lg);
+    background: var(--surface-highlight);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-lg);
+}
+
+.pttControl label {
+    font-size: 0.875rem;
+    font-weight: 600;
+    color: var(--text-secondary);
+}
+
+.pttOptions {
+    display: flex;
+    gap: var(--spacing-sm);
+}
+
+.pttOption {
+    flex: 1;
+    padding: var(--spacing-md);
+    background: var(--surface);
+    border: 2px solid var(--border);
+    border-radius: var(--radius-md);
+    color: var(--text-primary);
+    font-weight: 600;
+    cursor: pointer;
+    transition: all var(--transition-base);
+}
+
+.pttOption:hover {
+    border-color: var(--accent);
+}
+
+.pttOption.active {
+    background: var(--accent);
+    border-color: var(--accent);
+    color: white;
+}

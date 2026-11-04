@@ -1,0 +1,8 @@
+.container { display: flex; flex-direction: column; height: 100%; background: var(--surface); border-radius: var(--radius-md); overflow: hidden; }
+.header { display: flex; align-items: center; justify-content: space-between; padding: 1rem; background: var(--surface-highlight); border-bottom: 1px solid var(--border); }
+.header h2 { font-size: 1.1rem; font-weight: 700; }
+.status { display: flex; align-items: center; gap: 0.5rem; }
+.connected { color: var(--success); }
+.disconnected { color: var(--text-muted); }
+.content { flex: 1; padding: 1rem; }
+

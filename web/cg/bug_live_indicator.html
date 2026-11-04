@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=1920, initial-scale=1.0">
+    <title>LIVE Indicator</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            width: 1920px;
+            height: 1080px;
+            overflow: hidden;
+            background: transparent;
+            font-family: 'Arial Black', 'Arial', sans-serif;
+        }
+
+        .live-container {
+            position: absolute;
+            top: 30px;
+            left: 30px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            background: rgba(0, 0, 0, 0.8);
+            padding: 12px 24px;
+            border-radius: 8px;
+            border: 2px solid #DC2626;
+            box-shadow: 0 4px 16px rgba(220, 38, 38, 0.6), 0 0 30px rgba(220, 38, 38, 0.4);
+            animation: fadeIn 0.5s ease-out forwards;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .pulse-dot {
+            width: 16px;
+            height: 16px;
+            background: #DC2626;
+            border-radius: 50%;
+            position: relative;
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+
+            0%,
+            100% {
+                box-shadow: 0 0 0 0 rgba(220, 38, 38, 0.7);
+            }
+
+            50% {
+                box-shadow: 0 0 0 10px rgba(220, 38, 38, 0);
+            }
+        }
+
+        .live-text {
+            font-size: 28px;
+            font-weight: 900;
+            color: white;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            text-shadow: 0 2px 8px rgba(220, 38, 38, 0.8);
+        }
+
+        .glow {
+            animation: glow 2s infinite;
+        }
+
+        @keyframes glow {
+
+            0%,
+            100% {
+                text-shadow: 0 2px 8px rgba(220, 38, 38, 0.8), 0 0 20px rgba(220, 38, 38, 0.6);
+            }
+
+            50% {
+                text-shadow: 0 2px 8px rgba(220, 38, 38, 0.8), 0 0 40px rgba(220, 38, 38, 0.8);
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="live-container">
+        <div class="pulse-dot"></div>
+        <div class="live-text glow" id="liveText">LIVE</div>
+    </div>
+
+    <script>
+        const params = new URLSearchParams(window.location.search);
+        const text = params.get('text') || 'LIVE';
+
+        document.getElementById('liveText').textContent = text.toUpperCase();
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,14 @@
+[Global]
+Type=6
+XPos=0
+YPos=50
+Trans1=0
+BTrans=2
+DTrans=0
+FontName=Tahoma
+FontSize=30
+FontColor=65535
+BFarbe=0
+CrawlTime=4
+RollTime=900000
+FieldMode=1

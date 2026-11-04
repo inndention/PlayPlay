@@ -1,0 +1,65 @@
+.card {
+    margin: 0 0 1.25rem;
+    padding: 1rem 1.1rem;
+    border-radius: 10px;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    background: rgba(15, 15, 20, 0.65);
+}
+
+.cardHead {
+    display: flex;
+    gap: 0.65rem;
+    align-items: flex-start;
+    margin-bottom: 0.75rem;
+}
+
+.cardHead h2 {
+    margin: 0;
+    font-size: 1rem;
+    font-weight: 600;
+}
+
+.sub {
+    margin: 0.2rem 0 0;
+    font-size: 0.78rem;
+    color: var(--text-muted, #a1a1aa);
+    line-height: 1.35;
+}
+
+.icon {
+    flex-shrink: 0;
+    color: #c4b5fd;
+}
+
+.row {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.85rem;
+    cursor: pointer;
+    margin-bottom: 0.65rem;
+}
+
+.meta {
+    font-size: 0.78rem;
+    color: var(--text-muted, #a1a1aa);
+    line-height: 1.45;
+}
+
+.meta code {
+    font-size: 0.72rem;
+    color: #e4e4e7;
+}
+
+.sip {
+    display: flex;
+    align-items: center;
+    gap: 0.35rem;
+    margin-top: 0.35rem;
+}
+
+.hint {
+    margin: 0.5rem 0 0;
+    font-size: 0.72rem;
+    opacity: 0.9;
+}

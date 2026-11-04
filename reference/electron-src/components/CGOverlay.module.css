@@ -1,0 +1,495 @@
+/* CGOverlay - Character Generator Styles */
+
+.overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    pointer-events: none;
+    z-index: 100;
+    overflow: hidden;
+}
+
+/* Glass Morphism Effect */
+.glassMorphism {
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(20px) saturate(180%);
+    -webkit-backdrop-filter: blur(20px) saturate(180%);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+}
+
+.glassMorphismDark {
+    background: rgba(0, 0, 0, 0.3);
+    backdrop-filter: blur(20px) saturate(180%);
+    -webkit-backdrop-filter: blur(20px) saturate(180%);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.5);
+}
+
+.templateContainer {
+    position: absolute;
+    pointer-events: none;
+    overflow: hidden;
+}
+
+.templateIframe {
+    width: 100%;
+    height: 100%;
+    border: none;
+    background: transparent;
+    pointer-events: none;
+}
+
+.preview {
+    background: rgba(0, 0, 0, 0.3);
+    border: 2px dashed var(--accent);
+}
+
+.element {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0.5rem 1rem;
+    pointer-events: auto;
+}
+
+/* Lower Third */
+.lowerThird {
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+    width: 100%;
+}
+
+.ltTitle {
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    text-shadow:
+        -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000,
+        0 0 8px rgba(0,0,0,0.9), 0 2px 6px rgba(0,0,0,0.8);
+    -webkit-text-stroke: 0.4px rgba(0,0,0,0.6);
+}
+
+.ltSubtitle {
+    font-size: 0.8em;
+    opacity: 0.9;
+    text-shadow:
+        -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000,
+        0 0 6px rgba(0,0,0,0.8);
+}
+
+/* Ticker */
+.ticker {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    overflow: hidden;
+}
+
+.tickerLabel {
+    padding: 0 1rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    white-space: nowrap;
+    background: rgba(0, 0, 0, 0.3);
+}
+
+.tickerScroll {
+    flex: 1;
+    overflow: hidden;
+    white-space: nowrap;
+}
+
+.tickerText {
+    display: inline-block;
+    padding-left: 100%;
+    animation: tickerScroll 15s linear infinite;
+    text-shadow:
+        -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000,
+        0 0 6px rgba(0,0,0,0.8);
+}
+
+@keyframes tickerScroll {
+    0% {
+        transform: translateX(0);
+    }
+
+    100% {
+        transform: translateX(-100%);
+    }
+}
+
+/* Bug */
+.bug {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.bugImage {
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: contain;
+}
+
+.bugText {
+    font-weight: 800;
+    font-size: 0.9em;
+    text-transform: uppercase;
+    text-shadow:
+        -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000,
+        0 0 8px rgba(0,0,0,0.9), 0 2px 6px rgba(0,0,0,0.8);
+    -webkit-text-stroke: 0.4px rgba(0,0,0,0.6);
+}
+
+/* Clock */
+.clock {
+    font-family: var(--font-mono);
+    font-weight: 700;
+    letter-spacing: 0.05em;
+}
+
+/* Weather */
+.weather {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.weatherIcon {
+    font-size: 1.5em;
+}
+
+.weatherTemp {
+    font-weight: 700;
+}
+
+/* Custom */
+.custom {
+    font-weight: 600;
+}
+
+/* ========== ENTRANCE ANIMATIONS ========== */
+
+.anim_none {
+    animation: none;
+}
+
+.anim_fade {
+    animation: fadeIn ease-out forwards;
+}
+
+.anim_slide_left {
+    animation: slideInLeft ease-out forwards;
+}
+
+.anim_slide_right {
+    animation: slideInRight ease-out forwards;
+}
+
+.anim_slide_up {
+    animation: slideInUp ease-out forwards;
+}
+
+.anim_slide_down {
+    animation: slideInDown ease-out forwards;
+}
+
+.anim_zoom {
+    animation: zoomIn ease-out forwards;
+}
+
+.anim_bounce {
+    animation: bounceIn ease-out forwards;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes slideInLeft {
+    from {
+        transform: translateX(-100%);
+        opacity: 0;
+    }
+
+    to {
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
+
+@keyframes slideInRight {
+    from {
+        transform: translateX(100%);
+        opacity: 0;
+    }
+
+    to {
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
+
+@keyframes slideInUp {
+    from {
+        transform: translateY(100%);
+        opacity: 0;
+    }
+
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+@keyframes slideInDown {
+    from {
+        transform: translateY(-100%);
+        opacity: 0;
+    }
+
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+@keyframes zoomIn {
+    from {
+        transform: scale(0.5);
+        opacity: 0;
+    }
+
+    to {
+        transform: scale(1);
+        opacity: 1;
+    }
+}
+
+@keyframes bounceIn {
+    0% {
+        transform: scale(0.5);
+        opacity: 0;
+    }
+
+    60% {
+        transform: scale(1.1);
+        opacity: 1;
+    }
+
+    100% {
+        transform: scale(1);
+    }
+}
+
+/* ========== LOOP ANIMATIONS ========== */
+
+.loop_none {
+    animation: none;
+}
+
+.loop_pulse {
+    animation: pulse 2s ease-in-out infinite;
+}
+
+.loop_glow {
+    animation: glowPulse 1.5s ease-in-out infinite;
+}
+
+.loop_slide {
+    animation: slideLoop 3s ease-in-out infinite;
+}
+
+.loop_rotate {
+    animation: rotateLoop 2s linear infinite;
+}
+
+.loop_sheen {
+    position: relative;
+    overflow: hidden;
+}
+
+.loop_sheen::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 50%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+    animation: sheen 3s ease-in-out infinite;
+}
+
+.loop_shimmer {
+    animation: shimmer 2s ease-in-out infinite;
+}
+
+.loop_glow_pulse {
+    animation: glowPulse 1.5s ease-in-out infinite;
+}
+
+.loop_bounce {
+    animation: bounceContinuous 1s ease-in-out infinite;
+}
+
+@keyframes pulse {
+
+    0%,
+    100% {
+        transform: scale(1);
+    }
+
+    50% {
+        transform: scale(1.02);
+    }
+}
+
+@keyframes sheen {
+    0% {
+        left: -100%;
+    }
+
+    50%,
+    100% {
+        left: 200%;
+    }
+}
+
+@keyframes shimmer {
+
+    0%,
+    100% {
+        opacity: 1;
+    }
+
+    50% {
+        opacity: 0.85;
+    }
+}
+
+@keyframes glowPulse {
+
+    0%,
+    100% {
+        filter: brightness(1);
+    }
+
+    50% {
+        filter: brightness(1.2);
+    }
+}
+
+@keyframes bounceContinuous {
+
+    0%,
+    100% {
+        transform: translateY(0);
+    }
+
+    50% {
+        transform: translateY(-3px);
+    }
+}
+
+@keyframes slideLoop {
+    0%, 100% {
+        transform: translateX(0);
+    }
+    50% {
+        transform: translateX(5px);
+    }
+}
+
+@keyframes rotateLoop {
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+/* ========== CG LAYERS ========== */
+
+.cgLayer {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    animation-fill-mode: forwards;
+}
+
+.layerIframe {
+    width: 100%;
+    height: 100%;
+    border: none;
+    background: transparent;
+    pointer-events: none;
+}
+
+/* ========== LAYER TRANSITIONS ========== */
+
+.transitionFade {
+    animation: fadeIn ease-out forwards;
+}
+
+.transitionWipeLeft {
+    animation: wipeLeft ease-out forwards;
+}
+
+.transitionWipeRight {
+    animation: wipeRight ease-out forwards;
+}
+
+.transitionPushUp {
+    animation: pushUp ease-out forwards;
+}
+
+.transitionPushDown {
+    animation: pushDown ease-out forwards;
+}
+
+@keyframes wipeLeft {
+    from {
+        clip-path: inset(0 100% 0 0);
+    }
+    to {
+        clip-path: inset(0 0 0 0);
+    }
+}
+
+@keyframes wipeRight {
+    from {
+        clip-path: inset(0 0 0 100%);
+    }
+    to {
+        clip-path: inset(0 0 0 0);
+    }
+}
+
+@keyframes pushUp {
+    from {
+        transform: translateY(100%);
+    }
+    to {
+        transform: translateY(0);
+    }
+}
+
+@keyframes pushDown {
+    from {
+        transform: translateY(-100%);
+    }
+    to {
+        transform: translateY(0);
+    }
+}

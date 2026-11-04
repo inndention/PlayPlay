@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=1920, initial-scale=1.0">
+    <title>SciFi Phase In/Out Effect</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html, body {
+            width: 1920px;
+            height: 1080px;
+            overflow: hidden;
+            background: transparent;
+            font-family: 'Arial', sans-serif;
+        }
+
+        .phase-container {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 600px;
+            height: 180px;
+            perspective: 1000px;
+        }
+
+        .phase-content {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            opacity: 0;
+        }
+
+        /* Phase in animation */
+        @keyframes phaseIn {
+            0% {
+                opacity: 0;
+                clip-path: polygon(0 0, 0 0, 0 100%, 0 100%);
+                transform: scaleX(0.3) skewX(-10deg);
+            }
+            50% {
+                clip-path: polygon(0 0, 100% 10%, 100% 90%, 0 100%);
+            }
+            100% {
+                opacity: 1;
+                clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
+                transform: scaleX(1) skewX(0deg);
+            }
+        }
+
+        @keyframes phaseOut {
+            0% {
+                opacity: 1;
+                clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
+                transform: scaleX(1) skewX(0deg);
+            }
+            50% {
+                clip-path: polygon(100% 10%, 100% 10%, 100% 90%, 100% 90%);
+                opacity: 0.5;
+            }
+            100% {
+                opacity: 0;
+                clip-path: polygon(100% 0, 100% 0, 100% 100%, 100% 100%);
+                transform: scaleX(0.3) skewX(10deg);
+            }
+        }
+
+        .phase-content.phase-in {
+            animation: phaseIn 1.2s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+        }
+
+        .phase-content.phase-out {
+            animation: phaseOut 1.2s cubic-bezier(0.64, 0, 0.78, 0) forwards;
+        }
+
+        /* Particle effect */
+        .phase-particle {
+            position: absolute;
+            width: 4px;
+            height: 4px;
+            background: #00D9FF;
+            border-radius: 50%;
+            opacity: 0;
+            pointer-events: none;
+        }
+
+        .phase-in .phase-particle {
+            animation: particlePhaseIn 1.2s ease-out forwards;
+        }
+
+        .phase-out .phase-particle {
+            animation: particlePhaseOut 1.2s ease-in forwards;
+        }
+
+        @keyframes particlePhaseIn {
+            0% {
+                opacity: 1;
+                transform: translate(var(--tx), var(--ty)) scale(0);
+            }
+            60% {
+                opacity: 1;
+            }
+            100% {
+                opacity: 0;
+                transform: translate(0, 0) scale(1);
+            }
+        }
+
+        @keyframes particlePhaseOut {
+            0% {
+                opacity: 0;
+                transform: translate(0, 0) scale(1);
+            }
+            40% {
+                opacity: 1;
+            }
+            100% {
+                opacity: 0;
+                transform: translate(var(--tx), var(--ty)) scale(0);
+            }
+        }
+
+        /* Scan lines */
+        .scan-lines {
+            position: absolute;
+            inset: 0;
+            background: repeating-linear-gradient(
+                0deg,
+                rgba(0, 217, 255, 0.03) 0px,
+                rgba(0, 217, 255, 0.03) 2px,
+                transparent 2px,
+                transparent 4px
+            );
+            pointer-events: none;
+            opacity: 0;
+        }
+
+        .phase-in .scan-lines,
+        .phase-out .scan-lines {
+            animation: scanFlicker 1.2s linear forwards;
+        }
+
+        @keyframes scanFlicker {
+            0%, 100% { opacity: 0; }
+            40%, 60% { opacity: 1; }
+        }
+
+        /* Glow effect */
+        .phase-glow {
+            position: absolute;
+            inset: -20px;
+            border: 2px solid #00D9FF;
+            border-radius: 4px;
+            opacity: 0;
+            box-shadow: 0 0 30px rgba(0, 217, 255, 0.5);
+        }
+
+        .phase-in .phase-glow,
+        .phase-out .phase-glow {
+            animation: glowPulse 1.2s ease-in-out forwards;
+        }
+
+        @keyframes glowPulse {
+            0%, 100% { opacity: 0; }
+            40%, 60% { opacity: 1; }
+        }
+
+        /* Content box */
+        .content-box {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, rgba(0, 217, 255, 0.1) 0%, rgba(168, 85, 247, 0.1) 100%);
+            border: 2px solid #00D9FF;
+            border-radius: 4px;
+            padding: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+        }
+
+        .content-text {
+            font-size: 48px;
+            font-weight: 900;
+            color: #00D9FF;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            text-shadow: 0 0 20px rgba(0, 217, 255, 0.6);
+            text-align: center;
+        }
+
+        .controls {
+            position: absolute;
+            bottom: 40px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 20px;
+        }
+
+        button {
+            padding: 12px 32px;
+            font-size: 16px;
+            font-weight: 700;
+            color: white;
+            background: #00D9FF;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            box-shadow: 0 0 15px rgba(0, 217, 255, 0.4);
+            transition: all 0.3s ease;
+        }
+
+        button:hover {
+            background: #A855F7;
+            box-shadow: 0 0 25px rgba(168, 85, 247, 0.6);
+        }
+
+        button:active {
+            transform: scale(0.95);
+        }
+    </style>
+</head>
+
+<body>
+    <div class="phase-container">
+        <div class="phase-content" id="phaseContent">
+            <div class="content-box">
+                <div class="content-text">INCOMING</div>
+                <div class="scan-lines"></div>
+                <div class="phase-glow"></div>
+            </div>
+        </div>
+    </div>
+
+    <div class="controls">
+        <button id="btnPhaseIn">Phase In</button>
+        <button id="btnPhaseOut">Phase Out</button>
+        <button id="btnReset">Reset</button>
+    </div>
+
+    <script>
+        const phaseContent = document.getElementById('phaseContent');
+        const btnPhaseIn = document.getElementById('btnPhaseIn');
+        const btnPhaseOut = document.getElementById('btnPhaseOut');
+        const btnReset = document.getElementById('btnReset');
+
+        function generateParticles() {
+            // Clear existing particles
+            document.querySelectorAll('.phase-particle').forEach(p => p.remove());
+
+            // Generate new particles
+            for (let i = 0; i < 40; i++) {
+                const particle = document.createElement('div');
+                particle.className = 'phase-particle';
+                const angle = (Math.random() * Math.PI * 2);
+                const distance = Math.random() * 400 + 100;
+                const tx = Math.cos(angle) * distance;
+                const ty = Math.sin(angle) * distance;
+                particle.style.setProperty('--tx', tx + 'px');
+                particle.style.setProperty('--ty', ty + 'px');
+                particle.style.left = '50%';
+                particle.style.top = '50%';
+                particle.style.transform = 'translate(-50%, -50%)';
+                phaseContent.appendChild(particle);
+            }
+        }
+
+        btnPhaseIn.addEventListener('click', () => {
+            phaseContent.className = 'phase-content phase-in';
+            generateParticles();
+        });
+
+        btnPhaseOut.addEventListener('click', () => {
+            phaseContent.className = 'phase-content phase-out';
+            generateParticles();
+        });
+
+        btnReset.addEventListener('click', () => {
+            phaseContent.className = 'phase-content';
+            document.querySelectorAll('.phase-particle').forEach(p => p.remove());
+        });
+
+        // Auto-play phase in on load
+        window.addEventListener('load', () => {
+            setTimeout(() => {
+                btnPhaseIn.click();
+            }, 500);
+        });
+    </script>
+</body>
+
+</html>

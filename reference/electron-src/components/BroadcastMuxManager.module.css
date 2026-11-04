@@ -1,0 +1,179 @@
+.container {
+    padding: 1.5rem;
+    background: var(--background);
+    color: var(--text-primary);
+    height: 100%;
+    overflow-y: auto;
+}
+
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1.5rem;
+    padding-bottom: 1rem;
+    border-bottom: 1px solid var(--border);
+}
+
+.header h2 {
+    margin: 0;
+    font-size: 1.5rem;
+    font-weight: 600;
+}
+
+.controls {
+    display: flex;
+    gap: 0.5rem;
+}
+
+.startButton,
+.stopButton {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.5rem 1rem;
+    border: none;
+    border-radius: 6px;
+    font-size: 0.9rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.startButton {
+    background: var(--primary);
+    color: white;
+}
+
+.startButton:hover {
+    background: var(--primary-hover);
+}
+
+.stopButton {
+    background: var(--error);
+    color: white;
+}
+
+.stopButton:hover {
+    background: #dc2626;
+}
+
+.error {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.75rem;
+    background: rgba(239, 68, 68, 0.1);
+    border: 1px solid var(--error);
+    border-radius: 6px;
+    color: var(--error);
+    margin-bottom: 1rem;
+}
+
+.statusGrid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1rem;
+    margin-bottom: 2rem;
+}
+
+.channelStatus {
+    padding: 1rem;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+}
+
+.channelHeader {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 0.5rem;
+    font-weight: 600;
+}
+
+.statusOk {
+    color: #10b981;
+}
+
+.statusError {
+    color: #ef4444;
+}
+
+.statusDisabled {
+    color: var(--text-secondary);
+}
+
+.statusInfo {
+    font-size: 0.85rem;
+    color: var(--text-secondary);
+    margin-top: 0.25rem;
+}
+
+.statusErrors {
+    margin-top: 0.5rem;
+    font-size: 0.8rem;
+    color: var(--error);
+}
+
+.configSection {
+    margin-bottom: 2rem;
+    padding: 1rem;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+}
+
+.configSection h3 {
+    margin: 0 0 1rem 0;
+    font-size: 1.1rem;
+    font-weight: 600;
+}
+
+.channelsGrid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1rem;
+}
+
+.statMuxConfig,
+.psiSiConfig {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.field {
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+}
+
+.field label {
+    font-size: 0.9rem;
+    font-weight: 500;
+    color: var(--text-primary);
+}
+
+.field input[type="text"],
+.field input[type="number"] {
+    padding: 0.5rem;
+    background: var(--background);
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    color: var(--text-primary);
+    font-size: 0.9rem;
+}
+
+.field input[type="checkbox"] {
+    margin-right: 0.5rem;
+}
+
+.field small {
+    font-size: 0.75rem;
+    color: var(--text-secondary);
+}
+
+
+
+

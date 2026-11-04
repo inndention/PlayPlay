@@ -1,0 +1,316 @@
+/* ============================================
+   BROADCAST CLOCK
+   Professional Precision Timing Display
+   ============================================ */
+
+.container {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-4);
+    padding: var(--space-4);
+    background: var(--surface);
+    border-radius: var(--radius-xl);
+    border: 1px solid var(--border);
+}
+
+/* ============================================
+   MAIN CLOCK
+   ============================================ */
+
+.mainClock {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: var(--space-6);
+    background: var(--background);
+    border-radius: var(--radius-lg);
+    position: relative;
+}
+
+/* On-Air Badge */
+.onAirBadge {
+    position: absolute;
+    top: var(--space-3);
+    right: var(--space-3);
+    display: flex;
+    align-items: center;
+    gap: var(--space-2);
+    padding: var(--space-1) var(--space-3);
+    background: var(--on-air);
+    color: white;
+    font-size: 11px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    border-radius: var(--radius-full);
+    animation: pulseOnAir 2s ease-in-out infinite;
+}
+
+.onAirDot {
+    width: 6px;
+    height: 6px;
+    background: white;
+    border-radius: 50%;
+    animation: dotPulse 1s ease-in-out infinite;
+}
+
+@keyframes pulseOnAir {
+    0%, 100% { box-shadow: 0 0 0 0 var(--on-air-pulse); }
+    50% { box-shadow: 0 0 0 8px transparent; }
+}
+
+@keyframes dotPulse {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.5; }
+}
+
+/* Primary Time */
+.primaryTime {
+    display: flex;
+    align-items: baseline;
+    margin-bottom: var(--space-2);
+}
+
+.timeDigits {
+    font-family: var(--font-mono);
+    font-size: 64px;
+    font-weight: 700;
+    color: var(--text-primary);
+    letter-spacing: -0.02em;
+    font-feature-settings: 'tnum' 1, 'zero' 1;
+    text-shadow: 0 2px 20px rgba(0, 212, 255, 0.2);
+}
+
+/* Date Display */
+.dateDisplay {
+    font-size: 14px;
+    color: var(--text-secondary);
+    margin-bottom: var(--space-3);
+}
+
+/* Secondary Timezone */
+.secondaryTime {
+    display: flex;
+    align-items: center;
+    gap: var(--space-3);
+    padding: var(--space-2) var(--space-4);
+    background: var(--surface);
+    border-radius: var(--radius-md);
+    margin-bottom: var(--space-3);
+}
+
+.tzLabel {
+    font-size: 11px;
+    font-weight: 600;
+    color: var(--text-muted);
+    text-transform: uppercase;
+}
+
+.tzTime {
+    font-family: var(--font-mono);
+    font-size: 18px;
+    font-weight: 600;
+    color: var(--text-secondary);
+}
+
+/* Sync Status */
+.syncStatus {
+    display: flex;
+    align-items: center;
+    gap: var(--space-1);
+    font-size: 11px;
+    font-weight: 500;
+}
+
+.synced {
+    color: var(--ready);
+}
+
+.notSynced {
+    color: var(--warning);
+}
+
+/* ============================================
+   ON-AIR DURATION
+   ============================================ */
+
+.onAirDuration {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: var(--space-3);
+    padding: var(--space-3);
+    background: var(--on-air);
+    border-radius: var(--radius-lg);
+    color: white;
+}
+
+.onAirIcon {
+    animation: radioPulse 1s ease-in-out infinite;
+}
+
+@keyframes radioPulse {
+    0%, 100% { opacity: 1; transform: scale(1); }
+    50% { opacity: 0.7; transform: scale(1.1); }
+}
+
+.durationLabel {
+    font-size: 12px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+
+.durationValue {
+    font-family: var(--font-mono);
+    font-size: 24px;
+    font-weight: 700;
+}
+
+/* ============================================
+   TIMERS GRID
+   ============================================ */
+
+.timersGrid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+    gap: var(--space-3);
+}
+
+/* Timer Card */
+.timerCard {
+    display: flex;
+    flex-direction: column;
+    padding: var(--space-3);
+    background: var(--background);
+    border: 2px solid var(--border);
+    border-radius: var(--radius-lg);
+    transition: all var(--duration-fast);
+}
+
+.timernormal {
+    border-color: var(--border);
+}
+
+.timerwarning {
+    border-color: var(--warning);
+    box-shadow: 0 0 15px rgba(255, 214, 10, 0.2);
+}
+
+.timercritical {
+    border-color: var(--on-air);
+    box-shadow: 0 0 20px var(--on-air-glow);
+    animation: timerCriticalPulse 0.5s ease-in-out infinite;
+}
+
+.timerexpired {
+    border-color: var(--error);
+    background: rgba(255, 69, 58, 0.1);
+}
+
+@keyframes timerCriticalPulse {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.8; }
+}
+
+.timerHeader {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: var(--space-2);
+}
+
+.timerLabel {
+    font-size: 11px;
+    font-weight: 600;
+    color: var(--text-secondary);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+
+.timerType {
+    color: var(--text-muted);
+}
+
+.timerValue {
+    font-family: var(--font-mono);
+    font-size: 32px;
+    font-weight: 700;
+    text-align: center;
+    margin-bottom: var(--space-2);
+}
+
+.valuenormal {
+    color: var(--text-primary);
+}
+
+.valuewarning {
+    color: var(--warning);
+    text-shadow: 0 0 15px var(--warning-glow);
+}
+
+.valuecritical {
+    color: var(--on-air);
+    text-shadow: 0 0 20px var(--on-air-glow);
+}
+
+.valueexpired {
+    color: var(--error);
+}
+
+.timerControls {
+    display: flex;
+    justify-content: center;
+    gap: var(--space-2);
+}
+
+.timerBtn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 32px;
+    height: 32px;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-md);
+    color: var(--text-secondary);
+    cursor: pointer;
+    transition: all var(--duration-fast);
+}
+
+.timerBtn:hover {
+    background: var(--surface-highlight);
+    color: var(--text-primary);
+}
+
+.timerBtn.running {
+    background: var(--accent-muted);
+    color: var(--accent);
+    border-color: var(--accent);
+}
+
+/* ============================================
+   FRAME RATE INDICATOR
+   ============================================ */
+
+.frameRateIndicator {
+    display: flex;
+    justify-content: center;
+    font-size: 10px;
+    color: var(--text-muted);
+    font-family: var(--font-mono);
+}
+
+/* ============================================
+   RESPONSIVE
+   ============================================ */
+
+@media (max-width: 600px) {
+    .timeDigits {
+        font-size: 40px;
+    }
+    
+    .timerValue {
+        font-size: 24px;
+    }
+}

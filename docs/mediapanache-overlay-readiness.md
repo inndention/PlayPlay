@@ -1,0 +1,15 @@
+# Media Panache overlay readiness
+
+Media Panache describes banner-like advertisements over programming and says each airing receives a unique QR code. Its broadcaster page also describes automated placement and measurement. Sources: https://www.mediapanache.com/ and https://www.mediapanache.com/broadcasters (checked 2026-10-30).
+
+The public pages do not provide an integration contract, dimensions, safe areas, permitted file formats, scheduling interface, tracking URL format, authentication, or proof-of-play requirements. PLAY PLAY must not label an overlay as Media Panache-compatible until the broadcaster specification and a sample package or test environment have been supplied and verified. The existing `QRCodeOverlay.qml` is a placeholder and does not generate a QR code.
+
+Before implementation, establish how a unique airing ID and QR target are supplied, which party owns the redirect and measurement, which overlay assets and coordinates are required, how starts and stops are confirmed and reconciled, and how failed or duplicated events are handled. Keep planned airings, actual engine-confirmed events and QR scans distinct in client reports. Use test data and a non-broadcast output for validation; do not send production ads or manufacture scan counts.
+
+## Digital inventory and SCTE-35
+
+The requested system should distinguish inventory opportunities (channel, position, duration and availability), booked placements (client, campaign, creative, dates and restrictions), actual on-air events, and scan/response measurements. A booking must not be counted as an airing, an accepted playout command must not be counted as proof of play, and a generated QR must not be counted as a scan. The current ad-contract report associates START events by media ID, channel, dates and dayparts; it is not a booking-specific delivery ledger and can associate the same event with multiple matching contracts.
+
+PLAY PLAY already has a Mux SCTE-35 control path: per-service PMT PID signalling, immediate splice-insert cue out/in, cancel and optional null cues (`docs/mux.md`). Its binary helper also supports `time_signal`, but explicitly does not support splice descriptors, including segmentation descriptors (`tools/mux/scte35bin.h`). The UI and code do not establish end-to-end standards compliance, precise downstream timing, inventory availability, QR measurement or a Media Panache connection.
+
+SCTE describes 35-1 as in-stream signalling of insertion opportunities and 35-2 as event-based signalling. The applicable profile and downstream receiver must be agreed before choosing cue fields, identifiers and timing. Sources: https://account.scte.org/standards/library/catalog/scte-35-1-digital-program-insertion-cueing-message-part-1-legacy-splice-based-and-time-based-signaling/ and https://www.scte.org/standards/standards-updates/. Before claiming compliance, validate captured transport streams, PMT/PID association, cue timing against PTS/PCR, cancellation and return behavior, receiver interoperability, restarts, and end-to-end proof of play on isolated output. Do not enable or emit cues on the live mux as a test.

@@ -1,0 +1,227 @@
+/* Speaker Detection Panel */
+
+.container {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    background: var(--surface);
+    border-radius: var(--radius-md);
+    overflow: hidden;
+}
+
+.header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1rem;
+    background: linear-gradient(180deg, var(--surface-highlight) 0%, var(--surface) 100%);
+    border-bottom: 1px solid var(--border);
+}
+
+.headerLeft {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.headerLeft h2 {
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: var(--text-primary);
+}
+
+.toggleBtn {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.5rem 1rem;
+    background: var(--accent);
+    border: none;
+    border-radius: var(--radius-sm);
+    color: white;
+    font-size: 0.85rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.toggleBtn:hover:not(:disabled) {
+    background: var(--accent-hover);
+    transform: translateY(-1px);
+}
+
+.toggleBtn:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+.content {
+    display: flex;
+    flex: 1;
+    gap: 1rem;
+    padding: 1rem;
+    overflow: hidden;
+}
+
+.videoSection {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    min-width: 0;
+}
+
+.videoContainer {
+    position: relative;
+    flex: 1;
+    background: #000;
+    border-radius: var(--radius-md);
+    overflow: hidden;
+    min-height: 400px;
+}
+
+.video {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+}
+
+.overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+}
+
+.detectionInfo {
+    margin-top: 0.5rem;
+    padding: 0.75rem;
+    background: var(--background);
+    border-radius: var(--radius-sm);
+    border: 1px solid var(--border);
+}
+
+.infoRow {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    font-size: 0.85rem;
+    color: var(--text-secondary);
+}
+
+.primarySpeaker {
+    display: flex;
+    align-items: center;
+    gap: 0.25rem;
+    color: var(--success);
+    font-weight: 600;
+}
+
+.controls {
+    width: 300px;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    padding: 1rem;
+    background: var(--background);
+    border-radius: var(--radius-md);
+    border: 1px solid var(--border);
+    overflow-y: auto;
+}
+
+.controlGroup {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.controlGroup label {
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: var(--text-secondary);
+}
+
+.controlGroup select,
+.controlGroup input[type="range"] {
+    width: 100%;
+}
+
+.controlGroup input[type="checkbox"] {
+    margin-right: 0.5rem;
+    cursor: pointer;
+}
+
+.manualControls {
+    padding-top: 1rem;
+    border-top: 1px solid var(--border);
+}
+
+.manualControls h3 {
+    font-size: 0.9rem;
+    font-weight: 700;
+    color: var(--text-primary);
+    margin-bottom: 0.75rem;
+}
+
+.controlGrid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 0.5rem;
+}
+
+.controlGrid button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0.75rem;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-sm);
+    color: var(--text-primary);
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.controlGrid button:hover {
+    background: var(--surface-highlight);
+    border-color: var(--accent);
+    color: var(--accent);
+}
+
+.presets {
+    padding-top: 1rem;
+    border-top: 1px solid var(--border);
+}
+
+.presets h3 {
+    font-size: 0.9rem;
+    font-weight: 700;
+    color: var(--text-primary);
+    margin-bottom: 0.75rem;
+}
+
+.presetList {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.presetBtn {
+    padding: 0.5rem 0.75rem;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-sm);
+    color: var(--text-primary);
+    font-size: 0.85rem;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    text-align: left;
+}
+
+.presetBtn:hover {
+    background: var(--surface-highlight);
+    border-color: var(--accent);
+    color: var(--accent);
+}
+

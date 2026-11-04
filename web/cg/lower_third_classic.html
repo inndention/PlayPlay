@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=1920, initial-scale=1.0">
+    <title>Lower Third - Classic</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            width: 1920px;
+            height: 1080px;
+            overflow: hidden;
+            background: transparent;
+            font-family: 'Georgia', serif;
+        }
+
+        .lower-third {
+            position: absolute;
+            bottom: 100px;
+            left: -800px;
+            animation: slideIn 0.8s ease-out forwards;
+        }
+
+        @keyframes slideIn {
+            to {
+                left: 50px;
+            }
+        }
+
+        .banner {
+            background: linear-gradient(90deg, rgba(20, 40, 80, 0.95) 0%, rgba(10, 20, 40, 0.85) 100%);
+            padding: 24px 50px;
+            border-left: 6px solid #c9a961;
+            border-right: 6px solid #c9a961;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.7);
+            position: relative;
+        }
+
+        .banner::before,
+        .banner::after {
+            content: '';
+            position: absolute;
+            height: 2px;
+            background: linear-gradient(90deg, #c9a961 0%, transparent 100%);
+        }
+
+        .banner::before {
+            top: 0;
+            left: 0;
+            right: 0;
+        }
+
+        .banner::after {
+            bottom: 0;
+            left: 0;
+            right: 0;
+        }
+
+        .name {
+            font-size: 44px;
+            font-weight: 700;
+            color: #ffffff;
+            margin-bottom: 6px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);
+        }
+
+        .title {
+            font-size: 28px;
+            font-weight: 400;
+            color: #c9a961;
+            font-style: italic;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.6);
+        }
+    </style>
+</head>
+
+<body>
+    <div class="lower-third" id="lowerThird">
+        <div class="banner">
+            <div class="name" id="nameText">Jane Smith</div>
+            <div class="title" id="titleText">Political Analyst</div>
+        </div>
+    </div>
+
+    <script>
+        const params = new URLSearchParams(window.location.search);
+        const name = params.get('name') || 'Jane Smith';
+        const title = params.get('title') || 'Political Analyst';
+
+        document.getElementById('nameText').textContent = name;
+        document.getElementById('titleText').textContent = title;
+    </script>
+</body>
+
+</html>

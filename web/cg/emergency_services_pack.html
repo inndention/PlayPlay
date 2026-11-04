@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=1920, initial-scale=1.0">
+    <title>Emergency Services Graphics</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html, body {
+            width: 1920px;
+            height: 1080px;
+            overflow: hidden;
+            background: transparent;
+            font-family: 'Arial', sans-serif;
+        }
+
+        .emergency-banner {
+            position: absolute;
+            bottom: 100px;
+            left: 60px;
+            width: 850px;
+            opacity: 0;
+            animation: slideIn 0.5s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+        }
+
+        @keyframes slideIn {
+            from {
+                transform: translateX(-100%);
+                opacity: 0;
+            }
+            to {
+                transform: translateX(0);
+                opacity: 1;
+            }
+        }
+
+        .emergency-bar {
+            position: relative;
+            padding: 20px 32px;
+            border-radius: 0;
+            overflow: hidden;
+            display: flex;
+            gap: 24px;
+            align-items: center;
+            min-height: 120px;
+        }
+
+        /* Blue light effect background */
+        .emergency-bar::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.15), transparent);
+            animation: lightPulse 0.8s ease-in-out infinite;
+            z-index: 0;
+        }
+
+        @keyframes lightPulse {
+            0%, 100% { opacity: 0.3; }
+            50% { opacity: 0.8; }
+        }
+
+        .emergency-badge {
+            position: relative;
+            z-index: 2;
+            width: 100px;
+            height: 100px;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 48px;
+            background: rgba(255, 255, 255, 0.1);
+            border: 3px solid rgba(255, 255, 255, 0.3);
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
+            flex-shrink: 0;
+        }
+
+        .emergency-content {
+            position: relative;
+            z-index: 2;
+            flex: 1;
+        }
+
+        .emergency-title {
+            font-size: 52px;
+            font-weight: 900;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            text-shadow: 0 2px 8px rgba(0, 0, 0, 0.5);
+            line-height: 1;
+            margin-bottom: 4px;
+        }
+
+        .emergency-subtitle {
+            font-size: 22px;
+            font-weight: 600;
+            letter-spacing: 0.5px;
+            opacity: 0.95;
+        }
+
+        /* Alert indicator */
+        .alert-dot {
+            position: relative;
+            z-index: 2;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            animation: pulse 1.2s ease-in-out infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); opacity: 1; }
+            50% { transform: scale(1.3); opacity: 0.7; }
+        }
+
+        /* ===== POLICE ===== */
+        .emergency-bar.police {
+            background: linear-gradient(135deg, #0D47A1 0%, #1565C0 100%);
+            border-left: 8px solid #0D47A1;
+            border-bottom: 3px solid #FFD700;
+        }
+
+        .emergency-bar.police .emergency-title,
+        .emergency-bar.police .emergency-subtitle {
+            color: #FFFFFF;
+        }
+
+        .emergency-bar.police .alert-dot {
+            background: #0D47A1;
+            box-shadow: 0 0 15px rgba(13, 71, 161, 0.8);
+        }
+
+        /* ===== SHERIFF ===== */
+        .emergency-bar.sheriff {
+            background: linear-gradient(135deg, #5D4037 0%, #3E2723 100%);
+            border-left: 8px solid #5D4037;
+            border-bottom: 3px solid #FFD700;
+        }
+
+        .emergency-bar.sheriff .emergency-title,
+        .emergency-bar.sheriff .emergency-subtitle {
+            color: #FFFFFF;
+        }
+
+        .emergency-bar.sheriff .alert-dot {
+            background: #FFD700;
+            box-shadow: 0 0 15px rgba(255, 215, 0, 0.8);
+        }
+
+        /* ===== STATE TROOPER ===== */
+        .emergency-bar.trooper {
+            background: linear-gradient(135deg, #1A237E 0%, #283593 100%);
+            border-left: 8px solid #1A237E;
+            border-bottom: 3px solid #FF5722;
+        }
+
+        .emergency-bar.trooper .emergency-title,
+        .emergency-bar.trooper .emergency-subtitle {
+            color: #FFFFFF;
+        }
+
+        .emergency-bar.trooper .alert-dot {
+            background: #FF5722;
+            box-shadow: 0 0 15px rgba(255, 87, 34, 0.8);
+        }
+
+        /* ===== FIRE ===== */
+        .emergency-bar.fire {
+            background: linear-gradient(135deg, #C62828 0%, #D32F2F 100%);
+            border-left: 8px solid #FF6F00;
+            border-bottom: 3px solid #FFD700;
+        }
+
+        .emergency-bar.fire .emergency-title,
+        .emergency-bar.fire .emergency-subtitle {
+            color: #FFFFFF;
+        }
+
+        .emergency-bar.fire .alert-dot {
+            background: #FFD700;
+            box-shadow: 0 0 15px rgba(255, 215, 0, 0.9);
+        }
+
+        /* ===== COUNTY/CITY GOV ===== */
+        .emergency-bar.gov {
+            background: linear-gradient(135deg, #004D73 0%, #006B9E 100%);
+            border-left: 8px solid #004D73;
+            border-bottom: 3px solid #FFD700;
+        }
+
+        .emergency-bar.gov .emergency-title,
+        .emergency-bar.gov .emergency-subtitle {
+            color: #FFFFFF;
+        }
+
+        .emergency-bar.gov .alert-dot {
+            background: #004D73;
+            box-shadow: 0 0 15px rgba(0, 77, 115, 0.8);
+        }
+    </style>
+</head>
+
+<body>
+    <div class="emergency-banner" id="banner">
+        <div class="emergency-bar" id="bar">
+            <div class="emergency-badge" id="badge">🚔</div>
+            <div class="emergency-content">
+                <div class="emergency-title" id="title">POLICE ALERT</div>
+                <div class="emergency-subtitle" id="subtitle">Official Statement</div>
+            </div>
+            <div class="alert-dot" id="alertDot"></div>
+        </div>
+    </div>
+
+    <script>
+        const params = new URLSearchParams(window.location.search);
+        const service = params.get('service') || 'police';
+
+        const services = {
+            police: {
+                class: 'police',
+                icon: '🚔',
+                title: 'POLICE ALERT',
+                subtitle: 'Official Statement'
+            },
+            sheriff: {
+                class: 'sheriff',
+                icon: '👮',
+                title: 'SHERIFF DEPT',
+                subtitle: 'Official Announcement'
+            },
+            trooper: {
+                class: 'trooper',
+                icon: '🚁',
+                title: 'STATE POLICE',
+                subtitle: 'Highway Safety'
+            },
+            fire: {
+                class: 'fire',
+                icon: '🚒',
+                title: 'FIRE DEPARTMENT',
+                subtitle: 'Emergency Response'
+            },
+            gov: {
+                class: 'gov',
+                icon: '🏛️',
+                title: 'CITY COUNCIL',
+                subtitle: 'Government Update'
+            }
+        };
+
+        const config = services[service] || services.police;
+        const bar = document.getElementById('bar');
+        const badge = document.getElementById('badge');
+        const title = document.getElementById('title');
+        const subtitle = document.getElementById('subtitle');
+
+        bar.className = `emergency-bar ${config.class}`;
+        badge.textContent = config.icon;
+        title.textContent = config.title;
+        subtitle.textContent = config.subtitle;
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,324 @@
+.page {
+    min-height: 100vh;
+    background: var(--background, #0f172a);
+    color: var(--text-primary, #e2e8f0);
+    padding: 1.5rem;
+}
+
+.header {
+    margin-bottom: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.backBtn {
+    align-self: flex-start;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 2.25rem;
+    height: 2.25rem;
+    border-radius: var(--radius-sm, 6px);
+    border: 1px solid var(--border, #334155);
+    background: var(--surface, #1e293b);
+    color: var(--text-secondary, #94a3b8);
+    cursor: pointer;
+}
+
+.backBtn:hover {
+    background: var(--surface-highlight, #334155);
+    color: var(--text-primary, #e2e8f0);
+}
+
+.title {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 1.5rem;
+    font-weight: 600;
+    margin: 0;
+    color: var(--text-primary, #e2e8f0);
+}
+
+.subtitle {
+    margin: 0;
+    font-size: 0.9rem;
+    color: var(--text-muted, #64748b);
+}
+
+.bannerError {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.75rem 1rem;
+    background: rgba(239, 68, 68, 0.15);
+    border: 1px solid rgba(239, 68, 68, 0.4);
+    border-radius: var(--radius-sm, 6px);
+    margin-bottom: 1rem;
+    font-size: 0.85rem;
+}
+
+.bannerError button {
+    margin-left: auto;
+    background: none;
+    border: none;
+    color: inherit;
+    cursor: pointer;
+    padding: 0.25rem;
+}
+
+.section {
+    margin-bottom: 2rem;
+}
+
+.section h2 {
+    font-size: 1.1rem;
+    font-weight: 600;
+    margin: 0 0 0.75rem 0;
+    color: var(--text-secondary, #94a3b8);
+}
+
+.sectionHeader {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 0.75rem;
+}
+
+.sectionHeader h2 {
+    margin: 0;
+}
+
+.primaryBtn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.35rem;
+    padding: 0.5rem 0.75rem;
+    border-radius: var(--radius-sm, 6px);
+    border: none;
+    background: var(--accent, #3b82f6);
+    color: white;
+    font-size: 0.85rem;
+    cursor: pointer;
+}
+
+.primaryBtn:hover:not(:disabled) {
+    filter: brightness(1.1);
+}
+
+.primaryBtn:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+}
+
+.secondaryBtn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.35rem;
+    padding: 0.5rem 0.75rem;
+    border-radius: var(--radius-sm, 6px);
+    border: 1px solid var(--border, #334155);
+    background: var(--surface, #1e293b);
+    color: var(--text-secondary, #94a3b8);
+    font-size: 0.85rem;
+    cursor: pointer;
+}
+
+.secondaryBtn:hover {
+    background: var(--surface-highlight, #334155);
+    color: var(--text-primary, #e2e8f0);
+}
+
+.card {
+    padding: 1rem;
+    background: var(--surface, #1e293b);
+    border: 1px solid var(--border, #334155);
+    border-radius: var(--radius-sm, 6px);
+    margin-bottom: 1rem;
+}
+
+.card h3 {
+    margin: 0 0 0.75rem 0;
+    font-size: 0.95rem;
+}
+
+.formRow {
+    margin-bottom: 0.75rem;
+}
+
+.formRow label {
+    display: block;
+    font-size: 0.75rem;
+    color: var(--text-muted, #64748b);
+    margin-bottom: 0.25rem;
+}
+
+.formRow input {
+    width: 100%;
+    max-width: 280px;
+    padding: 0.5rem 0.6rem;
+    border-radius: var(--radius-sm, 6px);
+    border: 1px solid var(--border, #334155);
+    background: var(--background, #0f172a);
+    color: var(--text-primary, #e2e8f0);
+    font-size: 0.9rem;
+}
+
+.formActions {
+    display: flex;
+    gap: 0.5rem;
+    margin-top: 1rem;
+}
+
+.sessionList {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.empty {
+    padding: 1.5rem;
+    text-align: center;
+    color: var(--text-muted, #64748b);
+    font-size: 0.9rem;
+    background: var(--surface, #1e293b);
+    border: 1px dashed var(--border, #334155);
+    border-radius: var(--radius-sm, 6px);
+}
+
+.sessionCard {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+    padding: 1rem;
+    background: var(--surface, #1e293b);
+    border: 1px solid var(--border, #334155);
+    border-radius: var(--radius-sm, 6px);
+}
+
+.sessionMain {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+}
+
+.sessionIcon {
+    color: var(--text-muted, #64748b);
+    flex-shrink: 0;
+}
+
+.sessionInfo {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.sessionName {
+    font-weight: 600;
+    color: var(--text-primary, #e2e8f0);
+}
+
+.sessionHost {
+    font-size: 0.85rem;
+    color: var(--text-muted, #64748b);
+    font-family: ui-monospace, monospace;
+}
+
+.badgeConnected {
+    font-size: 0.7rem;
+    padding: 0.2rem 0.4rem;
+    border-radius: 4px;
+    background: rgba(34, 197, 94, 0.2);
+    color: #22c55e;
+}
+
+.badgeError {
+    font-size: 0.7rem;
+    padding: 0.2rem 0.4rem;
+    border-radius: 4px;
+    background: rgba(239, 68, 68, 0.2);
+    color: #ef4444;
+    max-width: 200px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.sessionActions {
+    display: flex;
+    align-items: center;
+    gap: 0.35rem;
+}
+
+.iconBtn,
+.iconBtnDanger {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 2rem;
+    height: 2rem;
+    border-radius: var(--radius-sm, 6px);
+    border: 1px solid var(--border, #334155);
+    background: var(--surface-highlight, #334155);
+    color: var(--text-secondary, #94a3b8);
+    cursor: pointer;
+}
+
+.iconBtn:hover {
+    background: var(--surface, #1e293b);
+    color: var(--text-primary, #e2e8f0);
+}
+
+.iconBtnDanger {
+    border-color: rgba(239, 68, 68, 0.4);
+    color: #f87171;
+}
+
+.iconBtnDanger:hover {
+    background: rgba(239, 68, 68, 0.2);
+    color: #ef4444;
+}
+
+.editForm {
+    padding-top: 0.75rem;
+    border-top: 1px solid var(--border, #334155);
+}
+
+.spin {
+    animation: spin 0.8s linear infinite;
+}
+
+@keyframes spin {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+}
+
+.helpCard {
+    padding: 1rem;
+    background: var(--surface, #1e293b);
+    border: 1px solid var(--border, #334155);
+    border-radius: var(--radius-sm, 6px);
+    font-size: 0.85rem;
+    color: var(--text-secondary, #94a3b8);
+}
+
+.helpCard p {
+    margin: 0 0 0.5rem 0;
+}
+
+.helpCard p:last-child {
+    margin-bottom: 0;
+}
+
+.helpCard code {
+    font-family: ui-monospace, monospace;
+    font-size: 0.8em;
+    padding: 0.15rem 0.35rem;
+    background: var(--background, #0f172a);
+    border-radius: 4px;
+}

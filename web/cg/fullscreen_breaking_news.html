@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=1920, initial-scale=1.0">
+    <title>Breaking News Fullscreen</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            width: 1920px;
+            height: 1080px;
+            overflow: hidden;
+            background: radial-gradient(circle at center, #1a0505 0%, #0a0000 100%);
+            font-family: 'Arial Black', 'Arial', sans-serif;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+        }
+
+        body::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(45deg, transparent 30%, rgba(220, 38, 38, 0.1) 50%, transparent 70%);
+            animation: sweep 3s infinite;
+        }
+
+        @keyframes sweep {
+
+            0%,
+            100% {
+                transform: translateX(-100%);
+            }
+
+            50% {
+                transform: translateX(100%);
+            }
+        }
+
+        .breaking-container {
+            text-align: center;
+            animation: zoom 0.5s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+            transform: scale(0);
+        }
+
+        @keyframes zoom {
+            to {
+                transform: scale(1);
+            }
+        }
+
+        .breaking-label {
+            font-size: 200px;
+            font-weight: 900;
+            color: #DC2626;
+            text-transform: uppercase;
+            letter-spacing: 20px;
+            margin-bottom: 50px;
+            text-shadow: 0 0 40px rgba(220, 38, 38, 0.8),
+                0 0 80px rgba(220, 38, 38, 0.5),
+                0 8px 24px rgba(0, 0, 0, 0.8);
+            animation: intensePulse 2s infinite;
+        }
+
+        @keyframes intensePulse {
+
+            0%,
+            100% {
+                text-shadow: 0 0 40px rgba(220, 38, 38, 0.8),
+                    0 0 80px rgba(220, 38, 38, 0.5),
+                    0 8px 24px rgba(0, 0, 0, 0.8);
+            }
+
+            50% {
+                text-shadow: 0 0 60px rgba(220, 38, 38, 1),
+                    0 0 120px rgba(220, 38, 38, 0.8),
+                    0 12px 36px rgba(0, 0, 0, 0.9);
+            }
+        }
+
+        .headline {
+            font-size: 64px;
+            font-weight: 700;
+            color: white;
+            max-width: 1400px;
+            margin: 0 auto;
+            line-height: 1.4;
+            text-shadow: 0 4px 12px rgba(0, 0, 0, 0.8);
+            animation: fadeInUp 0.8s 0.3s ease-out forwards;
+            opacity: 0;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(50px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="breaking-container">
+        <div class="breaking-label">BREAKING</div>
+        <div class="headline" id="headline">BREAKING NEWS</div>
+    </div>
+
+    <script>
+        const params = new URLSearchParams(window.location.search);
+        const headline = params.get('headline') || 'BREAKING NEWS';
+
+        document.getElementById('headline').textContent = headline.toUpperCase();
+    </script>
+</body>
+
+</html>

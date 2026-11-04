@@ -1,0 +1,71 @@
+﻿0000-00-01T06:00:00	EventDuration=00:30:00	PlayMode=1
+!ShowLogo	f=D:\Bugs\BUG.png	cfg=D:\Bugs\bug.osd	Layer=1	show=at item	showvalue=-0:00:10:00	hide=in time from show	hidevalue=0:01:00:00
+!Wiederholen
+!InsertDirectory C:\Sync\Promos\Promo*.mpg	LoadingMode=2	ToSelect=3	SubDirs=1	MaxAge=72	DefPTime=00:00:08	ReplaceWithDirectory=D:\Fallback	EWStartDate=2025-01-01
+!InsertDirectory C:\Sync\Daily\%m-dd-yy%	SelectRandom=2	Random=1
+!OSD off
+0000-00-02T06:00:00	EventType=1	EventDuration=01:00:00	PlayMode=4
+S:\Programs\Show Open.mpg	actinout=0
+!Break	gpicfg=1	#=1	schedtime=06:10:00	clocktriggered=1
+S:\Spots\A.mpg
+!Break gpicfg=1	#=2	manual=1	OutOfOrder=1
+S:\Spots\B.mpg
+S:\Programs\Show Open.mpg	actinout=1
+0000-00-03T06:00:00	EventDuration=01:00:00	PlayMode=1
+!InsertPlaylist C:\Sync\NEWS HUB\NEWS 00 TEST.in	LoadingMode=7	TimeOffset=1	ReplaceWithDirectoryMaxAge=0
+!Repeat
+!ShowCrawl Breaking: Main St closed<br/>Use Route 58	cfg=D:\Masterplay\OSD\DefaultCrawl.osd	Layer=6	maxlines=2	Direction=left
+!ShowCrawlFromFile D:\Crawl\today.txt	cfg=D:\Masterplay\OSD\DefaultCrawl.osd
+!ShowText Lower third text	activerow=2	Layer=3
+!ShowTextFromFile D:\Subs\show.srt
+!ShowClock t=0	cfg=D:\Masterplay\OSD\DefaultRealtimeClock.osd
+!RealTimeClock	cfg=D:\Masterplay\OSD\DefaultRealtimeClock.osd
+!CountDown To NextEvent	cfg=D:\Masterplay\OSD\DefaultCountDown.osd
+!CountDown To 18:30:00
+!CountUp From 06:00:00	cfg=D:\Masterplay\OSD\DefaultCountUp.osd
+0000-00-04T06:00:00	EventDuration=00:10:00	PlayMode=2
+!Normal
+!Fillup
+!Video Live source	ForceLength=1
+!LiveStream	Path=srt://192.0.2.10:9000	Param=latency=200
+!Info Morning news block	episode=12	infoexpectedlength=00:28:30	InfoProgramGuide=1
+!Info	Name=secondary event not defined
+0000-00-05T06:00:00	PlayMode=0
+!Package
+!WaitForGPI
+!InsertTopinDirectory D:\Topin\Weather	LoadingMode=0
+!InsertTextDirectory D:\Text\Slides	Random=1
+!InsertFile D:\Files\x.mpg
+!ReadPlaylist D:\Lists\other.in
+!ChangePlaylist D:\Lists\Evening.in
+0000-00-06T06:00:00	EventDuration=00:10:00	PlayMode=3
+!Switcher	PVW=2	PGM=1	Take=1
+!Overlay	Name=Score	Template=score_bug	Text1=HOME 3
+!ShowCGC	cgc=D:\CG\lower.cgc	resume=1
+!TTS	text=Hello	Name=Text to Speech
+!DTMF	Text=*12#
+!Macro 	Instructions=!OSD off
+!Set Config Out of network indicator	Name=1
+!SetConfig Logo
+!SendTo UDP	Source=192.0.2.5:5000	waitforstring=OK
+!Parallel 00000001	PortNo=1	HoldTime=500
+!GPI
+!AMX
+!PIP
+!VCRControl VCR#=1	tcin=00:00:10:00
+!AutomationCard CardNo=1	OutputNo=2
+!WinTV CNN	Length=00:30:00
+!Show TV ESPN
+!ChangeLayout D:\Layouts\two.zfg
+!Camera
+!Write Error
+0000-00-07T06:00:00	EventDuration=00:10:00	PlayMode=4
+!FooBar some argument	x=1
+!OSD	off
+!InsertDirectory D:\Clips	LoadingMode=12	SubDirs=3	ToSelect=x	MaxAge=abc	Frobnicate=1
+!Break	#=1	schedtime=soon
+!ShowLogo	f=D:\Bugs\BUG.png	Layer=top	showvalue=1:2
+!CountDown To lunch
+!ShowCrawl Temp=72 today	cfg=D:\Masterplay\OSD\DefaultCrawl.osd
+!Info	infoexpectedlength=forever
+9999-99-99T00:00:00

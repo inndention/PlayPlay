@@ -1,0 +1,5 @@
+# Plant playlists and logs are real business data: never committed. Point PLAYPLAY_MP_SAMPLES at a scratch copy instead
+# (it holds plant_playlist.in, the station playlist, and any *.log).
+plant_playlist*
+plant/
+corpus/

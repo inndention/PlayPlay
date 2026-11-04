@@ -1,0 +1,35 @@
+<!-- The PlayPlay.Buttons QML module (docs/plans/ux-buttons.md 3.4) at qrc:/qml/PlayPlay/Buttons/, found through
+     main.cpp's addImportPath("qrc:/qml"); views write `import PlayPlay.Buttons`. Added to PlayPlay (and test_buttons_qml) by
+     cmake/lane-uxbuttons.cmake. Never list a file here that resources.qrc also lists. -->
+<RCC>
+  <qresource prefix="/qml">
+    <file alias="PlayPlay/Buttons/qmldir">qml/PlayPlay/Buttons/qmldir</file>
+    <file alias="PlayPlay/Buttons/spec.js">qml/PlayPlay/Buttons/spec.js</file>
+    <file alias="PlayPlay/Buttons/BtnTokens.qml">qml/PlayPlay/Buttons/BtnTokens.qml</file>
+    <file alias="PlayPlay/Buttons/Icon.qml">qml/PlayPlay/Buttons/Icon.qml</file>
+    <file alias="PlayPlay/Buttons/PButton.qml">qml/PlayPlay/Buttons/PButton.qml</file>
+    <file alias="PlayPlay/Buttons/IconButton.qml">qml/PlayPlay/Buttons/IconButton.qml</file>
+    <file alias="PlayPlay/Buttons/ToggleButton.qml">qml/PlayPlay/Buttons/ToggleButton.qml</file>
+    <file alias="PlayPlay/Buttons/ChipGroup.qml">qml/PlayPlay/Buttons/ChipGroup.qml</file>
+    <file alias="PlayPlay/Buttons/SplitButton.qml">qml/PlayPlay/Buttons/SplitButton.qml</file>
+    <file alias="PlayPlay/Buttons/DisclosureButton.qml">qml/PlayPlay/Buttons/DisclosureButton.qml</file>
+    <file alias="PlayPlay/Buttons/CycleButton.qml">qml/PlayPlay/Buttons/CycleButton.qml</file>
+    <file alias="PlayPlay/Buttons/BigActionButton.qml">qml/PlayPlay/Buttons/BigActionButton.qml</file>
+    <file alias="PlayPlay/Buttons/HoldButton.qml">qml/PlayPlay/Buttons/HoldButton.qml</file>
+    <file alias="PlayPlay/Buttons/PtzPad.qml">qml/PlayPlay/Buttons/PtzPad.qml</file>
+    <file alias="PlayPlay/Buttons/PadButton.qml">qml/PlayPlay/Buttons/PadButton.qml</file>
+    <file alias="PlayPlay/Buttons/RailButton.qml">qml/PlayPlay/Buttons/RailButton.qml</file>
+    <file alias="PlayPlay/Buttons/ConfirmPopup.qml">qml/PlayPlay/Buttons/ConfirmPopup.qml</file>
+    <file alias="PlayPlay/Buttons/ButtonPrefs.qml">qml/PlayPlay/Buttons/ButtonPrefs.qml</file>
+    <!-- UXB-8: the native button editor and its pickers. -->
+    <file alias="PlayPlay/Buttons/ButtonEditor.qml">qml/PlayPlay/Buttons/ButtonEditor.qml</file>
+    <file alias="PlayPlay/Buttons/IconPicker.qml">qml/PlayPlay/Buttons/IconPicker.qml</file>
+    <file alias="PlayPlay/Buttons/SwatchPicker.qml">qml/PlayPlay/Buttons/SwatchPicker.qml</file>
+    <file alias="PlayPlay/Buttons/HotkeyField.qml">qml/PlayPlay/Buttons/HotkeyField.qml</file>
+    <!-- UXB-7: app-level files of qml/ui/ that resources.qrc does not list (the qrc trees merge, so `import "../ui"` sees
+         them next to CButton and friends). -->
+    <file alias="ui/Actions.qml">qml/ui/Actions.qml</file>
+    <file alias="ui/ActionDeck.qml">qml/ui/ActionDeck.qml</file>
+    <file alias="ui/HotkeyHost.qml">qml/ui/HotkeyHost.qml</file>
+  </qresource>
+</RCC>

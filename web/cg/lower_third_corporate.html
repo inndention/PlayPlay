@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=1920, initial-scale=1.0">
+    <title>Corporate Lower Third</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            width: 1920px;
+            height: 1080px;
+            overflow: hidden;
+            background: transparent;
+            font-family: 'Segoe UI', 'Helvetica Neue', sans-serif;
+        }
+
+        .lower-third {
+            position: absolute;
+            bottom: 120px;
+            left: -800px;
+            width: 700px;
+            animation: slideIn 0.8s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+        }
+
+        @keyframes slideIn {
+            to {
+                left: 0;
+            }
+        }
+
+        .main-container {
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.98) 0%, rgba(245, 245, 250, 0.95) 100%);
+            padding: 0;
+            box-shadow: 8px 0 32px rgba(0, 0, 0, 0.3);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .accent-bar {
+            height: 6px;
+            background: linear-gradient(90deg, #0066CC 0%, #0099FF 100%);
+            width: 100%;
+        }
+
+        .content {
+            padding: 24px 32px;
+        }
+
+        .name {
+            font-size: 38px;
+            font-weight: 600;
+            color: #1a1a1a;
+            margin-bottom: 8px;
+            letter-spacing: -0.5px;
+        }
+
+        .role {
+            font-size: 24px;
+            font-weight: 400;
+            color: #0066CC;
+            margin-bottom: 4px;
+        }
+
+        .company {
+            font-size: 20px;
+            font-weight: 300;
+            color: #666;
+        }
+
+        .logo-container {
+            position: absolute;
+            bottom: 24px;
+            right: 24px;
+            width: 80px;
+            height: 80px;
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0.9;
+        }
+
+        .logo {
+            font-size: 32px;
+            font-weight: 700;
+            color: #0066CC;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="lower-third" id="lowerThird">
+        <div class="main-container">
+            <div class="accent-bar"></div>
+            <div class="content">
+                <div class="name" id="nameText">Executive Name</div>
+                <div class="role" id="roleText">Chief Executive Officer</div>
+                <div class="company" id="companyText">Company Name</div>
+            </div>
+            <div class="logo-container">
+                <div class="logo" id="logoText">Co</div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const params = new URLSearchParams(window.location.search);
+        const name = params.get('name') || 'Executive Name';
+        const role = params.get('role') || 'Chief Executive Officer';
+        const company = params.get('company') || 'Company Name';
+
+        document.getElementById('nameText').textContent = name;
+        document.getElementById('roleText').textContent = role;
+        document.getElementById('companyText').textContent = company;
+
+        // Set logo to first 2 letters of company
+        const logoText = company.substring(0, 2).toUpperCase();
+        document.getElementById('logoText').textContent = logoText;
+    </script>
+</body>
+
+</html>

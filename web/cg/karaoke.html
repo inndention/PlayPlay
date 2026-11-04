@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=1920, initial-scale=1.0">
+<title>Karaoke Captions</title>
+<style>
+  :root { --fg: #ebebf5; --hi: #ffd60a; --past: #ffffff; --next: rgba(235, 235, 245, .6); --bg: rgba(5, 5, 10, .75); --font: 46px; }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { width: 1920px; height: 1080px; overflow: hidden; background: transparent; font-family: 'Segoe UI', 'Inter', -apple-system, sans-serif; }
+  /* Title-safe band: 5 % margins */
+  .box { position: absolute; left: 50%; transform: translateX(-50%); max-width: 1728px; padding: 22px 26px; border-radius: 10px; background: var(--bg); overflow: hidden;
+         display: flex; flex-direction: column; gap: 6px; opacity: 0; transition: opacity .2s ease; pointer-events: none; }
+  .box.on { opacity: 1; }
+  .box.pos-bottom { bottom: 54px; } .box.pos-top { top: 54px; } .box.pos-lower_third { bottom: 130px; } .box.pos-center { top: 50%; transform: translate(-50%, -50%); }
+  .box.align-left { left: 96px; transform: none; } .box.align-right { left: auto; right: 96px; transform: none; }
+  .line { display: flex; flex-wrap: nowrap; justify-content: center; gap: .32em; font-size: var(--font); font-weight: 700; line-height: 1.18; white-space: nowrap;
+          text-shadow: 2px 2px 0 rgba(0, 0, 0, .6); color: var(--fg); }
+  .align-left .line { justify-content: flex-start; } .align-right .line { justify-content: flex-end; }
+  .line.next { color: var(--next); text-shadow: 1px 1px 0 rgba(0, 0, 0, .5); }
+  .word.past { color: var(--past); }
+  .word.cur { color: var(--fg); background: linear-gradient(90deg, var(--hi) 0 var(--p), var(--fg) var(--p) 100%); -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent;
+              text-shadow: none; filter: drop-shadow(2px 2px 0 rgba(0, 0, 0, .6)); }
+  .mode-line .line.cur-line { color: var(--hi); } .mode-line .word.cur, .mode-line .word.past { color: inherit; background: none; -webkit-text-fill-color: currentColor; text-shadow: inherit; filter: none; }
+  #status { position: absolute; left: 8px; top: 8px; font: 12px monospace; color: #fff; background: rgba(0, 0, 0, .6); padding: 2px 6px; border-radius: 3px; display: none; }
+  body.debug #status { display: block; }
+</style>
+</head>
+<body>
+<!--
+  Karaoke captions (HTML renderer twin of the engine's template kind "karaoke").
+  Query parameters:
+    channel=main       follow this channel on the Supervisor: polls /api/v1/channels/<ch> for the program
+                       position and asset, fetches /api/v1/media/<asset>/transcript (token=... for auth)
+    media=<id>         fixed media id instead of the asset on air (position still from the channel)
+    words=<json>       inline words [{word,start,end}] or segments=<json> [{start,end,text,words}]
+    src=<url>          JSON URL with the transcript ({segments:[...]} as the Supervisor stores it)
+    position=bottom|top|lower_third|center  align=center|left|right  mode=word|line
+    fontSize=46 color= highlight= past= bg=   inPoint=<s> sync=<s> maxChars=48 maxLines=2
+                       colours: #rgb / #rrggbb / rrggbb, or 8 digits as #AARRGGBB (alpha first, as in the engine spec
+                       and the QML panel; NOT CSS #rrggbbaa)
+    demo=1             built-in sample running on a local clock
+  Script API (same as the other templates): window.update(data) merges {words|segments, position, inPointSec,
+  syncOffsetSec, mode, position, ...}; window.play() / window.stop() start and hide; window.seek(sec).
+-->
+<div class="box pos-bottom" id="box"></div>
+<div id="status"></div>
+<script>
+(function () {
+  const q = new URLSearchParams(location.search);
+  const cfg = {
+    channel: q.get('channel') || '', media: q.get('media') || '', token: q.get('token') || '',
+    position: q.get('position') || 'bottom', align: q.get('align') || 'center', mode: q.get('mode') || 'word',
+    fontSize: parseFloat(q.get('fontSize')) || 46, maxChars: parseInt(q.get('maxChars')) || 48, maxLines: parseInt(q.get('maxLines')) || 2,
+    inPointSec: parseFloat(q.get('inPoint')) || 0, syncOffsetSec: parseFloat(q.get('sync')) || 0,
+    leadSec: 0.25, tailSec: 1.2, lineGapSec: 1.5,
+  };
+  const root = document.documentElement.style;
+  // 8 hex digits are the engine spec's #AARRGGBB (Qt order), not CSS #RRGGBBAA: convert, so one spec string looks the same in both renderers.
+  const css = v => { v = String(v).trim(); const m = /^#?([0-9a-f]{8})$/i.exec(v); if (!m) return v.startsWith('#') || v.startsWith('rgb') ? v : '#' + v; const n = parseInt(m[1], 16); return 'rgba(' + ((n >> 16) & 255) + ',' + ((n >> 8) & 255) + ',' + (n & 255) + ',' + ((n >>> 24) / 255).toFixed(3) + ')'; };
+  const col = (k, v) => { if (v) root.setProperty(k, css(v)); };
+  col('--fg', q.get('color')); col('--hi', q.get('highlight')); col('--past', q.get('past')); col('--bg', q.get('bg'));
+  if (q.get('debug') === '1') document.body.classList.add('debug');
+  const box = document.getElementById('box'), status = document.getElementById('status');
+  const hdr = cfg.token ? { Authorization: 'Bearer ' + cfg.token } : {};
+
+  // ---- layout: words -> lines (same rules as TemplateSource::karaokeLayout) ----------------------
+  // Lines break at the character budget AND at the measured width of the title-safe box, so a big font
+  // never runs past the margins. (Box max-width 1728 minus its 2 x 26 px padding; word gap .32em.)
+  const measure = document.createElement('canvas').getContext('2d');
+  let words = [], lines = [], srcData = { segments: [] };
+  function layout(data) {
+    srcData = data; words = []; lines = [];
+    measure.font = `700 ${cfg.fontSize}px 'Segoe UI', 'Inter', -apple-system, sans-serif`;
+    const gapPx = cfg.fontSize * 0.32, innerPx = 1728 - 52;
+    const segs = data.segments || [];
+    if (segs.length) {
+      segs.forEach((s, si) => {
+        if (s.words && s.words.length) s.words.forEach(w => add(w, si));
+        else { const toks = String(s.text || '').trim().split(/\s+/).filter(Boolean); const total = toks.reduce((a, t) => a + t.length + 1, 0) || 1; let at = +s.start || 0; const dur = Math.max(0.2, (+s.end || 0) - at);
+               toks.forEach(t => { const e = at + dur * (t.length + 1) / total; words.push({ text: t, start: at, end: e, seg: si }); at = e; }); }
+      });
+    } else (data.words || []).forEach(w => add(w, -1));
+    function add(w, seg) { const t = String(w.word || w.text || '').trim(); if (!t) return; const s = +w.start || 0; words.push({ text: t, start: s, end: Math.max(s + 0.05, +w.end || s + 0.3), seg }); }
+    let cur = null, chars = 0, linePx = 0;
+    words.forEach((w, i) => {
+      const wordPx = measure.measureText(w.text).width;
+      let brk = !cur;
+      if (!brk) { const prev = words[cur.last]; brk = (w.seg >= 0 && w.seg !== prev.seg) || (w.start - prev.end > cfg.lineGapSec) || (chars + 1 + w.text.length > cfg.maxChars) || (linePx + gapPx + wordPx > innerPx); }
+      if (brk) { if (cur) lines.push(cur); cur = { first: i, last: i, start: w.start, end: w.end }; chars = w.text.length; linePx = wordPx; }
+      else { cur.last = i; cur.end = Math.max(cur.end, w.end); chars += 1 + w.text.length; linePx += gapPx + wordPx; }
+    });
+    if (cur) lines.push(cur);
+    lastKey = ''; render();
+  }
+  function lineAt(t) {
+    if (!lines.length || t < lines[0].start - cfg.leadSec) return -1;
+    // A line goes live `lead` before its first word, but never before the previous line has finished
+    // (contiguous speech: the pre-roll must not cut the last word being spoken); same rule as the engine.
+    let li = 0;
+    for (let i = 1; i < lines.length; i++) { const at = Math.min(lines[i].start, Math.max(lines[i].start - cfg.leadSec, lines[i - 1].end)); if (at <= t) li = i; else break; }
+    return t <= lines[li].end + cfg.tailSec ? li : -1;
+  }
+
+  // ---- clock: program position interpolated between updates ---------------------------------------
+  let basePos = 0, baseAt = performance.now(), playing = true, lastKey = '';
+  const now = () => basePos + (playing ? (performance.now() - baseAt) / 1000 : 0);
+  const fileTime = () => now() + cfg.inPointSec + cfg.syncOffsetSec;
+  function setPos(sec) { basePos = sec; baseAt = performance.now(); }
+
+  // The box class (position, alignment, mode, and `on` = visible) is assigned only when it changes: assigning
+  // it on every animation frame removed `on` and returned early on an unchanged key, so the caption
+  // faded out whenever nothing changed in that frame (pauses, the tail, mode=line between words).
+  let boxClass = '', hidden = false;
+  function setBox(on) {
+    const c = 'box pos-' + cfg.position + ' align-' + cfg.align + (cfg.mode === 'line' ? ' mode-line' : '') + (on ? ' on' : '');
+    if (c !== boxClass) { box.className = c; boxClass = c; }
+  }
+  function render() {
+    const t = fileTime(), li = hidden ? -1 : lineAt(t);
+    root.setProperty('--font', cfg.fontSize + 'px');
+    if (li < 0) { if (lastKey !== 'off') { setBox(false); lastKey = 'off'; } status.textContent = 'karaoke t=' + t.toFixed(2) + ' (no line)'; return; }
+    // key: line + current word + fill step (1/24) -> rebuild DOM only when it changes
+    const ln = lines[li]; let wi = -1, step = 0;
+    for (let i = ln.first; i <= ln.last; i++) { const w = words[i]; if (t >= w.start && t < w.end) { wi = i; step = Math.floor(Math.min(0.999, (t - w.start) / (w.end - w.start)) * 24); break; } if (t >= w.end) wi = -2 - i; }
+    const key = li + ':' + wi + ':' + step;
+    if (key === lastKey) return;
+    lastKey = key;
+    const html = [];
+    for (let s = li; s < lines.length && s - li < cfg.maxLines; s++) {
+      const L = lines[s]; const isCur = s === li; const parts = [];
+      for (let i = L.first; i <= L.last; i++) {
+        const w = words[i]; let cls = 'word', style = '';
+        if (isCur && cfg.mode === 'word') { if (t >= w.end) cls += ' past'; else if (t >= w.start) { cls += ' cur'; style = ` style="--p:${Math.round(100 * Math.min(1, (t - w.start) / (w.end - w.start)))}%"`; } }
+        parts.push(`<span class="${cls}"${style}>${esc(w.text)}</span>`);
+      }
+      html.push(`<div class="line${isCur ? ' cur-line' : ' next'}">${parts.join('')}</div>`);
+    }
+    box.innerHTML = html.join('');
+    setBox(true);
+    status.textContent = `karaoke t=${t.toFixed(2)} line ${li + 1}/${lines.length} pos ${now().toFixed(1)}s`;
+  }
+  const esc = s => String(s).replace(/[&<>]/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;' }[c]));
+  (function loop() { render(); requestAnimationFrame(loop); })();
+
+  // ---- data sources -------------------------------------------------------------------------------
+  let asset = '', item = '', loadSeq = 0;
+  async function loadTranscript(mediaId) {
+    const mine = ++loadSeq;                  // a slow answer for a previous item must not replace the current words
+    try { const r = await fetch('/api/v1/media/' + encodeURIComponent(mediaId) + '/transcript', { headers: hdr }); if (!r.ok) throw new Error(r.status); const d = await r.json(); if (mine === loadSeq) layout(d); }
+    catch (e) { if (mine === loadSeq) { layout({ segments: [] }); status.textContent = 'no transcript for ' + mediaId; } }
+  }
+  async function pollChannel() {
+    try {
+      const r = await fetch('/api/v1/channels/' + encodeURIComponent(cfg.channel), { headers: hdr }); const c = await r.json(); const e = c.engine || {};
+      const live = e.state === 'ON_AIR' || e.state === 'PAUSED';      // a pause freezes the captions with the picture
+      if (typeof e.position === 'number') { setPos(e.position); playing = e.state === 'ON_AIR'; }
+      const want = live ? (cfg.media || e.assetId || '') : '';
+      // New on-air item (or asset): the item id is part of the key, a second segment of the same media has its own in point.
+      const itemKey = want + '|' + (e.itemId || '');
+      if (itemKey !== item) { item = itemKey; asset = want; cfg.inPointSec = parseFloat(q.get('inPoint')) || 0;
+        layout({ segments: [] });            // the previous item's words must not play against the new item's position
+        loadSeq++;
+        if (asset) loadTranscript(asset);
+        // Fallback for an engine that does not report its in point: the runlist item with the telemetry's item id
+        // (the runlist's `current` is the whole hour; its items carry the in point). Words are file-relative.
+        if (!q.get('inPoint') && asset && !cfg.media && typeof e.inPoint !== 'number') {
+          const mine = itemKey;
+          fetch('/api/v1/channels/' + encodeURIComponent(cfg.channel) + '/runlist', { headers: hdr }).then(x => x.json()).then(rl => {
+            const all = [].concat((rl.current || {}).items || [], (rl.next || {}).items || []);
+            const it = all.find(i => i.id === e.itemId && (i.assetId === asset || i.mediaId === asset));
+            if (it && item === mine) cfg.inPointSec = +it.inPoint || 0;
+          }).catch(() => {});
+        }
+      }
+      // The engine's own in point (it knows a join-in-progress offset and follows seeks) beats anything derived.
+      if (typeof e.inPoint === 'number' && !q.get('inPoint') && !cfg.media) cfg.inPointSec = e.inPoint;
+    } catch (e) { /* keep interpolating */ }
+  }
+  if (q.get('words')) { try { layout({ words: JSON.parse(q.get('words')) }); } catch (e) {} }
+  if (q.get('segments')) { try { layout({ segments: JSON.parse(q.get('segments')) }); } catch (e) {} }
+  if (q.get('src')) fetch(q.get('src')).then(r => r.json()).then(layout).catch(() => {});
+  if (q.get('demo') === '1') {
+    const demo = 'Welcome back to the evening news on PLAY PLAY . Here is the weather for the Martinsville and Henry County area . Clear skies tonight with a low of fifty two'.split(' ');
+    let at = 1.0; const ws = demo.map(w => { const d = w === '.' ? 0.9 : 0.28 + w.length * 0.035; const o = { word: w === '.' ? '' : w, start: at, end: at + d }; at += d + 0.08; return o; }).filter(w => w.word);
+    layout({ words: ws }); setPos(0); playing = true;
+  }
+  if (cfg.channel) { pollChannel(); setInterval(pollChannel, 1000); }
+
+  // ---- script API ---------------------------------------------------------------------------------
+  window.update = function (data) {
+    data = data || {};
+    ['position', 'align', 'mode', 'fontSize', 'maxChars', 'maxLines', 'inPointSec', 'syncOffsetSec', 'leadSec', 'tailSec'].forEach(k => { if (data[k] !== undefined) cfg[k] = data[k]; });
+    if (data.position !== undefined && typeof data.position === 'number') { setPos(data.position); cfg.position = q.get('position') || 'bottom'; }
+    if (data.programPosSec !== undefined) setPos(+data.programPosSec);
+    col('--fg', data.color); col('--hi', data.highlightColor); col('--past', data.pastColor); col('--bg', data.bgColor);
+    if (data.words || data.segments) layout(data);
+    else if (['fontSize', 'maxChars'].some(k => data[k] !== undefined)) layout(srcData);     // the line breaks depend on them
+    if (data.mediaId) loadTranscript(data.mediaId);
+    lastKey = ''; render();
+  };
+  window.seek = sec => { setPos(+sec || 0); lastKey = ''; };
+  window.play = () => { hidden = false; playing = true; baseAt = performance.now(); lastKey = ''; };
+  // stop() hides and stays hidden until play(): the render loop used to bring the box straight back.
+  window.stop = () => { playing = false; hidden = true; lastKey = ''; render(); };
+})();
+</script>
+</body>
+</html>

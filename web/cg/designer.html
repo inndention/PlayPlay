@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>CG Designer</title>
+<link rel="icon" href="/favicon.ico">
+<link rel="stylesheet" href="css/designer.css">
+</head>
+<body>
+<header id="bar">
+  <span class="brand"><b>▶</b> CG DESIGNER</span>
+  <button class="ghost" id="bNew" title="Start from a blank page">New</button>
+  <button class="ghost" id="bOpen" title="Open one of your designs, or a pack template as a copy">Open…</button>
+  <button class="ghost" id="bImport" title="Open an .html file from disk">Import</button>
+  <span class="sep"></span>
+  <input id="tplName" placeholder="Template name" spellcheck="false">
+  <button class="primary" id="bSave" title="Ctrl+S">Save</button>
+  <button class="ghost" id="bSaveAs">Save as copy</button>
+  <button class="ghost" id="bHistory" title="Earlier saved versions">History</button>
+  <button class="ghost" id="bExport" title="Download the page">Export</button>
+  <button class="ghost" id="bDelete">Delete</button>
+  <span id="dirty"></span>
+  <span class="fill"></span>
+  <button class="ghost" id="bUndo" title="Ctrl+Z">↶</button>
+  <button class="ghost" id="bRedo" title="Ctrl+Shift+Z">↷</button>
+  <span class="sep"></span>
+  <select id="chSel" title="Channel for Take / Hide"></select>
+  <button class="onair" id="bTake" title="Deploys the saved template on the channel: it goes ON AIR">Take</button>
+  <button id="bHide">Hide</button>
+  <a class="mu sm" href="/" style="margin-left:6px">Dashboard</a>
+</header>
+<div id="main">
+  <aside id="left">
+    <div class="tabs"><button class="ghost on" data-ltab="ai">✦ AI</button><button class="ghost" data-ltab="layers">Layers</button><button class="ghost" data-ltab="insert">Insert</button></div>
+    <div class="pane" id="leftPane"></div>
+  </aside>
+  <section id="center">
+    <div id="tools">
+      <button class="ghost small on" data-view="design">Design</button><button class="ghost small" data-view="code">Code</button>
+      <span class="sep" style="width:1px;height:18px;background:var(--b1)"></span>
+      <select id="zoomSel" title="Zoom"><option value="fit">Fit</option><option value="0.25">25%</option><option value="0.5">50%</option><option value="0.75">75%</option><option value="1">100%</option></select>
+      <select id="bgSel" title="Backdrop"><option value="checker">Checker</option><option value="black">Black</option><option value="gray">Gray</option><option value="white">White</option><option value="green">Green</option><option value="program">Program (channel preview)</option><option value="image">Image…</option></select>
+      <button class="ghost small on" id="bGuides" title="Safe areas and centre lines">Guides</button>
+      <button class="ghost small on" id="bSnap" title="Snap to centre and safe lines (hold Alt to skip)">Snap</button>
+      <span class="sep" style="width:1px;height:18px;background:var(--b1)"></span>
+      <select id="animIn" title="In animation"></select>
+      <select id="animOut" title="Out animation"></select>
+      <input id="animDur" type="number" min="100" max="3000" step="50" value="600" style="width:70px" title="Duration ms">
+      <button class="ghost small" id="bPlayIn">▶ In</button><button class="ghost small" id="bPlayOut">▶ Out</button>
+    </div>
+    <div id="stageWrap"><div id="stage" class="bg-checker"><img id="backdrop" alt=""><div id="overlay" tabindex="-1"></div></div></div>
+    <div id="codeWrap"><div class="row"><span class="mu sm">The whole page. Apply replaces the design (undo works).</span><span class="fill"></span><button class="ghost small" id="bCodeReset">Reload from design</button><button class="primary small" id="bCodeApply">Apply</button></div><textarea id="code" spellcheck="false"></textarea></div>
+    <div id="status"><span id="stSel">Nothing selected</span><span id="stPos"></span><span class="fill"></span><span id="stInfo"></span></div>
+  </section>
+  <aside id="right"><div class="tabs"><button class="ghost on" data-rtab="element">Element</button><button class="ghost" data-rtab="template">Template</button></div><div class="pane" id="rightPane"></div></aside>
+</div>
+<dialog id="dlg"><div class="dh" id="dlgH"></div><div class="db" id="dlgB"></div><div class="df" id="dlgF"></div></dialog>
+<input type="file" id="fileHtml" accept=".html,.htm,text/html" hidden>
+<input type="file" id="fileImg" accept="image/*" hidden>
+<div id="toast"></div>
+<script type="module" src="js/designer.js"></script>
+</body>
+</html>

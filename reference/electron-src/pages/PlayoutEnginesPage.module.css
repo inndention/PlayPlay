@@ -1,0 +1,55 @@
+/* PlayoutEnginesPage Styles */
+
+.page {
+    width: 100%;
+    height: 100vh;
+    background: var(--bg-primary, #0a0a0f);
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+}
+
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 1.5rem;
+    background: var(--surface-alt, #1a1a24);
+    border-bottom: 1px solid var(--border, #2a2a3a);
+}
+
+.header h2 {
+    margin: 0;
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: var(--text-primary, #e0e0e0);
+}
+
+.closeBtn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 32px;
+    height: 32px;
+    padding: 0;
+    background: transparent;
+    border: 1px solid var(--border, #2a2a3a);
+    border-radius: 6px;
+    color: var(--text-muted, #888);
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.closeBtn:hover {
+    background: var(--surface-highlight, #2a2a3a);
+    border-color: var(--accent, #3b82f6);
+    color: var(--text-primary, #e0e0e0);
+}
+
+.content {
+    flex: 1;
+    overflow: auto;
+    padding: 1rem;
+}
+
+

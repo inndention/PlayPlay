@@ -1,0 +1,397 @@
+/* MultiChannelManager Styles */
+
+.container {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    background: var(--background);
+}
+
+/* Tab Bar */
+.tabBar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 1rem;
+    background: var(--surface);
+    border-bottom: 1px solid var(--border);
+    height: 48px;
+}
+
+.tabs {
+    display: flex;
+    gap: 0.25rem;
+    align-items: center;
+}
+
+.tab {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.5rem 1rem;
+    background: var(--surface-highlight);
+    border: 1px solid transparent;
+    border-bottom: none;
+    border-radius: 6px 6px 0 0;
+    cursor: pointer;
+    transition: all 0.2s;
+    color: var(--text-secondary);
+    font-size: 0.85rem;
+    position: relative;
+    top: 1px;
+}
+
+.tab:hover {
+    background: var(--background);
+    color: var(--text-primary);
+}
+
+.activeTab {
+    background: var(--background);
+    border-color: var(--border);
+    color: var(--text-primary);
+}
+
+.tabName {
+    font-weight: 500;
+}
+
+.playing {
+    color: var(--success);
+}
+
+.liveIndicator {
+    font-size: 0.65rem;
+    font-weight: 700;
+    padding: 2px 6px;
+    background: var(--danger);
+    color: white;
+    border-radius: 3px;
+    animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.7; }
+}
+
+.closeTabBtn {
+    padding: 2px;
+    background: transparent;
+    border: none;
+    color: var(--text-secondary);
+    cursor: pointer;
+    border-radius: 3px;
+    margin-left: 0.25rem;
+    opacity: 0;
+    transition: all 0.15s;
+}
+
+.tab:hover .closeTabBtn {
+    opacity: 1;
+}
+
+.closeTabBtn:hover {
+    background: var(--danger);
+    color: white;
+}
+
+.addTabBtn {
+    display: flex;
+    align-items: center;
+    gap: 0.25rem;
+    padding: 0.4rem 0.75rem;
+    background: transparent;
+    border: 1px dashed var(--border);
+    border-radius: 6px;
+    color: var(--text-secondary);
+    font-size: 0.8rem;
+    cursor: pointer;
+    transition: all 0.2s;
+    margin-left: 0.5rem;
+}
+
+.addTabBtn:hover {
+    background: var(--surface-highlight);
+    border-style: solid;
+    border-color: var(--accent);
+    color: var(--accent);
+}
+
+.tabBarControls {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.layoutSelector {
+    display: flex;
+    gap: 0.25rem;
+    background: var(--surface-highlight);
+    padding: 3px;
+    border-radius: 6px;
+}
+
+.layoutBtn {
+    padding: 0.4rem 0.6rem;
+    background: transparent;
+    border: none;
+    color: var(--text-secondary);
+    cursor: pointer;
+    border-radius: 4px;
+    transition: all 0.15s;
+}
+
+.layoutBtn:hover:not(:disabled) {
+    background: var(--background);
+    color: var(--text-primary);
+}
+
+.layoutBtn.active {
+    background: var(--accent);
+    color: white;
+}
+
+.layoutBtn:disabled {
+    opacity: 0.3;
+    cursor: not-allowed;
+}
+
+/* Main Content */
+.content {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    padding: 1rem;
+    gap: 1rem;
+}
+
+/* Preview Grid */
+.previewGrid {
+    display: grid;
+    gap: 0.75rem;
+    flex-shrink: 0;
+}
+
+.layout11 {
+    grid-template-columns: 1fr;
+    height: 200px;
+}
+
+.layout21 {
+    grid-template-columns: 1fr 1fr;
+    height: 180px;
+}
+
+.layout22 {
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 1fr 1fr;
+    height: 300px;
+}
+
+.previewPanel {
+    background: var(--surface);
+    border: 2px solid var(--border);
+    border-radius: var(--radius-md);
+    overflow: hidden;
+    cursor: pointer;
+    transition: all 0.2s;
+    display: flex;
+    flex-direction: column;
+}
+
+.previewPanel:hover {
+    border-color: var(--accent);
+}
+
+.activePreview {
+    border-color: var(--accent);
+    box-shadow: 0 0 0 2px rgba(59, 130, 246, 0.2);
+}
+
+.previewHeader {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.5rem 0.75rem;
+    background: var(--surface-highlight);
+    border-bottom: 1px solid var(--border);
+}
+
+.previewTitle {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.8rem;
+    font-weight: 600;
+    color: var(--text-primary);
+}
+
+.previewControls {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.liveTag {
+    font-size: 0.65rem;
+    font-weight: 700;
+    padding: 2px 6px;
+    background: var(--danger);
+    color: white;
+    border-radius: 3px;
+}
+
+.stoppedTag {
+    font-size: 0.65rem;
+    font-weight: 600;
+    padding: 2px 6px;
+    background: var(--surface);
+    color: var(--text-secondary);
+    border-radius: 3px;
+}
+
+.previewBtn {
+    padding: 0.35rem;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    color: var(--text-primary);
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.15s;
+}
+
+.previewBtn:hover {
+    background: var(--accent);
+    color: white;
+    border-color: var(--accent);
+}
+
+.previewContent {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #000;
+}
+
+.previewPlaceholder {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.25rem;
+    color: var(--text-secondary);
+    font-size: 0.8rem;
+    text-align: center;
+    padding: 1rem;
+}
+
+.nowPlaying {
+    font-size: 0.7rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+
+.currentTitle {
+    color: var(--text-primary);
+    font-weight: 500;
+}
+
+/* Schedule Panel */
+.schedulePanel {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    background: var(--surface);
+    border-radius: var(--radius-md);
+    overflow: hidden;
+    min-height: 0;
+}
+
+.channelHeader {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.75rem 1rem;
+    background: var(--surface-highlight);
+    border-bottom: 1px solid var(--border);
+}
+
+.channelInfo {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.channelNameInput {
+    padding: 0.4rem 0.75rem;
+    background: var(--background);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-sm);
+    color: var(--text-primary);
+    font-size: 0.9rem;
+    font-weight: 600;
+    width: 200px;
+}
+
+.channelNameInput:focus {
+    outline: none;
+    border-color: var(--accent);
+}
+
+.channelId {
+    font-size: 0.75rem;
+    color: var(--text-secondary);
+}
+
+.channelActions {
+    display: flex;
+    gap: 0.5rem;
+}
+
+.playBtn {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.5rem 1rem;
+    background: var(--success);
+    color: white;
+    border: none;
+    border-radius: var(--radius-sm);
+    font-size: 0.85rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.playBtn:hover {
+    opacity: 0.9;
+}
+
+.playBtn.playing {
+    background: var(--danger);
+}
+
+.settingsBtn {
+    padding: 0.5rem;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-sm);
+    color: var(--text-primary);
+    cursor: pointer;
+    transition: all 0.15s;
+}
+
+.settingsBtn:hover {
+    background: var(--background);
+}
+
+.schedulerWrapper {
+    flex: 1;
+    overflow: hidden;
+}
+

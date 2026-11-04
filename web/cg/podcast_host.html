@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=1920, initial-scale=1.0">
+    <title>Podcast Host Card</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            width: 1920px; height: 1080px; overflow: hidden;
+            background: transparent;
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+        }
+        .host-card {
+            position: absolute;
+            bottom: 100px;
+        }
+        .pos-left   { left: 60px; }
+        .pos-center { left: 50%; transform: translateX(-50%); }
+        .pos-right  { right: 60px; }
+        .card-inner {
+            display: flex;
+            align-items: center;
+            gap: 0;
+            overflow: hidden;
+        }
+        .mic-icon {
+            width: 80px;
+            height: 80px;
+            background: linear-gradient(135deg, var(--accent1), var(--accent2));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 36px;
+            flex-shrink: 0;
+            border-radius: 12px 0 0 12px;
+        }
+        .text-block {
+            background: rgba(8, 12, 24, 0.94);
+            padding: 14px 40px 14px 24px;
+            backdrop-filter: blur(12px);
+            border-radius: 0 12px 12px 0;
+            border: 1px solid rgba(255,255,255,0.07);
+            border-left: none;
+        }
+        .show-title {
+            font-size: 13px;
+            font-weight: 700;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            color: var(--accent1);
+            margin-bottom: 4px;
+        }
+        .host-name {
+            font-size: 46px;
+            font-weight: 800;
+            color: #fff;
+            line-height: 1;
+        }
+        .host-role {
+            font-size: 20px;
+            font-weight: 400;
+            color: #94a3b8;
+            margin-top: 6px;
+        }
+        .episode-badge {
+            display: inline-block;
+            background: rgba(255,255,255,0.08);
+            border: 1px solid rgba(255,255,255,0.12);
+            border-radius: 20px;
+            font-size: 13px;
+            font-weight: 600;
+            color: #cbd5e1;
+            padding: 3px 12px;
+            margin-top: 8px;
+        }
+    </style>
+</head>
+<body>
+    <div class="host-card pos-left" id="hostCard" data-cg-auto
+         style="--accent1:#a78bfa;--accent2:#7c3aed;">
+        <div class="card-inner">
+            <div class="mic-icon">🎙</div>
+            <div class="text-block">
+                <div class="show-title" id="showTitle" data-field="show">The Daily Podcast</div>
+                <div class="host-name" id="hostName" data-field="name">Alex Johnson</div>
+                <div class="host-role" id="hostRole" data-field="role">Host &amp; Producer</div>
+                <span class="episode-badge" id="episodeBadge" data-field="episode">Episode 42</span>
+            </div>
+        </div>
+    </div>
+    <script src="js/cg-animations.js"></script>
+    <script>
+        const p = new URLSearchParams(window.location.search);
+        const name    = p.get('name')    || 'Alex Johnson';
+        const show    = p.get('show')    || 'The Daily Podcast';
+        const role    = p.get('role')    || 'Host & Producer';
+        const episode = p.get('episode') || 'Episode 42';
+        const position = p.get('position') || 'left';
+        const color1  = p.get('color1')  || 'a78bfa';
+        const color2  = p.get('color2')  || '7c3aed';
+
+        document.getElementById('hostName').textContent   = name;
+        document.getElementById('showTitle').textContent  = show;
+        document.getElementById('hostRole').textContent   = role;
+        document.getElementById('episodeBadge').textContent = episode;
+
+        const card = document.getElementById('hostCard');
+        card.style.setProperty('--accent1', '#' + color1.replace('#',''));
+        card.style.setProperty('--accent2', '#' + color2.replace('#',''));
+        card.classList.remove('pos-left','pos-center','pos-right');
+        card.classList.add('pos-' + position);
+    </script>
+</body>
+</html>

@@ -1,0 +1,1908 @@
+{
+ "generatedAt": "2026-10-22T16:58:00.133Z",
+ "animations": [
+  "none",
+  "fade",
+  "phase",
+  "slide-left",
+  "slide-right",
+  "slide-up",
+  "slide-down",
+  "wipe-left",
+  "wipe-right",
+  "bounce",
+  "zoom",
+  "flip",
+  "typewriter"
+ ],
+ "presets": [
+  {
+   "id": "broadcast",
+   "name": "Broadcast",
+   "icon": "📺",
+   "in": "slide-left",
+   "out": "slide-right",
+   "duration": 600,
+   "easing": "ease-out"
+  },
+  {
+   "id": "news",
+   "name": "News",
+   "icon": "📰",
+   "in": "wipe-left",
+   "out": "wipe-right",
+   "duration": 500,
+   "easing": "ease-in-out"
+  },
+  {
+   "id": "smooth",
+   "name": "Smooth",
+   "icon": "✨",
+   "in": "fade",
+   "out": "fade",
+   "duration": 800,
+   "easing": "ease-in-out"
+  },
+  {
+   "id": "dynamic",
+   "name": "Dynamic",
+   "icon": "⚡",
+   "in": "bounce",
+   "out": "slide-down",
+   "duration": 700,
+   "easing": "cubic-bezier(0.34,1.56,0.64,1)"
+  },
+  {
+   "id": "corporate",
+   "name": "Corporate",
+   "icon": "🏢",
+   "in": "slide-up",
+   "out": "slide-down",
+   "duration": 500,
+   "easing": "ease-out"
+  },
+  {
+   "id": "sports",
+   "name": "Sports",
+   "icon": "⚽",
+   "in": "zoom",
+   "out": "zoom",
+   "duration": 400,
+   "easing": "ease-out"
+  },
+  {
+   "id": "elegant",
+   "name": "Elegant",
+   "icon": "💎",
+   "in": "fade",
+   "out": "fade",
+   "duration": 1200,
+   "easing": "ease-in-out"
+  },
+  {
+   "id": "snap",
+   "name": "Snap",
+   "icon": "📸",
+   "in": "slide-right",
+   "out": "slide-left",
+   "duration": 300,
+   "easing": "ease-out"
+  },
+  {
+   "id": "typewriter",
+   "name": "Typewriter",
+   "icon": "⌨",
+   "in": "typewriter",
+   "out": "fade",
+   "duration": 1000,
+   "easing": "linear"
+  },
+  {
+   "id": "flip",
+   "name": "Flip",
+   "icon": "↕",
+   "in": "flip",
+   "out": "flip",
+   "duration": 600,
+   "easing": "ease-in-out"
+  }
+ ],
+ "templates": [
+  {
+   "id": "starnews_bug", "file": "starnews_bug.html", "name": "Star News Bug", "category": "bugs", "icon": "▣", "role": "bug", "listed": true,
+   "description": "Star News corner wordmark with optional LIVE label and idle accent; stays until clear",
+   "params": [{"name": "text1", "label": "Label", "type": "text", "default": "LIVE"}]
+  },
+  {
+   "id": "starnews_headline", "file": "starnews_headline.html", "name": "Star News Headline", "category": "fullscreen", "icon": "▤", "role": "secondary", "listed": true,
+   "description": "Star News headline panel with in/out and idle accents; stays until clear",
+   "params": [{"name": "text1", "label": "Category", "type": "text", "default": "LOCAL HEADLINES"}, {"name": "text2", "label": "Headline", "type": "textarea", "default": "Your community. Your news."}, {"name": "text3", "label": "Details", "type": "textarea", "default": ""}]
+  },
+  {
+   "id": "starnews_lower_third",
+   "file": "starnews_lower_third.html",
+   "name": "Star News Lower Third",
+   "category": "lower-thirds",
+   "icon": "▭",
+   "description": "Star News wordmark, animated strap and subtle idle accent",
+   "params": [
+    {"name": "name", "label": "Name / headline", "type": "text", "default": "STAR NEWS"},
+    {"name": "title", "label": "Title", "type": "text", "default": "Your local news"},
+    {"name": "detail", "label": "Detail", "type": "text", "default": ""}
+   ],
+   "role": "lower_third",
+   "listed": true
+  },
+  {
+   "id": "ad_slate",
+   "file": "ad_slate.html",
+   "name": "Ad Break Slate",
+   "category": "advertising",
+   "icon": "📺",
+   "description": "Full-screen ad break countdown",
+   "params": [
+    {
+     "name": "duration",
+     "label": "Duration (seconds)",
+     "type": "number",
+     "default": "60",
+     "required": true
+    },
+    {
+     "name": "label",
+     "label": "Label",
+     "type": "text",
+     "default": "Commercial Break"
+    },
+    {
+     "name": "return",
+     "label": "Return Text",
+     "type": "text",
+     "default": "We'll be right back"
+    },
+    {
+     "name": "show",
+     "label": "Show Name",
+     "type": "text",
+     "default": ""
+    }
+   ],
+   "role": "secondary",
+   "listed": true
+  },
+  {
+   "id": "sponsor_bump",
+   "file": "sponsor_bump.html",
+   "name": "Sponsor Bump",
+   "category": "advertising",
+   "icon": "📢",
+   "description": "\"Brought to you by\" sponsor bar",
+   "params": [
+    {
+     "name": "sponsor",
+     "label": "Sponsor Name",
+     "type": "text",
+     "default": "Sponsor Name",
+     "required": true
+    },
+    {
+     "name": "tagline",
+     "label": "Tagline",
+     "type": "text",
+     "default": "Your trusted partner"
+    },
+    {
+     "name": "logo",
+     "label": "Logo URL",
+     "type": "text",
+     "default": ""
+    },
+    {
+     "name": "prefix",
+     "label": "Prefix Text",
+     "type": "text",
+     "default": "Brought to you by"
+    },
+    {
+     "name": "color",
+     "label": "Accent Color",
+     "type": "color",
+     "default": "00d9ff"
+    }
+   ],
+   "role": "secondary",
+   "listed": true
+  },
+  {
+   "id": "banner_breaking_news",
+   "file": "banner_breaking_news.html",
+   "name": "Breaking News Banner",
+   "category": "banners",
+   "icon": "▬",
+   "description": "Urgent breaking news banner",
+   "params": [
+    {
+     "name": "text",
+     "label": "Breaking News Text",
+     "type": "text",
+     "default": "Major story developing",
+     "required": true
+    }
+   ],
+   "role": "lower_third",
+   "listed": true
+  },
+  {
+   "id": "fullscreen_breaking_news",
+   "file": "fullscreen_breaking_news.html",
+   "name": "Fullscreen Breaking News",
+   "category": "banners",
+   "icon": "▬",
+   "description": "Full-screen breaking news overlay",
+   "params": [
+    {
+     "name": "headline",
+     "label": "Headline",
+     "type": "text",
+     "default": "BREAKING NEWS",
+     "required": true
+    },
+    {
+     "name": "text",
+     "label": "Subheadline",
+     "type": "text",
+     "default": "Developing story details here"
+    }
+   ],
+   "role": "lower_third",
+   "listed": true
+  },
+  {
+   "id": "banner_special_report",
+   "file": "banner_special_report.html",
+   "name": "Special Report Banner",
+   "category": "banners",
+   "icon": "▬",
+   "description": "Special report announcement",
+   "params": [
+    {
+     "name": "title",
+     "label": "Report Title",
+     "type": "text",
+     "default": "SPECIAL REPORT",
+     "required": true
+    },
+    {
+     "name": "subtitle",
+     "label": "Subtitle",
+     "type": "text",
+     "default": "Live Coverage"
+    }
+   ],
+   "role": "lower_third",
+   "listed": true
+  },
+  {
+   "id": "bug_logo_corner",
+   "file": "bug_logo_corner.html",
+   "name": "Corner Logo",
+   "category": "bugs",
+   "icon": "🔵",
+   "description": "Channel logo corner bug",
+   "params": [
+    {
+     "name": "logo",
+     "label": "Logo URL",
+     "type": "text",
+     "default": ""
+    },
+    {
+     "name": "position",
+     "label": "Position",
+     "type": "select",
+     "options": [
+      "top-left",
+      "top-right",
+      "bottom-left",
+      "bottom-right"
+     ],
+     "default": "top-right"
+    }
+   ],
+   "role": "bug",
+   "listed": true
+  },
+  {
+   "id": "bug_live_indicator",
+   "file": "bug_live_indicator.html",
+   "name": "LIVE Indicator",
+   "category": "bugs",
+   "icon": "🔴",
+   "description": "Pulsing LIVE broadcast indicator",
+   "params": [
+    {
+     "name": "text",
+     "label": "Label",
+     "type": "text",
+     "default": "LIVE"
+    }
+   ],
+   "role": "bug",
+   "listed": true
+  },
+  {
+   "id": "logo_alphkey_corner",
+   "file": "logo_alphkey_corner.html",
+   "name": "Logo with Alphkey",
+   "category": "bugs",
+   "icon": "",
+   "description": "",
+   "params": [
+    {
+     "name": "logo",
+     "label": "Logo",
+     "type": "text",
+     "default": ""
+    }
+   ],
+   "role": "bug",
+   "listed": false
+  },
+  {
+   "id": "bug_recording",
+   "file": "bug_recording.html",
+   "name": "Recording Indicator",
+   "category": "bugs",
+   "icon": "🔴",
+   "description": "REC indicator overlay",
+   "params": [
+    {
+     "name": "text",
+     "label": "Label",
+     "type": "text",
+     "default": "REC"
+    },
+    {
+     "name": "showTimer",
+     "label": "ShowTimer",
+     "type": "text",
+     "default": ""
+    }
+   ],
+   "role": "bug",
+   "listed": true
+  },
+  {
+   "id": "space_ambient_countdown",
+   "file": "space_ambient_countdown.html",
+   "name": "Space Ambient Countdown",
+   "category": "countdown",
+   "icon": "",
+   "description": "",
+   "params": [
+    {
+     "name": "seconds",
+     "label": "Seconds",
+     "type": "text",
+     "default": ""
+    }
+   ],
+   "role": "legal_id",
+   "listed": false
+  },
+  {
+   "id": "candidate_lower",
+   "file": "candidate_lower.html",
+   "name": "Candidate Lower Third",
+   "category": "election",
+   "icon": "🗳",
+   "description": "Candidate name with party affiliation",
+   "params": [
+    {
+     "name": "name",
+     "label": "Candidate Name",
+     "type": "text",
+     "default": "Sen. Jane Smith",
+     "required": true
+    },
+    {
+     "name": "title",
+     "label": "Position/Title",
+     "type": "text",
+     "default": "U.S. Senate Candidate"
+    },
+    {
+     "name": "party",
+     "label": "Party Label",
+     "type": "text",
+     "default": "DEM"
+    },
+    {
+     "name": "state",
+     "label": "State/District",
+     "type": "text",
+     "default": "California"
+    },
+    {
+     "name": "color",
+     "label": "Party Color",
+     "type": "color",
+     "default": "2563eb"
+    },
+    {
+     "name": "position",
+     "label": "Screen Position",
+     "type": "select",
+     "options": [
+      "left",
+      "center",
+      "right"
+     ],
+     "default": "left"
+    }
+   ],
+   "role": "secondary",
+   "listed": true
+  },
+  {
+   "id": "election_results",
+   "file": "election_results.html",
+   "name": "Election Results",
+   "category": "election",
+   "icon": "🗳",
+   "description": "Live vote count with candidate comparison bars",
+   "params": [
+    {
+     "name": "candidate1",
+     "label": "Candidate 1 Name",
+     "type": "text",
+     "default": "Candidate A",
+     "required": true
+    },
+    {
+     "name": "votes1",
+     "label": "Candidate 1 Votes %",
+     "type": "number",
+     "default": "52"
+    },
+    {
+     "name": "candidate2",
+     "label": "Candidate 2 Name",
+     "type": "text",
+     "default": "Candidate B",
+     "required": true
+    },
+    {
+     "name": "votes2",
+     "label": "Candidate 2 Votes %",
+     "type": "number",
+     "default": "48"
+    },
+    {
+     "name": "party1",
+     "label": "Party 1 Label",
+     "type": "text",
+     "default": "DEM"
+    },
+    {
+     "name": "color1",
+     "label": "Party 1 Color",
+     "type": "color",
+     "default": "2563eb"
+    },
+    {
+     "name": "party2",
+     "label": "Party 2 Label",
+     "type": "text",
+     "default": "REP"
+    },
+    {
+     "name": "color2",
+     "label": "Party 2 Color",
+     "type": "color",
+     "default": "dc2626"
+    },
+    {
+     "name": "label",
+     "label": "Race Label",
+     "type": "text",
+     "default": "Election Results"
+    },
+    {
+     "name": "reporting",
+     "label": "Reporting %",
+     "type": "text",
+     "default": "100% Reporting"
+    },
+    {
+     "name": "winner",
+     "label": "Projected Winner",
+     "type": "select",
+     "options": [
+      "none",
+      "1",
+      "2"
+     ],
+     "default": "none"
+    }
+   ],
+   "role": "secondary",
+   "listed": true
+  },
+  {
+   "id": "emergency_services_pack",
+   "file": "emergency_services_pack.html",
+   "name": "Emergency Services Graphics",
+   "category": "emergency",
+   "icon": "",
+   "description": "",
+   "params": [
+    {
+     "name": "service",
+     "label": "Service",
+     "type": "text",
+     "default": ""
+    }
+   ],
+   "role": "emergency",
+   "listed": false
+  },
+  {
+   "id": "fullscreen_coming_up",
+   "file": "fullscreen_coming_up.html",
+   "name": "Coming Up",
+   "category": "fullscreen",
+   "icon": "⬜",
+   "description": "Coming up next segment card",
+   "params": [
+    {
+     "name": "title",
+     "label": "Title",
+     "type": "text",
+     "default": "Coming Up Next",
+     "required": true
+    },
+    {
+     "name": "items",
+     "label": "Items (comma separated)",
+     "type": "textarea",
+     "default": "Weather Update, Sports Highlights, Traffic Report"
+    }
+   ],
+   "role": "secondary",
+   "listed": true
+  },
+  {
+   "id": "fullscreen_end_credits",
+   "file": "fullscreen_end_credits.html",
+   "name": "End Credits",
+   "category": "fullscreen",
+   "icon": "⬜",
+   "description": "Scrolling end credits",
+   "params": [
+    {
+     "name": "title",
+     "label": "Show Title",
+     "type": "text",
+     "default": "News Broadcast",
+     "required": true
+    },
+    {
+     "name": "credits",
+     "label": "Credits",
+     "type": "textarea",
+     "default": "Executive Producer: John Smith\nDirector: Jane Doe\nTechnical Director: Mike Johnson"
+    }
+   ],
+   "role": "secondary",
+   "listed": true
+  },
+  {
+   "id": "fullscreen_gfx",
+   "file": "fullscreen_gfx.html",
+   "name": "Fullscreen Graphics",
+   "category": "fullscreen",
+   "icon": "⬜",
+   "description": "Full-screen graphic with title",
+   "params": [
+    {
+     "name": "title",
+     "label": "Title",
+     "type": "text",
+     "default": "Special Report",
+     "required": true
+    },
+    {
+     "name": "subtitle",
+     "label": "Subtitle",
+     "type": "text",
+     "default": "In-depth analysis"
+    },
+    {
+     "name": "background",
+     "label": "Background Image URL",
+     "type": "text",
+     "default": ""
+    },
+    {
+     "name": "team1",
+     "label": "Team1",
+     "type": "text",
+     "default": ""
+    },
+    {
+     "name": "team2",
+     "label": "Team2",
+     "type": "text",
+     "default": ""
+    },
+    {
+     "name": "score1",
+     "label": "Score1",
+     "type": "text",
+     "default": ""
+    },
+    {
+     "name": "score2",
+     "label": "Score2",
+     "type": "text",
+     "default": ""
+    }
+   ],
+   "role": "secondary",
+   "listed": true
+  },
+  {
+   "id": "fullscreen_title_card",
+   "file": "fullscreen_title_card.html",
+   "name": "Title Card",
+   "category": "fullscreen",
+   "icon": "⬜",
+   "description": "Segment title card",
+   "params": [
+    {
+     "name": "title",
+     "label": "Title",
+     "type": "text",
+     "default": "Segment Title",
+     "required": true
+    },
+    {
+     "name": "subtitle",
+     "label": "Subtitle",
+     "type": "text",
+     "default": ""
+    }
+   ],
+   "role": "secondary",
+   "listed": true
+  },
+  {
+   "id": "lower_third_breaking",
+   "file": "lower_third_breaking.html",
+   "name": "Breaking News Lower Third",
+   "category": "lower-thirds",
+   "icon": "",
+   "description": "",
+   "params": [
+    {
+     "name": "headline",
+     "label": "Headline",
+     "type": "text",
+     "default": ""
+    },
+    {
+     "name": "details",
+     "label": "Details",
+     "type": "text",
+     "default": ""
+    },
+    {
+     "name": "label",
+     "label": "Label",
+     "type": "text",
+     "default": ""
+    }
+   ],
+   "role": "lower_third",
+   "listed": false
+  },
+  {
+   "id": "lower_third_classic",
+   "file": "lower_third_classic.html",
+   "name": "Classic Lower Third",
+   "category": "lower-thirds",
+   "icon": "▭",
+   "description": "Traditional broadcast lower third",
+   "params": [
+    {
+     "name": "name",
+     "label": "Name",
+     "type": "text",
+     "default": "Jane Smith",
+     "required": true
+    },
+    {
+     "name": "title",
+     "label": "Title",
+     "type": "text",
+     "default": "News Anchor",
+     "required": true
+    },
+    {
+     "name": "position",
+     "label": "Position",
+     "type": "select",
+     "options": [
+      "left",
+      "center",
+      "right"
+     ],
+     "default": "left"
+    }
+   ],
+   "role": "lower_third",
+   "listed": true
+  },
+  {
+   "id": "lower_third_corporate",
+   "file": "lower_third_corporate.html",
+   "name": "Corporate Lower Third",
+   "category": "lower-thirds",
+   "icon": "▭",
+   "description": "Professional corporate style",
+   "params": [
+    {
+     "name": "name",
+     "label": "Name",
+     "type": "text",
+     "default": "Michael Johnson",
+     "required": true
+    },
+    {
+     "name": "title",
+     "label": "Title",
+     "type": "text",
+     "default": "CEO, Tech Corp",
+     "required": true
+    },
+    {
+     "name": "company",
+     "label": "Company",
+     "type": "text",
+     "default": "Tech Corp Inc."
+    },
+    {
+     "name": "position",
+     "label": "Position",
+     "type": "select",
+     "options": [
+      "left",
+      "center",
+      "right"
+     ],
+     "default": "left"
+    },
+    {
+     "name": "role",
+     "label": "Role",
+     "type": "text",
+     "default": ""
+    }
+   ],
+   "role": "lower_third",
+   "listed": true
+  },
+  {
+   "id": "lower_third_minimal",
+   "file": "lower_third_minimal.html",
+   "name": "Minimal Lower Third",
+   "category": "lower-thirds",
+   "icon": "▭",
+   "description": "Clean minimal design",
+   "params": [
+    {
+     "name": "name",
+     "label": "Name",
+     "type": "text",
+     "default": "Sarah Connor",
+     "required": true
+    },
+    {
+     "name": "title",
+     "label": "Title",
+     "type": "text",
+     "default": "Field Reporter",
+     "required": true
+    },
+    {
+     "name": "position",
+     "label": "Position",
+     "type": "select",
+     "options": [
+      "left",
+      "center",
+      "right"
+     ],
+     "default": "left"
+    }
+   ],
+   "role": "lower_third",
+   "listed": true
+  },
+  {
+   "id": "lower_third_modern",
+   "file": "lower_third_modern.html",
+   "name": "Modern Lower Third",
+   "category": "lower-thirds",
+   "icon": "▭",
+   "description": "Gradient accent with clip-path design",
+   "params": [
+    {
+     "name": "name",
+     "label": "Name",
+     "type": "text",
+     "default": "John Doe",
+     "required": true
+    },
+    {
+     "name": "title",
+     "label": "Title",
+     "type": "text",
+     "default": "Senior Correspondent",
+     "required": true
+    },
+    {
+     "name": "position",
+     "label": "Position",
+     "type": "select",
+     "options": [
+      "left",
+      "center",
+      "right"
+     ],
+     "default": "left"
+    },
+    {
+     "name": "logo",
+     "label": "Logo URL",
+     "type": "text",
+     "default": ""
+    },
+    {
+     "name": "color1",
+     "label": "Primary Color",
+     "type": "color",
+     "default": "00d9ff"
+    },
+    {
+     "name": "color2",
+     "label": "Secondary Color",
+     "type": "color",
+     "default": "a855f7"
+    }
+   ],
+   "role": "lower_third",
+   "listed": true
+  },
+  {
+   "id": "lower_third_professional_angled",
+   "file": "lower_third_professional_angled.html",
+   "name": "Professional Angled Lower Third",
+   "category": "lower-thirds",
+   "icon": "",
+   "description": "",
+   "params": [
+    {
+     "name": "name",
+     "label": "Name",
+     "type": "text",
+     "default": ""
+    },
+    {
+     "name": "title",
+     "label": "Title",
+     "type": "text",
+     "default": ""
+    }
+   ],
+   "role": "lower_third",
+   "listed": false
+  },
+  {
+   "id": "lower_third_sport",
+   "file": "lower_third_sport.html",
+   "name": "Sports Lower Third",
+   "category": "lower-thirds",
+   "icon": "▭",
+   "description": "Sports broadcast with stat highlight",
+   "params": [
+    {
+     "name": "name",
+     "label": "Player Name",
+     "type": "text",
+     "default": "LeBron James",
+     "required": true
+    },
+    {
+     "name": "title",
+     "label": "Position/Team",
+     "type": "text",
+     "default": "SF, Lakers #23",
+     "required": true
+    },
+    {
+     "name": "stat",
+     "label": "Stat Highlight",
+     "type": "text",
+     "default": "32 Points"
+    },
+    {
+     "name": "position",
+     "label": "Position",
+     "type": "select",
+     "options": [
+      "left",
+      "center",
+      "right"
+     ],
+     "default": "left"
+    },
+    {
+     "name": "teamColor",
+     "label": "TeamColor",
+     "type": "color",
+     "default": ""
+    }
+   ],
+   "role": "lower_third",
+   "listed": true
+  },
+  {
+   "id": "lower_third_sports",
+   "file": "lower_third_sports.html",
+   "name": "Sports Lower Third v2",
+   "category": "lower-thirds",
+   "icon": "▭",
+   "description": "Alternative sports lower third",
+   "params": [
+    {
+     "name": "name",
+     "label": "Athlete Name",
+     "type": "text",
+     "default": "Tom Brady",
+     "required": true
+    },
+    {
+     "name": "title",
+     "label": "Team/Role",
+     "type": "text",
+     "default": "QB, Tampa Bay",
+     "required": true
+    },
+    {
+     "name": "position",
+     "label": "Position",
+     "type": "select",
+     "options": [
+      "left",
+      "center",
+      "right"
+     ],
+     "default": "left"
+    }
+   ],
+   "role": "lower_third",
+   "listed": true
+  },
+  {
+   "id": "lower_third",
+   "file": "lower_third.html",
+   "name": "Standard Lower Third",
+   "category": "lower-thirds",
+   "icon": "▭",
+   "description": "Standard broadcast lower third",
+   "params": [
+    {
+     "name": "name",
+     "label": "Name",
+     "type": "text",
+     "default": "News Presenter",
+     "required": true
+    },
+    {
+     "name": "title",
+     "label": "Title",
+     "type": "text",
+     "default": "Chief Anchor",
+     "required": true
+    },
+    {
+     "name": "position",
+     "label": "Position",
+     "type": "select",
+     "options": [
+      "left",
+      "center",
+      "right"
+     ],
+     "default": "left"
+    },
+    {
+     "name": "logo",
+     "label": "Logo",
+     "type": "text",
+     "default": ""
+    },
+    {
+     "name": "color1",
+     "label": "Color1",
+     "type": "color",
+     "default": ""
+    },
+    {
+     "name": "color2",
+     "label": "Color2",
+     "type": "color",
+     "default": ""
+    }
+   ],
+   "role": "lower_third",
+   "listed": true
+  },
+  {
+   "id": "industry_themed_pack",
+   "file": "industry_themed_pack.html",
+   "name": "Industry Themed Graphics",
+   "category": "misc",
+   "icon": "",
+   "description": "",
+   "params": [
+    {
+     "name": "industry",
+     "label": "Industry",
+     "type": "text",
+     "default": ""
+    }
+   ],
+   "role": "secondary",
+   "listed": false
+  },
+  {
+   "id": "scifi_phase_inout",
+   "file": "scifi_phase_inout.html",
+   "name": "SciFi Phase In/Out Effect",
+   "category": "misc",
+   "icon": "",
+   "description": "",
+   "params": [],
+   "role": "secondary",
+   "listed": false
+  },
+  {
+   "id": "seasonal_holiday_pack",
+   "file": "seasonal_holiday_pack.html",
+   "name": "Seasonal & Holiday Graphics",
+   "category": "misc",
+   "icon": "",
+   "description": "",
+   "params": [
+    {
+     "name": "holiday",
+     "label": "Holiday",
+     "type": "text",
+     "default": ""
+    }
+   ],
+   "role": "secondary",
+   "listed": false
+  },
+  {
+   "id": "score_bug_minimal",
+   "file": "score_bug_minimal.html",
+   "name": "Minimal Score Bug",
+   "category": "score-bugs",
+   "icon": "⚽",
+   "description": "Clean minimal score display",
+   "params": [
+    {
+     "name": "team1",
+     "label": "Team 1",
+     "type": "text",
+     "default": "TEAM A",
+     "required": true
+    },
+    {
+     "name": "score1",
+     "label": "Score 1",
+     "type": "number",
+     "default": 0
+    },
+    {
+     "name": "team2",
+     "label": "Team 2",
+     "type": "text",
+     "default": "TEAM B",
+     "required": true
+    },
+    {
+     "name": "score2",
+     "label": "Score 2",
+     "type": "number",
+     "default": 0
+    }
+   ],
+   "role": "secondary",
+   "listed": true
+  },
+  {
+   "id": "score_bug_sports",
+   "file": "score_bug_sports.html",
+   "name": "Sports Score Bug",
+   "category": "score-bugs",
+   "icon": "⚽",
+   "description": "Live sports score overlay",
+   "params": [
+    {
+     "name": "team1",
+     "label": "Home Team",
+     "type": "text",
+     "default": "HOME",
+     "required": true
+    },
+    {
+     "name": "score1",
+     "label": "Home Score",
+     "type": "number",
+     "default": 0
+    },
+    {
+     "name": "team2",
+     "label": "Away Team",
+     "type": "text",
+     "default": "AWAY",
+     "required": true
+    },
+    {
+     "name": "score2",
+     "label": "Away Score",
+     "type": "number",
+     "default": 0
+    },
+    {
+     "name": "period",
+     "label": "Period/Quarter",
+     "type": "text",
+     "default": "Q1"
+    },
+    {
+     "name": "time",
+     "label": "Game Time",
+     "type": "text",
+     "default": "12:00"
+    }
+   ],
+   "role": "secondary",
+   "listed": true
+  },
+  {
+   "id": "social_twitter",
+   "file": "social_twitter.html",
+   "name": "Twitter Feed",
+   "category": "social",
+   "icon": "🐦",
+   "description": "Twitter/X post overlay",
+   "params": [
+    {
+     "name": "handle",
+     "label": "Twitter Handle",
+     "type": "text",
+     "default": "@username"
+    },
+    {
+     "name": "text",
+     "label": "Tweet Text",
+     "type": "textarea",
+     "default": "Tweet content here..."
+    },
+    {
+     "name": "name",
+     "label": "Display Name",
+     "type": "text",
+     "default": "User Name"
+    },
+    {
+     "name": "username",
+     "label": "Username",
+     "type": "text",
+     "default": ""
+    },
+    {
+     "name": "displayName",
+     "label": "DisplayName",
+     "type": "text",
+     "default": ""
+    },
+    {
+     "name": "tweet",
+     "label": "Tweet",
+     "type": "text",
+     "default": ""
+    },
+    {
+     "name": "avatar",
+     "label": "Avatar",
+     "type": "text",
+     "default": ""
+    }
+   ],
+   "role": "lower_third",
+   "listed": true
+  },
+  {
+   "id": "social_youtube_subscribe",
+   "file": "social_youtube_subscribe.html",
+   "name": "YouTube Subscribe",
+   "category": "social",
+   "icon": "▶",
+   "description": "YouTube subscribe call-to-action",
+   "params": [
+    {
+     "name": "channel",
+     "label": "Channel Name",
+     "type": "text",
+     "default": "Channel Name",
+     "required": true
+    },
+    {
+     "name": "subscribers",
+     "label": "Subscriber Count",
+     "type": "text",
+     "default": "1M"
+    },
+    {
+     "name": "message",
+     "label": "Message",
+     "type": "text",
+     "default": ""
+    }
+   ],
+   "role": "lower_third",
+   "listed": true
+  },
+  {
+   "id": "countdown_timer",
+   "file": "countdown_timer.html",
+   "name": "Countdown Timer",
+   "category": "special",
+   "icon": "⏱",
+   "description": "Event countdown timer",
+   "params": [
+    {
+     "name": "target",
+     "label": "Target Date/Time",
+     "type": "datetime",
+     "default": ""
+    },
+    {
+     "name": "label",
+     "label": "Label",
+     "type": "text",
+     "default": "Time Remaining"
+    }
+   ],
+   "role": "secondary",
+   "listed": true
+  },
+  {
+   "id": "directors_scene",
+   "file": "directors_scene.html",
+   "name": "Director's Scene",
+   "category": "special",
+   "icon": "🎬",
+   "description": "Director scene marker",
+   "params": [
+    {
+     "name": "scene",
+     "label": "Scene Name",
+     "type": "text",
+     "default": "Scene 1",
+     "required": true
+    },
+    {
+     "name": "notes",
+     "label": "Director Notes",
+     "type": "textarea",
+     "default": ""
+    },
+    {
+     "name": "camera",
+     "label": "Camera",
+     "type": "text",
+     "default": ""
+    },
+    {
+     "name": "breakTime",
+     "label": "BreakTime",
+     "type": "text",
+     "default": ""
+    }
+   ],
+   "role": "secondary",
+   "listed": true
+  },
+  {
+   "id": "emergency",
+   "file": "emergency.html",
+   "name": "Emergency Alert",
+   "category": "special",
+   "icon": "⚠",
+   "description": "Emergency broadcast alert",
+   "params": [
+    {
+     "name": "message",
+     "label": "Alert Message",
+     "type": "text",
+     "default": "This is a test of the emergency broadcast system",
+     "required": true
+    }
+   ],
+   "role": "secondary",
+   "listed": true
+  },
+  {
+   "id": "player_stat",
+   "file": "player_stat.html",
+   "name": "Player Stat Card",
+   "category": "sports-extended",
+   "icon": "🏅",
+   "description": "Player profile with key statistics",
+   "params": [
+    {
+     "name": "name",
+     "label": "Player Name",
+     "type": "text",
+     "default": "LeBron James",
+     "required": true
+    },
+    {
+     "name": "team",
+     "label": "Team Name",
+     "type": "text",
+     "default": "Los Angeles Lakers"
+    },
+    {
+     "name": "position",
+     "label": "Position",
+     "type": "text",
+     "default": "Small Forward"
+    },
+    {
+     "name": "number",
+     "label": "Jersey Number",
+     "type": "text",
+     "default": "23"
+    },
+    {
+     "name": "color",
+     "label": "Team Color",
+     "type": "color",
+     "default": "552583"
+    },
+    {
+     "name": "stat1",
+     "label": "Stat 1 Value",
+     "type": "text",
+     "default": "28.5"
+    },
+    {
+     "name": "stat1label",
+     "label": "Stat 1 Label",
+     "type": "text",
+     "default": "PTS"
+    },
+    {
+     "name": "stat2",
+     "label": "Stat 2 Value",
+     "type": "text",
+     "default": "8.3"
+    },
+    {
+     "name": "stat2label",
+     "label": "Stat 2 Label",
+     "type": "text",
+     "default": "REB"
+    },
+    {
+     "name": "stat3",
+     "label": "Stat 3 Value",
+     "type": "text",
+     "default": "6.8"
+    },
+    {
+     "name": "stat3label",
+     "label": "Stat 3 Label",
+     "type": "text",
+     "default": "AST"
+    }
+   ],
+   "role": "secondary",
+   "listed": true
+  },
+  {
+   "id": "standings_bug",
+   "file": "standings_bug.html",
+   "name": "Standings Bug",
+   "category": "sports-extended",
+   "icon": "🏆",
+   "description": "Compact league standings overlay",
+   "params": [
+    {
+     "name": "league",
+     "label": "League Name",
+     "type": "text",
+     "default": "NBA Standings"
+    },
+    {
+     "name": "icon",
+     "label": "League Icon",
+     "type": "text",
+     "default": "🏀"
+    },
+    {
+     "name": "color",
+     "label": "Header Color",
+     "type": "color",
+     "default": "1e40af"
+    },
+    {
+     "name": "teams",
+     "label": "Teams (ABBR:W:L, csv)",
+     "type": "text",
+     "default": "LAL:42:28,BOS:44:26,MIA:38:32,MIL:37:33,PHI:36:34"
+    },
+    {
+     "name": "highlight",
+     "label": "Highlight Rank #",
+     "type": "number",
+     "default": "1"
+    }
+   ],
+   "role": "secondary",
+   "listed": true
+  },
+  {
+   "id": "stream_donation",
+   "file": "stream_donation.html",
+   "name": "Donation Alert",
+   "category": "streaming",
+   "icon": "💚",
+   "description": "Live stream donation alert overlay",
+   "params": [
+    {
+     "name": "donor",
+     "label": "Donor Name",
+     "type": "text",
+     "default": "Anonymous",
+     "required": true
+    },
+    {
+     "name": "amount",
+     "label": "Amount",
+     "type": "text",
+     "default": "25.00",
+     "required": true
+    },
+    {
+     "name": "currency",
+     "label": "Currency Symbol",
+     "type": "text",
+     "default": "$"
+    },
+    {
+     "name": "message",
+     "label": "Message",
+     "type": "text",
+     "default": "Thank you for the great content!"
+    },
+    {
+     "name": "label",
+     "label": "Alert Label",
+     "type": "text",
+     "default": "New Donation"
+    }
+   ],
+   "role": "secondary",
+   "listed": true
+  },
+  {
+   "id": "podcast_host",
+   "file": "podcast_host.html",
+   "name": "Podcast Host Card",
+   "category": "streaming",
+   "icon": "🎙",
+   "description": "Host name card with show info",
+   "params": [
+    {
+     "name": "name",
+     "label": "Host Name",
+     "type": "text",
+     "default": "Alex Johnson",
+     "required": true
+    },
+    {
+     "name": "show",
+     "label": "Show Title",
+     "type": "text",
+     "default": "The Daily Podcast"
+    },
+    {
+     "name": "role",
+     "label": "Role",
+     "type": "text",
+     "default": "Host & Producer"
+    },
+    {
+     "name": "episode",
+     "label": "Episode",
+     "type": "text",
+     "default": "Episode 42"
+    },
+    {
+     "name": "color1",
+     "label": "Accent Color 1",
+     "type": "color",
+     "default": "a78bfa"
+    },
+    {
+     "name": "color2",
+     "label": "Accent Color 2",
+     "type": "color",
+     "default": "7c3aed"
+    },
+    {
+     "name": "position",
+     "label": "Screen Position",
+     "type": "select",
+     "options": [
+      "left",
+      "center",
+      "right"
+     ],
+     "default": "left"
+    }
+   ],
+   "role": "secondary",
+   "listed": true
+  },
+  {
+   "id": "stream_subscriber",
+   "file": "stream_subscriber.html",
+   "name": "Subscriber Milestone",
+   "category": "streaming",
+   "icon": "🎉",
+   "description": "Subscriber or follower milestone alert",
+   "params": [
+    {
+     "name": "milestone",
+     "label": "Milestone Number",
+     "type": "text",
+     "default": "10,000",
+     "required": true
+    },
+    {
+     "name": "unit",
+     "label": "Unit Label",
+     "type": "text",
+     "default": "Subscribers"
+    },
+    {
+     "name": "username",
+     "label": "Display Name",
+     "type": "text",
+     "default": "Thank You!"
+    },
+    {
+     "name": "message",
+     "label": "Message",
+     "type": "text",
+     "default": "You're our newest subscriber"
+    },
+    {
+     "name": "label",
+     "label": "Alert Label",
+     "type": "text",
+     "default": "SUBSCRIBER MILESTONE"
+    },
+    {
+     "name": "icon",
+     "label": "Icon (emoji)",
+     "type": "text",
+     "default": "🎉"
+    }
+   ],
+   "role": "secondary",
+   "listed": true
+  },
+  {
+   "id": "ticker",
+   "file": "ticker.html",
+   "name": "Generic Ticker",
+   "category": "tickers",
+   "icon": "↔",
+   "description": "Generic scrolling ticker",
+   "params": [
+    {
+     "name": "text",
+     "label": "Ticker Text",
+     "type": "text",
+     "default": "Ticker content goes here",
+     "required": true
+    },
+    {
+     "name": "label",
+     "label": "Label",
+     "type": "text",
+     "default": "UPDATE"
+    },
+    {
+     "name": "speed",
+     "label": "Speed",
+     "type": "number",
+     "default": 100
+    }
+   ],
+   "role": "ticker",
+   "listed": true
+  },
+  {
+   "id": "ticker_news",
+   "file": "ticker_news.html",
+   "name": "News Ticker",
+   "category": "tickers",
+   "icon": "↔",
+   "description": "Scrolling news ticker",
+   "params": [
+    {
+     "name": "text",
+     "label": "Ticker Text",
+     "type": "text",
+     "default": "Breaking news story • Another update • More information coming soon",
+     "required": true
+    },
+    {
+     "name": "label",
+     "label": "Label",
+     "type": "text",
+     "default": "NEWS"
+    },
+    {
+     "name": "speed",
+     "label": "Speed (pixels/sec)",
+     "type": "number",
+     "default": 100
+    }
+   ],
+   "role": "ticker",
+   "listed": true
+  },
+  {
+   "id": "ticker_sports_scores",
+   "file": "ticker_sports_scores.html",
+   "name": "Sports Scores Ticker",
+   "category": "tickers",
+   "icon": "↔",
+   "description": "Live sports scores ticker",
+   "params": [
+    {
+     "name": "text",
+     "label": "Scores",
+     "type": "text",
+     "default": "Lakers 112 - Celtics 108 • Warriors 105 - Bulls 98 • Yankees 5 - Red Sox 3",
+     "required": true
+    },
+    {
+     "name": "label",
+     "label": "Label",
+     "type": "text",
+     "default": "SCORES"
+    },
+    {
+     "name": "speed",
+     "label": "Speed",
+     "type": "number",
+     "default": 80
+    },
+    {
+     "name": "scores",
+     "label": "Scores",
+     "type": "text",
+     "default": ""
+    }
+   ],
+   "role": "ticker",
+   "listed": true
+  },
+  {
+   "id": "ticker_stock_market",
+   "file": "ticker_stock_market.html",
+   "name": "Stock Market Ticker",
+   "category": "tickers",
+   "icon": "↔",
+   "description": "Financial market data ticker",
+   "params": [
+    {
+     "name": "text",
+     "label": "Stock Data",
+     "type": "text",
+     "default": "AAPL +2.45% • GOOGL -1.23% • MSFT +0.89% • AMZN +1.56%",
+     "required": true
+    },
+    {
+     "name": "label",
+     "label": "Label",
+     "type": "text",
+     "default": "MARKETS"
+    },
+    {
+     "name": "speed",
+     "label": "Speed",
+     "type": "number",
+     "default": 60
+    },
+    {
+     "name": "stocks",
+     "label": "Stocks",
+     "type": "text",
+     "default": ""
+    }
+   ],
+   "role": "ticker",
+   "listed": true
+  },
+  {
+   "id": "weather_forecast_ai",
+   "file": "weather_forecast_ai.html",
+   "name": "AI Weather Forecast",
+   "category": "weather",
+   "icon": "☁",
+   "description": "AI-powered weather forecast",
+   "params": [
+    {
+     "name": "location",
+     "label": "Location",
+     "type": "text",
+     "default": "martinsville",
+     "required": true
+    }
+   ],
+   "role": "bug",
+   "listed": true
+  },
+  {
+   "id": "weather_bug_rotating",
+   "file": "weather_bug_rotating.html",
+   "name": "Rotating Weather Bug",
+   "category": "weather",
+   "icon": "☁",
+   "description": "Rotating weather conditions bug",
+   "params": [
+    {
+     "name": "location",
+     "label": "Location",
+     "type": "text",
+     "default": "New York",
+     "required": true
+    },
+    {
+     "name": "temp",
+     "label": "Temperature",
+     "type": "text",
+     "default": "72°F"
+    },
+    {
+     "name": "logo",
+     "label": "Logo",
+     "type": "text",
+     "default": ""
+    },
+    {
+     "name": "interval",
+     "label": "Interval",
+     "type": "text",
+     "default": ""
+    }
+   ],
+   "role": "bug",
+   "listed": true
+  },
+  {
+   "id": "weather_forecast_voice",
+   "file": "weather_forecast_voice.html",
+   "name": "Voice Weather Forecast",
+   "category": "weather",
+   "icon": "☁",
+   "description": "Voice-enabled weather forecast",
+   "params": [
+    {
+     "name": "location",
+     "label": "Location",
+     "type": "text",
+     "default": "New York",
+     "required": true
+    },
+    {
+     "name": "autoplay",
+     "label": "Autoplay",
+     "type": "text",
+     "default": ""
+    }
+   ],
+   "role": "bug",
+   "listed": true
+  },
+  {
+   "id": "karaoke",
+   "file": "karaoke.html",
+   "name": "Karaoke Captions",
+   "category": "captions",
+   "icon": "🎤",
+   "description": "Word-by-word captions synced to the program item's transcript (follows a channel or takes inline words)",
+   "params": [
+    { "name": "channel", "label": "Follow channel", "type": "text", "default": "main" },
+    { "name": "media", "label": "Media id (blank = asset on air)", "type": "text", "default": "" },
+    { "name": "position", "label": "Position", "type": "select", "options": ["bottom", "lower_third", "top", "center"], "default": "bottom" },
+    { "name": "align", "label": "Align", "type": "select", "options": ["center", "left", "right"], "default": "center" },
+    { "name": "mode", "label": "Mode", "type": "select", "options": ["word", "line"], "default": "word" },
+    { "name": "fontSize", "label": "Font size", "type": "number", "default": 46 },
+    { "name": "maxChars", "label": "Max chars per line", "type": "number", "default": 48 },
+    { "name": "maxLines", "label": "Lines shown", "type": "number", "default": 2 },
+    { "name": "color", "label": "Text colour", "type": "color", "default": "ebebf5" },
+    { "name": "highlight", "label": "Highlight colour", "type": "color", "default": "ffd60a" },
+    { "name": "past", "label": "Spoken colour", "type": "color", "default": "ffffff" },
+    { "name": "sync", "label": "Sync trim (s)", "type": "number", "default": 0 },
+    { "name": "demo", "label": "Demo (1 = sample words)", "type": "text", "default": "" }
+   ],
+   "role": "lower_third",
+   "listed": true
+  },
+  {
+   "id": "factbox",
+   "file": "factbox.html",
+   "name": "Fact Box",
+   "category": "captions",
+   "icon": "📋",
+   "description": "Side panel with an accent header, bullet or label/value rows, optional picture and progressive reveal",
+   "params": [
+    { "name": "title", "label": "Title", "type": "text", "default": "By the numbers", "required": true },
+    { "name": "icon", "label": "Icon (emoji / glyph)", "type": "text", "default": "" },
+    { "name": "lines", "label": "Lines (| separated)", "type": "text", "default": "Population 13,400|Founded 1793|Home of the Speedway" },
+    { "name": "items", "label": "Label=value rows (| separated, overrides lines)", "type": "text", "default": "" },
+    { "name": "position", "label": "Position", "type": "select", "options": ["right", "left", "top-right", "top-left", "bottom-left", "bottom-right", "center"], "default": "right" },
+    { "name": "width", "label": "Width (px)", "type": "number", "default": 520 },
+    { "name": "fontSize", "label": "Font size", "type": "number", "default": 28 },
+    { "name": "accent", "label": "Accent colour", "type": "color", "default": "00d4ff" },
+    { "name": "image", "label": "Image URL", "type": "text", "default": "" },
+    { "name": "footer", "label": "Footer / source", "type": "text", "default": "" },
+    { "name": "reveal", "label": "Reveal", "type": "select", "options": ["all", "lines"], "default": "all" },
+    { "name": "interval", "label": "Reveal interval (s)", "type": "number", "default": 1.2 }
+   ],
+   "role": "secondary",
+   "listed": true
+  },
+  {
+   "id": "pillar_panels",
+   "file": "pillar_panels.html",
+   "name": "Pillar Panels",
+   "category": "fullscreen",
+   "icon": "✨",
+   "description": "Side-bar panels beside a narrow (9:16, 4:3, 1:1) picture: starfield, weather, sponsors, this day in history, coming up next. Deployed automatically by the pillar controller (docs/pillar-panels.md).",
+   "params": [
+    { "name": "aspect", "label": "Picture aspect (width / height)", "type": "number", "default": 0.5625 },
+    { "name": "data", "label": "Panel data (JSON, filled by the Supervisor)", "type": "textarea", "default": "" }
+   ],
+   "role": "pillar",
+   "listed": false
+  }
+ ]
+}

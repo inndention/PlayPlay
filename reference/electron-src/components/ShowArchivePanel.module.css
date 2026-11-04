@@ -1,0 +1,16 @@
+.container { display: flex; flex-direction: column; height: 100%; background: var(--surface); border-radius: var(--radius-md); overflow: hidden; }
+.header { display: flex; align-items: center; gap: 0.5rem; padding: 1rem; background: var(--surface-highlight); border-bottom: 1px solid var(--border); }
+.header h2 { font-size: 1.1rem; font-weight: 700; }
+.content { flex: 1; display: flex; flex-direction: column; gap: 1rem; padding: 1rem; overflow: hidden; }
+.search { display: flex; gap: 0.5rem; }
+.search input { flex: 1; padding: 0.5rem; background: var(--background); border: 1px solid var(--border); border-radius: var(--radius-sm); }
+.search button { padding: 0.5rem 1rem; background: var(--accent); border: none; border-radius: var(--radius-sm); color: white; cursor: pointer; }
+.archiveList { flex: 1; overflow-y: auto; display: flex; flex-direction: column; gap: 0.5rem; }
+.archiveItem { padding: 1rem; background: var(--background); border: 1px solid var(--border); border-radius: var(--radius-sm); cursor: pointer; }
+.archiveItem.selected { border-color: var(--accent); background: var(--surface-highlight); }
+.archiveHeader { display: flex; justify-content: space-between; font-size: 0.85rem; color: var(--text-secondary); margin-bottom: 0.5rem; }
+.archivePreview { font-size: 0.85rem; color: var(--text-primary); }
+.archiveViewer { padding: 1rem; background: var(--background); border-radius: var(--radius-md); border: 1px solid var(--border); }
+.archiveViewer h3 { font-size: 1rem; font-weight: 700; margin-bottom: 0.75rem; }
+.transcript { font-size: 0.9rem; line-height: 1.6; color: var(--text-primary); white-space: pre-wrap; }
+

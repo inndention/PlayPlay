@@ -1,0 +1,6 @@
+﻿0000-00-04T00:00:00	EventDuration=00:05:00	PlayMode=2
+S:\News\Weather Early.mpg
+!Repeat
+S:\News\Weather Loop.mpg
+0000-00-04T18:00:00	EventDuration=00:05:00	PlayMode=1
+S:\News\Weather Late.mpg

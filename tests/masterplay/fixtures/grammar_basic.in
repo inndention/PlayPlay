@@ -1,0 +1,50 @@
+﻿!Info	Name=preamble: an item before the first event
+# MasterPlay has no comment syntax: this is an unknown line
+0000-00-00T00:00:00	EventDuration=24:00:00	PlayMode=2
+!Repeat
+S:\Fill\Loop One.mpg
+
+01/00/0000 06:00:00	EventDuration=00:30:00	PlayMode=1
+S:\COMMERCIALS 2025\Joe’s Diner  30 & Up.mpg	actinout=0
+S:\COMMERCIALS 2025\Joe’s Diner  30 & Up.mpg	actinout=1
+02/00/0000 06:00:00	EventType=1	Name=Morning Show	EventDuration=01:00:00	PlayMode=1
+!InsertPlaylist C:\Sync\NEWS HUB\NEWS 00 TEST.in	ReplaceWithDirectoryMaxAge=0
+!InsertDirectory C:\Sync\NEWS HUB\TOP STORY	LoadingMode=3	ToSelect=1	MaxAge=	ReplaceWithDirectoryMaxAge=0
+D:\Promos\Weather 72°.rtf[00:00:10;00]
+03/00/0000 16:00:00	EventDuration=00:12:00	PlayMode=4
+!Break	gpicfg=1	#=1
+S:\Spots\A.mpg
+S:\Spots\B.mpG
+!Break gpicfg=1	#=2
+S:\Spots\C.mov
+04/00/0000 12:00:00	EventDuration=00:05:00	PlayMode=1
+!ShowLogo	f=D:\Bugs\BUG.png	cfg=D:\Bugs\bug.osd	Name=BUG	Layer=1
+\\server\share\Clips\clip one.mpg	Name=First	Name=Second	Parameter=
+!OSD off
+05/00/0000 12:00:00	EventDuration=00:05:00	PlayMode=1
+!ShowLogo f=D:\Bugs\BUG.png	cfg=D:\Bugs\bug.osd
+!ShowClock t=0	cfg=D:\Masterplay\OSD\DefaultRealtimeClock.osd
+C:/Media/forward/slash.mpg
+06/00/0000 12:00:00	EventDuration=00:05:00	PlayMode=1
+!InsertDirectory D:\Masterplay\Testfiles\PAL	
+; semicolon: unknown
+// double slash: unknown
+07/00/0000 23:00:00	EventType=2	EventDuration=01:00:00	PlayMode=1
+!Video 
+!ShowCrawl Breaking news<br/>second line	cfg=D:\Masterplay\OSD\DefaultCrawl.osd	Layer=6
+!Break  #=3
+0000-00-01T05:00:00	EventDuration=00:10:00	PlayMode=1
+0000-00-07T05:00:00	EventDuration=00:10:00	PlayMode=1	IncludeInComingUp=1
+0000-00-80T04:00:00	PlayMode=1
+2025-09-10T09:07:00	EventDuration=00:05:00	PlayMode=1
+S:\Specials\Ribbon Cutting.mpg
+25/12/2025 10:00:00	ExpectedDuration=00:05:00	PlayMode=1
+!Wiederholen
+S:\Specials\Holiday.mpg
+0000-00-00T13:00:00 PlayMode=1
+  !Repeat
+!
+2025-13-01T00:00:00	PlayMode=1
+0000-00-00T14:00:00	EventDuration=xx:yy	PlayMode=1
+!Normal
+9999-99-99T00:00:00

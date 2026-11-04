@@ -1,0 +1,9 @@
+﻿0000-00-00T00:00:00	EventDuration=10:00:00	PlayMode=1
+S:\Evening\Overnight.mpg
+0000-00-00T10:00:00	Name=Evening Block	EventDuration=08:00:00	PlayMode=2
+!Repeat
+S:\Evening\Block Loop.mpg
+0000-00-00T18:00:00	EventDuration=06:00:00	PlayMode=1
+S:\Evening\Prime.mpg
+!ChangePlaylist C:\Sync\NEWS HUB\sub_week.in
+S:\Evening\After Change.mpg

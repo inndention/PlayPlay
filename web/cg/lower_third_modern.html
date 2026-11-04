@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=1920, initial-scale=1.0">
+    <title>Modern Lower Third</title>
+    <style>
+        :root {
+            --theme-color-1: #00d9ff;
+            --theme-color-2: #a855f7;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            width: 1920px;
+            height: 1080px;
+            overflow: hidden;
+            background: transparent;
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+        }
+
+        .lower-third {
+            position: absolute;
+            bottom: 120px;
+            display: flex;
+            align-items: center;
+            gap: 0;
+        }
+
+        /* Positioning Classes */
+        .pos-left   { left: 60px; }
+        .pos-center { left: 50%; transform: translateX(-50%); }
+        .pos-right  { right: 60px; flex-direction: row-reverse; }
+
+        .content-wrapper {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+        }
+
+        .logo {
+            height: 80px;
+            width: auto;
+            object-fit: contain;
+            display: none;
+            filter: drop-shadow(0 4px 6px rgba(0, 0, 0, 0.3));
+        }
+
+        .logo.visible { display: block; }
+
+        .text-content {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .name-container {
+            background: linear-gradient(135deg, var(--theme-color-1) 0%, var(--theme-color-2) 100%);
+            padding: 12px 40px;
+            clip-path: polygon(0 0, 100% 0, 95% 100%, 0% 100%);
+            position: relative;
+            z-index: 2;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+        }
+
+        .pos-right .name-container {
+            clip-path: polygon(5% 0, 100% 0, 100% 100%, 0% 100%);
+            background: linear-gradient(-135deg, var(--theme-color-1) 0%, var(--theme-color-2) 100%);
+        }
+
+        .name {
+            font-size: 48px;
+            font-weight: 800;
+            color: white;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+        }
+
+        .title-container {
+            background: rgba(15, 23, 42, 0.9);
+            padding: 8px 40px 8px 30px;
+            margin-top: -4px;
+            margin-left: 20px;
+            clip-path: polygon(0 0, 100% 0, 98% 100%, 0% 100%);
+            position: relative;
+            z-index: 1;
+            backdrop-filter: blur(10px);
+            border-bottom: 2px solid var(--theme-color-1);
+        }
+
+        .pos-right .title-container {
+            margin-left: 0;
+            margin-right: 20px;
+            clip-path: polygon(2% 0, 100% 0, 100% 100%, 0% 100%);
+            padding: 8px 30px 8px 40px;
+            text-align: right;
+        }
+
+        .title {
+            font-size: 24px;
+            font-weight: 500;
+            color: #e2e8f0;
+            letter-spacing: 0.5px;
+        }
+
+        /* Shine Effect */
+        .name-container::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 50%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.4), transparent);
+            transform: skewX(-20deg);
+            animation: shine 3s infinite;
+        }
+
+        @keyframes shine {
+            0%   { left: -100%; }
+            20%  { left: 200%; }
+            100% { left: 200%; }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="lower-third" id="lowerThird" data-cg-auto>
+        <div class="content-wrapper">
+            <img id="logoImg" class="logo" src="" alt="Logo">
+            <div class="text-content">
+                <div class="name-container">
+                    <div class="name" id="nameText" data-field="name" data-typewriter>John Doe</div>
+                </div>
+                <div class="title-container">
+                    <div class="title" id="titleText" data-field="title">Senior Correspondent</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="js/cg-animations.js"></script>
+    <script>
+        const params = new URLSearchParams(window.location.search);
+        const name     = params.get('name')     || 'John Doe';
+        const title    = params.get('title')    || 'Senior Correspondent';
+        const position = params.get('position') || 'left';
+        const logoUrl  = params.get('logo');
+        const color1   = params.get('color1');
+        const color2   = params.get('color2');
+
+        // Apply Text
+        document.getElementById('nameText').textContent  = name;
+        document.getElementById('titleText').textContent = title;
+
+        // Apply Position
+        const lowerThird = document.getElementById('lowerThird');
+        lowerThird.classList.remove('pos-left', 'pos-center', 'pos-right');
+        lowerThird.classList.add(`pos-${position}`);
+
+        // Apply Logo
+        if (logoUrl) {
+            const logoImg = document.getElementById('logoImg');
+            logoImg.src = logoUrl;
+            logoImg.classList.add('visible');
+        }
+
+        // Apply Colors
+        const root = document.documentElement;
+        if (color1) root.style.setProperty('--theme-color-1', '#' + color1.replace('#', ''));
+        if (color2) root.style.setProperty('--theme-color-2', '#' + color2.replace('#', ''));
+
+        // Initialize animations (reads animIn, animOut, etc. from URL params)
+        // data-cg-auto attribute triggers auto-init in cg-animations.js
+        // Remote text polling also auto-starts if remoteUrl param is present
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,216 @@
+/* File Management Aggregator – Sync & Tracker */
+
+.container {
+    padding: 1rem 1.5rem;
+    max-width: 900px;
+    margin: 0 auto;
+    background: var(--background, #111);
+    color: var(--text-primary, #eee);
+    min-height: 100vh;
+}
+
+.header {
+    margin-bottom: 1.5rem;
+}
+
+.titleRow {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    margin-bottom: 0.25rem;
+}
+
+.titleRow h1 {
+    font-size: 1.5rem;
+    font-weight: 600;
+    margin: 0;
+}
+
+.subtitle {
+    color: var(--text-muted, #888);
+    font-size: 0.85rem;
+    margin: 0 0 1rem 0;
+}
+
+.actions {
+    display: flex;
+    gap: 0.5rem;
+    flex-wrap: wrap;
+}
+
+.refreshBtn,
+.seedBtn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.35rem;
+    padding: 0.5rem 0.75rem;
+    border: 1px solid var(--border, #333);
+    background: var(--surface, #222);
+    color: var(--text-primary, #eee);
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 0.9rem;
+}
+
+.refreshBtn:hover,
+.seedBtn:hover {
+    background: var(--surface-highlight, #2a2a2a);
+}
+
+.seedBtn {
+    background: var(--primary, #2563eb);
+    border-color: var(--primary, #2563eb);
+}
+
+.seedBtn:hover:not(:disabled) {
+    filter: brightness(1.1);
+}
+
+.seedBtn:disabled {
+    opacity: 0.7;
+    cursor: not-allowed;
+}
+
+.loading {
+    padding: 2rem;
+    text-align: center;
+    color: var(--text-muted, #888);
+}
+
+.error,
+.warn {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.75rem;
+    border-radius: 6px;
+    margin-bottom: 1rem;
+}
+
+.error {
+    background: rgba(239, 68, 68, 0.15);
+    color: #f87171;
+}
+
+.warn {
+    background: rgba(251, 191, 36, 0.1);
+    color: #fbbf24;
+}
+
+.section {
+    margin-bottom: 1.5rem;
+    padding: 1rem;
+    border: 1px solid var(--border, #333);
+    border-radius: 8px;
+    background: var(--surface, #1a1a1a);
+}
+
+.section h2 {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 1rem;
+    margin: 0 0 0.75rem 0;
+}
+
+.stats {
+    display: flex;
+    gap: 1rem;
+    margin-bottom: 0.75rem;
+    font-size: 0.85rem;
+    color: var(--text-muted, #888);
+}
+
+.fileList,
+.nodeList,
+.swarmFileList {
+    list-style: none;
+    padding: 0;
+    margin: 0 0 0.75rem 0;
+}
+
+.fileItem,
+.nodeItem,
+.swarmFileItem {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.4rem 0;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+    font-size: 0.85rem;
+}
+
+.fileName {
+    flex: 1;
+    min-width: 0;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.fileState,
+.badge {
+    padding: 0.15rem 0.4rem;
+    border-radius: 4px;
+    font-size: 0.75rem;
+}
+
+.fileState.seeding,
+.badge.online {
+    background: rgba(34, 197, 94, 0.2);
+    color: #22c55e;
+}
+
+.fileState.downloading {
+    background: rgba(59, 130, 246, 0.2);
+    color: #3b82f6;
+}
+
+.fileProgress,
+.fileSpeed {
+    color: var(--text-muted, #888);
+    font-size: 0.8rem;
+}
+
+.magnetRow {
+    display: flex;
+    gap: 0.5rem;
+    margin-top: 0.75rem;
+}
+
+.magnetInput {
+    flex: 1;
+    padding: 0.5rem 0.75rem;
+    border: 1px solid var(--border, #333);
+    background: var(--background, #111);
+    color: var(--text-primary, #eee);
+    border-radius: 6px;
+    font-size: 0.85rem;
+}
+
+.downloadBtn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.35rem;
+    padding: 0.5rem 0.75rem;
+    border: 1px solid var(--border, #333);
+    background: var(--surface-highlight, #2a2a2a);
+    color: var(--text-primary, #eee);
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 0.9rem;
+}
+
+.downloadBtn:hover {
+    background: var(--surface, #333);
+}
+
+.empty,
+.muted {
+    color: var(--text-muted, #888);
+    font-size: 0.85rem;
+}
+
+.swarmFileList .swarmFileItem {
+    padding: 0.3rem 0;
+}

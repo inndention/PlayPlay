@@ -1,0 +1,77 @@
+﻿0000-00-02T06:00:00	Name=Loop Block	EventDuration=02:20:00	PlayMode=2
+D:\Media\Prog\Talk.mpg
+!Repeat
+D:\Media\Spots\Spot A.mpg
+D:\Media\Prog\Weather.mpg
+D:\Media\Spots\Spot B.mpg
+0000-00-02T08:20:00	EventDuration=00:45:00	PlayMode=1
+D:\Media\Prog\News Hour.mpg
+0000-00-03T06:00:00	Name=Folder Block	EventDuration=01:00:00	PlayMode=1
+!InsertDirectory D:\Media\Promos	LoadingMode=3	ToSelect=1
+!InsertDirectory D:\Media\Promos	LoadingMode=2	ToSelect=1
+!InsertDirectory D:\Media\Promos
+!InsertDirectory D:\Media\Promos	LoadingMode=1
+!InsertDirectory D:\Media\Promos	LoadingMode=2	ToSelect=2
+!InsertDirectory D:\Media\Promos	SelectRandom=2
+!InsertDirectory D:\Media\Promos	LoadingMode=3	ToSelect=1	SubDirs=1	MaxAge=48
+!InsertDirectory D:\Media\Promos	LoadingMode=4
+!InsertDirectory D:\Media\Promos	LoadingMode=5
+!InsertDirectory D:\Media\Promos	LoadingMode=6	DefPTime=00:00:08
+!InsertDirectory D:\Media\Promos	LoadingMode=8
+!InsertDirectory D:\Media\Promos\Promo*.mpg	LoadingMode=3	ToSelect=1
+!InsertDirectory D:\Media\Promos	SubDirs=2	LoadingMode=3	ToSelect=1	InvertOrder=1
+!InsertDirectory D:\Media\Daily\%m-dd-yy%.mpg	LoadingMode=3	ToSelect=1
+!InsertDirectory D:\Media\Nothing	LoadingMode=3	ToSelect=1
+!InsertDirectory D:\Media\Promos	LoadingMode=7
+0000-00-03T07:00:00	EventDuration=00:10:00	PlayMode=1
+D:\Media\Prog\Talk.mpg
+0000-00-04T06:00:00	Name=Graphics Block	EventDuration=01:00:00	PlayMode=1
+!ShowLogo	f=D:\Media\Logos\bug.png	cfg=D:\Masterplay\OSD\DefaultLogo.osd	Layer=1
+D:\Media\Prog\Talk.mpg
+D:\Media\Prog\Weather.mpg
+!ShowCrawl Breaking: Main St closed<br/>Use Route 58	cfg=D:\Masterplay\OSD\DefaultCrawl.osd
+D:\Media\Spots\Spot A.mpg
+!OSD off
+D:\Media\Spots\Spot B.mpg
+!ShowLogo	f=D:\Media\Logos\live.png	Layer=2
+D:\Media\Prog\Doc.mpg
+!OSD off
+!ShowClock t=0	cfg=D:\Masterplay\OSD\DefaultRealtimeClock.osd
+D:\Media\Prog\Weather.mpg
+!ShowCrawlFromFile D:\Crawl\today.txt
+D:\Media\Spots\Spot A.mpg
+!ShowTextFromFile D:\Subs\missing.srt
+!OSD off
+D:\Media\Spots\Spot B.mpg
+0000-00-04T07:00:00	EventDuration=00:10:00	PlayMode=1
+D:\Media\Prog\Talk.mpg
+0000-00-05T06:00:00	Name=Acts Block	EventDuration=00:46:00	PlayMode=1
+D:\Media\Prog\Show Open.mpg	actinout=0
+D:\Media\Spots\Spot A.mpg
+D:\Media\Prog\Show Open.mpg	actinout=1
+D:\Media\Spots\Spot B.mpg
+D:\Media\Prog\Show Open.mpg	actinout=2
+D:\Media\Prog\Seg Show.mpg	actinout=0
+D:\Media\Spots\Spot A.mpg
+D:\Media\Prog\Seg Show.mpg	actinout=1
+0000-00-05T07:00:00	EventDuration=00:10:00	PlayMode=1
+D:\Media\Prog\Talk.mpg
+0000-00-06T06:00:00	Name=Network Breaks	EventDuration=01:00:00	PlayMode=4
+!Break	gpicfg=1	#=1	schedtime=06:10:00
+D:\Media\Spots\Spot A.mpg
+D:\Media\Spots\Spot B.mpg
+!Break	gpicfg=1	#=2
+D:\Media\Spots\Spot A.mpg
+0000-00-06T07:00:00	EventDuration=00:10:00	PlayMode=1
+D:\Media\Prog\Talk.mpg
+0000-00-07T06:00:00	Name=Devices	EventDuration=00:00:30	PlayMode=1
+!TTS	text=Hello
+!FooBar some argument	x=1
+!SendTo UDP	Source=192.0.2.5:5000
+!Set Config Out of network indicator	Name=1
+!CountDown To NextEvent
+!Video Set only
+!InsertTextDirectory D:\Text\Slides
+D:\Media\Spots\Spot A.mpg
+0000-00-07T07:00:00	EventDuration=00:10:00	PlayMode=1
+D:\Media\Prog\Talk.mpg

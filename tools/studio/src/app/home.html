@@ -1,0 +1,29 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>PlayPlayStudio</title>
+<style>
+  :root { --bg: #f6f7f9; --fg: #1b1f24; --muted: #5b6470; --card: #ffffff; --line: #d9dde3; --accent: #2563eb; }
+  @media (prefers-color-scheme: dark) {
+    :root { --bg: #111418; --fg: #e6e9ee; --muted: #9aa3ae; --card: #1a1f25; --line: #2a313a; --accent: #6ea0ff; }
+  }
+  body { margin: 0; background: var(--bg); color: var(--fg); font: 15px/1.5 system-ui, "Segoe UI", sans-serif; }
+  main { max-width: 640px; margin: 48px auto; padding: 0 16px; }
+  .card { background: var(--card); border: 1px solid var(--line); border-radius: 10px; padding: 20px 24px; }
+  h1 { font-size: 20px; margin: 0 0 4px; }
+  p { margin: 8px 0; color: var(--muted); }
+  code, a { color: var(--accent); }
+</style>
+</head>
+<body>
+<main>
+  <div class="card">
+    <h1>PlayPlayStudio {{version}}</h1>
+    <p>Studio engine service. It runs apart from the on-air Supervisor and never touches playout.</p>
+    <p>The dashboard is not installed yet. Service health: <a href="/health"><code>/health</code></a></p>
+  </div>
+</main>
+</body>
+</html>

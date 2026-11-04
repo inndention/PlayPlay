@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=1920, initial-scale=1.0">
+    <title>YouTube Subscribe</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            width: 1920px;
+            height: 1080px;
+            overflow: hidden;
+            background: transparent;
+            font-family: 'Roboto', 'YouTube Sans', 'Arial', sans-serif;
+        }
+
+        .subscribe-container {
+            position: absolute;
+            bottom: 120px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: rgba(0, 0, 0, 0.9);
+            padding: 32px 48px;
+            border-radius: 16px;
+            box-shadow: 0 12px 48px rgba(0, 0, 0, 0.6);
+            text-align: center;
+            animation: bounceIn 0.6s cubic-bezier(0.68, -0.55, 0.265, 1.55) forwards;
+            opacity: 0;
+        }
+
+        @keyframes bounceIn {
+            to {
+                opacity: 1;
+                transform: translateX(-50%) scale(1);
+            }
+
+            from {
+                transform: translateX(-50%) scale(0.5);
+            }
+        }
+
+        .message {
+            font-size: 32px;
+            font-weight: 500;
+            color: white;
+            margin-bottom: 24px;
+        }
+
+        .subscribe-button {
+            display: inline-flex;
+            align-items: center;
+            gap: 12px;
+            background: #FF0000;
+            color: white;
+            padding: 16px 40px;
+            border-radius: 50px;
+            font-size: 28px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            animation: pulse 2s infinite;
+            box-shadow: 0 8px 24px rgba(255, 0, 0, 0.5);
+        }
+
+        @keyframes pulse {
+
+            0%,
+            100% {
+                transform: scale(1);
+                box-shadow: 0 8px 24px rgba(255, 0, 0, 0.5);
+            }
+
+            50% {
+                transform: scale(1.05);
+                box-shadow: 0 12px 32px rgba(255, 0, 0, 0.7);
+            }
+        }
+
+        .yt-icon {
+            width: 32px;
+            height: 32px;
+            background: white;
+            border-radius: 4px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #FF0000;
+            font-weight: 900;
+            font-size: 20px;
+        }
+
+        .channel-name {
+            font-size: 24px;
+            color: rgba(255, 255, 255, 0.8);
+            margin-top: 16px;
+            font-weight: 400;
+        }
+
+        .bell-icon {
+            display: inline-block;
+            margin-left: 8px;
+            animation: ring 2s infinite;
+        }
+
+        @keyframes ring {
+
+            0%,
+            100% {
+                transform: rotate(0deg);
+            }
+
+            10%,
+            30% {
+                transform: rotate(-15deg);
+            }
+
+            20% {
+                transform: rotate(15deg);
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="subscribe-container">
+        <div class="message" id="message">Don't forget to subscribe!</div>
+        <div class="subscribe-button">
+            <div class="yt-icon">▶</div>
+            <span>SUBSCRIBE</span>
+            <span class="bell-icon">🔔</span>
+        </div>
+        <div class="channel-name" id="channel">Channel Name</div>
+    </div>
+
+    <script>
+        const params = new URLSearchParams(window.location.search);
+        const channel = params.get('channel') || 'Channel Name';
+        const message = params.get('message') || 'Don\'t forget to subscribe!';
+
+        document.getElementById('channel').textContent = channel;
+        document.getElementById('message').textContent = message;
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,6287 @@
+{
+ "generator": "tools/studio/src/compose/golden/gen-compose-golden.mjs",
+ "source": "mcp/spot/compose.ts @ 12c10f1 2026-10-26",
+ "transitions": [
+  "cut",
+  "fade",
+  "dissolve",
+  "dip",
+  "slide",
+  "wipe",
+  "zoom"
+ ],
+ "kenburns": [
+  "auto",
+  "in",
+  "out",
+  "left",
+  "right",
+  "up",
+  "down",
+  "none"
+ ],
+ "aspects": [
+  "9:16",
+  "16:9",
+  "1:1",
+  "4:5"
+ ],
+ "frameSize": [
+  {
+   "aspect": "9:16",
+   "quality": "draft",
+   "w": 360,
+   "h": 640
+  },
+  {
+   "aspect": "9:16",
+   "quality": "final",
+   "w": 1080,
+   "h": 1920
+  },
+  {
+   "aspect": "16:9",
+   "quality": "draft",
+   "w": 640,
+   "h": 360
+  },
+  {
+   "aspect": "16:9",
+   "quality": "final",
+   "w": 1920,
+   "h": 1080
+  },
+  {
+   "aspect": "1:1",
+   "quality": "draft",
+   "w": 360,
+   "h": 360
+  },
+  {
+   "aspect": "1:1",
+   "quality": "final",
+   "w": 1080,
+   "h": 1080
+  },
+  {
+   "aspect": "4:5",
+   "quality": "draft",
+   "w": 360,
+   "h": 450
+  },
+  {
+   "aspect": "4:5",
+   "quality": "final",
+   "w": 1080,
+   "h": 1350
+  }
+ ],
+ "safeArea": [
+  {
+   "aspect": "9:16",
+   "marginX": 0.08,
+   "headTop": 0.13,
+   "capBottom": 0.76
+  },
+  {
+   "aspect": "16:9",
+   "marginX": 0.1,
+   "headTop": 0.1,
+   "capBottom": 0.9
+  },
+  {
+   "aspect": "1:1",
+   "marginX": 0.07,
+   "headTop": 0.08,
+   "capBottom": 0.88
+  },
+  {
+   "aspect": "4:5",
+   "marginX": 0.07,
+   "headTop": 0.08,
+   "capBottom": 0.86
+  }
+ ],
+ "cleanText": [
+  [
+   "  Hello   world  ",
+   "Hello world"
+  ],
+  [
+   "Tab\there\nnew line\r\nend",
+   "Tab here new line end"
+  ],
+  [
+   "Emoji 🎉 party 👍🏽 ok",
+   "Emoji party 🏽 ok"
+  ],
+  [
+   "Family 👨‍👩‍👧 here",
+   "Family here"
+  ],
+  [
+   "Heart ❤️ red",
+   "Heart red"
+  ],
+  [
+   "NBSP and em sep",
+   "NBSP and em sep"
+  ],
+  [
+   "\u0000\u0001ctrl",
+   "ctrl"
+  ],
+  [
+   "",
+   ""
+  ],
+  [
+   "   ",
+   ""
+  ],
+  [
+   "Zero​width",
+   "Zero​width"
+  ],
+  [
+   "Café — “quotes” ©®™",
+   "Café — “quotes”"
+  ],
+  [
+   "#1 ★ star ☀ sun ✓ check",
+   "#1 star sun ✓ check"
+  ],
+  [
+   "Flags 🇺🇸 and keycap 1️⃣",
+   "Flags 🇺🇸 and keycap 1⃣"
+  ],
+  [
+   "Mixednext﻿bom",
+   "Mixednext bom"
+  ],
+  [
+   "Arrows ↔ ⬆ and 〰 wavy",
+   "Arrows and wavy"
+  ],
+  [
+   "CJK 日本語 テスト",
+   "CJK 日本語 テスト"
+  ]
+ ],
+ "wrapText": [
+  {
+   "text": "Every morning starts with a choice and this one is a very good choice indeed",
+   "maxChars": 16,
+   "maxLines": 2,
+   "lines": [
+    "Every morning",
+    "starts with a…"
+   ],
+   "truncated": true
+  },
+  {
+   "text": "short",
+   "maxChars": 10,
+   "maxLines": 1,
+   "lines": [
+    "short"
+   ],
+   "truncated": false
+  },
+  {
+   "text": "",
+   "maxChars": 10,
+   "maxLines": 2,
+   "lines": [],
+   "truncated": false
+  },
+  {
+   "text": "one two three four five six seven",
+   "maxChars": 9,
+   "maxLines": 3,
+   "lines": [
+    "one two",
+    "three",
+    "four…"
+   ],
+   "truncated": true
+  },
+  {
+   "text": "abcdefghijklmnopqrstuvwxyz",
+   "maxChars": 6,
+   "maxLines": 3,
+   "lines": [
+    "abcdef",
+    "ghijkl",
+    "mnopq…"
+   ],
+   "truncated": true
+  },
+  {
+   "text": "abcdefghijklmnopqrstuvwxyz0123456789",
+   "maxChars": 6,
+   "maxLines": 2,
+   "lines": [
+    "abcdef",
+    "ghijk…"
+   ],
+   "truncated": true
+  },
+  {
+   "text": "Hello, world; this is: a test. Of punctuation, at the end, of lines.",
+   "maxChars": 12,
+   "maxLines": 2,
+   "lines": [
+    "Hello,",
+    "world; this…"
+   ],
+   "truncated": true
+  },
+  {
+   "text": "Supercalifragilisticexpialidocious",
+   "maxChars": 8,
+   "maxLines": 2,
+   "lines": [
+    "Supercal",
+    "ifragil…"
+   ],
+   "truncated": true
+  },
+  {
+   "text": "a b c d e f g h i j k l m n o p",
+   "maxChars": 3,
+   "maxLines": 2,
+   "lines": [
+    "a b",
+    "c…"
+   ],
+   "truncated": true
+  },
+  {
+   "text": "Word  🎉 with emoji inside the wrapped text",
+   "maxChars": 10,
+   "maxLines": 2,
+   "lines": [
+    "Word with",
+    "emoji…"
+   ],
+   "truncated": true
+  },
+  {
+   "text": "exactly sixteen!",
+   "maxChars": 16,
+   "maxLines": 1,
+   "lines": [
+    "exactly sixteen!"
+   ],
+   "truncated": false
+  },
+  {
+   "text": "exactly sixteen!!",
+   "maxChars": 16,
+   "maxLines": 1,
+   "lines": [
+    "exactly…"
+   ],
+   "truncated": true
+  },
+  {
+   "text": "wrap, wrap, wrap, wrap, wrap, wrap",
+   "maxChars": 11,
+   "maxLines": 1,
+   "lines": [
+    "wrap…"
+   ],
+   "truncated": true
+  },
+  {
+   "text": "aaaaaa bbbbbb cccccc",
+   "maxChars": 6,
+   "maxLines": 2,
+   "lines": [
+    "aaaaaa",
+    "bbbbb…"
+   ],
+   "truncated": true
+  }
+ ],
+ "hexColor": [
+  {
+   "input": "#ff8a3d",
+   "fallback": "F",
+   "out": "0xFF8A3D"
+  },
+  {
+   "input": "ff8a3d",
+   "fallback": "F",
+   "out": "0xFF8A3D"
+  },
+  {
+   "input": "#FFF",
+   "fallback": "F",
+   "out": "0xFFFFFF"
+  },
+  {
+   "input": "#abc",
+   "fallback": "F",
+   "out": "0xAABBCC"
+  },
+  {
+   "input": "  #0b3d91 ",
+   "fallback": "F",
+   "out": "0x0B3D91"
+  },
+  {
+   "input": "#12345",
+   "fallback": "F",
+   "out": "F"
+  },
+  {
+   "input": "red",
+   "fallback": "0x111827",
+   "out": "0x111827"
+  },
+  {
+   "input": null,
+   "fallback": "0x111827",
+   "out": "0x111827"
+  },
+  {
+   "input": "#gggggg",
+   "fallback": "",
+   "out": ""
+  },
+  {
+   "input": "0x123456",
+   "fallback": "F",
+   "out": "F"
+  },
+  {
+   "input": "#1234567",
+   "fallback": "F",
+   "out": "F"
+  }
+ ],
+ "cuesForLine": [
+  {
+   "text": "Every morning starts with a choice. Make it a good one. Come say hi.",
+   "start": 0,
+   "seconds": 9.5,
+   "maxWords": 6,
+   "cues": [
+    {
+     "start": 0,
+     "end": 5.038,
+     "text": "Every morning starts with a choice."
+    },
+    {
+     "start": 5.038,
+     "end": 7.773,
+     "text": "Make it a good one."
+    },
+    {
+     "start": 7.773,
+     "end": 9.5,
+     "text": "Come say hi."
+    }
+   ]
+  },
+  {
+   "text": "Fresh coffee, roasted right here on Main Street. Come say hi.",
+   "start": 1,
+   "seconds": 4,
+   "maxWords": 6,
+   "cues": [
+    {
+     "start": 1,
+     "end": 1.881,
+     "text": "Fresh coffee,"
+    },
+    {
+     "start": 1.881,
+     "end": 4.186,
+     "text": "roasted right here on Main Street."
+    },
+    {
+     "start": 4.186,
+     "end": 5,
+     "text": "Come say hi."
+    }
+   ]
+  },
+  {
+   "text": "Pastries baked next door — every single day!",
+   "start": 2.75,
+   "seconds": 2.6,
+   "maxWords": 6,
+   "cues": [
+    {
+     "start": 2.75,
+     "end": 4.322,
+     "text": "Pastries baked next door —"
+    },
+    {
+     "start": 4.322,
+     "end": 5.35,
+     "text": "every single day!"
+    }
+   ]
+  },
+  {
+   "text": "one two three four five six seven",
+   "start": 0,
+   "seconds": 3,
+   "maxWords": 6,
+   "cues": [
+    {
+     "start": 0,
+     "end": 3,
+     "text": "one two three four five six seven"
+    }
+   ]
+  },
+  {
+   "text": "one two three four five six seven eight nine ten eleven twelve thirteen",
+   "start": 0.5,
+   "seconds": 7,
+   "maxWords": 4,
+   "cues": [
+    {
+     "start": 0.5,
+     "end": 2.326,
+     "text": "one two three four"
+    },
+    {
+     "start": 2.326,
+     "end": 4.355,
+     "text": "five six seven eight"
+    },
+    {
+     "start": 4.355,
+     "end": 7.5,
+     "text": "nine ten eleven twelve thirteen"
+    }
+   ]
+  },
+  {
+   "text": "",
+   "start": 0,
+   "seconds": 3,
+   "maxWords": 6,
+   "cues": []
+  },
+  {
+   "text": "Hi",
+   "start": 0,
+   "seconds": 0,
+   "maxWords": 6,
+   "cues": []
+  },
+  {
+   "text": "A; b: c! d? e, f. g",
+   "start": 0,
+   "seconds": 2,
+   "maxWords": 6,
+   "cues": [
+    {
+     "start": 0,
+     "end": 0.286,
+     "text": "A;"
+    },
+    {
+     "start": 0.286,
+     "end": 0.571,
+     "text": "b:"
+    },
+    {
+     "start": 0.571,
+     "end": 0.857,
+     "text": "c!"
+    },
+    {
+     "start": 0.857,
+     "end": 1.143,
+     "text": "d?"
+    },
+    {
+     "start": 1.143,
+     "end": 1.429,
+     "text": "e,"
+    },
+    {
+     "start": 1.429,
+     "end": 1.714,
+     "text": "f."
+    },
+    {
+     "start": 1.714,
+     "end": 2,
+     "text": "g"
+    }
+   ]
+  },
+  {
+   "text": "Wow!",
+   "start": 3,
+   "seconds": 1.25,
+   "maxWords": 6,
+   "cues": [
+    {
+     "start": 3,
+     "end": 4.25,
+     "text": "Wow!"
+    }
+   ]
+  }
+ ],
+ "cases": [
+  {
+   "name": "vertical",
+   "note": "test/mcp-spot.ts 9:16 render",
+   "spec": {
+    "aspect": "9:16",
+    "quality": "draft",
+    "transition": "fade",
+    "loudness": "social",
+    "targetSeconds": 12,
+    "scenes": [
+     {
+      "kind": "image",
+      "src": "{FX}/a still.png",
+      "duration": 2.5,
+      "text": "Fresh coffee, roasted in town",
+      "audio": {
+       "path": "{FX}/vo.wav",
+       "start": 0
+      }
+     },
+     {
+      "kind": "video",
+      "src": "{FX}/clip.mp4",
+      "duration": 3,
+      "transition": "dip"
+     },
+     {
+      "kind": "color",
+      "color": "#0b3d91",
+      "duration": 2,
+      "text": "Baked daily from 6 AM",
+      "transition": "slide",
+      "audio": {
+       "path": "{FX}/vo2.wav",
+       "start": 0
+      }
+     },
+     {
+      "kind": "image",
+      "src": "{FX}/b%d.png",
+      "duration": 2,
+      "kenburns": "left",
+      "fit": "contain"
+     }
+    ],
+    "music": {
+     "path": "{FX}/music.wav",
+     "volume": 0.22,
+     "duck": true
+    },
+    "captions": [
+     {
+      "start": 0,
+      "end": 5.038,
+      "text": "Every morning starts with a choice."
+     },
+     {
+      "start": 5.038,
+      "end": 7.773,
+      "text": "Make it a good one."
+     },
+     {
+      "start": 7.773,
+      "end": 9.5,
+      "text": "Come say hi."
+     }
+    ],
+    "endCard": {
+     "brand": "Main Street Coffee",
+     "headline": "Fresh roasted daily",
+     "cta": "Come say hi",
+     "url": "mainstreet.coffee",
+     "logo": "{FX}/logo.png",
+     "colors": [
+      "#0b3d91",
+      "#ff8a3d"
+     ],
+     "duration": 2.5
+    }
+   },
+   "calls": [
+    {
+     "args": [
+      "-i",
+      "img0.png",
+      "-filter_complex",
+      "[0:v]scale=540:960:force_original_aspect_ratio=increase,crop=540:960,setsar=1[fit];[fit]zoompan=z='1+0.12*on/89':x='iw/2-(iw/zoom/2)':y='ih/2-(ih/zoom/2)':d=90:s=360x640:fps=30,setsar=1,drawtext=fontfile=font.ttf:textfile=t0.txt:expansion=none:fontsize=26:fontcolor=white:x=(w-text_w)/2:y=83:box=1:boxcolor=black@0.42:boxborderw=7:alpha='min(1,t/0.35)',drawtext=fontfile=font.ttf:textfile=t1.txt:expansion=none:fontsize=26:fontcolor=white:x=(w-text_w)/2:y=116:box=1:boxcolor=black@0.42:boxborderw=7:alpha='min(1,t/0.35)',format=yuv420p[v]",
+      "-map",
+      "[v]",
+      "-frames:v",
+      "90",
+      "-c:v",
+      "libx264",
+      "-preset",
+      "ultrafast",
+      "-crf",
+      "23",
+      "-pix_fmt",
+      "yuv420p",
+      "-r",
+      "30",
+      "-an",
+      "-t",
+      "3",
+      "{WORK}/seg000.mp4"
+     ],
+     "progress": false
+    },
+    {
+     "args": [
+      "-stream_loop",
+      "-1",
+      "-i",
+      "{FX}/clip.mp4",
+      "-filter_complex",
+      "[0:v]scale=360:640:force_original_aspect_ratio=increase,crop=360:640,setsar=1[fit];[fit]fps=30,format=yuv420p[v]",
+      "-map",
+      "[v]",
+      "-c:v",
+      "libx264",
+      "-preset",
+      "ultrafast",
+      "-crf",
+      "23",
+      "-pix_fmt",
+      "yuv420p",
+      "-r",
+      "30",
+      "-an",
+      "-t",
+      "3.5",
+      "{WORK}/seg001.mp4"
+     ],
+     "progress": false
+    },
+    {
+     "args": [
+      "-filter_complex",
+      "color=c=0x0B3D91:s=360x640:r=30:d=2.5,setsar=1,drawtext=fontfile=font.ttf:textfile=t2.txt:expansion=none:fontsize=34:fontcolor=0xFFFFFF:x=(w-text_w)/2:y=281:alpha='min(1,t/0.35)',drawtext=fontfile=font.ttf:textfile=t3.txt:expansion=none:fontsize=34:fontcolor=0xFFFFFF:x=(w-text_w)/2:y=325:alpha='min(1,t/0.35)',format=yuv420p[v]",
+      "-map",
+      "[v]",
+      "-c:v",
+      "libx264",
+      "-preset",
+      "ultrafast",
+      "-crf",
+      "23",
+      "-pix_fmt",
+      "yuv420p",
+      "-r",
+      "30",
+      "-an",
+      "-t",
+      "2.5",
+      "{WORK}/seg002.mp4"
+     ],
+     "progress": false
+    },
+    {
+     "args": [
+      "-i",
+      "img3.png",
+      "-filter_complex",
+      "[0:v]split=2[fa][fb];[fa]scale=540:960:force_original_aspect_ratio=increase,crop=540:960,gblur=sigma=14[fbg];[fb]scale=540:960:force_original_aspect_ratio=decrease[ffg];[fbg][ffg]overlay=(W-w)/2:(H-h)/2,setsar=1[fit];[fit]zoompan=z='1.12':x='(iw-iw/zoom)*(1-on/74)':y='ih/2-(ih/zoom/2)':d=75:s=360x640:fps=30,setsar=1,format=yuv420p[v]",
+      "-map",
+      "[v]",
+      "-frames:v",
+      "75",
+      "-c:v",
+      "libx264",
+      "-preset",
+      "ultrafast",
+      "-crf",
+      "23",
+      "-pix_fmt",
+      "yuv420p",
+      "-r",
+      "30",
+      "-an",
+      "-t",
+      "2.5",
+      "{WORK}/seg003.mp4"
+     ],
+     "progress": false
+    },
+    {
+     "args": [
+      "-loop",
+      "1",
+      "-framerate",
+      "30",
+      "-t",
+      "2.5",
+      "-i",
+      "logo.png",
+      "-filter_complex",
+      "color=c=0x0B3D91:s=360x640:r=30:d=2.5,setsar=1[bg];[0:v]scale=216:102:force_original_aspect_ratio=decrease,format=rgba,fade=t=in:st=0:d=0.4:alpha=1[lg];[bg][lg]overlay=x=(W-w)/2:y=133:eof_action=repeat,drawbox=x=0:y=ih*0.955:w=iw:h=ih*0.045:color=0xFF8A3D:t=fill,drawtext=fontfile=font.ttf:textfile=t4.txt:expansion=none:fontsize=40:fontcolor=0xFFFFFF:x=(w-text_w)/2:y=251:alpha='min(1,t/0.44999999999999996)',drawtext=fontfile=font.ttf:textfile=t5.txt:expansion=none:fontsize=40:fontcolor=0xFFFFFF:x=(w-text_w)/2:y=302:alpha='min(1,t/0.44999999999999996)',drawtext=fontfile=font.ttf:textfile=t6.txt:expansion=none:fontsize=22:fontcolor=0xFFFFFF:x=(w-text_w)/2:y=358:alpha='min(1,t/0.5700000000000001)',drawtext=fontfile=font.ttf:textfile=t7.txt:expansion=none:fontsize=24:fontcolor=0xFFFFFF:x=(w-text_w)/2:y=403:box=1:boxcolor=0xFF8A3D:boxborderw=11:alpha='min(1,t/0.69)',drawtext=fontfile=font.ttf:textfile=t8.txt:expansion=none:fontsize=18:fontcolor=0xFFFFFF@0.85:x=(w-text_w)/2:y=451:alpha='min(1,t/0.81)',format=yuv420p[v]",
+      "-map",
+      "[v]",
+      "-c:v",
+      "libx264",
+      "-preset",
+      "ultrafast",
+      "-crf",
+      "23",
+      "-pix_fmt",
+      "yuv420p",
+      "-r",
+      "30",
+      "-an",
+      "-t",
+      "2.5",
+      "{WORK}/seg004.mp4"
+     ],
+     "progress": false
+    },
+    {
+     "args": [
+      "-i",
+      "seg000.mp4",
+      "-i",
+      "seg001.mp4",
+      "-i",
+      "seg002.mp4",
+      "-i",
+      "seg003.mp4",
+      "-i",
+      "seg004.mp4",
+      "-i",
+      "{FX}/vo.wav",
+      "-i",
+      "{FX}/vo2.wav",
+      "-stream_loop",
+      "-1",
+      "-i",
+      "{FX}/music.wav",
+      "-/filter_complex",
+      "graph.txt",
+      "-map",
+      "[vout]",
+      "-map",
+      "[aout]",
+      "-c:v",
+      "libx264",
+      "-preset",
+      "veryfast",
+      "-crf",
+      "26",
+      "-profile:v",
+      "high",
+      "-pix_fmt",
+      "yuv420p",
+      "-r",
+      "30",
+      "-g",
+      "60",
+      "-c:a",
+      "aac",
+      "-b:a",
+      "128k",
+      "-ar",
+      "48000",
+      "-ac",
+      "2",
+      "-movflags",
+      "+faststart",
+      "-t",
+      "12",
+      "{WORK}/out.mp4"
+     ],
+     "progress": true
+    },
+    {
+     "args": [
+      "-ss",
+      "1",
+      "-i",
+      "{OUT}/v.mp4",
+      "-frames:v",
+      "1",
+      "-update",
+      "1",
+      "{OUT}/v.png"
+     ],
+     "progress": false
+    }
+   ],
+   "graph": "[0:v]settb=AVTB,setpts=PTS-STARTPTS,fps=30,settb=AVTB,format=yuv420p[s0];\n[1:v]settb=AVTB,setpts=PTS-STARTPTS,fps=30,settb=AVTB,format=yuv420p[s1];\n[2:v]settb=AVTB,setpts=PTS-STARTPTS,fps=30,settb=AVTB,format=yuv420p[s2];\n[3:v]settb=AVTB,setpts=PTS-STARTPTS,fps=30,settb=AVTB,format=yuv420p[s3];\n[4:v]settb=AVTB,setpts=PTS-STARTPTS,fps=30,settb=AVTB,format=yuv420p[s4];\n[s0][s1]xfade=transition=fade:duration=0.5:offset=2.5[j1];\n[j1][s2]xfade=transition=fadeblack:duration=0.5:offset=5.5[j2];\n[j2][s3]xfade=transition=slideleft:duration=0.5:offset=7.5[j3];\n[j3][s4]xfade=transition=fade:duration=0.5:offset=9.5[j4];\n[j4]drawtext=fontfile=font.ttf:textfile=t9.txt:expansion=none:fontsize=21:fontcolor=white:x=(w-text_w)/2:y=438:borderw=1:bordercolor=black@0.7:box=1:boxcolor=black@0.5:boxborderw=6:enable='between(t,0,5.038)',drawtext=fontfile=font.ttf:textfile=t10.txt:expansion=none:fontsize=21:fontcolor=white:x=(w-text_w)/2:y=465:borderw=1:bordercolor=black@0.7:box=1:boxcolor=black@0.5:boxborderw=6:enable='between(t,0,5.038)',drawtext=fontfile=font.ttf:textfile=t11.txt:expansion=none:fontsize=21:fontcolor=white:x=(w-text_w)/2:y=465:borderw=1:bordercolor=black@0.7:box=1:boxcolor=black@0.5:boxborderw=6:enable='between(t,5.038,7.773)',drawtext=fontfile=font.ttf:textfile=t12.txt:expansion=none:fontsize=21:fontcolor=white:x=(w-text_w)/2:y=465:borderw=1:bordercolor=black@0.7:box=1:boxcolor=black@0.5:boxborderw=6:enable='between(t,7.773,9.5)',tpad=stop_mode=clone:stop_duration=1,trim=duration=12,setpts=PTS-STARTPTS,format=yuv420p[vout];\n[5:a]aresample=48000,aformat=sample_fmts=fltp:channel_layouts=stereo[vo0];\n[6:a]aresample=48000,aformat=sample_fmts=fltp:channel_layouts=stereo,adelay=5500:all=1[vo1];\n[vo0][vo1]amix=inputs=2:normalize=0:duration=longest:dropout_transition=0[vo];\n[7:a]aresample=48000,aformat=sample_fmts=fltp:channel_layouts=stereo,atrim=0:12,asetpts=PTS-STARTPTS,volume=0.22,afade=t=in:d=0.3,afade=t=out:st=10.5:d=1.5[mus];\n[vo]asplit=2[vo1][vosc];\n[mus][vosc]sidechaincompress=threshold=0.015:ratio=12:attack=20:release=400[duck];\n[vo1][duck]amix=inputs=2:normalize=0:duration=longest[mix];\n[mix]apad,atrim=0:12,loudnorm=I=-16:TP=-1.5:LRA=11,aresample=48000,asetpts=N/SR/TB,apad=whole_dur=12,atrim=0:12,asetpts=PTS-STARTPTS[aout]",
+   "texts": [
+    "Fresh coffee,",
+    "roasted in town",
+    "Baked daily",
+    "from 6 AM",
+    "Main Street",
+    "Coffee",
+    "Fresh roasted daily",
+    "Come say hi",
+    "mainstreet.coffee",
+    "Every morning starts with",
+    "a choice.",
+    "Make it a good one.",
+    "Come say hi."
+   ],
+   "staged": [
+    [
+     "{FX}/a still.png",
+     "img0.png"
+    ],
+    [
+     "{FX}/b%d.png",
+     "img3.png"
+    ],
+    [
+     "{FX}/logo.png",
+     "logo.png"
+    ]
+   ],
+   "result": {
+    "duration": 12,
+    "width": 360,
+    "height": 640,
+    "fps": 30,
+    "timeline": [
+     {
+      "start": 0,
+      "end": 2.5,
+      "kind": "image",
+      "label": "Fresh coffee, roasted in town"
+     },
+     {
+      "start": 2.5,
+      "end": 5.5,
+      "kind": "video"
+     },
+     {
+      "start": 5.5,
+      "end": 7.5,
+      "kind": "color",
+      "label": "Baked daily from 6 AM"
+     },
+     {
+      "start": 7.5,
+      "end": 9.5,
+      "kind": "image"
+     },
+     {
+      "start": 9.5,
+      "end": 12,
+      "kind": "endcard",
+      "label": "Main Street Coffee"
+     }
+    ],
+    "warnings": []
+   }
+  },
+  {
+   "name": "landscape",
+   "note": "test/mcp-spot.ts 16:9 render",
+   "spec": {
+    "aspect": "16:9",
+    "quality": "draft",
+    "loudness": "social",
+    "scenes": [
+     {
+      "kind": "image",
+      "src": "{FX}/a still.png",
+      "duration": 2,
+      "kenburns": "in"
+     },
+     {
+      "kind": "color",
+      "color": "#222222",
+      "duration": 1.5,
+      "text": "Two"
+     }
+    ],
+    "voiceover": {
+     "path": "{FX}/vo.wav",
+     "start": 0
+    },
+    "captions": [
+     {
+      "start": 0.2,
+      "end": 1.5,
+      "text": "Hello there"
+     },
+     {
+      "start": 1.6,
+      "end": 3,
+      "text": "Second cue"
+     }
+    ],
+    "endCard": {
+     "brand": "Acme",
+     "duration": 1.5
+    }
+   },
+   "calls": [
+    {
+     "args": [
+      "-i",
+      "img0.png",
+      "-filter_complex",
+      "[0:v]scale=960:540:force_original_aspect_ratio=increase,crop=960:540,setsar=1[fit];[fit]zoompan=z='1+0.12*on/59':x='iw/2-(iw/zoom/2)':y='ih/2-(ih/zoom/2)':d=60:s=640x360:fps=30,setsar=1,format=yuv420p[v]",
+      "-map",
+      "[v]",
+      "-frames:v",
+      "60",
+      "-c:v",
+      "libx264",
+      "-preset",
+      "ultrafast",
+      "-crf",
+      "23",
+      "-pix_fmt",
+      "yuv420p",
+      "-r",
+      "30",
+      "-an",
+      "-t",
+      "2",
+      "{WORK}/seg000.mp4"
+     ],
+     "progress": false
+    },
+    {
+     "args": [
+      "-filter_complex",
+      "color=c=0x222222:s=640x360:r=30:d=1.5,setsar=1,drawtext=fontfile=font.ttf:textfile=t0.txt:expansion=none:fontsize=34:fontcolor=0xFFFFFF:x=(w-text_w)/2:y=163:alpha='min(1,t/0.35)',format=yuv420p[v]",
+      "-map",
+      "[v]",
+      "-c:v",
+      "libx264",
+      "-preset",
+      "ultrafast",
+      "-crf",
+      "23",
+      "-pix_fmt",
+      "yuv420p",
+      "-r",
+      "30",
+      "-an",
+      "-t",
+      "1.5",
+      "{WORK}/seg001.mp4"
+     ],
+     "progress": false
+    },
+    {
+     "args": [
+      "-filter_complex",
+      "color=c=0x111827:s=640x360:r=30:d=1.5,setsar=1,drawbox=x=0:y=ih*0.955:w=iw:h=ih*0.045:color=0xF59E0B:t=fill,drawtext=fontfile=font.ttf:textfile=t1.txt:expansion=none:fontsize=36:fontcolor=0xFFFFFF:x=(w-text_w)/2:y=162:alpha='min(1,t/0.44999999999999996)',format=yuv420p[v]",
+      "-map",
+      "[v]",
+      "-c:v",
+      "libx264",
+      "-preset",
+      "ultrafast",
+      "-crf",
+      "23",
+      "-pix_fmt",
+      "yuv420p",
+      "-r",
+      "30",
+      "-an",
+      "-t",
+      "1.5",
+      "{WORK}/seg002.mp4"
+     ],
+     "progress": false
+    },
+    {
+     "args": [
+      "-i",
+      "seg000.mp4",
+      "-i",
+      "seg001.mp4",
+      "-i",
+      "seg002.mp4",
+      "-i",
+      "{FX}/vo.wav",
+      "-/filter_complex",
+      "graph.txt",
+      "-map",
+      "[vout]",
+      "-map",
+      "[aout]",
+      "-c:v",
+      "libx264",
+      "-preset",
+      "veryfast",
+      "-crf",
+      "26",
+      "-profile:v",
+      "high",
+      "-pix_fmt",
+      "yuv420p",
+      "-r",
+      "30",
+      "-g",
+      "60",
+      "-c:a",
+      "aac",
+      "-b:a",
+      "128k",
+      "-ar",
+      "48000",
+      "-ac",
+      "2",
+      "-movflags",
+      "+faststart",
+      "-t",
+      "5",
+      "{WORK}/out.mp4"
+     ],
+     "progress": true
+    },
+    {
+     "args": [
+      "-ss",
+      "0.8",
+      "-i",
+      "{OUT}/v.mp4",
+      "-frames:v",
+      "1",
+      "-update",
+      "1",
+      "{OUT}/v.png"
+     ],
+     "progress": false
+    }
+   ],
+   "graph": "[0:v]settb=AVTB,setpts=PTS-STARTPTS,fps=30,settb=AVTB,format=yuv420p[s0];\n[1:v]settb=AVTB,setpts=PTS-STARTPTS,fps=30,settb=AVTB,format=yuv420p[s1];\n[2:v]settb=AVTB,setpts=PTS-STARTPTS,fps=30,settb=AVTB,format=yuv420p[s2];\n[s0][s1]concat=n=2:v=1:a=0,settb=AVTB[j1];\n[j1][s2]concat=n=2:v=1:a=0,settb=AVTB[j2];\n[j2]drawtext=fontfile=font.ttf:textfile=t2.txt:expansion=none:fontsize=19:fontcolor=white:x=(w-text_w)/2:y=305:borderw=1:bordercolor=black@0.7:box=1:boxcolor=black@0.5:boxborderw=5:enable='between(t,0.2,1.5)',drawtext=fontfile=font.ttf:textfile=t3.txt:expansion=none:fontsize=19:fontcolor=white:x=(w-text_w)/2:y=305:borderw=1:bordercolor=black@0.7:box=1:boxcolor=black@0.5:boxborderw=5:enable='between(t,1.6,3)',tpad=stop_mode=clone:stop_duration=1,trim=duration=5,setpts=PTS-STARTPTS,format=yuv420p[vout];\n[3:a]aresample=48000,aformat=sample_fmts=fltp:channel_layouts=stereo[vo0];\n[vo0]anull[vo];\n[vo]apad,atrim=0:5,loudnorm=I=-16:TP=-1.5:LRA=11,aresample=48000,asetpts=N/SR/TB,apad=whole_dur=5,atrim=0:5,asetpts=PTS-STARTPTS[aout]",
+   "texts": [
+    "Two",
+    "Acme",
+    "Hello there",
+    "Second cue"
+   ],
+   "staged": [
+    [
+     "{FX}/a still.png",
+     "img0.png"
+    ]
+   ],
+   "result": {
+    "duration": 5,
+    "width": 640,
+    "height": 360,
+    "fps": 30,
+    "timeline": [
+     {
+      "start": 0,
+      "end": 2,
+      "kind": "image"
+     },
+     {
+      "start": 2,
+      "end": 3.5,
+      "kind": "color",
+      "label": "Two"
+     },
+     {
+      "start": 3.5,
+      "end": 5,
+      "kind": "endcard",
+      "label": "Acme"
+     }
+    ],
+    "warnings": []
+   }
+  },
+  {
+   "name": "square",
+   "note": "test/mcp-spot.ts 1:1 render",
+   "spec": {
+    "aspect": "1:1",
+    "quality": "draft",
+    "loudness": "social",
+    "scenes": [
+     {
+      "kind": "color",
+      "color": "#ff8a3d",
+      "duration": 1.5,
+      "text": "Square deal"
+     },
+     {
+      "kind": "color",
+      "color": "#111111",
+      "duration": 1.5
+     }
+    ]
+   },
+   "calls": [
+    {
+     "args": [
+      "-filter_complex",
+      "color=c=0xFF8A3D:s=360x360:r=30:d=1.5,setsar=1,drawtext=fontfile=font.ttf:textfile=t0.txt:expansion=none:fontsize=34:fontcolor=0xFFFFFF:x=(w-text_w)/2:y=163:alpha='min(1,t/0.35)',format=yuv420p[v]",
+      "-map",
+      "[v]",
+      "-c:v",
+      "libx264",
+      "-preset",
+      "ultrafast",
+      "-crf",
+      "23",
+      "-pix_fmt",
+      "yuv420p",
+      "-r",
+      "30",
+      "-an",
+      "-t",
+      "1.5",
+      "{WORK}/seg000.mp4"
+     ],
+     "progress": false
+    },
+    {
+     "args": [
+      "-filter_complex",
+      "color=c=0x111111:s=360x360:r=30:d=1.5,setsar=1,format=yuv420p[v]",
+      "-map",
+      "[v]",
+      "-c:v",
+      "libx264",
+      "-preset",
+      "ultrafast",
+      "-crf",
+      "23",
+      "-pix_fmt",
+      "yuv420p",
+      "-r",
+      "30",
+      "-an",
+      "-t",
+      "1.5",
+      "{WORK}/seg001.mp4"
+     ],
+     "progress": false
+    },
+    {
+     "args": [
+      "-i",
+      "seg000.mp4",
+      "-i",
+      "seg001.mp4",
+      "-/filter_complex",
+      "graph.txt",
+      "-map",
+      "[vout]",
+      "-map",
+      "[aout]",
+      "-c:v",
+      "libx264",
+      "-preset",
+      "veryfast",
+      "-crf",
+      "26",
+      "-profile:v",
+      "high",
+      "-pix_fmt",
+      "yuv420p",
+      "-r",
+      "30",
+      "-g",
+      "60",
+      "-c:a",
+      "aac",
+      "-b:a",
+      "128k",
+      "-ar",
+      "48000",
+      "-ac",
+      "2",
+      "-movflags",
+      "+faststart",
+      "-t",
+      "3",
+      "{WORK}/out.mp4"
+     ],
+     "progress": true
+    },
+    {
+     "args": [
+      "-ss",
+      "0.6",
+      "-i",
+      "{OUT}/v.mp4",
+      "-frames:v",
+      "1",
+      "-update",
+      "1",
+      "{OUT}/v.png"
+     ],
+     "progress": false
+    }
+   ],
+   "graph": "[0:v]settb=AVTB,setpts=PTS-STARTPTS,fps=30,settb=AVTB,format=yuv420p[s0];\n[1:v]settb=AVTB,setpts=PTS-STARTPTS,fps=30,settb=AVTB,format=yuv420p[s1];\n[s0][s1]concat=n=2:v=1:a=0,settb=AVTB[j1];\n[j1]tpad=stop_mode=clone:stop_duration=1,trim=duration=3,setpts=PTS-STARTPTS,format=yuv420p[vout];\nanullsrc=r=48000:cl=stereo,atrim=0:3[mix];\n[mix]apad,atrim=0:3,aresample=48000,asetpts=N/SR/TB,apad=whole_dur=3,atrim=0:3,asetpts=PTS-STARTPTS[aout]",
+   "texts": [
+    "Square deal"
+   ],
+   "staged": [],
+   "result": {
+    "duration": 3,
+    "width": 360,
+    "height": 360,
+    "fps": 30,
+    "timeline": [
+     {
+      "start": 0,
+      "end": 1.5,
+      "kind": "color",
+      "label": "Square deal"
+     },
+     {
+      "start": 1.5,
+      "end": 3,
+      "kind": "color"
+     }
+    ],
+    "warnings": []
+   }
+  },
+  {
+   "name": "portrait45",
+   "note": "test/mcp-spot.ts 4:5 render",
+   "spec": {
+    "aspect": "4:5",
+    "quality": "draft",
+    "loudness": "social",
+    "scenes": [
+     {
+      "kind": "color",
+      "color": "#ff8a3d",
+      "duration": 1.5,
+      "text": "Square deal"
+     },
+     {
+      "kind": "color",
+      "color": "#111111",
+      "duration": 1.5
+     }
+    ]
+   },
+   "calls": [
+    {
+     "args": [
+      "-filter_complex",
+      "color=c=0xFF8A3D:s=360x450:r=30:d=1.5,setsar=1,drawtext=fontfile=font.ttf:textfile=t0.txt:expansion=none:fontsize=34:fontcolor=0xFFFFFF:x=(w-text_w)/2:y=208:alpha='min(1,t/0.35)',format=yuv420p[v]",
+      "-map",
+      "[v]",
+      "-c:v",
+      "libx264",
+      "-preset",
+      "ultrafast",
+      "-crf",
+      "23",
+      "-pix_fmt",
+      "yuv420p",
+      "-r",
+      "30",
+      "-an",
+      "-t",
+      "1.5",
+      "{WORK}/seg000.mp4"
+     ],
+     "progress": false
+    },
+    {
+     "args": [
+      "-filter_complex",
+      "color=c=0x111111:s=360x450:r=30:d=1.5,setsar=1,format=yuv420p[v]",
+      "-map",
+      "[v]",
+      "-c:v",
+      "libx264",
+      "-preset",
+      "ultrafast",
+      "-crf",
+      "23",
+      "-pix_fmt",
+      "yuv420p",
+      "-r",
+      "30",
+      "-an",
+      "-t",
+      "1.5",
+      "{WORK}/seg001.mp4"
+     ],
+     "progress": false
+    },
+    {
+     "args": [
+      "-i",
+      "seg000.mp4",
+      "-i",
+      "seg001.mp4",
+      "-/filter_complex",
+      "graph.txt",
+      "-map",
+      "[vout]",
+      "-map",
+      "[aout]",
+      "-c:v",
+      "libx264",
+      "-preset",
+      "veryfast",
+      "-crf",
+      "26",
+      "-profile:v",
+      "high",
+      "-pix_fmt",
+      "yuv420p",
+      "-r",
+      "30",
+      "-g",
+      "60",
+      "-c:a",
+      "aac",
+      "-b:a",
+      "128k",
+      "-ar",
+      "48000",
+      "-ac",
+      "2",
+      "-movflags",
+      "+faststart",
+      "-t",
+      "3",
+      "{WORK}/out.mp4"
+     ],
+     "progress": true
+    },
+    {
+     "args": [
+      "-ss",
+      "0.6",
+      "-i",
+      "{OUT}/v.mp4",
+      "-frames:v",
+      "1",
+      "-update",
+      "1",
+      "{OUT}/v.png"
+     ],
+     "progress": false
+    }
+   ],
+   "graph": "[0:v]settb=AVTB,setpts=PTS-STARTPTS,fps=30,settb=AVTB,format=yuv420p[s0];\n[1:v]settb=AVTB,setpts=PTS-STARTPTS,fps=30,settb=AVTB,format=yuv420p[s1];\n[s0][s1]concat=n=2:v=1:a=0,settb=AVTB[j1];\n[j1]tpad=stop_mode=clone:stop_duration=1,trim=duration=3,setpts=PTS-STARTPTS,format=yuv420p[vout];\nanullsrc=r=48000:cl=stereo,atrim=0:3[mix];\n[mix]apad,atrim=0:3,aresample=48000,asetpts=N/SR/TB,apad=whole_dur=3,atrim=0:3,asetpts=PTS-STARTPTS[aout]",
+   "texts": [
+    "Square deal"
+   ],
+   "staged": [],
+   "result": {
+    "duration": 3,
+    "width": 360,
+    "height": 450,
+    "fps": 30,
+    "timeline": [
+     {
+      "start": 0,
+      "end": 1.5,
+      "kind": "color",
+      "label": "Square deal"
+     },
+     {
+      "start": 1.5,
+      "end": 3,
+      "kind": "color"
+     }
+    ],
+    "warnings": []
+   }
+  },
+  {
+   "name": "fallback",
+   "note": "test/mcp-spot.ts unreadable clip",
+   "spec": {
+    "aspect": "9:16",
+    "quality": "draft",
+    "loudness": "social",
+    "targetSeconds": 3,
+    "scenes": [
+     {
+      "kind": "video",
+      "src": "{FX}/junk.mp4",
+      "duration": 1.5
+     },
+     {
+      "kind": "image",
+      "src": "{FX}/a still.png",
+      "duration": 1.5
+     }
+    ],
+    "voiceover": {
+     "path": "{FX}/long.wav",
+     "start": 0
+    }
+   },
+   "calls": [
+    {
+     "args": [
+      "-filter_complex",
+      "color=c=0x111827:s=360x640:r=30:d=1.5,setsar=1,format=yuv420p[v]",
+      "-map",
+      "[v]",
+      "-c:v",
+      "libx264",
+      "-preset",
+      "ultrafast",
+      "-crf",
+      "23",
+      "-pix_fmt",
+      "yuv420p",
+      "-r",
+      "30",
+      "-an",
+      "-t",
+      "1.5",
+      "{WORK}/seg000.mp4"
+     ],
+     "progress": false
+    },
+    {
+     "args": [
+      "-i",
+      "img1.png",
+      "-filter_complex",
+      "[0:v]scale=540:960:force_original_aspect_ratio=increase,crop=540:960,setsar=1[fit];[fit]zoompan=z='1.12':x='(iw-iw/zoom)*on/44':y='ih/2-(ih/zoom/2)':d=45:s=360x640:fps=30,setsar=1,format=yuv420p[v]",
+      "-map",
+      "[v]",
+      "-frames:v",
+      "45",
+      "-c:v",
+      "libx264",
+      "-preset",
+      "ultrafast",
+      "-crf",
+      "23",
+      "-pix_fmt",
+      "yuv420p",
+      "-r",
+      "30",
+      "-an",
+      "-t",
+      "1.5",
+      "{WORK}/seg001.mp4"
+     ],
+     "progress": false
+    },
+    {
+     "args": [
+      "-i",
+      "seg000.mp4",
+      "-i",
+      "seg001.mp4",
+      "-i",
+      "{FX}/long.wav",
+      "-/filter_complex",
+      "graph.txt",
+      "-map",
+      "[vout]",
+      "-map",
+      "[aout]",
+      "-c:v",
+      "libx264",
+      "-preset",
+      "veryfast",
+      "-crf",
+      "26",
+      "-profile:v",
+      "high",
+      "-pix_fmt",
+      "yuv420p",
+      "-r",
+      "30",
+      "-g",
+      "60",
+      "-c:a",
+      "aac",
+      "-b:a",
+      "128k",
+      "-ar",
+      "48000",
+      "-ac",
+      "2",
+      "-movflags",
+      "+faststart",
+      "-t",
+      "3",
+      "{WORK}/out.mp4"
+     ],
+     "progress": true
+    },
+    {
+     "args": [
+      "-ss",
+      "0.6",
+      "-i",
+      "{OUT}/v.mp4",
+      "-frames:v",
+      "1",
+      "-update",
+      "1",
+      "{OUT}/v.png"
+     ],
+     "progress": false
+    }
+   ],
+   "graph": "[0:v]settb=AVTB,setpts=PTS-STARTPTS,fps=30,settb=AVTB,format=yuv420p[s0];\n[1:v]settb=AVTB,setpts=PTS-STARTPTS,fps=30,settb=AVTB,format=yuv420p[s1];\n[s0][s1]concat=n=2:v=1:a=0,settb=AVTB[j1];\n[j1]tpad=stop_mode=clone:stop_duration=1,trim=duration=3,setpts=PTS-STARTPTS,format=yuv420p[vout];\n[2:a]aresample=48000,aformat=sample_fmts=fltp:channel_layouts=stereo[vo0];\n[vo0]anull[vo];\n[vo]apad,atrim=0:3,loudnorm=I=-16:TP=-1.5:LRA=11,aresample=48000,asetpts=N/SR/TB,apad=whole_dur=3,atrim=0:3,asetpts=PTS-STARTPTS[aout]",
+   "texts": [],
+   "staged": [
+    [
+     "{FX}/a still.png",
+     "img1.png"
+    ]
+   ],
+   "result": {
+    "duration": 3,
+    "width": 360,
+    "height": 640,
+    "fps": 30,
+    "timeline": [
+     {
+      "start": 0,
+      "end": 1.5,
+      "kind": "video"
+     },
+     {
+      "start": 1.5,
+      "end": 3,
+      "kind": "image"
+     }
+    ],
+    "warnings": [
+     "scene 1: the video clip could not be read (junk.mp4); used a colour card instead"
+    ]
+   }
+  },
+  {
+   "name": "cutfade",
+   "note": "test/mcp-fix-spot.ts cut then fade then end card",
+   "spec": {
+    "aspect": "9:16",
+    "quality": "draft",
+    "loudness": "social",
+    "scenes": [
+     {
+      "kind": "color",
+      "color": "#112233",
+      "duration": 2,
+      "audio": {
+       "path": "{FX}/vo.wav",
+       "start": 0
+      }
+     },
+     {
+      "kind": "color",
+      "color": "#332211",
+      "duration": 2,
+      "transition": "fade"
+     },
+     {
+      "kind": "color",
+      "color": "#223311",
+      "duration": 2
+     }
+    ],
+    "endCard": {
+     "brand": "X",
+     "duration": 1.5
+    }
+   },
+   "calls": [
+    {
+     "args": [
+      "-filter_complex",
+      "color=c=0x112233:s=360x640:r=30:d=2,setsar=1,format=yuv420p[v]",
+      "-map",
+      "[v]",
+      "-c:v",
+      "libx264",
+      "-preset",
+      "ultrafast",
+      "-crf",
+      "23",
+      "-pix_fmt",
+      "yuv420p",
+      "-r",
+      "30",
+      "-an",
+      "-t",
+      "2",
+      "{WORK}/seg000.mp4"
+     ],
+     "progress": false
+    },
+    {
+     "args": [
+      "-filter_complex",
+      "color=c=0x332211:s=360x640:r=30:d=2.5,setsar=1,format=yuv420p[v]",
+      "-map",
+      "[v]",
+      "-c:v",
+      "libx264",
+      "-preset",
+      "ultrafast",
+      "-crf",
+      "23",
+      "-pix_fmt",
+      "yuv420p",
+      "-r",
+      "30",
+      "-an",
+      "-t",
+      "2.5",
+      "{WORK}/seg001.mp4"
+     ],
+     "progress": false
+    },
+    {
+     "args": [
+      "-filter_complex",
+      "color=c=0x223311:s=360x640:r=30:d=2,setsar=1,format=yuv420p[v]",
+      "-map",
+      "[v]",
+      "-c:v",
+      "libx264",
+      "-preset",
+      "ultrafast",
+      "-crf",
+      "23",
+      "-pix_fmt",
+      "yuv420p",
+      "-r",
+      "30",
+      "-an",
+      "-t",
+      "2",
+      "{WORK}/seg002.mp4"
+     ],
+     "progress": false
+    },
+    {
+     "args": [
+      "-filter_complex",
+      "color=c=0x111827:s=360x640:r=30:d=1.5,setsar=1,drawbox=x=0:y=ih*0.955:w=iw:h=ih*0.045:color=0xF59E0B:t=fill,drawtext=fontfile=font.ttf:textfile=t0.txt:expansion=none:fontsize=40:fontcolor=0xFFFFFF:x=(w-text_w)/2:y=281:alpha='min(1,t/0.44999999999999996)',format=yuv420p[v]",
+      "-map",
+      "[v]",
+      "-c:v",
+      "libx264",
+      "-preset",
+      "ultrafast",
+      "-crf",
+      "23",
+      "-pix_fmt",
+      "yuv420p",
+      "-r",
+      "30",
+      "-an",
+      "-t",
+      "1.5",
+      "{WORK}/seg003.mp4"
+     ],
+     "progress": false
+    },
+    {
+     "args": [
+      "-i",
+      "seg000.mp4",
+      "-i",
+      "seg001.mp4",
+      "-i",
+      "seg002.mp4",
+      "-i",
+      "seg003.mp4",
+      "-i",
+      "{FX}/vo.wav",
+      "-/filter_complex",
+      "graph.txt",
+      "-map",
+      "[vout]",
+      "-map",
+      "[aout]",
+      "-c:v",
+      "libx264",
+      "-preset",
+      "veryfast",
+      "-crf",
+      "26",
+      "-profile:v",
+      "high",
+      "-pix_fmt",
+      "yuv420p",
+      "-r",
+      "30",
+      "-g",
+      "60",
+      "-c:a",
+      "aac",
+      "-b:a",
+      "128k",
+      "-ar",
+      "48000",
+      "-ac",
+      "2",
+      "-movflags",
+      "+faststart",
+      "-t",
+      "7.5",
+      "{WORK}/out.mp4"
+     ],
+     "progress": true
+    },
+    {
+     "args": [
+      "-ss",
+      "0.8",
+      "-i",
+      "{OUT}/v.mp4",
+      "-frames:v",
+      "1",
+      "-update",
+      "1",
+      "{OUT}/v.png"
+     ],
+     "progress": false
+    }
+   ],
+   "graph": "[0:v]settb=AVTB,setpts=PTS-STARTPTS,fps=30,settb=AVTB,format=yuv420p[s0];\n[1:v]settb=AVTB,setpts=PTS-STARTPTS,fps=30,settb=AVTB,format=yuv420p[s1];\n[2:v]settb=AVTB,setpts=PTS-STARTPTS,fps=30,settb=AVTB,format=yuv420p[s2];\n[3:v]settb=AVTB,setpts=PTS-STARTPTS,fps=30,settb=AVTB,format=yuv420p[s3];\n[s0][s1]concat=n=2:v=1:a=0,settb=AVTB[j1];\n[j1][s2]xfade=transition=fade:duration=0.5:offset=4[j2];\n[j2][s3]concat=n=2:v=1:a=0,settb=AVTB[j3];\n[j3]tpad=stop_mode=clone:stop_duration=1,trim=duration=7.5,setpts=PTS-STARTPTS,format=yuv420p[vout];\n[4:a]aresample=48000,aformat=sample_fmts=fltp:channel_layouts=stereo[vo0];\n[vo0]anull[vo];\n[vo]apad,atrim=0:7.5,loudnorm=I=-16:TP=-1.5:LRA=11,aresample=48000,asetpts=N/SR/TB,apad=whole_dur=7.5,atrim=0:7.5,asetpts=PTS-STARTPTS[aout]",
+   "texts": [
+    "X"
+   ],
+   "staged": [],
+   "result": {
+    "duration": 7.5,
+    "width": 360,
+    "height": 640,
+    "fps": 30,
+    "timeline": [
+     {
+      "start": 0,
+      "end": 2,
+      "kind": "color"
+     },
+     {
+      "start": 2,
+      "end": 4,
+      "kind": "color"
+     },
+     {
+      "start": 4,
+      "end": 6,
+      "kind": "color"
+     },
+     {
+      "start": 6,
+      "end": 7.5,
+      "kind": "endcard",
+      "label": "X"
+     }
+    ],
+    "warnings": []
+   }
+  },
+  {
+   "name": "tr-cut",
+   "note": "transition cut",
+   "spec": {
+    "aspect": "16:9",
+    "quality": "final",
+    "transitionSeconds": 0.8,
+    "scenes": [
+     {
+      "kind": "color",
+      "color": "#102030",
+      "duration": 2,
+      "transition": "cut"
+     },
+     {
+      "kind": "color",
+      "color": "#304050",
+      "duration": 1.5,
+      "transition": "cut"
+     },
+     {
+      "kind": "color",
+      "color": "#506070",
+      "duration": 1
+     }
+    ]
+   },
+   "calls": [
+    {
+     "args": [
+      "-filter_complex",
+      "color=c=0x102030:s=1920x1080:r=30:d=2,setsar=1,format=yuv420p[v]",
+      "-map",
+      "[v]",
+      "-c:v",
+      "libx264",
+      "-preset",
+      "veryfast",
+      "-crf",
+      "16",
+      "-pix_fmt",
+      "yuv420p",
+      "-r",
+      "30",
+      "-an",
+      "-t",
+      "2",
+      "{WORK}/seg000.mp4"
+     ],
+     "progress": false
+    },
+    {
+     "args": [
+      "-filter_complex",
+      "color=c=0x304050:s=1920x1080:r=30:d=1.5,setsar=1,format=yuv420p[v]",
+      "-map",
+      "[v]",
+      "-c:v",
+      "libx264",
+      "-preset",
+      "veryfast",
+      "-crf",
+      "16",
+      "-pix_fmt",
+      "yuv420p",
+      "-r",
+      "30",
+      "-an",
+      "-t",
+      "1.5",
+      "{WORK}/seg001.mp4"
+     ],
+     "progress": false
+    },
+    {
+     "args": [
+      "-filter_complex",
+      "color=c=0x506070:s=1920x1080:r=30:d=1,setsar=1,format=yuv420p[v]",
+      "-map",
+      "[v]",
+      "-c:v",
+      "libx264",
+      "-preset",
+      "veryfast",
+      "-crf",
+      "16",
+      "-pix_fmt",
+      "yuv420p",
+      "-r",
+      "30",
+      "-an",
+      "-t",
+      "1",
+      "{WORK}/seg002.mp4"
+     ],
+     "progress": false
+    },
+    {
+     "args": [
+      "-i",
+      "seg000.mp4",
+      "-i",
+      "seg001.mp4",
+      "-i",
+      "seg002.mp4",
+      "-/filter_complex",
+      "graph.txt",
+      "-map",
+      "[vout]",
+      "-map",
+      "[aout]",
+      "-c:v",
+      "libx264",
+      "-preset",
+      "medium",
+      "-crf",
+      "19",
+      "-profile:v",
+      "high",
+      "-pix_fmt",
+      "yuv420p",
+      "-r",
+      "30",
+      "-g",
+      "60",
+      "-c:a",
+      "aac",
+      "-b:a",
+      "192k",
+      "-ar",
+      "48000",
+      "-ac",
+      "2",
+      "-movflags",
+      "+faststart",
+      "-t",
+      "4.5",
+      "{WORK}/out.mp4"
+     ],
+     "progress": true
+    },
+    {
+     "args": [
+      "-ss",
+      "0.8",
+      "-i",
+      "{OUT}/v.mp4",
+      "-frames:v",
+      "1",
+      "-update",
+      "1",
+      "{OUT}/v.png"
+     ],
+     "progress": false
+    }
+   ],
+   "graph": "[0:v]settb=AVTB,setpts=PTS-STARTPTS,fps=30,settb=AVTB,format=yuv420p[s0];\n[1:v]settb=AVTB,setpts=PTS-STARTPTS,fps=30,settb=AVTB,format=yuv420p[s1];\n[2:v]settb=AVTB,setpts=PTS-STARTPTS,fps=30,settb=AVTB,format=yuv420p[s2];\n[s0][s1]concat=n=2:v=1:a=0,settb=AVTB[j1];\n[j1][s2]concat=n=2:v=1:a=0,settb=AVTB[j2];\n[j2]tpad=stop_mode=clone:stop_duration=1,trim=duration=4.5,setpts=PTS-STARTPTS,format=yuv420p[vout];\nanullsrc=r=48000:cl=stereo,atrim=0:4.5[mix];\n[mix]apad,atrim=0:4.5,aresample=48000,asetpts=N/SR/TB,apad=whole_dur=4.5,atrim=0:4.5,asetpts=PTS-STARTPTS[aout]",
+   "texts": [],
+   "staged": [],
+   "result": {
+    "duration": 4.5,
+    "width": 1920,
+    "height": 1080,
+    "fps": 30,
+    "timeline": [
+     {
+      "start": 0,
+      "end": 2,
+      "kind": "color"
+     },
+     {
+      "start": 2,
+      "end": 3.5,
+      "kind": "color"
+     },
+     {
+      "start": 3.5,
+      "end": 4.5,
+      "kind": "color"
+     }
+    ],
+    "warnings": []
+   }
+  },
+  {
+   "name": "tr-fade",
+   "note": "transition fade",
+   "spec": {
+    "aspect": "16:9",
+    "quality": "final",
+    "transitionSeconds": 0.8,
+    "scenes": [
+     {
+      "kind": "color",
+      "color": "#102030",
+      "duration": 2,
+      "transition": "fade"
+     },
+     {
+      "kind": "color",
+      "color": "#304050",
+      "duration": 1.5,
+      "transition": "fade"
+     },
+     {
+      "kind": "color",
+      "color": "#506070",
+      "duration": 1
+     }
+    ]
+   },
+   "calls": [
+    {
+     "args": [
+      "-filter_complex",
+      "color=c=0x102030:s=1920x1080:r=30:d=2.6,setsar=1,format=yuv420p[v]",
+      "-map",
+      "[v]",
+      "-c:v",
+      "libx264",
+      "-preset",
+      "veryfast",
+      "-crf",
+      "16",
+      "-pix_fmt",
+      "yuv420p",
+      "-r",
+      "30",
+      "-an",
+      "-t",
+      "2.6",
+      "{WORK}/seg000.mp4"
+     ],
+     "progress": false
+    },
+    {
+     "args": [
+      "-filter_complex",
+      "color=c=0x304050:s=1920x1080:r=30:d=1.9,setsar=1,format=yuv420p[v]",
+      "-map",
+      "[v]",
+      "-c:v",
+      "libx264",
+      "-preset",
+      "veryfast",
+      "-crf",
+      "16",
+      "-pix_fmt",
+      "yuv420p",
+      "-r",
+      "30",
+      "-an",
+      "-t",
+      "1.9",
+      "{WORK}/seg001.mp4"
+     ],
+     "progress": false
+    },
+    {
+     "args": [
+      "-filter_complex",
+      "color=c=0x506070:s=1920x1080:r=30:d=1,setsar=1,format=yuv420p[v]",
+      "-map",
+      "[v]",
+      "-c:v",
+      "libx264",
+      "-preset",
+      "veryfast",
+      "-crf",
+      "16",
+      "-pix_fmt",
+      "yuv420p",
+      "-r",
+      "30",
+      "-an",
+      "-t",
+      "1",
+      "{WORK}/seg002.mp4"
+     ],
+     "progress": false
+    },
+    {
+     "args": [
+      "-i",
+      "seg000.mp4",
+      "-i",
+      "seg001.mp4",
+      "-i",
+      "seg002.mp4",
+      "-/filter_complex",
+      "graph.txt",
+      "-map",
+      "[vout]",
+      "-map",
+      "[aout]",
+      "-c:v",
+      "libx264",
+      "-preset",
+      "medium",
+      "-crf",
+      "19",
+      "-profile:v",
+      "high",
+      "-pix_fmt",
+      "yuv420p",
+      "-r",
+      "30",
+      "-g",
+      "60",
+      "-c:a",
+      "aac",
+      "-b:a",
+      "192k",
+      "-ar",
+      "48000",
+      "-ac",
+      "2",
+      "-movflags",
+      "+faststart",
+      "-t",
+      "4.5",
+      "{WORK}/out.mp4"
+     ],
+     "progress": true
+    },
+    {
+     "args": [
+      "-ss",
+      "0.8",
+      "-i",
+      "{OUT}/v.mp4",
+      "-frames:v",
+      "1",
+      "-update",
+      "1",
+      "{OUT}/v.png"
+     ],
+     "progress": false
+    }
+   ],
+   "graph": "[0:v]settb=AVTB,setpts=PTS-STARTPTS,fps=30,settb=AVTB,format=yuv420p[s0];\n[1:v]settb=AVTB,setpts=PTS-STARTPTS,fps=30,settb=AVTB,format=yuv420p[s1];\n[2:v]settb=AVTB,setpts=PTS-STARTPTS,fps=30,settb=AVTB,format=yuv420p[s2];\n[s0][s1]xfade=transition=fade:duration=0.6:offset=2[j1];\n[j1][s2]xfade=transition=fade:duration=0.4:offset=3.5[j2];\n[j2]tpad=stop_mode=clone:stop_duration=1,trim=duration=4.5,setpts=PTS-STARTPTS,format=yuv420p[vout];\nanullsrc=r=48000:cl=stereo,atrim=0:4.5[mix];\n[mix]apad,atrim=0:4.5,aresample=48000,asetpts=N/SR/TB,apad=whole_dur=4.5,atrim=0:4.5,asetpts=PTS-STARTPTS[aout]",
+   "texts": [],
+   "staged": [],
+   "result": {
+    "duration": 4.5,
+    "width": 1920,
+    "height": 1080,
+    "fps": 30,
+    "timeline": [
+     {
+      "start": 0,
+      "end": 2,
+      "kind": "color"
+     },
+     {
+      "start": 2,
+      "end": 3.5,
+      "kind": "color"
+     },
+     {
+      "start": 3.5,
+      "end": 4.5,
+      "kind": "color"
+     }
+    ],
+    "warnings": []
+   }
+  },
+  {
+   "name": "tr-dissolve",
+   "note": "transition dissolve",
+   "spec": {
+    "aspect": "16:9",
+    "quality": "final",
+    "transitionSeconds": 0.8,
+    "scenes": [
+     {
+      "kind": "color",
+      "color": "#102030",
+      "duration": 2,
+      "transition": "dissolve"
+     },
+     {
+      "kind": "color",
+      "color": "#304050",
+      "duration": 1.5,
+      "transition": "dissolve"
+     },
+     {
+      "kind": "color",
+      "color": "#506070",
+      "duration": 1
+     }
+    ]
+   },
+   "calls": [
+    {
+     "args": [
+      "-filter_complex",
+      "color=c=0x102030:s=1920x1080:r=30:d=2.6,setsar=1,format=yuv420p[v]",
+      "-map",
+      "[v]",
+      "-c:v",
+      "libx264",
+      "-preset",
+      "veryfast",
+      "-crf",
+      "16",
+      "-pix_fmt",
+      "yuv420p",
+      "-r",
+      "30",
+      "-an",
+      "-t",
+      "2.6",
+      "{WORK}/seg000.mp4"
+     ],
+     "progress": false
+    },
+    {
+     "args": [
+      "-filter_complex",
+      "color=c=0x304050:s=1920x1080:r=30:d=1.9,setsar=1,format=yuv420p[v]",
+      "-map",
+      "[v]",
+      "-c:v",
+      "libx264",
+      "-preset",
+      "veryfast",
+      "-crf",
+      "16",
+      "-pix_fmt",
+      "yuv420p",
+      "-r",
+      "30",
+      "-an",
+      "-t",
+      "1.9",
+      "{WORK}/seg001.mp4"
+     ],
+     "progress": false
+    },
+    {
+     "args": [
+      "-filter_complex",
+      "color=c=0x506070:s=1920x1080:r=30:d=1,setsar=1,format=yuv420p[v]",
+      "-map",
+      "[v]",
+      "-c:v",
+      "libx264",
+      "-preset",
+      "veryfast",
+      "-crf",
+      "16",
+      "-pix_fmt",
+      "yuv420p",
+      "-r",
+      "30",
+      "-an",
+      "-t",
+      "1",
+      "{WORK}/seg002.mp4"
+     ],
+     "progress": false
+    },
+    {
+     "args": [
+      "-i",
+      "seg000.mp4",
+      "-i",
+      "seg001.mp4",
+      "-i",
+      "seg002.mp4",
+      "-/filter_complex",
+      "graph.txt",
+      "-map",
+      "[vout]",
+      "-map",
+      "[aout]",
+      "-c:v",
+      "libx264",
+      "-preset",
+      "medium",
+      "-crf",
+      "19",
+      "-profile:v",
+      "high",
+      "-pix_fmt",
+      "yuv420p",
+      "-r",
+      "30",
+      "-g",
+      "60",
+      "-c:a",
+      "aac",
+      "-b:a",
+      "192k",
+      "-ar",
+      "48000",
+      "-ac",
+      "2",
+      "-movflags",
+      "+faststart",
+      "-t",
+      "4.5",
+      "{WORK}/out.mp4"
+     ],
+     "progress": true
+    },
+    {
+     "args": [
+      "-ss",
+      "0.8",
+      "-i",
+      "{OUT}/v.mp4",
+      "-frames:v",
+      "1",
+      "-update",
+      "1",
+      "{OUT}/v.png"
+     ],
+     "progress": false
+    }
+   ],
+   "graph": "[0:v]settb=AVTB,setpts=PTS-STARTPTS,fps=30,settb=AVTB,format=yuv420p[s0];\n[1:v]settb=AVTB,setpts=PTS-STARTPTS,fps=30,settb=AVTB,format=yuv420p[s1];\n[2:v]settb=AVTB,setpts=PTS-STARTPTS,fps=30,settb=AVTB,format=yuv420p[s2];\n[s0][s1]xfade=transition=dissolve:duration=0.6:offset=2[j1];\n[j1][s2]xfade=transition=dissolve:duration=0.4:offset=3.5[j2];\n[j2]tpad=stop_mode=clone:stop_duration=1,trim=duration=4.5,setpts=PTS-STARTPTS,format=yuv420p[vout];\nanullsrc=r=48000:cl=stereo,atrim=0:4.5[mix];\n[mix]apad,atrim=0:4.5,aresample=48000,asetpts=N/SR/TB,apad=whole_dur=4.5,atrim=0:4.5,asetpts=PTS-STARTPTS[aout]",
+   "texts": [],
+   "staged": [],
+   "result": {
+    "duration": 4.5,
+    "width": 1920,
+    "height": 1080,
+    "fps": 30,
+    "timeline": [
+     {
+      "start": 0,
+      "end": 2,
+      "kind": "color"
+     },
+     {
+      "start": 2,
+      "end": 3.5,
+      "kind": "color"
+     },
+     {
+      "start": 3.5,
+      "end": 4.5,
+      "kind": "color"
+     }
+    ],
+    "warnings": []
+   }
+  },
+  {
+   "name": "tr-dip",
+   "note": "transition dip",
+   "spec": {
+    "aspect": "16:9",
+    "quality": "final",
+    "transitionSeconds": 0.8,
+    "scenes": [
+     {
+      "kind": "color",
+      "color": "#102030",
+      "duration": 2,
+      "transition": "dip"
+     },
+     {
+      "kind": "color",
+      "color": "#304050",
+      "duration": 1.5,
+      "transition": "dip"
+     },
+     {
+      "kind": "color",
+      "color": "#506070",
+      "duration": 1
+     }
+    ]
+   },
+   "calls": [
+    {
+     "args": [
+      "-filter_complex",
+      "color=c=0x102030:s=1920x1080:r=30:d=2.6,setsar=1,format=yuv420p[v]",
+      "-map",
+      "[v]",
+      "-c:v",
+      "libx264",
+      "-preset",
+      "veryfast",
+      "-crf",
+      "16",
+      "-pix_fmt",
+      "yuv420p",
+      "-r",
+      "30",
+      "-an",
+      "-t",
+      "2.6",
+      "{WORK}/seg000.mp4"
+     ],
+     "progress": false
+    },
+    {
+     "args": [
+      "-filter_complex",
+      "color=c=0x304050:s=1920x1080:r=30:d=1.9,setsar=1,format=yuv420p[v]",
+      "-map",
+      "[v]",
+      "-c:v",
+      "libx264",
+      "-preset",
+      "veryfast",
+      "-crf",
+      "16",
+      "-pix_fmt",
+      "yuv420p",
+      "-r",
+      "30",
+      "-an",
+      "-t",
+      "1.9",
+      "{WORK}/seg001.mp4"
+     ],
+     "progress": false
+    },
+    {
+     "args": [
+      "-filter_complex",
+      "color=c=0x506070:s=1920x1080:r=30:d=1,setsar=1,format=yuv420p[v]",
+      "-map",
+      "[v]",
+      "-c:v",
+      "libx264",
+      "-preset",
+      "veryfast",
+      "-crf",
+      "16",
+      "-pix_fmt",
+      "yuv420p",
+      "-r",
+      "30",
+      "-an",
+      "-t",
+      "1",
+      "{WORK}/seg002.mp4"
+     ],
+     "progress": false
+    },
+    {
+     "args": [
+      "-i",
+      "seg000.mp4",
+      "-i",
+      "seg001.mp4",
+      "-i",
+      "seg002.mp4",
+      "-/filter_complex",
+      "graph.txt",
+      "-map",
+      "[vout]",
+      "-map",
+      "[aout]",
+      "-c:v",
+      "libx264",
+      "-preset",
+      "medium",
+      "-crf",
+      "19",
+      "-profile:v",
+      "high",
+      "-pix_fmt",
+      "yuv420p",
+      "-r",
+      "30",
+      "-g",
+      "60",
+      "-c:a",
+      "aac",
+      "-b:a",
+      "192k",
+      "-ar",
+      "48000",
+      "-ac",
+      "2",
+      "-movflags",
+      "+faststart",
+      "-t",
+      "4.5",
+      "{WORK}/out.mp4"
+     ],
+     "progress": true
+    },
+    {
+     "args": [
+      "-ss",
+      "0.8",
+      "-i",
+      "{OUT}/v.mp4",
+      "-frames:v",
+      "1",
+      "-update",
+      "1",
+      "{OUT}/v.png"
+     ],
+     "progress": false
+    }
+   ],
+   "graph": "[0:v]settb=AVTB,setpts=PTS-STARTPTS,fps=30,settb=AVTB,format=yuv420p[s0];\n[1:v]settb=AVTB,setpts=PTS-STARTPTS,fps=30,settb=AVTB,format=yuv420p[s1];\n[2:v]settb=AVTB,setpts=PTS-STARTPTS,fps=30,settb=AVTB,format=yuv420p[s2];\n[s0][s1]xfade=transition=fadeblack:duration=0.6:offset=2[j1];\n[j1][s2]xfade=transition=fadeblack:duration=0.4:offset=3.5[j2];\n[j2]tpad=stop_mode=clone:stop_duration=1,trim=duration=4.5,setpts=PTS-STARTPTS,format=yuv420p[vout];\nanullsrc=r=48000:cl=stereo,atrim=0:4.5[mix];\n[mix]apad,atrim=0:4.5,aresample=48000,asetpts=N/SR/TB,apad=whole_dur=4.5,atrim=0:4.5,asetpts=PTS-STARTPTS[aout]",
+   "texts": [],
+   "staged": [],
+   "result": {
+    "duration": 4.5,
+    "width": 1920,
+    "height": 1080,
+    "fps": 30,
+    "timeline": [
+     {
+      "start": 0,
+      "end": 2,
+      "kind": "color"
+     },
+     {
+      "start": 2,
+      "end": 3.5,
+      "kind": "color"
+     },
+     {
+      "start": 3.5,
+      "end": 4.5,
+      "kind": "color"
+     }
+    ],
+    "warnings": []
+   }
+  },
+  {
+   "name": "tr-slide",
+   "note": "transition slide",
+   "spec": {
+    "aspect": "16:9",
+    "quality": "final",
+    "transitionSeconds": 0.8,
+    "scenes": [
+     {
+      "kind": "color",
+      "color": "#102030",
+      "duration": 2,
+      "transition": "slide"
+     },
+     {
+      "kind": "color",
+      "color": "#304050",
+      "duration": 1.5,
+      "transition": "slide"
+     },
+     {
+      "kind": "color",
+      "color": "#506070",
+      "duration": 1
+     }
+    ]
+   },
+   "calls": [
+    {
+     "args": [
+      "-filter_complex",
+      "color=c=0x102030:s=1920x1080:r=30:d=2.6,setsar=1,format=yuv420p[v]",
+      "-map",
+      "[v]",
+      "-c:v",
+      "libx264",
+      "-preset",
+      "veryfast",
+      "-crf",
+      "16",
+      "-pix_fmt",
+      "yuv420p",
+      "-r",
+      "30",
+      "-an",
+      "-t",
+      "2.6",
+      "{WORK}/seg000.mp4"
+     ],
+     "progress": false
+    },
+    {
+     "args": [
+      "-filter_complex",
+      "color=c=0x304050:s=1920x1080:r=30:d=1.9,setsar=1,format=yuv420p[v]",
+      "-map",
+      "[v]",
+      "-c:v",
+      "libx264",
+      "-preset",
+      "veryfast",
+      "-crf",
+      "16",
+      "-pix_fmt",
+      "yuv420p",
+      "-r",
+      "30",
+      "-an",
+      "-t",
+      "1.9",
+      "{WORK}/seg001.mp4"
+     ],
+     "progress": false
+    },
+    {
+     "args": [
+      "-filter_complex",
+      "color=c=0x506070:s=1920x1080:r=30:d=1,setsar=1,format=yuv420p[v]",
+      "-map",
+      "[v]",
+      "-c:v",
+      "libx264",
+      "-preset",
+      "veryfast",
+      "-crf",
+      "16",
+      "-pix_fmt",
+      "yuv420p",
+      "-r",
+      "30",
+      "-an",
+      "-t",
+      "1",
+      "{WORK}/seg002.mp4"
+     ],
+     "progress": false
+    },
+    {
+     "args": [
+      "-i",
+      "seg000.mp4",
+      "-i",
+      "seg001.mp4",
+      "-i",
+      "seg002.mp4",
+      "-/filter_complex",
+      "graph.txt",
+      "-map",
+      "[vout]",
+      "-map",
+      "[aout]",
+      "-c:v",
+      "libx264",
+      "-preset",
+      "medium",
+      "-crf",
+      "19",
+      "-profile:v",
+      "high",
+      "-pix_fmt",
+      "yuv420p",
+      "-r",
+      "30",
+      "-g",
+      "60",
+      "-c:a",
+      "aac",
+      "-b:a",
+      "192k",
+      "-ar",
+      "48000",
+      "-ac",
+      "2",
+      "-movflags",
+      "+faststart",
+      "-t",
+      "4.5",
+      "{WORK}/out.mp4"
+     ],
+     "progress": true
+    },
+    {
+     "args": [
+      "-ss",
+      "0.8",
+      "-i",
+      "{OUT}/v.mp4",
+      "-frames:v",
+      "1",
+      "-update",
+      "1",
+      "{OUT}/v.png"
+     ],
+     "progress": false
+    }
+   ],
+   "graph": "[0:v]settb=AVTB,setpts=PTS-STARTPTS,fps=30,settb=AVTB,format=yuv420p[s0];\n[1:v]settb=AVTB,setpts=PTS-STARTPTS,fps=30,settb=AVTB,format=yuv420p[s1];\n[2:v]settb=AVTB,setpts=PTS-STARTPTS,fps=30,settb=AVTB,format=yuv420p[s2];\n[s0][s1]xfade=transition=slideleft:duration=0.6:offset=2[j1];\n[j1][s2]xfade=transition=slideleft:duration=0.4:offset=3.5[j2];\n[j2]tpad=stop_mode=clone:stop_duration=1,trim=duration=4.5,setpts=PTS-STARTPTS,format=yuv420p[vout];\nanullsrc=r=48000:cl=stereo,atrim=0:4.5[mix];\n[mix]apad,atrim=0:4.5,aresample=48000,asetpts=N/SR/TB,apad=whole_dur=4.5,atrim=0:4.5,asetpts=PTS-STARTPTS[aout]",
+   "texts": [],
+   "staged": [],
+   "result": {
+    "duration": 4.5,
+    "width": 1920,
+    "height": 1080,
+    "fps": 30,
+    "timeline": [
+     {
+      "start": 0,
+      "end": 2,
+      "kind": "color"
+     },
+     {
+      "start": 2,
+      "end": 3.5,
+      "kind": "color"
+     },
+     {
+      "start": 3.5,
+      "end": 4.5,
+      "kind": "color"
+     }
+    ],
+    "warnings": []
+   }
+  },
+  {
+   "name": "tr-wipe",
+   "note": "transition wipe",
+   "spec": {
+    "aspect": "16:9",
+    "quality": "final",
+    "transitionSeconds": 0.8,
+    "scenes": [
+     {
+      "kind": "color",
+      "color": "#102030",
+      "duration": 2,
+      "transition": "wipe"
+     },
+     {
+      "kind": "color",
+      "color": "#304050",
+      "duration": 1.5,
+      "transition": "wipe"
+     },
+     {
+      "kind": "color",
+      "color": "#506070",
+      "duration": 1
+     }
+    ]
+   },
+   "calls": [
+    {
+     "args": [
+      "-filter_complex",
+      "color=c=0x102030:s=1920x1080:r=30:d=2.6,setsar=1,format=yuv420p[v]",
+      "-map",
+      "[v]",
+      "-c:v",
+      "libx264",
+      "-preset",
+      "veryfast",
+      "-crf",
+      "16",
+      "-pix_fmt",
+      "yuv420p",
+      "-r",
+      "30",
+      "-an",
+      "-t",
+      "2.6",
+      "{WORK}/seg000.mp4"
+     ],
+     "progress": false
+    },
+    {
+     "args": [
+      "-filter_complex",
+      "color=c=0x304050:s=1920x1080:r=30:d=1.9,setsar=1,format=yuv420p[v]",
+      "-map",
+      "[v]",
+      "-c:v",
+      "libx264",
+      "-preset",
+      "veryfast",
+      "-crf",
+      "16",
+      "-pix_fmt",
+      "yuv420p",
+      "-r",
+      "30",
+      "-an",
+      "-t",
+      "1.9",
+      "{WORK}/seg001.mp4"
+     ],
+     "progress": false
+    },
+    {
+     "args": [
+      "-filter_complex",
+      "color=c=0x506070:s=1920x1080:r=30:d=1,setsar=1,format=yuv420p[v]",
+      "-map",
+      "[v]",
+      "-c:v",
+      "libx264",
+      "-preset",
+      "veryfast",
+      "-crf",
+      "16",
+      "-pix_fmt",
+      "yuv420p",
+      "-r",
+      "30",
+      "-an",
+      "-t",
+      "1",
+      "{WORK}/seg002.mp4"
+     ],
+     "progress": false
+    },
+    {
+     "args": [
+      "-i",
+      "seg000.mp4",
+      "-i",
+      "seg001.mp4",
+      "-i",
+      "seg002.mp4",
+      "-/filter_complex",
+      "graph.txt",
+      "-map",
+      "[vout]",
+      "-map",
+      "[aout]",
+      "-c:v",
+      "libx264",
+      "-preset",
+      "medium",
+      "-crf",
+      "19",
+      "-profile:v",
+      "high",
+      "-pix_fmt",
+      "yuv420p",
+      "-r",
+      "30",
+      "-g",
+      "60",
+      "-c:a",
+      "aac",
+      "-b:a",
+      "192k",
+      "-ar",
+      "48000",
+      "-ac",
+      "2",
+      "-movflags",
+      "+faststart",
+      "-t",
+      "4.5",
+      "{WORK}/out.mp4"
+     ],
+     "progress": true
+    },
+    {
+     "args": [
+      "-ss",
+      "0.8",
+      "-i",
+      "{OUT}/v.mp4",
+      "-frames:v",
+      "1",
+      "-update",
+      "1",
+      "{OUT}/v.png"
+     ],
+     "progress": false
+    }
+   ],
+   "graph": "[0:v]settb=AVTB,setpts=PTS-STARTPTS,fps=30,settb=AVTB,format=yuv420p[s0];\n[1:v]settb=AVTB,setpts=PTS-STARTPTS,fps=30,settb=AVTB,format=yuv420p[s1];\n[2:v]settb=AVTB,setpts=PTS-STARTPTS,fps=30,settb=AVTB,format=yuv420p[s2];\n[s0][s1]xfade=transition=wipeleft:duration=0.6:offset=2[j1];\n[j1][s2]xfade=transition=wipeleft:duration=0.4:offset=3.5[j2];\n[j2]tpad=stop_mode=clone:stop_duration=1,trim=duration=4.5,setpts=PTS-STARTPTS,format=yuv420p[vout];\nanullsrc=r=48000:cl=stereo,atrim=0:4.5[mix];\n[mix]apad,atrim=0:4.5,aresample=48000,asetpts=N/SR/TB,apad=whole_dur=4.5,atrim=0:4.5,asetpts=PTS-STARTPTS[aout]",
+   "texts": [],
+   "staged": [],
+   "result": {
+    "duration": 4.5,
+    "width": 1920,
+    "height": 1080,
+    "fps": 30,
+    "timeline": [
+     {
+      "start": 0,
+      "end": 2,
+      "kind": "color"
+     },
+     {
+      "start": 2,
+      "end": 3.5,
+      "kind": "color"
+     },
+     {
+      "start": 3.5,
+      "end": 4.5,
+      "kind": "color"
+     }
+    ],
+    "warnings": []
+   }
+  },
+  {
+   "name": "tr-zoom",
+   "note": "transition zoom",
+   "spec": {
+    "aspect": "16:9",
+    "quality": "final",
+    "transitionSeconds": 0.8,
+    "scenes": [
+     {
+      "kind": "color",
+      "color": "#102030",
+      "duration": 2,
+      "transition": "zoom"
+     },
+     {
+      "kind": "color",
+      "color": "#304050",
+      "duration": 1.5,
+      "transition": "zoom"
+     },
+     {
+      "kind": "color",
+      "color": "#506070",
+      "duration": 1
+     }
+    ]
+   },
+   "calls": [
+    {
+     "args": [
+      "-filter_complex",
+      "color=c=0x102030:s=1920x1080:r=30:d=2.6,setsar=1,format=yuv420p[v]",
+      "-map",
+      "[v]",
+      "-c:v",
+      "libx264",
+      "-preset",
+      "veryfast",
+      "-crf",
+      "16",
+      "-pix_fmt",
+      "yuv420p",
+      "-r",
+      "30",
+      "-an",
+      "-t",
+      "2.6",
+      "{WORK}/seg000.mp4"
+     ],
+     "progress": false
+    },
+    {
+     "args": [
+      "-filter_complex",
+      "color=c=0x304050:s=1920x1080:r=30:d=1.9,setsar=1,format=yuv420p[v]",
+      "-map",
+      "[v]",
+      "-c:v",
+      "libx264",
+      "-preset",
+      "veryfast",
+      "-crf",
+      "16",
+      "-pix_fmt",
+      "yuv420p",
+      "-r",
+      "30",
+      "-an",
+      "-t",
+      "1.9",
+      "{WORK}/seg001.mp4"
+     ],
+     "progress": false
+    },
+    {
+     "args": [
+      "-filter_complex",
+      "color=c=0x506070:s=1920x1080:r=30:d=1,setsar=1,format=yuv420p[v]",
+      "-map",
+      "[v]",
+      "-c:v",
+      "libx264",
+      "-preset",
+      "veryfast",
+      "-crf",
+      "16",
+      "-pix_fmt",
+      "yuv420p",
+      "-r",
+      "30",
+      "-an",
+      "-t",
+      "1",
+      "{WORK}/seg002.mp4"
+     ],
+     "progress": false
+    },
+    {
+     "args": [
+      "-i",
+      "seg000.mp4",
+      "-i",
+      "seg001.mp4",
+      "-i",
+      "seg002.mp4",
+      "-/filter_complex",
+      "graph.txt",
+      "-map",
+      "[vout]",
+      "-map",
+      "[aout]",
+      "-c:v",
+      "libx264",
+      "-preset",
+      "medium",
+      "-crf",
+      "19",
+      "-profile:v",
+      "high",
+      "-pix_fmt",
+      "yuv420p",
+      "-r",
+      "30",
+      "-g",
+      "60",
+      "-c:a",
+      "aac",
+      "-b:a",
+      "192k",
+      "-ar",
+      "48000",
+      "-ac",
+      "2",
+      "-movflags",
+      "+faststart",
+      "-t",
+      "4.5",
+      "{WORK}/out.mp4"
+     ],
+     "progress": true
+    },
+    {
+     "args": [
+      "-ss",
+      "0.8",
+      "-i",
+      "{OUT}/v.mp4",
+      "-frames:v",
+      "1",
+      "-update",
+      "1",
+      "{OUT}/v.png"
+     ],
+     "progress": false
+    }
+   ],
+   "graph": "[0:v]settb=AVTB,setpts=PTS-STARTPTS,fps=30,settb=AVTB,format=yuv420p[s0];\n[1:v]settb=AVTB,setpts=PTS-STARTPTS,fps=30,settb=AVTB,format=yuv420p[s1];\n[2:v]settb=AVTB,setpts=PTS-STARTPTS,fps=30,settb=AVTB,format=yuv420p[s2];\n[s0][s1]xfade=transition=zoomin:duration=0.6:offset=2[j1];\n[j1][s2]xfade=transition=zoomin:duration=0.4:offset=3.5[j2];\n[j2]tpad=stop_mode=clone:stop_duration=1,trim=duration=4.5,setpts=PTS-STARTPTS,format=yuv420p[vout];\nanullsrc=r=48000:cl=stereo,atrim=0:4.5[mix];\n[mix]apad,atrim=0:4.5,aresample=48000,asetpts=N/SR/TB,apad=whole_dur=4.5,atrim=0:4.5,asetpts=PTS-STARTPTS[aout]",
+   "texts": [],
+   "staged": [],
+   "result": {
+    "duration": 4.5,
+    "width": 1920,
+    "height": 1080,
+    "fps": 30,
+    "timeline": [
+     {
+      "start": 0,
+      "end": 2,
+      "kind": "color"
+     },
+     {
+      "start": 2,
+      "end": 3.5,
+      "kind": "color"
+     },
+     {
+      "start": 3.5,
+      "end": 4.5,
+      "kind": "color"
+     }
+    ],
+    "warnings": []
+   }
+  },
+  {
+   "name": "kb-auto",
+   "note": "Ken Burns auto",
+   "spec": {
+    "aspect": "16:9",
+    "quality": "final",
+    "scenes": [
+     {
+      "kind": "image",
+      "src": "{FX}/a still.png",
+      "duration": 3.2,
+      "kenburns": "auto"
+     }
+    ]
+   },
+   "calls": [
+    {
+     "args": [
+      "-i",
+      "img0.png",
+      "-filter_complex",
+      "[0:v]scale=3840:2160:force_original_aspect_ratio=increase,crop=3840:2160,setsar=1[fit];[fit]zoompan=z='1+0.12*on/95':x='iw/2-(iw/zoom/2)':y='ih/2-(ih/zoom/2)':d=96:s=1920x1080:fps=30,setsar=1,format=yuv420p[v]",
+      "-map",
+      "[v]",
+      "-frames:v",
+      "96",
+      "-c:v",
+      "libx264",
+      "-preset",
+      "veryfast",
+      "-crf",
+      "16",
+      "-pix_fmt",
+      "yuv420p",
+      "-r",
+      "30",
+      "-an",
+      "-t",
+      "3.2",
+      "{WORK}/seg000.mp4"
+     ],
+     "progress": false
+    },
+    {
+     "args": [
+      "-i",
+      "seg000.mp4",
+      "-/filter_complex",
+      "graph.txt",
+      "-map",
+      "[vout]",
+      "-map",
+      "[aout]",
+      "-c:v",
+      "libx264",
+      "-preset",
+      "medium",
+      "-crf",
+      "19",
+      "-profile:v",
+      "high",
+      "-pix_fmt",
+      "yuv420p",
+      "-r",
+      "30",
+      "-g",
+      "60",
+      "-c:a",
+      "aac",
+      "-b:a",
+      "192k",
+      "-ar",
+      "48000",
+      "-ac",
+      "2",
+      "-movflags",
+      "+faststart",
+      "-t",
+      "3.2",
+      "{WORK}/out.mp4"
+     ],
+     "progress": true
+    },
+    {
+     "args": [
+      "-ss",
+      "1.28",
+      "-i",
+      "{OUT}/v.mp4",
+      "-frames:v",
+      "1",
+      "-update",
+      "1",
+      "{OUT}/v.png"
+     ],
+     "progress": false
+    }
+   ],
+   "graph": "[0:v]settb=AVTB,setpts=PTS-STARTPTS,fps=30,settb=AVTB,format=yuv420p[s0];\n[s0]tpad=stop_mode=clone:stop_duration=1,trim=duration=3.2,setpts=PTS-STARTPTS,format=yuv420p[vout];\nanullsrc=r=48000:cl=stereo,atrim=0:3.2[mix];\n[mix]apad,atrim=0:3.2,aresample=48000,asetpts=N/SR/TB,apad=whole_dur=3.2,atrim=0:3.2,asetpts=PTS-STARTPTS[aout]",
+   "texts": [],
+   "staged": [
+    [
+     "{FX}/a still.png",
+     "img0.png"
+    ]
+   ],
+   "result": {
+    "duration": 3.2,
+    "width": 1920,
+    "height": 1080,
+    "fps": 30,
+    "timeline": [
+     {
+      "start": 0,
+      "end": 3.2,
+      "kind": "image"
+     }
+    ],
+    "warnings": []
+   }
+  },
+  {
+   "name": "kb-in",
+   "note": "Ken Burns in",
+   "spec": {
+    "aspect": "9:16",
+    "quality": "draft",
+    "scenes": [
+     {
+      "kind": "image",
+      "src": "{FX}/a still.png",
+      "duration": 3.2,
+      "kenburns": "in"
+     }
+    ]
+   },
+   "calls": [
+    {
+     "args": [
+      "-i",
+      "img0.png",
+      "-filter_complex",
+      "[0:v]scale=540:960:force_original_aspect_ratio=increase,crop=540:960,setsar=1[fit];[fit]zoompan=z='1+0.12*on/95':x='iw/2-(iw/zoom/2)':y='ih/2-(ih/zoom/2)':d=96:s=360x640:fps=30,setsar=1,format=yuv420p[v]",
+      "-map",
+      "[v]",
+      "-frames:v",
+      "96",
+      "-c:v",
+      "libx264",
+      "-preset",
+      "ultrafast",
+      "-crf",
+      "23",
+      "-pix_fmt",
+      "yuv420p",
+      "-r",
+      "30",
+      "-an",
+      "-t",
+      "3.2",
+      "{WORK}/seg000.mp4"
+     ],
+     "progress": false
+    },
+    {
+     "args": [
+      "-i",
+      "seg000.mp4",
+      "-/filter_complex",
+      "graph.txt",
+      "-map",
+      "[vout]",
+      "-map",
+      "[aout]",
+      "-c:v",
+      "libx264",
+      "-preset",
+      "veryfast",
+      "-crf",
+      "26",
+      "-profile:v",
+      "high",
+      "-pix_fmt",
+      "yuv420p",
+      "-r",
+      "30",
+      "-g",
+      "60",
+      "-c:a",
+      "aac",
+      "-b:a",
+      "128k",
+      "-ar",
+      "48000",
+      "-ac",
+      "2",
+      "-movflags",
+      "+faststart",
+      "-t",
+      "3.2",
+      "{WORK}/out.mp4"
+     ],
+     "progress": true
+    },
+    {
+     "args": [
+      "-ss",
+      "1.28",
+      "-i",
+      "{OUT}/v.mp4",
+      "-frames:v",
+      "1",
+      "-update",
+      "1",
+      "{OUT}/v.png"
+     ],
+     "progress": false
+    }
+   ],
+   "graph": "[0:v]settb=AVTB,setpts=PTS-STARTPTS,fps=30,settb=AVTB,format=yuv420p[s0];\n[s0]tpad=stop_mode=clone:stop_duration=1,trim=duration=3.2,setpts=PTS-STARTPTS,format=yuv420p[vout];\nanullsrc=r=48000:cl=stereo,atrim=0:3.2[mix];\n[mix]apad,atrim=0:3.2,aresample=48000,asetpts=N/SR/TB,apad=whole_dur=3.2,atrim=0:3.2,asetpts=PTS-STARTPTS[aout]",
+   "texts": [],
+   "staged": [
+    [
+     "{FX}/a still.png",
+     "img0.png"
+    ]
+   ],
+   "result": {
+    "duration": 3.2,
+    "width": 360,
+    "height": 640,
+    "fps": 30,
+    "timeline": [
+     {
+      "start": 0,
+      "end": 3.2,
+      "kind": "image"
+     }
+    ],
+    "warnings": []
+   }
+  },
+  {
+   "name": "kb-out",
+   "note": "Ken Burns out",
+   "spec": {
+    "aspect": "16:9",
+    "quality": "draft",
+    "scenes": [
+     {
+      "kind": "image",
+      "src": "{FX}/a still.png",
+      "duration": 3.2,
+      "kenburns": "out"
+     }
+    ]
+   },
+   "calls": [
+    {
+     "args": [
+      "-i",
+      "img0.png",
+      "-filter_complex",
+      "[0:v]scale=960:540:force_original_aspect_ratio=increase,crop=960:540,setsar=1[fit];[fit]zoompan=z='1.12-0.12*on/95':x='iw/2-(iw/zoom/2)':y='ih/2-(ih/zoom/2)':d=96:s=640x360:fps=30,setsar=1,format=yuv420p[v]",
+      "-map",
+      "[v]",
+      "-frames:v",
+      "96",
+      "-c:v",
+      "libx264",
+      "-preset",
+      "ultrafast",
+      "-crf",
+      "23",
+      "-pix_fmt",
+      "yuv420p",
+      "-r",
+      "30",
+      "-an",
+      "-t",
+      "3.2",
+      "{WORK}/seg000.mp4"
+     ],
+     "progress": false
+    },
+    {
+     "args": [
+      "-i",
+      "seg000.mp4",
+      "-/filter_complex",
+      "graph.txt",
+      "-map",
+      "[vout]",
+      "-map",
+      "[aout]",
+      "-c:v",
+      "libx264",
+      "-preset",
+      "veryfast",
+      "-crf",
+      "26",
+      "-profile:v",
+      "high",
+      "-pix_fmt",
+      "yuv420p",
+      "-r",
+      "30",
+      "-g",
+      "60",
+      "-c:a",
+      "aac",
+      "-b:a",
+      "128k",
+      "-ar",
+      "48000",
+      "-ac",
+      "2",
+      "-movflags",
+      "+faststart",
+      "-t",
+      "3.2",
+      "{WORK}/out.mp4"
+     ],
+     "progress": true
+    },
+    {
+     "args": [
+      "-ss",
+      "1.28",
+      "-i",
+      "{OUT}/v.mp4",
+      "-frames:v",
+      "1",
+      "-update",
+      "1",
+      "{OUT}/v.png"
+     ],
+     "progress": false
+    }
+   ],
+   "graph": "[0:v]settb=AVTB,setpts=PTS-STARTPTS,fps=30,settb=AVTB,format=yuv420p[s0];\n[s0]tpad=stop_mode=clone:stop_duration=1,trim=duration=3.2,setpts=PTS-STARTPTS,format=yuv420p[vout];\nanullsrc=r=48000:cl=stereo,atrim=0:3.2[mix];\n[mix]apad,atrim=0:3.2,aresample=48000,asetpts=N/SR/TB,apad=whole_dur=3.2,atrim=0:3.2,asetpts=PTS-STARTPTS[aout]",
+   "texts": [],
+   "staged": [
+    [
+     "{FX}/a still.png",
+     "img0.png"
+    ]
+   ],
+   "result": {
+    "duration": 3.2,
+    "width": 640,
+    "height": 360,
+    "fps": 30,
+    "timeline": [
+     {
+      "start": 0,
+      "end": 3.2,
+      "kind": "image"
+     }
+    ],
+    "warnings": []
+   }
+  },
+  {
+   "name": "kb-left",
+   "note": "Ken Burns left",
+   "spec": {
+    "aspect": "9:16",
+    "quality": "final",
+    "scenes": [
+     {
+      "kind": "image",
+      "src": "{FX}/a still.png",
+      "duration": 3.2,
+      "kenburns": "left"
+     }
+    ]
+   },
+   "calls": [
+    {
+     "args": [
+      "-i",
+      "img0.png",
+      "-filter_complex",
+      "[0:v]scale=2160:3840:force_original_aspect_ratio=increase,crop=2160:3840,setsar=1[fit];[fit]zoompan=z='1.12':x='(iw-iw/zoom)*(1-on/95)':y='ih/2-(ih/zoom/2)':d=96:s=1080x1920:fps=30,setsar=1,format=yuv420p[v]",
+      "-map",
+      "[v]",
+      "-frames:v",
+      "96",
+      "-c:v",
+      "libx264",
+      "-preset",
+      "veryfast",
+      "-crf",
+      "16",
+      "-pix_fmt",
+      "yuv420p",
+      "-r",
+      "30",
+      "-an",
+      "-t",
+      "3.2",
+      "{WORK}/seg000.mp4"
+     ],
+     "progress": false
+    },
+    {
+     "args": [
+      "-i",
+      "seg000.mp4",
+      "-/filter_complex",
+      "graph.txt",
+      "-map",
+      "[vout]",
+      "-map",
+      "[aout]",
+      "-c:v",
+      "libx264",
+      "-preset",
+      "medium",
+      "-crf",
+      "19",
+      "-profile:v",
+      "high",
+      "-pix_fmt",
+      "yuv420p",
+      "-r",
+      "30",
+      "-g",
+      "60",
+      "-c:a",
+      "aac",
+      "-b:a",
+      "192k",
+      "-ar",
+      "48000",
+      "-ac",
+      "2",
+      "-movflags",
+      "+faststart",
+      "-t",
+      "3.2",
+      "{WORK}/out.mp4"
+     ],
+     "progress": true
+    },
+    {
+     "args": [
+      "-ss",
+      "1.28",
+      "-i",
+      "{OUT}/v.mp4",
+      "-frames:v",
+      "1",
+      "-update",
+      "1",
+      "{OUT}/v.png"
+     ],
+     "progress": false
+    }
+   ],
+   "graph": "[0:v]settb=AVTB,setpts=PTS-STARTPTS,fps=30,settb=AVTB,format=yuv420p[s0];\n[s0]tpad=stop_mode=clone:stop_duration=1,trim=duration=3.2,setpts=PTS-STARTPTS,format=yuv420p[vout];\nanullsrc=r=48000:cl=stereo,atrim=0:3.2[mix];\n[mix]apad,atrim=0:3.2,aresample=48000,asetpts=N/SR/TB,apad=whole_dur=3.2,atrim=0:3.2,asetpts=PTS-STARTPTS[aout]",
+   "texts": [],
+   "staged": [
+    [
+     "{FX}/a still.png",
+     "img0.png"
+    ]
+   ],
+   "result": {
+    "duration": 3.2,
+    "width": 1080,
+    "height": 1920,
+    "fps": 30,
+    "timeline": [
+     {
+      "start": 0,
+      "end": 3.2,
+      "kind": "image"
+     }
+    ],
+    "warnings": []
+   }
+  },
+  {
+   "name": "kb-right",
+   "note": "Ken Burns right",
+   "spec": {
+    "aspect": "16:9",
+    "quality": "draft",
+    "scenes": [
+     {
+      "kind": "image",
+      "src": "{FX}/a still.png",
+      "duration": 3.2,
+      "kenburns": "right"
+     }
+    ]
+   },
+   "calls": [
+    {
+     "args": [
+      "-i",
+      "img0.png",
+      "-filter_complex",
+      "[0:v]scale=960:540:force_original_aspect_ratio=increase,crop=960:540,setsar=1[fit];[fit]zoompan=z='1.12':x='(iw-iw/zoom)*on/95':y='ih/2-(ih/zoom/2)':d=96:s=640x360:fps=30,setsar=1,format=yuv420p[v]",
+      "-map",
+      "[v]",
+      "-frames:v",
+      "96",
+      "-c:v",
+      "libx264",
+      "-preset",
+      "ultrafast",
+      "-crf",
+      "23",
+      "-pix_fmt",
+      "yuv420p",
+      "-r",
+      "30",
+      "-an",
+      "-t",
+      "3.2",
+      "{WORK}/seg000.mp4"
+     ],
+     "progress": false
+    },
+    {
+     "args": [
+      "-i",
+      "seg000.mp4",
+      "-/filter_complex",
+      "graph.txt",
+      "-map",
+      "[vout]",
+      "-map",
+      "[aout]",
+      "-c:v",
+      "libx264",
+      "-preset",
+      "veryfast",
+      "-crf",
+      "26",
+      "-profile:v",
+      "high",
+      "-pix_fmt",
+      "yuv420p",
+      "-r",
+      "30",
+      "-g",
+      "60",
+      "-c:a",
+      "aac",
+      "-b:a",
+      "128k",
+      "-ar",
+      "48000",
+      "-ac",
+      "2",
+      "-movflags",
+      "+faststart",
+      "-t",
+      "3.2",
+      "{WORK}/out.mp4"
+     ],
+     "progress": true
+    },
+    {
+     "args": [
+      "-ss",
+      "1.28",
+      "-i",
+      "{OUT}/v.mp4",
+      "-frames:v",
+      "1",
+      "-update",
+      "1",
+      "{OUT}/v.png"
+     ],
+     "progress": false
+    }
+   ],
+   "graph": "[0:v]settb=AVTB,setpts=PTS-STARTPTS,fps=30,settb=AVTB,format=yuv420p[s0];\n[s0]tpad=stop_mode=clone:stop_duration=1,trim=duration=3.2,setpts=PTS-STARTPTS,format=yuv420p[vout];\nanullsrc=r=48000:cl=stereo,atrim=0:3.2[mix];\n[mix]apad,atrim=0:3.2,aresample=48000,asetpts=N/SR/TB,apad=whole_dur=3.2,atrim=0:3.2,asetpts=PTS-STARTPTS[aout]",
+   "texts": [],
+   "staged": [
+    [
+     "{FX}/a still.png",
+     "img0.png"
+    ]
+   ],
+   "result": {
+    "duration": 3.2,
+    "width": 640,
+    "height": 360,
+    "fps": 30,
+    "timeline": [
+     {
+      "start": 0,
+      "end": 3.2,
+      "kind": "image"
+     }
+    ],
+    "warnings": []
+   }
+  },
+  {
+   "name": "kb-up",
+   "note": "Ken Burns up",
+   "spec": {
+    "aspect": "9:16",
+    "quality": "draft",
+    "scenes": [
+     {
+      "kind": "image",
+      "src": "{FX}/a still.png",
+      "duration": 3.2,
+      "kenburns": "up"
+     }
+    ]
+   },
+   "calls": [
+    {
+     "args": [
+      "-i",
+      "img0.png",
+      "-filter_complex",
+      "[0:v]scale=540:960:force_original_aspect_ratio=increase,crop=540:960,setsar=1[fit];[fit]zoompan=z='1.12':x='iw/2-(iw/zoom/2)':y='(ih-ih/zoom)*(1-on/95)':d=96:s=360x640:fps=30,setsar=1,format=yuv420p[v]",
+      "-map",
+      "[v]",
+      "-frames:v",
+      "96",
+      "-c:v",
+      "libx264",
+      "-preset",
+      "ultrafast",
+      "-crf",
+      "23",
+      "-pix_fmt",
+      "yuv420p",
+      "-r",
+      "30",
+      "-an",
+      "-t",
+      "3.2",
+      "{WORK}/seg000.mp4"
+     ],
+     "progress": false
+    },
+    {
+     "args": [
+      "-i",
+      "seg000.mp4",
+      "-/filter_complex",
+      "graph.txt",
+      "-map",
+      "[vout]",
+      "-map",
+      "[aout]",
+      "-c:v",
+      "libx264",
+      "-preset",
+      "veryfast",
+      "-crf",
+      "26",
+      "-profile:v",
+      "high",
+      "-pix_fmt",
+      "yuv420p",
+      "-r",
+      "30",
+      "-g",
+      "60",
+      "-c:a",
+      "aac",
+      "-b:a",
+      "128k",
+      "-ar",
+      "48000",
+      "-ac",
+      "2",
+      "-movflags",
+      "+faststart",
+      "-t",
+      "3.2",
+      "{WORK}/out.mp4"
+     ],
+     "progress": true
+    },
+    {
+     "args": [
+      "-ss",
+      "1.28",
+      "-i",
+      "{OUT}/v.mp4",
+      "-frames:v",
+      "1",
+      "-update",
+      "1",
+      "{OUT}/v.png"
+     ],
+     "progress": false
+    }
+   ],
+   "graph": "[0:v]settb=AVTB,setpts=PTS-STARTPTS,fps=30,settb=AVTB,format=yuv420p[s0];\n[s0]tpad=stop_mode=clone:stop_duration=1,trim=duration=3.2,setpts=PTS-STARTPTS,format=yuv420p[vout];\nanullsrc=r=48000:cl=stereo,atrim=0:3.2[mix];\n[mix]apad,atrim=0:3.2,aresample=48000,asetpts=N/SR/TB,apad=whole_dur=3.2,atrim=0:3.2,asetpts=PTS-STARTPTS[aout]",
+   "texts": [],
+   "staged": [
+    [
+     "{FX}/a still.png",
+     "img0.png"
+    ]
+   ],
+   "result": {
+    "duration": 3.2,
+    "width": 360,
+    "height": 640,
+    "fps": 30,
+    "timeline": [
+     {
+      "start": 0,
+      "end": 3.2,
+      "kind": "image"
+     }
+    ],
+    "warnings": []
+   }
+  },
+  {
+   "name": "kb-down",
+   "note": "Ken Burns down",
+   "spec": {
+    "aspect": "16:9",
+    "quality": "final",
+    "scenes": [
+     {
+      "kind": "image",
+      "src": "{FX}/a still.png",
+      "duration": 3.2,
+      "kenburns": "down"
+     }
+    ]
+   },
+   "calls": [
+    {
+     "args": [
+      "-i",
+      "img0.png",
+      "-filter_complex",
+      "[0:v]scale=3840:2160:force_original_aspect_ratio=increase,crop=3840:2160,setsar=1[fit];[fit]zoompan=z='1.12':x='iw/2-(iw/zoom/2)':y='(ih-ih/zoom)*on/95':d=96:s=1920x1080:fps=30,setsar=1,format=yuv420p[v]",
+      "-map",
+      "[v]",
+      "-frames:v",
+      "96",
+      "-c:v",
+      "libx264",
+      "-preset",
+      "veryfast",
+      "-crf",
+      "16",
+      "-pix_fmt",
+      "yuv420p",
+      "-r",
+      "30",
+      "-an",
+      "-t",
+      "3.2",
+      "{WORK}/seg000.mp4"
+     ],
+     "progress": false
+    },
+    {
+     "args": [
+      "-i",
+      "seg000.mp4",
+      "-/filter_complex",
+      "graph.txt",
+      "-map",
+      "[vout]",
+      "-map",
+      "[aout]",
+      "-c:v",
+      "libx264",
+      "-preset",
+      "medium",
+      "-crf",
+      "19",
+      "-profile:v",
+      "high",
+      "-pix_fmt",
+      "yuv420p",
+      "-r",
+      "30",
+      "-g",
+      "60",
+      "-c:a",
+      "aac",
+      "-b:a",
+      "192k",
+      "-ar",
+      "48000",
+      "-ac",
+      "2",
+      "-movflags",
+      "+faststart",
+      "-t",
+      "3.2",
+      "{WORK}/out.mp4"
+     ],
+     "progress": true
+    },
+    {
+     "args": [
+      "-ss",
+      "1.28",
+      "-i",
+      "{OUT}/v.mp4",
+      "-frames:v",
+      "1",
+      "-update",
+      "1",
+      "{OUT}/v.png"
+     ],
+     "progress": false
+    }
+   ],
+   "graph": "[0:v]settb=AVTB,setpts=PTS-STARTPTS,fps=30,settb=AVTB,format=yuv420p[s0];\n[s0]tpad=stop_mode=clone:stop_duration=1,trim=duration=3.2,setpts=PTS-STARTPTS,format=yuv420p[vout];\nanullsrc=r=48000:cl=stereo,atrim=0:3.2[mix];\n[mix]apad,atrim=0:3.2,aresample=48000,asetpts=N/SR/TB,apad=whole_dur=3.2,atrim=0:3.2,asetpts=PTS-STARTPTS[aout]",
+   "texts": [],
+   "staged": [
+    [
+     "{FX}/a still.png",
+     "img0.png"
+    ]
+   ],
+   "result": {
+    "duration": 3.2,
+    "width": 1920,
+    "height": 1080,
+    "fps": 30,
+    "timeline": [
+     {
+      "start": 0,
+      "end": 3.2,
+      "kind": "image"
+     }
+    ],
+    "warnings": []
+   }
+  },
+  {
+   "name": "kb-none",
+   "note": "Ken Burns none",
+   "spec": {
+    "aspect": "9:16",
+    "quality": "draft",
+    "scenes": [
+     {
+      "kind": "image",
+      "src": "{FX}/a still.png",
+      "duration": 3.2,
+      "kenburns": "none"
+     }
+    ]
+   },
+   "calls": [
+    {
+     "args": [
+      "-i",
+      "img0.png",
+      "-filter_complex",
+      "[0:v]scale=540:960:force_original_aspect_ratio=increase,crop=540:960,setsar=1[fit];[fit]zoompan=z='1':x='0':y='0':d=96:s=360x640:fps=30,setsar=1,format=yuv420p[v]",
+      "-map",
+      "[v]",
+      "-frames:v",
+      "96",
+      "-c:v",
+      "libx264",
+      "-preset",
+      "ultrafast",
+      "-crf",
+      "23",
+      "-pix_fmt",
+      "yuv420p",
+      "-r",
+      "30",
+      "-an",
+      "-t",
+      "3.2",
+      "{WORK}/seg000.mp4"
+     ],
+     "progress": false
+    },
+    {
+     "args": [
+      "-i",
+      "seg000.mp4",
+      "-/filter_complex",
+      "graph.txt",
+      "-map",
+      "[vout]",
+      "-map",
+      "[aout]",
+      "-c:v",
+      "libx264",
+      "-preset",
+      "veryfast",
+      "-crf",
+      "26",
+      "-profile:v",
+      "high",
+      "-pix_fmt",
+      "yuv420p",
+      "-r",
+      "30",
+      "-g",
+      "60",
+      "-c:a",
+      "aac",
+      "-b:a",
+      "128k",
+      "-ar",
+      "48000",
+      "-ac",
+      "2",
+      "-movflags",
+      "+faststart",
+      "-t",
+      "3.2",
+      "{WORK}/out.mp4"
+     ],
+     "progress": true
+    },
+    {
+     "args": [
+      "-ss",
+      "1.28",
+      "-i",
+      "{OUT}/v.mp4",
+      "-frames:v",
+      "1",
+      "-update",
+      "1",
+      "{OUT}/v.png"
+     ],
+     "progress": false
+    }
+   ],
+   "graph": "[0:v]settb=AVTB,setpts=PTS-STARTPTS,fps=30,settb=AVTB,format=yuv420p[s0];\n[s0]tpad=stop_mode=clone:stop_duration=1,trim=duration=3.2,setpts=PTS-STARTPTS,format=yuv420p[vout];\nanullsrc=r=48000:cl=stereo,atrim=0:3.2[mix];\n[mix]apad,atrim=0:3.2,aresample=48000,asetpts=N/SR/TB,apad=whole_dur=3.2,atrim=0:3.2,asetpts=PTS-STARTPTS[aout]",
+   "texts": [],
+   "staged": [
+    [
+     "{FX}/a still.png",
+     "img0.png"
+    ]
+   ],
+   "result": {
+    "duration": 3.2,
+    "width": 360,
+    "height": 640,
+    "fps": 30,
+    "timeline": [
+     {
+      "start": 0,
+      "end": 3.2,
+      "kind": "image"
+     }
+    ],
+    "warnings": []
+   }
+  },
+  {
+   "name": "kb-auto-cycle",
+   "note": "Ken Burns auto cycle",
+   "spec": {
+    "aspect": "1:1",
+    "quality": "draft",
+    "scenes": [
+     {
+      "kind": "image",
+      "src": "{FX}/a still.png",
+      "duration": 1
+     },
+     {
+      "kind": "image",
+      "src": "{FX}/a still.png",
+      "duration": 1
+     },
+     {
+      "kind": "image",
+      "src": "{FX}/a still.png",
+      "duration": 1
+     },
+     {
+      "kind": "image",
+      "src": "{FX}/b%d.png",
+      "duration": 1,
+      "fit": "contain"
+     },
+     {
+      "kind": "image",
+      "src": "{FX}/a still.png",
+      "duration": 1
+     },
+     {
+      "kind": "image",
+      "src": "{FX}/a still.png",
+      "duration": 1
+     },
+     {
+      "kind": "image",
+      "src": "{FX}/a still.png",
+      "duration": 1
+     }
+    ]
+   },
+   "calls": [
+    {
+     "args": [
+      "-i",
+      "img0.png",
+      "-filter_complex",
+      "[0:v]scale=540:540:force_original_aspect_ratio=increase,crop=540:540,setsar=1[fit];[fit]zoompan=z='1+0.12*on/29':x='iw/2-(iw/zoom/2)':y='ih/2-(ih/zoom/2)':d=30:s=360x360:fps=30,setsar=1,format=yuv420p[v]",
+      "-map",
+      "[v]",
+      "-frames:v",
+      "30",
+      "-c:v",
+      "libx264",
+      "-preset",
+      "ultrafast",
+      "-crf",
+      "23",
+      "-pix_fmt",
+      "yuv420p",
+      "-r",
+      "30",
+      "-an",
+      "-t",
+      "1",
+      "{WORK}/seg000.mp4"
+     ],
+     "progress": false
+    },
+    {
+     "args": [
+      "-i",
+      "img1.png",
+      "-filter_complex",
+      "[0:v]scale=540:540:force_original_aspect_ratio=increase,crop=540:540,setsar=1[fit];[fit]zoompan=z='1.12':x='(iw-iw/zoom)*on/29':y='ih/2-(ih/zoom/2)':d=30:s=360x360:fps=30,setsar=1,format=yuv420p[v]",
+      "-map",
+      "[v]",
+      "-frames:v",
+      "30",
+      "-c:v",
+      "libx264",
+      "-preset",
+      "ultrafast",
+      "-crf",
+      "23",
+      "-pix_fmt",
+      "yuv420p",
+      "-r",
+      "30",
+      "-an",
+      "-t",
+      "1",
+      "{WORK}/seg001.mp4"
+     ],
+     "progress": false
+    },
+    {
+     "args": [
+      "-i",
+      "img2.png",
+      "-filter_complex",
+      "[0:v]scale=540:540:force_original_aspect_ratio=increase,crop=540:540,setsar=1[fit];[fit]zoompan=z='1.12-0.12*on/29':x='iw/2-(iw/zoom/2)':y='ih/2-(ih/zoom/2)':d=30:s=360x360:fps=30,setsar=1,format=yuv420p[v]",
+      "-map",
+      "[v]",
+      "-frames:v",
+      "30",
+      "-c:v",
+      "libx264",
+      "-preset",
+      "ultrafast",
+      "-crf",
+      "23",
+      "-pix_fmt",
+      "yuv420p",
+      "-r",
+      "30",
+      "-an",
+      "-t",
+      "1",
+      "{WORK}/seg002.mp4"
+     ],
+     "progress": false
+    },
+    {
+     "args": [
+      "-i",
+      "img3.png",
+      "-filter_complex",
+      "[0:v]split=2[fa][fb];[fa]scale=540:540:force_original_aspect_ratio=increase,crop=540:540,gblur=sigma=14[fbg];[fb]scale=540:540:force_original_aspect_ratio=decrease[ffg];[fbg][ffg]overlay=(W-w)/2:(H-h)/2,setsar=1[fit];[fit]zoompan=z='1.12':x='(iw-iw/zoom)*(1-on/29)':y='ih/2-(ih/zoom/2)':d=30:s=360x360:fps=30,setsar=1,format=yuv420p[v]",
+      "-map",
+      "[v]",
+      "-frames:v",
+      "30",
+      "-c:v",
+      "libx264",
+      "-preset",
+      "ultrafast",
+      "-crf",
+      "23",
+      "-pix_fmt",
+      "yuv420p",
+      "-r",
+      "30",
+      "-an",
+      "-t",
+      "1",
+      "{WORK}/seg003.mp4"
+     ],
+     "progress": false
+    },
+    {
+     "args": [
+      "-i",
+      "img4.png",
+      "-filter_complex",
+      "[0:v]scale=540:540:force_original_aspect_ratio=increase,crop=540:540,setsar=1[fit];[fit]zoompan=z='1+0.12*on/29':x='iw/2-(iw/zoom/2)':y='ih/2-(ih/zoom/2)':d=30:s=360x360:fps=30,setsar=1,format=yuv420p[v]",
+      "-map",
+      "[v]",
+      "-frames:v",
+      "30",
+      "-c:v",
+      "libx264",
+      "-preset",
+      "ultrafast",
+      "-crf",
+      "23",
+      "-pix_fmt",
+      "yuv420p",
+      "-r",
+      "30",
+      "-an",
+      "-t",
+      "1",
+      "{WORK}/seg004.mp4"
+     ],
+     "progress": false
+    },
+    {
+     "args": [
+      "-i",
+      "img5.png",
+      "-filter_complex",
+      "[0:v]scale=540:540:force_original_aspect_ratio=increase,crop=540:540,setsar=1[fit];[fit]zoompan=z='1.12':x='iw/2-(iw/zoom/2)':y='(ih-ih/zoom)*(1-on/29)':d=30:s=360x360:fps=30,setsar=1,format=yuv420p[v]",
+      "-map",
+      "[v]",
+      "-frames:v",
+      "30",
+      "-c:v",
+      "libx264",
+      "-preset",
+      "ultrafast",
+      "-crf",
+      "23",
+      "-pix_fmt",
+      "yuv420p",
+      "-r",
+      "30",
+      "-an",
+      "-t",
+      "1",
+      "{WORK}/seg005.mp4"
+     ],
+     "progress": false
+    },
+    {
+     "args": [
+      "-i",
+      "img6.png",
+      "-filter_complex",
+      "[0:v]scale=540:540:force_original_aspect_ratio=increase,crop=540:540,setsar=1[fit];[fit]zoompan=z='1+0.12*on/29':x='iw/2-(iw/zoom/2)':y='ih/2-(ih/zoom/2)':d=30:s=360x360:fps=30,setsar=1,format=yuv420p[v]",
+      "-map",
+      "[v]",
+      "-frames:v",
+      "30",
+      "-c:v",
+      "libx264",
+      "-preset",
+      "ultrafast",
+      "-crf",
+      "23",
+      "-pix_fmt",
+      "yuv420p",
+      "-r",
+      "30",
+      "-an",
+      "-t",
+      "1",
+      "{WORK}/seg006.mp4"
+     ],
+     "progress": false
+    },
+    {
+     "args": [
+      "-i",
+      "seg000.mp4",
+      "-i",
+      "seg001.mp4",
+      "-i",
+      "seg002.mp4",
+      "-i",
+      "seg003.mp4",
+      "-i",
+      "seg004.mp4",
+      "-i",
+      "seg005.mp4",
+      "-i",
+      "seg006.mp4",
+      "-/filter_complex",
+      "graph.txt",
+      "-map",
+      "[vout]",
+      "-map",
+      "[aout]",
+      "-c:v",
+      "libx264",
+      "-preset",
+      "veryfast",
+      "-crf",
+      "26",
+      "-profile:v",
+      "high",
+      "-pix_fmt",
+      "yuv420p",
+      "-r",
+      "30",
+      "-g",
+      "60",
+      "-c:a",
+      "aac",
+      "-b:a",
+      "128k",
+      "-ar",
+      "48000",
+      "-ac",
+      "2",
+      "-movflags",
+      "+faststart",
+      "-t",
+      "7",
+      "{WORK}/out.mp4"
+     ],
+     "progress": true
+    },
+    {
+     "args": [
+      "-ss",
+      "0.5",
+      "-i",
+      "{OUT}/v.mp4",
+      "-frames:v",
+      "1",
+      "-update",
+      "1",
+      "{OUT}/v.png"
+     ],
+     "progress": false
+    }
+   ],
+   "graph": "[0:v]settb=AVTB,setpts=PTS-STARTPTS,fps=30,settb=AVTB,format=yuv420p[s0];\n[1:v]settb=AVTB,setpts=PTS-STARTPTS,fps=30,settb=AVTB,format=yuv420p[s1];\n[2:v]settb=AVTB,setpts=PTS-STARTPTS,fps=30,settb=AVTB,format=yuv420p[s2];\n[3:v]settb=AVTB,setpts=PTS-STARTPTS,fps=30,settb=AVTB,format=yuv420p[s3];\n[4:v]settb=AVTB,setpts=PTS-STARTPTS,fps=30,settb=AVTB,format=yuv420p[s4];\n[5:v]settb=AVTB,setpts=PTS-STARTPTS,fps=30,settb=AVTB,format=yuv420p[s5];\n[6:v]settb=AVTB,setpts=PTS-STARTPTS,fps=30,settb=AVTB,format=yuv420p[s6];\n[s0][s1]concat=n=2:v=1:a=0,settb=AVTB[j1];\n[j1][s2]concat=n=2:v=1:a=0,settb=AVTB[j2];\n[j2][s3]concat=n=2:v=1:a=0,settb=AVTB[j3];\n[j3][s4]concat=n=2:v=1:a=0,settb=AVTB[j4];\n[j4][s5]concat=n=2:v=1:a=0,settb=AVTB[j5];\n[j5][s6]concat=n=2:v=1:a=0,settb=AVTB[j6];\n[j6]tpad=stop_mode=clone:stop_duration=1,trim=duration=7,setpts=PTS-STARTPTS,format=yuv420p[vout];\nanullsrc=r=48000:cl=stereo,atrim=0:7[mix];\n[mix]apad,atrim=0:7,aresample=48000,asetpts=N/SR/TB,apad=whole_dur=7,atrim=0:7,asetpts=PTS-STARTPTS[aout]",
+   "texts": [],
+   "staged": [
+    [
+     "{FX}/a still.png",
+     "img0.png"
+    ],
+    [
+     "{FX}/a still.png",
+     "img1.png"
+    ],
+    [
+     "{FX}/a still.png",
+     "img2.png"
+    ],
+    [
+     "{FX}/b%d.png",
+     "img3.png"
+    ],
+    [
+     "{FX}/a still.png",
+     "img4.png"
+    ],
+    [
+     "{FX}/a still.png",
+     "img5.png"
+    ],
+    [
+     "{FX}/a still.png",
+     "img6.png"
+    ]
+   ],
+   "result": {
+    "duration": 7,
+    "width": 360,
+    "height": 360,
+    "fps": 30,
+    "timeline": [
+     {
+      "start": 0,
+      "end": 1,
+      "kind": "image"
+     },
+     {
+      "start": 1,
+      "end": 2,
+      "kind": "image"
+     },
+     {
+      "start": 2,
+      "end": 3,
+      "kind": "image"
+     },
+     {
+      "start": 3,
+      "end": 4,
+      "kind": "image"
+     },
+     {
+      "start": 4,
+      "end": 5,
+      "kind": "image"
+     },
+     {
+      "start": 5,
+      "end": 6,
+      "kind": "image"
+     },
+     {
+      "start": 6,
+      "end": 7,
+      "kind": "image"
+     }
+    ],
+    "warnings": []
+   }
+  },
+  {
+   "name": "duck",
+   "note": "music ducked under the voice",
+   "spec": {
+    "aspect": "9:16",
+    "quality": "draft",
+    "scenes": [
+     {
+      "kind": "color",
+      "color": "#000000",
+      "duration": 4
+     }
+    ],
+    "voiceover": {
+     "path": "{FX}/vo.wav",
+     "start": 0.5
+    },
+    "music": {
+     "path": "{FX}/music.wav",
+     "volume": 0.3,
+     "duck": true
+    }
+   },
+   "calls": [
+    {
+     "args": [
+      "-filter_complex",
+      "color=c=0x000000:s=360x640:r=30:d=4,setsar=1,format=yuv420p[v]",
+      "-map",
+      "[v]",
+      "-c:v",
+      "libx264",
+      "-preset",
+      "ultrafast",
+      "-crf",
+      "23",
+      "-pix_fmt",
+      "yuv420p",
+      "-r",
+      "30",
+      "-an",
+      "-t",
+      "4",
+      "{WORK}/seg000.mp4"
+     ],
+     "progress": false
+    },
+    {
+     "args": [
+      "-i",
+      "seg000.mp4",
+      "-i",
+      "{FX}/vo.wav",
+      "-stream_loop",
+      "-1",
+      "-i",
+      "{FX}/music.wav",
+      "-/filter_complex",
+      "graph.txt",
+      "-map",
+      "[vout]",
+      "-map",
+      "[aout]",
+      "-c:v",
+      "libx264",
+      "-preset",
+      "veryfast",
+      "-crf",
+      "26",
+      "-profile:v",
+      "high",
+      "-pix_fmt",
+      "yuv420p",
+      "-r",
+      "30",
+      "-g",
+      "60",
+      "-c:a",
+      "aac",
+      "-b:a",
+      "128k",
+      "-ar",
+      "48000",
+      "-ac",
+      "2",
+      "-movflags",
+      "+faststart",
+      "-t",
+      "4",
+      "{WORK}/out.mp4"
+     ],
+     "progress": true
+    },
+    {
+     "args": [
+      "-ss",
+      "1.6",
+      "-i",
+      "{OUT}/v.mp4",
+      "-frames:v",
+      "1",
+      "-update",
+      "1",
+      "{OUT}/v.png"
+     ],
+     "progress": false
+    }
+   ],
+   "graph": "[0:v]settb=AVTB,setpts=PTS-STARTPTS,fps=30,settb=AVTB,format=yuv420p[s0];\n[s0]tpad=stop_mode=clone:stop_duration=1,trim=duration=4,setpts=PTS-STARTPTS,format=yuv420p[vout];\n[1:a]aresample=48000,aformat=sample_fmts=fltp:channel_layouts=stereo,adelay=500:all=1[vo0];\n[vo0]anull[vo];\n[2:a]aresample=48000,aformat=sample_fmts=fltp:channel_layouts=stereo,atrim=0:4,asetpts=PTS-STARTPTS,volume=0.3,afade=t=in:d=0.3,afade=t=out:st=3:d=1[mus];\n[vo]asplit=2[vo1][vosc];\n[mus][vosc]sidechaincompress=threshold=0.015:ratio=12:attack=20:release=400[duck];\n[vo1][duck]amix=inputs=2:normalize=0:duration=longest[mix];\n[mix]apad,atrim=0:4,loudnorm=I=-16:TP=-1.5:LRA=11,aresample=48000,asetpts=N/SR/TB,apad=whole_dur=4,atrim=0:4,asetpts=PTS-STARTPTS[aout]",
+   "texts": [],
+   "staged": [],
+   "result": {
+    "duration": 4,
+    "width": 360,
+    "height": 640,
+    "fps": 30,
+    "timeline": [
+     {
+      "start": 0,
+      "end": 4,
+      "kind": "color"
+     }
+    ],
+    "warnings": []
+   }
+  },
+  {
+   "name": "noduck",
+   "note": "music not ducked, broadcast loudness",
+   "spec": {
+    "aspect": "9:16",
+    "quality": "draft",
+    "loudness": "broadcast",
+    "scenes": [
+     {
+      "kind": "color",
+      "color": "#000000",
+      "duration": 4
+     }
+    ],
+    "voiceover": {
+     "path": "{FX}/vo.wav"
+    },
+    "music": {
+     "path": "{FX}/music.wav",
+     "volume": 0.5,
+     "duck": false
+    }
+   },
+   "calls": [
+    {
+     "args": [
+      "-filter_complex",
+      "color=c=0x000000:s=360x640:r=30:d=4,setsar=1,format=yuv420p[v]",
+      "-map",
+      "[v]",
+      "-c:v",
+      "libx264",
+      "-preset",
+      "ultrafast",
+      "-crf",
+      "23",
+      "-pix_fmt",
+      "yuv420p",
+      "-r",
+      "30",
+      "-an",
+      "-t",
+      "4",
+      "{WORK}/seg000.mp4"
+     ],
+     "progress": false
+    },
+    {
+     "args": [
+      "-i",
+      "seg000.mp4",
+      "-i",
+      "{FX}/vo.wav",
+      "-stream_loop",
+      "-1",
+      "-i",
+      "{FX}/music.wav",
+      "-/filter_complex",
+      "graph.txt",
+      "-map",
+      "[vout]",
+      "-map",
+      "[aout]",
+      "-c:v",
+      "libx264",
+      "-preset",
+      "veryfast",
+      "-crf",
+      "26",
+      "-profile:v",
+      "high",
+      "-pix_fmt",
+      "yuv420p",
+      "-r",
+      "30",
+      "-g",
+      "60",
+      "-c:a",
+      "aac",
+      "-b:a",
+      "128k",
+      "-ar",
+      "48000",
+      "-ac",
+      "2",
+      "-movflags",
+      "+faststart",
+      "-t",
+      "4",
+      "{WORK}/out.mp4"
+     ],
+     "progress": true
+    },
+    {
+     "args": [
+      "-ss",
+      "1.6",
+      "-i",
+      "{OUT}/v.mp4",
+      "-frames:v",
+      "1",
+      "-update",
+      "1",
+      "{OUT}/v.png"
+     ],
+     "progress": false
+    }
+   ],
+   "graph": "[0:v]settb=AVTB,setpts=PTS-STARTPTS,fps=30,settb=AVTB,format=yuv420p[s0];\n[s0]tpad=stop_mode=clone:stop_duration=1,trim=duration=4,setpts=PTS-STARTPTS,format=yuv420p[vout];\n[1:a]aresample=48000,aformat=sample_fmts=fltp:channel_layouts=stereo[vo0];\n[vo0]anull[vo];\n[2:a]aresample=48000,aformat=sample_fmts=fltp:channel_layouts=stereo,atrim=0:4,asetpts=PTS-STARTPTS,volume=0.5,afade=t=in:d=0.3,afade=t=out:st=3:d=1[mus];\n[vo][mus]amix=inputs=2:normalize=0:duration=longest[mix];\n[mix]apad,atrim=0:4,loudnorm=I=-24:TP=-2:LRA=7,aresample=48000,asetpts=N/SR/TB,apad=whole_dur=4,atrim=0:4,asetpts=PTS-STARTPTS[aout]",
+   "texts": [],
+   "staged": [],
+   "result": {
+    "duration": 4,
+    "width": 360,
+    "height": 640,
+    "fps": 30,
+    "timeline": [
+     {
+      "start": 0,
+      "end": 4,
+      "kind": "color"
+     }
+    ],
+    "warnings": []
+   }
+  },
+  {
+   "name": "musiconly",
+   "note": "music only, loudness off",
+   "spec": {
+    "aspect": "16:9",
+    "quality": "draft",
+    "loudness": "off",
+    "scenes": [
+     {
+      "kind": "color",
+      "color": "#000000",
+      "duration": 2.5
+     }
+    ],
+    "music": {
+     "path": "{FX}/music.wav"
+    }
+   },
+   "calls": [
+    {
+     "args": [
+      "-filter_complex",
+      "color=c=0x000000:s=640x360:r=30:d=2.5,setsar=1,format=yuv420p[v]",
+      "-map",
+      "[v]",
+      "-c:v",
+      "libx264",
+      "-preset",
+      "ultrafast",
+      "-crf",
+      "23",
+      "-pix_fmt",
+      "yuv420p",
+      "-r",
+      "30",
+      "-an",
+      "-t",
+      "2.5",
+      "{WORK}/seg000.mp4"
+     ],
+     "progress": false
+    },
+    {
+     "args": [
+      "-i",
+      "seg000.mp4",
+      "-stream_loop",
+      "-1",
+      "-i",
+      "{FX}/music.wav",
+      "-/filter_complex",
+      "graph.txt",
+      "-map",
+      "[vout]",
+      "-map",
+      "[aout]",
+      "-c:v",
+      "libx264",
+      "-preset",
+      "veryfast",
+      "-crf",
+      "26",
+      "-profile:v",
+      "high",
+      "-pix_fmt",
+      "yuv420p",
+      "-r",
+      "30",
+      "-g",
+      "60",
+      "-c:a",
+      "aac",
+      "-b:a",
+      "128k",
+      "-ar",
+      "48000",
+      "-ac",
+      "2",
+      "-movflags",
+      "+faststart",
+      "-t",
+      "2.5",
+      "{WORK}/out.mp4"
+     ],
+     "progress": true
+    },
+    {
+     "args": [
+      "-ss",
+      "1",
+      "-i",
+      "{OUT}/v.mp4",
+      "-frames:v",
+      "1",
+      "-update",
+      "1",
+      "{OUT}/v.png"
+     ],
+     "progress": false
+    }
+   ],
+   "graph": "[0:v]settb=AVTB,setpts=PTS-STARTPTS,fps=30,settb=AVTB,format=yuv420p[s0];\n[s0]tpad=stop_mode=clone:stop_duration=1,trim=duration=2.5,setpts=PTS-STARTPTS,format=yuv420p[vout];\n[1:a]aresample=48000,aformat=sample_fmts=fltp:channel_layouts=stereo,atrim=0:2.5,asetpts=PTS-STARTPTS,volume=0.22,afade=t=in:d=0.3,afade=t=out:st=1.875:d=0.625[mus];\n[mus]anull[mix];\n[mix]apad,atrim=0:2.5,aresample=48000,asetpts=N/SR/TB,apad=whole_dur=2.5,atrim=0:2.5,asetpts=PTS-STARTPTS[aout]",
+   "texts": [],
+   "staged": [],
+   "result": {
+    "duration": 2.5,
+    "width": 640,
+    "height": 360,
+    "fps": 30,
+    "timeline": [
+     {
+      "start": 0,
+      "end": 2.5,
+      "kind": "color"
+     }
+    ],
+    "warnings": []
+   }
+  },
+  {
+   "name": "manyvoices",
+   "note": "three voice parts mixed, then ducked music (volume clamped)",
+   "spec": {
+    "aspect": "16:9",
+    "quality": "draft",
+    "scenes": [
+     {
+      "kind": "color",
+      "duration": 2,
+      "audio": {
+       "path": "{FX}/vo.wav"
+      }
+     },
+     {
+      "kind": "color",
+      "duration": 2,
+      "audio": {
+       "path": "{FX}/vo2.wav",
+       "start": 0.4,
+       "volume": 1.4
+      }
+     }
+    ],
+    "voiceover": {
+     "path": "{FX}/long.wav",
+     "start": 0.25,
+     "volume": 0.5
+    },
+    "music": {
+     "path": "{FX}/music.wav",
+     "volume": 1.7
+    }
+   },
+   "calls": [
+    {
+     "args": [
+      "-filter_complex",
+      "color=c=0x111827:s=640x360:r=30:d=2,setsar=1,format=yuv420p[v]",
+      "-map",
+      "[v]",
+      "-c:v",
+      "libx264",
+      "-preset",
+      "ultrafast",
+      "-crf",
+      "23",
+      "-pix_fmt",
+      "yuv420p",
+      "-r",
+      "30",
+      "-an",
+      "-t",
+      "2",
+      "{WORK}/seg000.mp4"
+     ],
+     "progress": false
+    },
+    {
+     "args": [
+      "-filter_complex",
+      "color=c=0x111827:s=640x360:r=30:d=2,setsar=1,format=yuv420p[v]",
+      "-map",
+      "[v]",
+      "-c:v",
+      "libx264",
+      "-preset",
+      "ultrafast",
+      "-crf",
+      "23",
+      "-pix_fmt",
+      "yuv420p",
+      "-r",
+      "30",
+      "-an",
+      "-t",
+      "2",
+      "{WORK}/seg001.mp4"
+     ],
+     "progress": false
+    },
+    {
+     "args": [
+      "-i",
+      "seg000.mp4",
+      "-i",
+      "seg001.mp4",
+      "-i",
+      "{FX}/long.wav",
+      "-i",
+      "{FX}/vo.wav",
+      "-i",
+      "{FX}/vo2.wav",
+      "-stream_loop",
+      "-1",
+      "-i",
+      "{FX}/music.wav",
+      "-/filter_complex",
+      "graph.txt",
+      "-map",
+      "[vout]",
+      "-map",
+      "[aout]",
+      "-c:v",
+      "libx264",
+      "-preset",
+      "veryfast",
+      "-crf",
+      "26",
+      "-profile:v",
+      "high",
+      "-pix_fmt",
+      "yuv420p",
+      "-r",
+      "30",
+      "-g",
+      "60",
+      "-c:a",
+      "aac",
+      "-b:a",
+      "128k",
+      "-ar",
+      "48000",
+      "-ac",
+      "2",
+      "-movflags",
+      "+faststart",
+      "-t",
+      "4",
+      "{WORK}/out.mp4"
+     ],
+     "progress": true
+    },
+    {
+     "args": [
+      "-ss",
+      "0.8",
+      "-i",
+      "{OUT}/v.mp4",
+      "-frames:v",
+      "1",
+      "-update",
+      "1",
+      "{OUT}/v.png"
+     ],
+     "progress": false
+    }
+   ],
+   "graph": "[0:v]settb=AVTB,setpts=PTS-STARTPTS,fps=30,settb=AVTB,format=yuv420p[s0];\n[1:v]settb=AVTB,setpts=PTS-STARTPTS,fps=30,settb=AVTB,format=yuv420p[s1];\n[s0][s1]concat=n=2:v=1:a=0,settb=AVTB[j1];\n[j1]tpad=stop_mode=clone:stop_duration=1,trim=duration=4,setpts=PTS-STARTPTS,format=yuv420p[vout];\n[2:a]aresample=48000,aformat=sample_fmts=fltp:channel_layouts=stereo,volume=0.5,adelay=250:all=1[vo0];\n[3:a]aresample=48000,aformat=sample_fmts=fltp:channel_layouts=stereo,adelay=150:all=1[vo1];\n[4:a]aresample=48000,aformat=sample_fmts=fltp:channel_layouts=stereo,volume=1.4,adelay=2400:all=1[vo2];\n[vo0][vo1][vo2]amix=inputs=3:normalize=0:duration=longest:dropout_transition=0[vo];\n[5:a]aresample=48000,aformat=sample_fmts=fltp:channel_layouts=stereo,atrim=0:4,asetpts=PTS-STARTPTS,volume=1,afade=t=in:d=0.3,afade=t=out:st=3:d=1[mus];\n[vo]asplit=2[vo1][vosc];\n[mus][vosc]sidechaincompress=threshold=0.015:ratio=12:attack=20:release=400[duck];\n[vo1][duck]amix=inputs=2:normalize=0:duration=longest[mix];\n[mix]apad,atrim=0:4,loudnorm=I=-16:TP=-1.5:LRA=11,aresample=48000,asetpts=N/SR/TB,apad=whole_dur=4,atrim=0:4,asetpts=PTS-STARTPTS[aout]",
+   "texts": [],
+   "staged": [],
+   "result": {
+    "duration": 4,
+    "width": 640,
+    "height": 360,
+    "fps": 30,
+    "timeline": [
+     {
+      "start": 0,
+      "end": 2,
+      "kind": "color"
+     },
+     {
+      "start": 2,
+      "end": 4,
+      "kind": "color"
+     }
+    ],
+    "warnings": []
+   }
+  },
+  {
+   "name": "pipeline",
+   "note": "spot pipeline shape",
+   "spec": {
+    "aspect": "4:5",
+    "quality": "final",
+    "fps": 25,
+    "transition": "dissolve",
+    "loudness": "social",
+    "posterAt": 1.25,
+    "scenes": [
+     {
+      "kind": "image",
+      "src": "{FX}/a still.png",
+      "duration": 2.6,
+      "text": "Fresh every morning",
+      "kenburns": "auto",
+      "audio": {
+       "path": "{FX}/vo.wav",
+       "start": 0.15,
+       "tempo": 1.18,
+       "maxSeconds": 2.4
+      }
+     },
+     {
+      "kind": "image",
+      "src": "{FX}/b%d.png",
+      "duration": 3.1,
+      "kenburns": "out",
+      "audio": {
+       "path": "{FX}/vo2.wav",
+       "start": 0.15,
+       "tempo": 1
+      }
+     },
+     {
+      "kind": "color",
+      "color": "#f5f5dc",
+      "accent": "#0a0",
+      "duration": 2.3,
+      "transition": "cut",
+      "text": "Roasted here",
+      "audio": {
+       "path": "{FX}/vo.wav",
+       "start": 0.15,
+       "tempo": 2.5,
+       "volume": 0.8
+      }
+     }
+    ],
+    "endCard": {
+     "brand": "Main Street Coffee",
+     "cta": "Come say hi",
+     "url": "mainstreet.coffee",
+     "colors": [
+      "#fefefe",
+      "#123",
+      "#ff0000"
+     ],
+     "duration": 2.5,
+     "audio": {
+      "path": "{FX}/vo2.wav",
+      "start": 0.15,
+      "tempo": 1.3,
+      "maxSeconds": 1.9
+     }
+    },
+    "music": {
+     "path": "{FX}/music.wav",
+     "volume": 0.28,
+     "duck": true
+    },
+    "captions": [
+     {
+      "start": 0.15,
+      "end": 0.731,
+      "text": "Fresh coffee,"
+     },
+     {
+      "start": 0.731,
+      "end": 2.25,
+      "text": "roasted right here on Main Street."
+     },
+     {
+      "start": 2.75,
+      "end": 4.322,
+      "text": "Pastries baked next door —"
+     },
+     {
+      "start": 4.322,
+      "end": 5.35,
+      "text": "every single day!"
+     }
+    ]
+   },
+   "calls": [
+    {
+     "args": [
+      "-i",
+      "img0.png",
+      "-filter_complex",
+      "[0:v]scale=2160:2700:force_original_aspect_ratio=increase,crop=2160:2700,setsar=1[fit];[fit]zoompan=z='1+0.12*on/77':x='iw/2-(iw/zoom/2)':y='ih/2-(ih/zoom/2)':d=78:s=1080x1350:fps=25,setsar=1,drawtext=fontfile=font.ttf:textfile=t0.txt:expansion=none:fontsize=78:fontcolor=white:x=(w-text_w)/2:y=108:box=1:boxcolor=black@0.42:boxborderw=22:alpha='min(1,t/0.35)',format=yuv420p[v]",
+      "-map",
+      "[v]",
+      "-frames:v",
+      "78",
+      "-c:v",
+      "libx264",
+      "-preset",
+      "veryfast",
+      "-crf",
+      "16",
+      "-pix_fmt",
+      "yuv420p",
+      "-r",
+      "25",
+      "-an",
+      "-t",
+      "3.1",
+      "{WORK}/seg000.mp4"
+     ],
+     "progress": false
+    },
+    {
+     "args": [
+      "-i",
+      "img1.png",
+      "-filter_complex",
+      "[0:v]scale=2160:2700:force_original_aspect_ratio=increase,crop=2160:2700,setsar=1[fit];[fit]zoompan=z='1.12-0.12*on/89':x='iw/2-(iw/zoom/2)':y='ih/2-(ih/zoom/2)':d=90:s=1080x1350:fps=25,setsar=1,format=yuv420p[v]",
+      "-map",
+      "[v]",
+      "-frames:v",
+      "90",
+      "-c:v",
+      "libx264",
+      "-preset",
+      "veryfast",
+      "-crf",
+      "16",
+      "-pix_fmt",
+      "yuv420p",
+      "-r",
+      "25",
+      "-an",
+      "-t",
+      "3.6",
+      "{WORK}/seg001.mp4"
+     ],
+     "progress": false
+    },
+    {
+     "args": [
+      "-filter_complex",
+      "color=c=0xF5F5DC:s=1080x1350:r=25:d=2.3,setsar=1,drawbox=x=0:y=ih*0.955:w=iw:h=ih*0.045:color=0x00AA00:t=fill,drawtext=fontfile=font.ttf:textfile=t1.txt:expansion=none:fontsize=103:fontcolor=0x111111:x=(w-text_w)/2:y=624:alpha='min(1,t/0.35)',format=yuv420p[v]",
+      "-map",
+      "[v]",
+      "-c:v",
+      "libx264",
+      "-preset",
+      "veryfast",
+      "-crf",
+      "16",
+      "-pix_fmt",
+      "yuv420p",
+      "-r",
+      "25",
+      "-an",
+      "-t",
+      "2.3",
+      "{WORK}/seg002.mp4"
+     ],
+     "progress": false
+    },
+    {
+     "args": [
+      "-filter_complex",
+      "color=c=0xFEFEFE:s=1080x1350:r=25:d=2.5,setsar=1,drawbox=x=0:y=ih*0.955:w=iw:h=ih*0.045:color=0x112233:t=fill,drawtext=fontfile=font.ttf:textfile=t2.txt:expansion=none:fontsize=119:fontcolor=0xFF0000:x=(w-text_w)/2:y=367:alpha='min(1,t/0.44999999999999996)',drawtext=fontfile=font.ttf:textfile=t3.txt:expansion=none:fontsize=119:fontcolor=0xFF0000:x=(w-text_w)/2:y=519:alpha='min(1,t/0.44999999999999996)',drawtext=fontfile=font.ttf:textfile=t4.txt:expansion=none:fontsize=71:fontcolor=0xFFFFFF:x=(w-text_w)/2:y=708:box=1:boxcolor=0x112233:boxborderw=32:alpha='min(1,t/0.5700000000000001)',drawtext=fontfile=font.ttf:textfile=t5.txt:expansion=none:fontsize=54:fontcolor=0xFF0000@0.85:x=(w-text_w)/2:y=848:alpha='min(1,t/0.69)',format=yuv420p[v]",
+      "-map",
+      "[v]",
+      "-c:v",
+      "libx264",
+      "-preset",
+      "veryfast",
+      "-crf",
+      "16",
+      "-pix_fmt",
+      "yuv420p",
+      "-r",
+      "25",
+      "-an",
+      "-t",
+      "2.5",
+      "{WORK}/seg003.mp4"
+     ],
+     "progress": false
+    },
+    {
+     "args": [
+      "-i",
+      "seg000.mp4",
+      "-i",
+      "seg001.mp4",
+      "-i",
+      "seg002.mp4",
+      "-i",
+      "seg003.mp4",
+      "-i",
+      "{FX}/vo.wav",
+      "-i",
+      "{FX}/vo2.wav",
+      "-i",
+      "{FX}/vo.wav",
+      "-i",
+      "{FX}/vo2.wav",
+      "-stream_loop",
+      "-1",
+      "-i",
+      "{FX}/music.wav",
+      "-/filter_complex",
+      "graph.txt",
+      "-map",
+      "[vout]",
+      "-map",
+      "[aout]",
+      "-c:v",
+      "libx264",
+      "-preset",
+      "medium",
+      "-crf",
+      "19",
+      "-profile:v",
+      "high",
+      "-pix_fmt",
+      "yuv420p",
+      "-r",
+      "25",
+      "-g",
+      "50",
+      "-c:a",
+      "aac",
+      "-b:a",
+      "192k",
+      "-ar",
+      "48000",
+      "-ac",
+      "2",
+      "-movflags",
+      "+faststart",
+      "-t",
+      "10.5",
+      "{WORK}/out.mp4"
+     ],
+     "progress": true
+    },
+    {
+     "args": [
+      "-ss",
+      "1.25",
+      "-i",
+      "{OUT}/v.mp4",
+      "-frames:v",
+      "1",
+      "-update",
+      "1",
+      "{OUT}/v.png"
+     ],
+     "progress": false
+    }
+   ],
+   "graph": "[0:v]settb=AVTB,setpts=PTS-STARTPTS,fps=25,settb=AVTB,format=yuv420p[s0];\n[1:v]settb=AVTB,setpts=PTS-STARTPTS,fps=25,settb=AVTB,format=yuv420p[s1];\n[2:v]settb=AVTB,setpts=PTS-STARTPTS,fps=25,settb=AVTB,format=yuv420p[s2];\n[3:v]settb=AVTB,setpts=PTS-STARTPTS,fps=25,settb=AVTB,format=yuv420p[s3];\n[s0][s1]xfade=transition=dissolve:duration=0.5:offset=2.6[j1];\n[j1][s2]xfade=transition=dissolve:duration=0.5:offset=5.7[j2];\n[j2][s3]concat=n=2:v=1:a=0,settb=AVTB[j3];\n[j3]drawtext=fontfile=font.ttf:textfile=t6.txt:expansion=none:fontsize=63:fontcolor=white:x=(w-text_w)/2:y=1098:borderw=4:bordercolor=black@0.7:box=1:boxcolor=black@0.5:boxborderw=18:enable='between(t,0.15,0.731)',drawtext=fontfile=font.ttf:textfile=t7.txt:expansion=none:fontsize=63:fontcolor=white:x=(w-text_w)/2:y=1017:borderw=4:bordercolor=black@0.7:box=1:boxcolor=black@0.5:boxborderw=18:enable='between(t,0.731,2.25)',drawtext=fontfile=font.ttf:textfile=t8.txt:expansion=none:fontsize=63:fontcolor=white:x=(w-text_w)/2:y=1098:borderw=4:bordercolor=black@0.7:box=1:boxcolor=black@0.5:boxborderw=18:enable='between(t,0.731,2.25)',drawtext=fontfile=font.ttf:textfile=t9.txt:expansion=none:fontsize=63:fontcolor=white:x=(w-text_w)/2:y=1098:borderw=4:bordercolor=black@0.7:box=1:boxcolor=black@0.5:boxborderw=18:enable='between(t,2.75,4.322)',drawtext=fontfile=font.ttf:textfile=t10.txt:expansion=none:fontsize=63:fontcolor=white:x=(w-text_w)/2:y=1098:borderw=4:bordercolor=black@0.7:box=1:boxcolor=black@0.5:boxborderw=18:enable='between(t,4.322,5.35)',tpad=stop_mode=clone:stop_duration=1,trim=duration=10.5,setpts=PTS-STARTPTS,format=yuv420p[vout];\n[4:a]aresample=48000,aformat=sample_fmts=fltp:channel_layouts=stereo,atempo=1.18,asetpts=N/SR/TB,atrim=0:2.4,afade=t=out:st=2.25:d=0.15,adelay=150:all=1[vo0];\n[5:a]aresample=48000,aformat=sample_fmts=fltp:channel_layouts=stereo,adelay=2750:all=1[vo1];\n[6:a]aresample=48000,aformat=sample_fmts=fltp:channel_layouts=stereo,atempo=2,asetpts=N/SR/TB,volume=0.8,adelay=5850:all=1[vo2];\n[7:a]aresample=48000,aformat=sample_fmts=fltp:channel_layouts=stereo,atempo=1.3,asetpts=N/SR/TB,atrim=0:1.9,afade=t=out:st=1.75:d=0.15,adelay=8150:all=1[vo3];\n[vo0][vo1][vo2][vo3]amix=inputs=4:normalize=0:duration=longest:dropout_transition=0[vo];\n[8:a]aresample=48000,aformat=sample_fmts=fltp:channel_layouts=stereo,atrim=0:10.5,asetpts=PTS-STARTPTS,volume=0.28,afade=t=in:d=0.3,afade=t=out:st=9:d=1.5[mus];\n[vo]asplit=2[vo1][vosc];\n[mus][vosc]sidechaincompress=threshold=0.015:ratio=12:attack=20:release=400[duck];\n[vo1][duck]amix=inputs=2:normalize=0:duration=longest[mix];\n[mix]apad,atrim=0:10.5,loudnorm=I=-16:TP=-1.5:LRA=11,aresample=48000,asetpts=N/SR/TB,apad=whole_dur=10.5,atrim=0:10.5,asetpts=PTS-STARTPTS[aout]",
+   "texts": [
+    "Fresh every morning",
+    "Roasted here",
+    "Main Street",
+    "Coffee",
+    "Come say hi",
+    "mainstreet.coffee",
+    "Fresh coffee,",
+    "roasted right here on Main",
+    "Street.",
+    "Pastries baked next door —",
+    "every single day!"
+   ],
+   "staged": [
+    [
+     "{FX}/a still.png",
+     "img0.png"
+    ],
+    [
+     "{FX}/b%d.png",
+     "img1.png"
+    ]
+   ],
+   "result": {
+    "duration": 10.5,
+    "width": 1080,
+    "height": 1350,
+    "fps": 25,
+    "timeline": [
+     {
+      "start": 0,
+      "end": 2.6,
+      "kind": "image",
+      "label": "Fresh every morning"
+     },
+     {
+      "start": 2.6,
+      "end": 5.7,
+      "kind": "image"
+     },
+     {
+      "start": 5.7,
+      "end": 8,
+      "kind": "color",
+      "label": "Roasted here"
+     },
+     {
+      "start": 8,
+      "end": 10.5,
+      "kind": "endcard",
+      "label": "Main Street Coffee"
+     }
+    ],
+    "warnings": []
+   }
+  },
+  {
+   "name": "text",
+   "note": "headlines and captions",
+   "spec": {
+    "aspect": "16:9",
+    "quality": "final",
+    "targetSeconds": 10.2,
+    "scenes": [
+     {
+      "kind": "color",
+      "color": "#fafafa",
+      "accent": "#e11d48",
+      "duration": 3,
+      "text": "A very long headline that keeps going and going well past what any reasonable on-screen card could ever hold in four lines of big type 🎉 really"
+     },
+     {
+      "kind": "image",
+      "src": "{FX}/a still.png",
+      "duration": 3,
+      "text": "Bottom third headline here",
+      "textPosition": "bottom"
+     },
+     {
+      "kind": "image",
+      "src": "{FX}/a still.png",
+      "duration": 3,
+      "text": "Centered ✨ words",
+      "textPosition": "center",
+      "kenburns": "none"
+     },
+     {
+      "kind": "video",
+      "src": "{FX}/clip.mp4",
+      "duration": 2,
+      "text": "Top line",
+      "fit": "contain"
+     }
+    ],
+    "captions": [
+     {
+      "start": 0,
+      "end": 2,
+      "text": "First caption with some words"
+     },
+     {
+      "start": 2.5,
+      "end": 2.5,
+      "text": "zero length skipped"
+     },
+     {
+      "start": 3,
+      "end": 20,
+      "text": "A caption that runs past the end and has quite a lot of words so it must wrap onto two lines and then be truncated with an ellipsis"
+     },
+     {
+      "start": 11,
+      "end": 12,
+      "text": "after the end"
+     },
+     {
+      "start": 5,
+      "end": 6,
+      "text": "🙂"
+     },
+     {
+      "start": 6,
+      "end": 7.5,
+      "text": "Supercalifragilisticexpialidocious-and-then-some-more-letters"
+     }
+    ]
+   },
+   "calls": [
+    {
+     "args": [
+      "-filter_complex",
+      "color=c=0xFAFAFA:s=1920x1080:r=30:d=3,setsar=1,drawbox=x=0:y=ih*0.955:w=iw:h=ih*0.045:color=0xE11D48:t=fill,drawtext=fontfile=font.ttf:textfile=t0.txt:expansion=none:fontsize=76:fontcolor=0x111111:x=(w-text_w)/2:y=357:alpha='min(1,t/0.35)',drawtext=fontfile=font.ttf:textfile=t1.txt:expansion=none:fontsize=76:fontcolor=0x111111:x=(w-text_w)/2:y=454:alpha='min(1,t/0.35)',drawtext=fontfile=font.ttf:textfile=t2.txt:expansion=none:fontsize=76:fontcolor=0x111111:x=(w-text_w)/2:y=551:alpha='min(1,t/0.35)',drawtext=fontfile=font.ttf:textfile=t3.txt:expansion=none:fontsize=76:fontcolor=0x111111:x=(w-text_w)/2:y=648:alpha='min(1,t/0.35)',format=yuv420p[v]",
+      "-map",
+      "[v]",
+      "-c:v",
+      "libx264",
+      "-preset",
+      "veryfast",
+      "-crf",
+      "16",
+      "-pix_fmt",
+      "yuv420p",
+      "-r",
+      "30",
+      "-an",
+      "-t",
+      "3",
+      "{WORK}/seg000.mp4"
+     ],
+     "progress": false
+    },
+    {
+     "args": [
+      "-i",
+      "img1.png",
+      "-filter_complex",
+      "[0:v]scale=3840:2160:force_original_aspect_ratio=increase,crop=3840:2160,setsar=1[fit];[fit]zoompan=z='1.12':x='(iw-iw/zoom)*on/89':y='ih/2-(ih/zoom/2)':d=90:s=1920x1080:fps=30,setsar=1,drawtext=fontfile=font.ttf:textfile=t4.txt:expansion=none:fontsize=78:fontcolor=white:x=(w-text_w)/2:y=721:box=1:boxcolor=black@0.42:boxborderw=22:alpha='min(1,t/0.35)',format=yuv420p[v]",
+      "-map",
+      "[v]",
+      "-frames:v",
+      "90",
+      "-c:v",
+      "libx264",
+      "-preset",
+      "veryfast",
+      "-crf",
+      "16",
+      "-pix_fmt",
+      "yuv420p",
+      "-r",
+      "30",
+      "-an",
+      "-t",
+      "3",
+      "{WORK}/seg001.mp4"
+     ],
+     "progress": false
+    },
+    {
+     "args": [
+      "-i",
+      "img2.png",
+      "-filter_complex",
+      "[0:v]scale=3840:2160:force_original_aspect_ratio=increase,crop=3840:2160,setsar=1[fit];[fit]zoompan=z='1':x='0':y='0':d=90:s=1920x1080:fps=30,setsar=1,drawtext=fontfile=font.ttf:textfile=t5.txt:expansion=none:fontsize=78:fontcolor=white:x=(w-text_w)/2:y=501:box=1:boxcolor=black@0.42:boxborderw=22:alpha='min(1,t/0.35)',format=yuv420p[v]",
+      "-map",
+      "[v]",
+      "-frames:v",
+      "90",
+      "-c:v",
+      "libx264",
+      "-preset",
+      "veryfast",
+      "-crf",
+      "16",
+      "-pix_fmt",
+      "yuv420p",
+      "-r",
+      "30",
+      "-an",
+      "-t",
+      "3",
+      "{WORK}/seg002.mp4"
+     ],
+     "progress": false
+    },
+    {
+     "args": [
+      "-stream_loop",
+      "-1",
+      "-i",
+      "{FX}/clip.mp4",
+      "-filter_complex",
+      "[0:v]split=2[fa][fb];[fa]scale=1920:1080:force_original_aspect_ratio=increase,crop=1920:1080,gblur=sigma=48[fbg];[fb]scale=1920:1080:force_original_aspect_ratio=decrease[ffg];[fbg][ffg]overlay=(W-w)/2:(H-h)/2,setsar=1[fit];[fit]fps=30,drawtext=fontfile=font.ttf:textfile=t6.txt:expansion=none:fontsize=78:fontcolor=white:x=(w-text_w)/2:y=108:box=1:boxcolor=black@0.42:boxborderw=22:alpha='min(1,t/0.35)',format=yuv420p[v]",
+      "-map",
+      "[v]",
+      "-c:v",
+      "libx264",
+      "-preset",
+      "veryfast",
+      "-crf",
+      "16",
+      "-pix_fmt",
+      "yuv420p",
+      "-r",
+      "30",
+      "-an",
+      "-t",
+      "2",
+      "{WORK}/seg003.mp4"
+     ],
+     "progress": false
+    },
+    {
+     "args": [
+      "-i",
+      "seg000.mp4",
+      "-i",
+      "seg001.mp4",
+      "-i",
+      "seg002.mp4",
+      "-i",
+      "seg003.mp4",
+      "-/filter_complex",
+      "graph.txt",
+      "-map",
+      "[vout]",
+      "-map",
+      "[aout]",
+      "-c:v",
+      "libx264",
+      "-preset",
+      "medium",
+      "-crf",
+      "19",
+      "-profile:v",
+      "high",
+      "-pix_fmt",
+      "yuv420p",
+      "-r",
+      "30",
+      "-g",
+      "60",
+      "-c:a",
+      "aac",
+      "-b:a",
+      "192k",
+      "-ar",
+      "48000",
+      "-ac",
+      "2",
+      "-movflags",
+      "+faststart",
+      "-t",
+      "10.2",
+      "{WORK}/out.mp4"
+     ],
+     "progress": true
+    },
+    {
+     "args": [
+      "-ss",
+      "1.2",
+      "-i",
+      "{OUT}/v.mp4",
+      "-frames:v",
+      "1",
+      "-update",
+      "1",
+      "{OUT}/v.png"
+     ],
+     "progress": false
+    }
+   ],
+   "graph": "[0:v]settb=AVTB,setpts=PTS-STARTPTS,fps=30,settb=AVTB,format=yuv420p[s0];\n[1:v]settb=AVTB,setpts=PTS-STARTPTS,fps=30,settb=AVTB,format=yuv420p[s1];\n[2:v]settb=AVTB,setpts=PTS-STARTPTS,fps=30,settb=AVTB,format=yuv420p[s2];\n[3:v]settb=AVTB,setpts=PTS-STARTPTS,fps=30,settb=AVTB,format=yuv420p[s3];\n[s0][s1]concat=n=2:v=1:a=0,settb=AVTB[j1];\n[j1][s2]concat=n=2:v=1:a=0,settb=AVTB[j2];\n[j2][s3]concat=n=2:v=1:a=0,settb=AVTB[j3];\n[j3]drawtext=fontfile=font.ttf:textfile=t7.txt:expansion=none:fontsize=56:fontcolor=white:x=(w-text_w)/2:y=916:borderw=4:bordercolor=black@0.7:box=1:boxcolor=black@0.5:boxborderw=16:enable='between(t,0,2)',drawtext=fontfile=font.ttf:textfile=t8.txt:expansion=none:fontsize=41:fontcolor=white:x=(w-text_w)/2:y=879:borderw=3:bordercolor=black@0.7:box=1:boxcolor=black@0.5:boxborderw=11:enable='between(t,3,10.2)',drawtext=fontfile=font.ttf:textfile=t9.txt:expansion=none:fontsize=41:fontcolor=white:x=(w-text_w)/2:y=931:borderw=3:bordercolor=black@0.7:box=1:boxcolor=black@0.5:boxborderw=11:enable='between(t,3,10.2)',drawtext=fontfile=font.ttf:textfile=t10.txt:expansion=none:fontsize=56:fontcolor=white:x=(w-text_w)/2:y=844:borderw=4:bordercolor=black@0.7:box=1:boxcolor=black@0.5:boxborderw=16:enable='between(t,6,7.5)',drawtext=fontfile=font.ttf:textfile=t11.txt:expansion=none:fontsize=56:fontcolor=white:x=(w-text_w)/2:y=916:borderw=4:bordercolor=black@0.7:box=1:boxcolor=black@0.5:boxborderw=16:enable='between(t,6,7.5)',tpad=stop_mode=clone:stop_duration=1,trim=duration=10.2,setpts=PTS-STARTPTS,format=yuv420p[vout];\nanullsrc=r=48000:cl=stereo,atrim=0:10.2[mix];\n[mix]apad,atrim=0:10.2,aresample=48000,asetpts=N/SR/TB,apad=whole_dur=10.2,atrim=0:10.2,asetpts=PTS-STARTPTS[aout]",
+   "texts": [
+    "A very long headline that keeps",
+    "going and going well past what any",
+    "reasonable on-screen card could ever",
+    "hold in four lines of big type…",
+    "Bottom third headline here",
+    "Centered words",
+    "Top line",
+    "First caption with some words",
+    "A caption that runs past the end and has quite a lot of words so",
+    "it must wrap onto two lines and then be truncated with an ellipsis",
+    "Supercalifragilisticexpialidocious-and-then-some",
+    "-more-letters"
+   ],
+   "staged": [
+    [
+     "{FX}/a still.png",
+     "img1.png"
+    ],
+    [
+     "{FX}/a still.png",
+     "img2.png"
+    ]
+   ],
+   "result": {
+    "duration": 10.2,
+    "width": 1920,
+    "height": 1080,
+    "fps": 30,
+    "timeline": [
+     {
+      "start": 0,
+      "end": 3,
+      "kind": "color",
+      "label": "A very long headline that keeps going and going well past wh"
+     },
+     {
+      "start": 3,
+      "end": 6,
+      "kind": "image",
+      "label": "Bottom third headline here"
+     },
+     {
+      "start": 6,
+      "end": 9,
+      "kind": "image",
+      "label": "Centered words"
+     },
+     {
+      "start": 9,
+      "end": 10.2,
+      "kind": "video",
+      "label": "Top line"
+     }
+    ],
+    "warnings": [
+     "on-screen text was shortened to fit: \"A very long headline that keeps going and going well past wh\""
+    ]
+   }
+  },
+  {
+   "name": "pad",
+   "note": "target longer than the scenes (clone pad), 3-digit colours",
+   "spec": {
+    "aspect": "9:16",
+    "quality": "draft",
+    "targetSeconds": 4.75,
+    "scenes": [
+     {
+      "kind": "color",
+      "duration": 1.2,
+      "text": "x"
+     }
+    ],
+    "endCard": {
+     "headline": "Only a headline",
+     "duration": 1,
+     "colors": [
+      "#fff",
+      "#000",
+      "#123456"
+     ]
+    }
+   },
+   "calls": [
+    {
+     "args": [
+      "-filter_complex",
+      "color=c=0x111827:s=360x640:r=30:d=1.2,setsar=1,drawtext=fontfile=font.ttf:textfile=t0.txt:expansion=none:fontsize=34:fontcolor=0xFFFFFF:x=(w-text_w)/2:y=303:alpha='min(1,t/0.35)',format=yuv420p[v]",
+      "-map",
+      "[v]",
+      "-c:v",
+      "libx264",
+      "-preset",
+      "ultrafast",
+      "-crf",
+      "23",
+      "-pix_fmt",
+      "yuv420p",
+      "-r",
+      "30",
+      "-an",
+      "-t",
+      "1.2",
+      "{WORK}/seg000.mp4"
+     ],
+     "progress": false
+    },
+    {
+     "args": [
+      "-filter_complex",
+      "color=c=0xFFFFFF:s=360x640:r=30:d=1,setsar=1,drawbox=x=0:y=ih*0.955:w=iw:h=ih*0.045:color=0x000000:t=fill,drawtext=fontfile=font.ttf:textfile=t1.txt:expansion=none:fontsize=22:fontcolor=0x123456:x=(w-text_w)/2:y=290:alpha='min(1,t/0.44999999999999996)',format=yuv420p[v]",
+      "-map",
+      "[v]",
+      "-c:v",
+      "libx264",
+      "-preset",
+      "ultrafast",
+      "-crf",
+      "23",
+      "-pix_fmt",
+      "yuv420p",
+      "-r",
+      "30",
+      "-an",
+      "-t",
+      "1",
+      "{WORK}/seg001.mp4"
+     ],
+     "progress": false
+    },
+    {
+     "args": [
+      "-i",
+      "seg000.mp4",
+      "-i",
+      "seg001.mp4",
+      "-/filter_complex",
+      "graph.txt",
+      "-map",
+      "[vout]",
+      "-map",
+      "[aout]",
+      "-c:v",
+      "libx264",
+      "-preset",
+      "veryfast",
+      "-crf",
+      "26",
+      "-profile:v",
+      "high",
+      "-pix_fmt",
+      "yuv420p",
+      "-r",
+      "30",
+      "-g",
+      "60",
+      "-c:a",
+      "aac",
+      "-b:a",
+      "128k",
+      "-ar",
+      "48000",
+      "-ac",
+      "2",
+      "-movflags",
+      "+faststart",
+      "-t",
+      "4.75",
+      "{WORK}/out.mp4"
+     ],
+     "progress": true
+    },
+    {
+     "args": [
+      "-ss",
+      "0.5",
+      "-i",
+      "{OUT}/v.mp4",
+      "-frames:v",
+      "1",
+      "-update",
+      "1",
+      "{OUT}/v.png"
+     ],
+     "progress": false
+    }
+   ],
+   "graph": "[0:v]settb=AVTB,setpts=PTS-STARTPTS,fps=30,settb=AVTB,format=yuv420p[s0];\n[1:v]settb=AVTB,setpts=PTS-STARTPTS,fps=30,settb=AVTB,format=yuv420p[s1];\n[s0][s1]concat=n=2:v=1:a=0,settb=AVTB[j1];\n[j1]tpad=stop_mode=clone:stop_duration=4,trim=duration=4.75,setpts=PTS-STARTPTS,format=yuv420p[vout];\nanullsrc=r=48000:cl=stereo,atrim=0:4.75[mix];\n[mix]apad,atrim=0:4.75,aresample=48000,asetpts=N/SR/TB,apad=whole_dur=4.75,atrim=0:4.75,asetpts=PTS-STARTPTS[aout]",
+   "texts": [
+    "x",
+    "Only a headline"
+   ],
+   "staged": [],
+   "result": {
+    "duration": 4.75,
+    "width": 360,
+    "height": 640,
+    "fps": 30,
+    "timeline": [
+     {
+      "start": 0,
+      "end": 1.2,
+      "kind": "color",
+      "label": "x"
+     },
+     {
+      "start": 1.2,
+      "end": 2.2,
+      "kind": "endcard"
+     }
+    ],
+    "warnings": []
+   }
+  },
+  {
+   "name": "badlogo",
+   "note": "clip fallback still, bad colour, unreadable logo",
+   "spec": {
+    "aspect": "1:1",
+    "quality": "draft",
+    "scenes": [
+     {
+      "kind": "video",
+      "src": "{FX}/junk.mp4",
+      "fallbackImage": "{FX}/a still.png",
+      "duration": 2,
+      "transition": "wipe"
+     },
+     {
+      "kind": "color",
+      "color": "nonsense",
+      "duration": 2
+     }
+    ],
+    "endCard": {
+     "brand": "B",
+     "headline": "H",
+     "logo": "{FX}/logo junk.png",
+     "duration": 2
+    }
+   },
+   "calls": [
+    {
+     "args": [
+      "-i",
+      "img0.png",
+      "-filter_complex",
+      "[0:v]scale=540:540:force_original_aspect_ratio=increase,crop=540:540,setsar=1[fit];[fit]zoompan=z='1+0.12*on/74':x='iw/2-(iw/zoom/2)':y='ih/2-(ih/zoom/2)':d=75:s=360x360:fps=30,setsar=1,format=yuv420p[v]",
+      "-map",
+      "[v]",
+      "-frames:v",
+      "75",
+      "-c:v",
+      "libx264",
+      "-preset",
+      "ultrafast",
+      "-crf",
+      "23",
+      "-pix_fmt",
+      "yuv420p",
+      "-r",
+      "30",
+      "-an",
+      "-t",
+      "2.5",
+      "{WORK}/seg000.mp4"
+     ],
+     "progress": false
+    },
+    {
+     "args": [
+      "-filter_complex",
+      "color=c=0x111827:s=360x360:r=30:d=2,setsar=1,format=yuv420p[v]",
+      "-map",
+      "[v]",
+      "-c:v",
+      "libx264",
+      "-preset",
+      "ultrafast",
+      "-crf",
+      "23",
+      "-pix_fmt",
+      "yuv420p",
+      "-r",
+      "30",
+      "-an",
+      "-t",
+      "2",
+      "{WORK}/seg001.mp4"
+     ],
+     "progress": false
+    },
+    {
+     "args": [
+      "-filter_complex",
+      "color=c=0x111827:s=360x360:r=30:d=2,setsar=1,drawbox=x=0:y=ih*0.955:w=iw:h=ih*0.045:color=0xF59E0B:t=fill,drawtext=fontfile=font.ttf:textfile=t0.txt:expansion=none:fontsize=36:fontcolor=0xFFFFFF:x=(w-text_w)/2:y=143:alpha='min(1,t/0.44999999999999996)',drawtext=fontfile=font.ttf:textfile=t1.txt:expansion=none:fontsize=22:fontcolor=0xFFFFFF:x=(w-text_w)/2:y=195:alpha='min(1,t/0.5700000000000001)',format=yuv420p[v]",
+      "-map",
+      "[v]",
+      "-c:v",
+      "libx264",
+      "-preset",
+      "ultrafast",
+      "-crf",
+      "23",
+      "-pix_fmt",
+      "yuv420p",
+      "-r",
+      "30",
+      "-an",
+      "-t",
+      "2",
+      "{WORK}/seg002.mp4"
+     ],
+     "progress": false
+    },
+    {
+     "args": [
+      "-i",
+      "seg000.mp4",
+      "-i",
+      "seg001.mp4",
+      "-i",
+      "seg002.mp4",
+      "-/filter_complex",
+      "graph.txt",
+      "-map",
+      "[vout]",
+      "-map",
+      "[aout]",
+      "-c:v",
+      "libx264",
+      "-preset",
+      "veryfast",
+      "-crf",
+      "26",
+      "-profile:v",
+      "high",
+      "-pix_fmt",
+      "yuv420p",
+      "-r",
+      "30",
+      "-g",
+      "60",
+      "-c:a",
+      "aac",
+      "-b:a",
+      "128k",
+      "-ar",
+      "48000",
+      "-ac",
+      "2",
+      "-movflags",
+      "+faststart",
+      "-t",
+      "6",
+      "{WORK}/out.mp4"
+     ],
+     "progress": true
+    },
+    {
+     "args": [
+      "-ss",
+      "0.8",
+      "-i",
+      "{OUT}/v.mp4",
+      "-frames:v",
+      "1",
+      "-update",
+      "1",
+      "{OUT}/v.png"
+     ],
+     "progress": false
+    }
+   ],
+   "graph": "[0:v]settb=AVTB,setpts=PTS-STARTPTS,fps=30,settb=AVTB,format=yuv420p[s0];\n[1:v]settb=AVTB,setpts=PTS-STARTPTS,fps=30,settb=AVTB,format=yuv420p[s1];\n[2:v]settb=AVTB,setpts=PTS-STARTPTS,fps=30,settb=AVTB,format=yuv420p[s2];\n[s0][s1]xfade=transition=wipeleft:duration=0.5:offset=2[j1];\n[j1][s2]concat=n=2:v=1:a=0,settb=AVTB[j2];\n[j2]tpad=stop_mode=clone:stop_duration=1,trim=duration=6,setpts=PTS-STARTPTS,format=yuv420p[vout];\nanullsrc=r=48000:cl=stereo,atrim=0:6[mix];\n[mix]apad,atrim=0:6,aresample=48000,asetpts=N/SR/TB,apad=whole_dur=6,atrim=0:6,asetpts=PTS-STARTPTS[aout]",
+   "texts": [
+    "B",
+    "H"
+   ],
+   "staged": [
+    [
+     "{FX}/a still.png",
+     "img0.png"
+    ]
+   ],
+   "result": {
+    "duration": 6,
+    "width": 360,
+    "height": 360,
+    "fps": 30,
+    "timeline": [
+     {
+      "start": 0,
+      "end": 2,
+      "kind": "video"
+     },
+     {
+      "start": 2,
+      "end": 4,
+      "kind": "color"
+     },
+     {
+      "start": 4,
+      "end": 6,
+      "kind": "endcard",
+      "label": "B"
+     }
+    ],
+    "warnings": [
+     "scene 1: the video clip could not be read (junk.mp4); used its still image instead",
+     "end card: the logo could not be read (logo junk.png); left it out"
+    ]
+   }
+  },
+  {
+   "name": "endcard-only",
+   "note": "end card alone, landscape logo",
+   "spec": {
+    "aspect": "16:9",
+    "quality": "draft",
+    "scenes": [],
+    "endCard": {
+     "brand": "Solo Brand Name That Is Long",
+     "headline": "A headline",
+     "cta": "Call now",
+     "url": "example.com",
+     "logo": "{FX}/logo.png",
+     "colors": [
+      "#000000"
+     ],
+     "duration": 3
+    }
+   },
+   "calls": [
+    {
+     "args": [
+      "-loop",
+      "1",
+      "-framerate",
+      "30",
+      "-t",
+      "3",
+      "-i",
+      "logo.png",
+      "-filter_complex",
+      "color=c=0x000000:s=640x360:r=30:d=3,setsar=1[bg];[0:v]scale=384:86:force_original_aspect_ratio=decrease,format=rgba,fade=t=in:st=0:d=0.4:alpha=1[lg];[bg][lg]overlay=x=(W-w)/2:y=36:eof_action=repeat,drawbox=x=0:y=ih*0.955:w=iw:h=ih*0.045:color=0xF59E0B:t=fill,drawtext=fontfile=font.ttf:textfile=t0.txt:expansion=none:fontsize=36:fontcolor=0xFFFFFF:x=(w-text_w)/2:y=138:alpha='min(1,t/0.44999999999999996)',drawtext=fontfile=font.ttf:textfile=t1.txt:expansion=none:fontsize=36:fontcolor=0xFFFFFF:x=(w-text_w)/2:y=184:alpha='min(1,t/0.44999999999999996)',drawtext=fontfile=font.ttf:textfile=t2.txt:expansion=none:fontsize=22:fontcolor=0xFFFFFF:x=(w-text_w)/2:y=236:alpha='min(1,t/0.5700000000000001)',drawtext=fontfile=font.ttf:textfile=t3.txt:expansion=none:fontsize=24:fontcolor=0xFFFFFF:x=(w-text_w)/2:y=282:box=1:boxcolor=0xF59E0B:boxborderw=11:alpha='min(1,t/0.69)',drawtext=fontfile=font.ttf:textfile=t4.txt:expansion=none:fontsize=18:fontcolor=0xFFFFFF@0.85:x=(w-text_w)/2:y=329:alpha='min(1,t/0.81)',format=yuv420p[v]",
+      "-map",
+      "[v]",
+      "-c:v",
+      "libx264",
+      "-preset",
+      "ultrafast",
+      "-crf",
+      "23",
+      "-pix_fmt",
+      "yuv420p",
+      "-r",
+      "30",
+      "-an",
+      "-t",
+      "3",
+      "{WORK}/seg000.mp4"
+     ],
+     "progress": false
+    },
+    {
+     "args": [
+      "-i",
+      "seg000.mp4",
+      "-/filter_complex",
+      "graph.txt",
+      "-map",
+      "[vout]",
+      "-map",
+      "[aout]",
+      "-c:v",
+      "libx264",
+      "-preset",
+      "veryfast",
+      "-crf",
+      "26",
+      "-profile:v",
+      "high",
+      "-pix_fmt",
+      "yuv420p",
+      "-r",
+      "30",
+      "-g",
+      "60",
+      "-c:a",
+      "aac",
+      "-b:a",
+      "128k",
+      "-ar",
+      "48000",
+      "-ac",
+      "2",
+      "-movflags",
+      "+faststart",
+      "-t",
+      "3",
+      "{WORK}/out.mp4"
+     ],
+     "progress": true
+    },
+    {
+     "args": [
+      "-ss",
+      "1.2",
+      "-i",
+      "{OUT}/v.mp4",
+      "-frames:v",
+      "1",
+      "-update",
+      "1",
+      "{OUT}/v.png"
+     ],
+     "progress": false
+    }
+   ],
+   "graph": "[0:v]settb=AVTB,setpts=PTS-STARTPTS,fps=30,settb=AVTB,format=yuv420p[s0];\n[s0]tpad=stop_mode=clone:stop_duration=1,trim=duration=3,setpts=PTS-STARTPTS,format=yuv420p[vout];\nanullsrc=r=48000:cl=stereo,atrim=0:3[mix];\n[mix]apad,atrim=0:3,aresample=48000,asetpts=N/SR/TB,apad=whole_dur=3,atrim=0:3,asetpts=PTS-STARTPTS[aout]",
+   "texts": [
+    "Solo Brand Name That Is",
+    "Long",
+    "A headline",
+    "Call now",
+    "example.com"
+   ],
+   "staged": [
+    [
+     "{FX}/logo.png",
+     "logo.png"
+    ]
+   ],
+   "result": {
+    "duration": 3,
+    "width": 640,
+    "height": 360,
+    "fps": 30,
+    "timeline": [
+     {
+      "start": 0,
+      "end": 3,
+      "kind": "endcard",
+      "label": "Solo Brand Name That Is Long"
+     }
+    ],
+    "warnings": []
+   }
+  },
+  {
+   "name": "tinyslots",
+   "note": "slot minimum 0.3 s, transition seconds clamped to 1.5",
+   "spec": {
+    "aspect": "9:16",
+    "quality": "final",
+    "transition": "zoom",
+    "transitionSeconds": 3,
+    "scenes": [
+     {
+      "kind": "color",
+      "duration": 0.1
+     },
+     {
+      "kind": "color",
+      "duration": 0.7
+     },
+     {
+      "kind": "color",
+      "duration": 5
+     }
+    ]
+   },
+   "calls": [
+    {
+     "args": [
+      "-filter_complex",
+      "color=c=0x111827:s=1080x1920:r=30:d=0.42,setsar=1,format=yuv420p[v]",
+      "-map",
+      "[v]",
+      "-c:v",
+      "libx264",
+      "-preset",
+      "veryfast",
+      "-crf",
+      "16",
+      "-pix_fmt",
+      "yuv420p",
+      "-r",
+      "30",
+      "-an",
+      "-t",
+      "0.42",
+      "{WORK}/seg000.mp4"
+     ],
+     "progress": false
+    },
+    {
+     "args": [
+      "-filter_complex",
+      "color=c=0x111827:s=1080x1920:r=30:d=0.98,setsar=1,format=yuv420p[v]",
+      "-map",
+      "[v]",
+      "-c:v",
+      "libx264",
+      "-preset",
+      "veryfast",
+      "-crf",
+      "16",
+      "-pix_fmt",
+      "yuv420p",
+      "-r",
+      "30",
+      "-an",
+      "-t",
+      "0.98",
+      "{WORK}/seg001.mp4"
+     ],
+     "progress": false
+    },
+    {
+     "args": [
+      "-filter_complex",
+      "color=c=0x111827:s=1080x1920:r=30:d=5,setsar=1,format=yuv420p[v]",
+      "-map",
+      "[v]",
+      "-c:v",
+      "libx264",
+      "-preset",
+      "veryfast",
+      "-crf",
+      "16",
+      "-pix_fmt",
+      "yuv420p",
+      "-r",
+      "30",
+      "-an",
+      "-t",
+      "5",
+      "{WORK}/seg002.mp4"
+     ],
+     "progress": false
+    },
+    {
+     "args": [
+      "-i",
+      "seg000.mp4",
+      "-i",
+      "seg001.mp4",
+      "-i",
+      "seg002.mp4",
+      "-/filter_complex",
+      "graph.txt",
+      "-map",
+      "[vout]",
+      "-map",
+      "[aout]",
+      "-c:v",
+      "libx264",
+      "-preset",
+      "medium",
+      "-crf",
+      "19",
+      "-profile:v",
+      "high",
+      "-pix_fmt",
+      "yuv420p",
+      "-r",
+      "30",
+      "-g",
+      "60",
+      "-c:a",
+      "aac",
+      "-b:a",
+      "192k",
+      "-ar",
+      "48000",
+      "-ac",
+      "2",
+      "-movflags",
+      "+faststart",
+      "-t",
+      "6",
+      "{WORK}/out.mp4"
+     ],
+     "progress": true
+    },
+    {
+     "args": [
+      "-ss",
+      "0.5",
+      "-i",
+      "{OUT}/v.mp4",
+      "-frames:v",
+      "1",
+      "-update",
+      "1",
+      "{OUT}/v.png"
+     ],
+     "progress": false
+    }
+   ],
+   "graph": "[0:v]settb=AVTB,setpts=PTS-STARTPTS,fps=30,settb=AVTB,format=yuv420p[s0];\n[1:v]settb=AVTB,setpts=PTS-STARTPTS,fps=30,settb=AVTB,format=yuv420p[s1];\n[2:v]settb=AVTB,setpts=PTS-STARTPTS,fps=30,settb=AVTB,format=yuv420p[s2];\n[s0][s1]xfade=transition=zoomin:duration=0.12:offset=0.3[j1];\n[j1][s2]xfade=transition=zoomin:duration=0.28:offset=1[j2];\n[j2]tpad=stop_mode=clone:stop_duration=1,trim=duration=6,setpts=PTS-STARTPTS,format=yuv420p[vout];\nanullsrc=r=48000:cl=stereo,atrim=0:6[mix];\n[mix]apad,atrim=0:6,aresample=48000,asetpts=N/SR/TB,apad=whole_dur=6,atrim=0:6,asetpts=PTS-STARTPTS[aout]",
+   "texts": [],
+   "staged": [],
+   "result": {
+    "duration": 6,
+    "width": 1080,
+    "height": 1920,
+    "fps": 30,
+    "timeline": [
+     {
+      "start": 0,
+      "end": 0.3,
+      "kind": "color"
+     },
+     {
+      "start": 0.3,
+      "end": 1,
+      "kind": "color"
+     },
+     {
+      "start": 1,
+      "end": 6,
+      "kind": "color"
+     }
+    ],
+    "warnings": []
+   }
+  },
+  {
+   "name": "empty",
+   "spec": {
+    "aspect": "9:16",
+    "scenes": []
+   },
+   "error": "nothing to render: no scenes",
+   "calls": [],
+   "texts": [],
+   "staged": []
+  }
+ ]
+}

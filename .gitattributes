@@ -1,0 +1,19 @@
+* text=auto
+
+# Windows scripts need CRLF; shell scripts need LF
+*.ps1 text eol=crlf
+*.bat text eol=crlf
+*.cmd text eol=crlf
+*.sh text eol=lf
+
+# Binary assets
+*.png binary
+*.jpg binary
+*.jpeg binary
+*.ico binary
+
+# Keep GitHub's language statistics about the C++ project
+tools/anfs/third_party/** linguist-vendored
+reference/electron-src/** linguist-vendored
+reference/** linguist-documentation
+docs/** linguist-documentation

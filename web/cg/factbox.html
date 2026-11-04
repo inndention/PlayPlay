@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=1920, initial-scale=1.0">
+<title>Fact Box</title>
+<style>
+  :root { --accent: #00d4ff; --bg: rgba(10, 12, 20, .91); --fg: #ffffff; --title: #05050a; --label: #aab4c8; --font: 28px; --width: 520px; }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { width: 1920px; height: 1080px; overflow: hidden; background: transparent; font-family: 'Segoe UI', 'Inter', -apple-system, sans-serif; color: var(--fg); }
+  .panel { position: absolute; width: var(--width); border-radius: 10px; overflow: hidden; background: var(--bg); box-shadow: 0 10px 36px rgba(0, 0, 0, .45), 0 2px 8px rgba(0, 0, 0, .35);
+           border: 1px solid rgba(255, 255, 255, .11); opacity: 0; transform: translateY(24px); transition: opacity .4s ease, transform .4s cubic-bezier(.2, .8, .2, 1); }
+  .panel.on { opacity: 1; transform: none; }
+  /* positions: title safe 5 % margins */
+  .pos-right { right: 96px; top: 50%; transform: translateY(-50%) translateY(24px); } .pos-right.on { transform: translateY(-50%); }
+  .pos-left { left: 96px; top: 50%; transform: translateY(-50%) translateY(24px); } .pos-left.on { transform: translateY(-50%); }
+  .pos-top-right { right: 96px; top: 54px; } .pos-top-left { left: 96px; top: 54px; }
+  .pos-bottom-left { left: 96px; bottom: 54px; } .pos-bottom-right { right: 96px; bottom: 54px; }
+  .pos-center { left: 50%; top: 50%; transform: translate(-50%, -50%) translateY(24px); } .pos-center.on { transform: translate(-50%, -50%); }
+  .hdr { background: var(--accent); color: var(--title); font-weight: 700; font-size: calc(var(--font) * 1.15); padding: 0 22px; height: calc(var(--font) * 1.15 * 1.7); display: flex; align-items: center; gap: 12px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  .hdr .icon { font-size: calc(var(--font) * 1.3); }
+  .hdr.empty { height: 8px; }
+  .pic { display: block; width: 100%; max-height: 432px; object-fit: cover; }
+  .rows { padding: 22px; display: flex; flex-direction: column; }
+  .row { display: grid; grid-template-columns: auto 1fr; gap: 0 10px; font-size: var(--font); line-height: 1.25; padding: 0 0 calc(var(--font) * .45); position: relative; opacity: 0; transform: translateX(-10px); transition: opacity .35s ease, transform .35s ease; }
+  .row.on { opacity: 1; transform: none; }
+  .row + .row { padding-top: calc(var(--font) * .45); border-top: 1px solid rgba(255, 255, 255, .09); }
+  .row:last-child { padding-bottom: 0; }
+  .row .dot { width: .32em; height: .32em; border-radius: 50%; background: var(--accent); margin-top: .45em; }
+  .row.item { grid-template-columns: 38% 1fr; } .row.item .label { color: var(--label); font-size: calc(var(--font) * .78); font-weight: 600; text-transform: uppercase; letter-spacing: .5px; padding-top: .18em; }
+  .foot { padding: 0 22px calc(var(--font) * .55); font-size: calc(var(--font) * .7); color: rgba(255, 255, 255, .6); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  #status { position: absolute; left: 8px; top: 8px; font: 12px monospace; color: #fff; background: rgba(0, 0, 0, .6); padding: 2px 6px; border-radius: 3px; display: none; }
+  body.debug #status { display: block; }
+</style>
+</head>
+<body>
+<!--
+  Fact box (HTML renderer twin of the engine's template kind "factbox").
+  Query parameters: title, icon, lines (separated by | or newline), items (JSON [{label,value}] or "label=value|label=value"),
+    position=right|left|top-right|top-left|bottom-left|bottom-right|center, width=520, accent=, bg=, color=, fontSize=28,
+    (colours: #rgb / #rrggbb / rrggbb, or 8 digits as #AARRGGBB, alpha first, as in the engine spec)
+    image=<url>, footer=, reveal=all|lines, interval=1.2 (seconds between revealed rows), delay=0.4
+  Script API: window.update(data) merges the same keys (lines may be an array); window.play() restarts the reveal and shows;
+  window.stop() hides.
+-->
+<div class="panel" id="panel"></div>
+<div id="status"></div>
+<script>
+(function () {
+  const q = new URLSearchParams(location.search);
+  const spec = {
+    title: q.get('title') || '', icon: q.get('icon') || '', lines: q.get('lines') || '', items: q.get('items') || '', position: q.get('position') || 'right',
+    width: parseFloat(q.get('width')) || 520, fontSize: parseFloat(q.get('fontSize')) || 28, image: q.get('image') || '', footer: q.get('footer') || '',
+    reveal: q.get('reveal') || 'all', revealIntervalSec: parseFloat(q.get('interval')) || 1.2, revealDelaySec: q.get('delay') !== null ? parseFloat(q.get('delay')) : 0.4,
+  };
+  const root = document.documentElement.style;
+  // 8 hex digits are the engine spec's #AARRGGBB (Qt order, as the QML panel and docs write them), not CSS #RRGGBBAA:
+  // convert, so one spec string looks the same in the engine and in this page.
+  const css = v => { v = String(v).trim(); const m = /^#?([0-9a-f]{8})$/i.exec(v); if (!m) return v.startsWith('#') || v.startsWith('rgb') ? v : '#' + v; const n = parseInt(m[1], 16); return 'rgba(' + ((n >> 16) & 255) + ',' + ((n >> 8) & 255) + ',' + (n & 255) + ',' + ((n >>> 24) / 255).toFixed(3) + ')'; };
+  const col = (k, v) => { if (v) root.setProperty(k, css(v)); };
+  col('--accent', q.get('accent')); col('--bg', q.get('bg')); col('--fg', q.get('color'));
+  if (q.get('debug') === '1') document.body.classList.add('debug');
+  const panel = document.getElementById('panel'), status = document.getElementById('status');
+  const esc = s => String(s ?? '').replace(/[&<>"]/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]));
+  let timers = [];
+
+  function rows() {
+    let items = spec.items;
+    if (typeof items === 'string' && items.trim()) { try { items = JSON.parse(items); } catch (e) { items = items.split('|').map(p => { const m = p.split('='); return { label: m[0].trim(), value: m.slice(1).join('=').trim() }; }); } }
+    if (Array.isArray(items) && items.length) return items.map(i => ({ label: i.label, value: i.value }));
+    const lines = Array.isArray(spec.lines) ? spec.lines : String(spec.lines || '').split(/\||\n/);
+    return lines.map(s => String(s).trim()).filter(Boolean).map(text => ({ text }));
+  }
+  function build() {
+    root.setProperty('--font', spec.fontSize + 'px'); root.setProperty('--width', spec.width + 'px');
+    const R = rows();
+    const html = [];
+    html.push(spec.title ? `<div class="hdr">${spec.icon ? `<span class="icon">${esc(spec.icon)}</span>` : ''}<span>${esc(spec.title)}</span></div>` : `<div class="hdr empty"></div>`);
+    if (spec.image) html.push(`<img class="pic" src="${esc(spec.image)}" alt="">`);
+    if (R.length) html.push(`<div class="rows">${R.map(r => r.label !== undefined ? `<div class="row item"><span class="label">${esc(r.label)}</span><span>${esc(r.value)}</span></div>` : `<div class="row"><span class="dot"></span><span>${esc(r.text)}</span></div>`).join('')}</div>`);
+    if (spec.footer) html.push(`<div class="foot">${esc(spec.footer)}</div>`);
+    panel.className = 'panel pos-' + spec.position;
+    panel.innerHTML = html.join('');
+    status.textContent = 'factbox ' + R.length + ' rows, reveal ' + spec.reveal;
+  }
+  function reveal() {
+    timers.forEach(clearTimeout); timers = [];
+    const rs = panel.querySelectorAll('.row');
+    rs.forEach((r, i) => {
+      if (spec.reveal !== 'lines') { r.classList.add('on'); return; }
+      timers.push(setTimeout(() => r.classList.add('on'), Math.max(0, (spec.revealDelaySec + i * spec.revealIntervalSec) * 1000)));
+    });
+  }
+  function show() { build(); requestAnimationFrame(() => { panel.classList.add('on'); reveal(); }); }
+
+  window.update = function (data) {
+    data = data || {};
+    Object.keys(spec).forEach(k => { if (data[k] !== undefined) spec[k] = data[k]; });
+    if (data.accentColor) col('--accent', data.accentColor); if (data.bgColor) col('--bg', data.bgColor); if (data.color) col('--fg', data.color);
+    const wasOn = panel.classList.contains('on');
+    build(); panel.classList.add('on');
+    if (wasOn) panel.querySelectorAll('.row').forEach(r => r.classList.add('on')); else reveal();
+  };
+  window.play = () => { timers.forEach(clearTimeout); panel.querySelectorAll('.row').forEach(r => r.classList.remove('on')); panel.classList.add('on'); reveal(); };
+  window.stop = () => { timers.forEach(clearTimeout); panel.classList.remove('on'); };
+  show();
+})();
+</script>
+</body>
+</html>

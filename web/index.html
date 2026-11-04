@@ -1,0 +1,71 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>PLAY PLAY Dashboard</title>
+<link rel="icon" href="favicon.ico" sizes="any">
+<link rel="icon" type="image/png" href="brand/mark.png">
+<link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="ui-tokens.css">
+<link rel="stylesheet" href="ui-buttons.css">
+<link rel="stylesheet" href="nowplaying.css">
+</head>
+<body>
+<header id="top">
+  <div class="brand"><img class="logo" src="brand/logo.png" alt="PLAY PLAY"><span class="sub">DASHBOARD</span></div>
+  <nav id="tabs">
+    <button data-view="nowplaying" class="active">On Air</button>
+    <button data-view="channels">Channels</button>
+    <button data-view="schedule">Schedule</button>
+    <button data-view="reports">Reports</button>
+    <button data-view="programming">Programming</button>
+    <button data-view="flight">Flight plan</button>
+    <button data-view="spots">Spots</button>
+    <button data-view="studio">Studio</button>
+    <button data-view="render">Render</button>
+    <button data-view="publish">Publish</button>
+    <button data-view="star">Star</button>
+    <button data-view="agents">Agents</button>
+    <button data-view="library">Library</button>
+    <button data-view="cg">CG</button>
+    <button data-view="overlays">Overlays</button>
+    <button data-view="inputs">Inputs</button>
+    <button data-view="reporter">Reporter</button>
+    <button data-view="libobs">OBS Scenes</button>
+    <button data-view="mesh">Mesh</button>
+    <button data-view="mux">Mux</button>
+    <button data-view="outputs">Outputs</button>
+    <button data-view="remote">Remote</button>
+    <button data-view="logs">Logs</button>
+  </nav>
+  <div class="status">
+    <span id="clock" class="mono">--:--:--</span>
+    <span id="toh" class="mono toh">--:--</span>
+    <span id="conn" class="dot off" title="WebSocket"></span>
+    <span id="connText">connecting</span>
+    <button id="zoomOut" class="ghost small" title="Smaller text (Ctrl+-)">A&minus;</button><span id="zoomPct" class="mono" title="Reset text size" style="cursor:pointer;letter-spacing:0">100%</span><button id="zoomIn" class="ghost small" title="Bigger text (Ctrl+=)">A+</button>
+    <button id="tokenBtn" class="ghost small pb-icon" title="Set access password" data-icon="key"></button>
+  </div>
+</header>
+<main id="view"></main>
+<div id="toast"></div>
+<div id="dropAll"><div class="box"><div class="big">&#8681;</div><div>Drop to upload into the media library</div><small>files and folders are sent to the Supervisor, probed, hashed and thumbnailed</small></div></div>
+<dialog id="confirm">
+  <form method="dialog">
+    <p id="confirmText">Confirm?</p>
+    <div class="row end"><button value="cancel" class="ghost">Cancel</button><button value="ok" class="primary" id="confirmOk">Confirm</button></div>
+  </form>
+</dialog>
+<dialog id="tokenDlg">
+  <form method="dialog">
+    <p>Enter the password for this Supervisor.</p>
+    <input id="tokenInput" type="password" placeholder="Password" autocomplete="off">
+    <div class="row end"><button value="cancel" class="ghost">Cancel</button><button value="ok" class="primary">Save</button></div>
+  </form>
+</dialog>
+<script type="module" src="ui-buttons.js"></script>
+<script type="module" src="app.js"></script>
+<script defer src="sysbar.js"></script>
+</body>
+</html>

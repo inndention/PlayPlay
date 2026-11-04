@@ -1,0 +1,14 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><title>Star News corner bug</title>
+<style>
+html,body{margin:0;width:1920px;height:1080px;background:transparent;overflow:hidden;font-family:Arial,Helvetica,sans-serif}
+.bug{position:absolute;right:76px;top:48px;width:300px;text-align:center;color:#fff;filter:drop-shadow(0 3px 5px rgba(0,0,0,.55))}
+.art{position:relative;width:100%;aspect-ratio:700/849}
+.logo{display:block;width:100%;height:100%;object-fit:contain}
+.sheen{position:absolute;inset:0;overflow:hidden;mask:url('assets/starnews-onair.png') center/contain no-repeat;-webkit-mask:url('assets/starnews-onair.png') center/contain no-repeat;pointer-events:none}
+.sheen:after{content:"";position:absolute;inset:-30% -100%;background:linear-gradient(105deg,transparent 45%,rgba(255,255,255,.48) 50%,transparent 55%);animation:sweep 8s ease-in-out infinite}
+.tag{display:inline-block;font-size:25px;font-weight:700;letter-spacing:2px;text-shadow:0 2px 4px #000}
+@keyframes sweep{0%,15%{transform:translateX(-45%)}45%,100%{transform:translateX(45%)}}
+@media(prefers-reduced-motion:reduce){.sheen:after{animation:none;opacity:0}}
+</style></head><body><div data-cg-root><div class="bug"><div class="art"><img class="logo" src="assets/starnews-onair.png" alt="Star News"><div class="sheen"></div></div><div class="tag" data-field="text1" data-hide-empty>LIVE</div></div></div>
+<script src="js/cg-animations.js"></script><script src="js/cg-fields.js"></script><script src="js/starnews-runtime.js"></script></body></html>

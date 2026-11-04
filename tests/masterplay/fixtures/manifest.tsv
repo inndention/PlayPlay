@@ -1,0 +1,16 @@
+# file	bytes	sha256	source	note
+DefaultCountDown.osd	121	c7a901f8bde7bc31cea747148e8c24007cd1fd1b5853f14744018d1be7171df1	hand-written	synthetic OSD config
+DefaultCountUp.osd	135	e9159eff0c1ed1b13f5c18c812d9dbb3af8f63602f6ea7a6331c3c3c4e2d25d6	hand-written	synthetic OSD config
+DefaultCrawl.osd	165	de6757dce1bebcfe21eafbc12f959167efe34b51783e4b3db390cc501a4cc903	hand-written	synthetic OSD config
+DefaultLogo.osd	66	77d3e9fad7c3bb0f060b5e0c42a1d5047c50b8ea8072fc9e7f8d8705937c9a0c	hand-written	synthetic OSD config
+DefaultRealtimeClock.osd	135	e9159eff0c1ed1b13f5c18c812d9dbb3af8f63602f6ea7a6331c3c3c4e2d25d6	hand-written	synthetic OSD config
+FirstPlaylist.in	58	5d15e265746565fa6cf4330cfdcc65da1eb4a8b35a64d7c6bbd9a02dc4bbef9a	hand-written	synthetic playlist: one header line, UTF-8 BOM
+LogFile.log	57945	e6aa1bcaf5fafb68d3edf1765eead443375932fe79cc6de7e0fc1232ecb2579b	generated	as-run log in the MasterPlay 6.x format; titles and paths are placeholders
+Masterplay Logo.osd	66	77d3e9fad7c3bb0f060b5e0c42a1d5047c50b8ea8072fc9e7f8d8705937c9a0c	hand-written	synthetic OSD config
+mplay_sample.ini	2305	e0f31798dffe8ac90c6cc7fe4d80f6c58afecc4ce4e6cba60c880742151b22c1	hand-written	synthetic Mplay.INI with only the keys the lane reads; secrets are placeholders
+OSD-Instructions.in	416	28a89b44182a65a9e229834a264887d7bb5ff55bb1b62fc0cfd00fa3355312e6	hand-written	synthetic playlist, space-separated instruction heads
+sample.in	528	ab5c3a09567e16af06c51aef27b038e04ad43a2e6fdd25cc8cf9739ae9f6168f	hand-written	synthetic playlist, TAB-separated instruction heads, UTF-8 BOM
+Saturday_0200.in	139	bf219a0d245710d6043d173460b2b47668fefa1a567556d0c0d1eed101d27545	hand-written	synthetic playlist, no final newline
+Testfiles.in	68	eb1819ac743b27a9590ab5eb809f6fe611ee117c9cab1e81d996ecbcd8e3e379	hand-written	synthetic playlist, trailing TAB
+Operator.log	1636	cc136b1d833e2cc00ce896fa23a64973b2ae371c26e150b8f8f8f48d8e469405	generated	operator log in the MasterPlay 6.x format; placeholder computer name
+Status.log	22616	068b6b92d7befa88e800ed66a26083040bee972731966d782ac8242d6a7a8200	generated	status log in the MasterPlay 6.x format; titles are placeholders

@@ -1,0 +1,446 @@
+/* ============================================
+   SALES REPORTS DASHBOARD STYLES
+   Modern, professional design for sales teams
+   ============================================ */
+
+.container {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    background: linear-gradient(135deg, #0f0f1a 0%, #1a1a2e 100%);
+    color: #e2e8f0;
+}
+
+.header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 16px 24px;
+    background: rgba(255, 255, 255, 0.03);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+.headerLeft {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.headerLeft h2 {
+    margin: 0;
+    font-size: 18px;
+    font-weight: 600;
+    color: #f8fafc;
+}
+
+.headerLeft svg {
+    color: #818cf8;
+}
+
+.headerActions {
+    display: flex;
+    gap: 8px;
+}
+
+.filterToggle {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    padding: 8px 14px;
+    background: rgba(255, 255, 255, 0.06);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 6px;
+    color: #94a3b8;
+    font-size: 13px;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.filterToggle:hover {
+    background: rgba(255, 255, 255, 0.1);
+    color: #f8fafc;
+}
+
+.content {
+    flex: 1;
+    overflow-y: auto;
+    padding: 24px;
+}
+
+/* Report Type Selection */
+.reportTypeGrid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 12px;
+    margin-bottom: 24px;
+}
+
+.reportTypeCard {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 16px;
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 255, 255, 0.06);
+    border-radius: 10px;
+    cursor: pointer;
+    transition: all 0.2s;
+    text-align: left;
+}
+
+.reportTypeCard:hover {
+    background: rgba(255, 255, 255, 0.06);
+    border-color: rgba(129, 140, 248, 0.3);
+    transform: translateY(-2px);
+}
+
+.reportTypeCard.selected {
+    background: linear-gradient(135deg, rgba(129, 140, 248, 0.15) 0%, rgba(167, 139, 250, 0.1) 100%);
+    border-color: #818cf8;
+    box-shadow: 0 0 20px rgba(129, 140, 248, 0.15);
+}
+
+.reportTypeIcon {
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(129, 140, 248, 0.15);
+    border-radius: 8px;
+    color: #818cf8;
+}
+
+.selected .reportTypeIcon {
+    background: rgba(129, 140, 248, 0.25);
+    color: #a5b4fc;
+}
+
+.reportTypeInfo {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.reportTypeName {
+    font-size: 14px;
+    font-weight: 600;
+    color: #f8fafc;
+}
+
+.reportTypeDesc {
+    font-size: 12px;
+    color: #64748b;
+}
+
+/* Filters Panel */
+.filtersPanel {
+    background: rgba(255, 255, 255, 0.02);
+    border: 1px solid rgba(255, 255, 255, 0.06);
+    border-radius: 12px;
+    padding: 20px;
+    margin-bottom: 24px;
+}
+
+.filtersPanel h3 {
+    margin: 0 0 16px 0;
+    font-size: 14px;
+    font-weight: 600;
+    color: #94a3b8;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.filtersGrid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+    gap: 16px;
+}
+
+.filterGroup {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.filterGroup label {
+    font-size: 12px;
+    font-weight: 500;
+    color: #94a3b8;
+}
+
+.input,
+.select {
+    padding: 10px 12px;
+    background: rgba(15, 23, 42, 0.6);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 6px;
+    color: #f8fafc;
+    font-size: 14px;
+    outline: none;
+    transition: all 0.2s;
+}
+
+.input:focus,
+.select:focus {
+    border-color: #818cf8;
+    box-shadow: 0 0 0 2px rgba(129, 140, 248, 0.2);
+}
+
+.select {
+    cursor: pointer;
+}
+
+.generateActions {
+    margin-top: 20px;
+    display: flex;
+    gap: 12px;
+}
+
+.generateBtn {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 12px 24px;
+    background: linear-gradient(135deg, #818cf8 0%, #a78bfa 100%);
+    border: none;
+    border-radius: 8px;
+    color: white;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.generateBtn:hover:not(:disabled) {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 20px rgba(129, 140, 248, 0.3);
+}
+
+.generateBtn:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+}
+
+.spinning {
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+}
+
+/* Error Banner */
+.errorBanner {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 14px 18px;
+    background: rgba(239, 68, 68, 0.1);
+    border: 1px solid rgba(239, 68, 68, 0.3);
+    border-radius: 8px;
+    color: #fca5a5;
+    margin-bottom: 20px;
+}
+
+/* Report Results */
+.reportResults {
+    background: rgba(255, 255, 255, 0.02);
+    border: 1px solid rgba(255, 255, 255, 0.06);
+    border-radius: 12px;
+    overflow: hidden;
+}
+
+.reportHeader {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 16px 20px;
+    background: rgba(255, 255, 255, 0.03);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+.reportMeta h3 {
+    margin: 0 0 4px 0;
+    font-size: 16px;
+    font-weight: 600;
+    color: #f8fafc;
+}
+
+.generatedAt {
+    font-size: 12px;
+    color: #64748b;
+}
+
+.exportActions {
+    display: flex;
+    gap: 6px;
+}
+
+.exportActions button {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    padding: 8px 12px;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 6px;
+    color: #94a3b8;
+    font-size: 12px;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.exportActions button:hover {
+    background: rgba(255, 255, 255, 0.1);
+    color: #f8fafc;
+    border-color: rgba(255, 255, 255, 0.2);
+}
+
+/* Summary Cards */
+.summaryCards {
+    display: flex;
+    gap: 12px;
+    padding: 20px;
+    flex-wrap: wrap;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+.summaryCard {
+    background: linear-gradient(135deg, rgba(129, 140, 248, 0.1) 0%, rgba(167, 139, 250, 0.05) 100%);
+    border: 1px solid rgba(129, 140, 248, 0.2);
+    border-radius: 10px;
+    padding: 16px 20px;
+    min-width: 130px;
+}
+
+.summaryValue {
+    font-size: 28px;
+    font-weight: 700;
+    color: #a5b4fc;
+    line-height: 1;
+}
+
+.summaryLabel {
+    font-size: 11px;
+    color: #64748b;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    margin-top: 6px;
+}
+
+/* Data Table */
+.tableWrapper {
+    overflow-x: auto;
+    padding: 16px;
+}
+
+.dataTable {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 13px;
+}
+
+.dataTable th {
+    padding: 12px 14px;
+    text-align: left;
+    background: rgba(255, 255, 255, 0.03);
+    color: #94a3b8;
+    font-weight: 600;
+    text-transform: uppercase;
+    font-size: 11px;
+    letter-spacing: 0.5px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+    white-space: nowrap;
+}
+
+.dataTable td {
+    padding: 12px 14px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.04);
+    color: #e2e8f0;
+}
+
+.dataTable tr:hover td {
+    background: rgba(255, 255, 255, 0.02);
+}
+
+.tableNote {
+    text-align: center;
+    padding: 12px;
+    font-size: 12px;
+    color: #64748b;
+    font-style: italic;
+}
+
+/* No Data */
+.noData {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 60px 20px;
+    color: #64748b;
+}
+
+.noData svg {
+    opacity: 0.3;
+    margin-bottom: 16px;
+}
+
+.noData p {
+    margin: 0;
+    font-size: 14px;
+}
+
+/* Empty State */
+.emptyState {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 80px 20px;
+    text-align: center;
+}
+
+.emptyState svg {
+    color: #334155;
+    margin-bottom: 20px;
+}
+
+.emptyState h3 {
+    margin: 0 0 8px 0;
+    font-size: 18px;
+    font-weight: 600;
+    color: #94a3b8;
+}
+
+.emptyState p {
+    margin: 0;
+    font-size: 14px;
+    color: #64748b;
+    max-width: 400px;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .reportTypeGrid {
+        grid-template-columns: 1fr;
+    }
+    
+    .filtersGrid {
+        grid-template-columns: 1fr 1fr;
+    }
+    
+    .reportHeader {
+        flex-direction: column;
+        gap: 12px;
+        align-items: flex-start;
+    }
+    
+    .exportActions {
+        flex-wrap: wrap;
+    }
+}
+
+

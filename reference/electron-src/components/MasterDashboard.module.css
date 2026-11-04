@@ -1,0 +1,753 @@
+.dashboard {
+    min-height: 100vh;
+    background: linear-gradient(135deg, #0f0f1a 0%, #1a1a2e 50%, #16213e 100%);
+    color: white;
+    padding: 24px;
+    overflow-y: auto;
+}
+
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 32px;
+    padding-bottom: 24px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.headerTitle {
+    font-size: 2rem;
+    font-weight: 700;
+    background: linear-gradient(135deg, #60a5fa, #a78bfa);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+.headerSubtitle {
+    color: rgba(255, 255, 255, 0.5);
+    margin-top: 4px;
+}
+
+.headerMeta {
+    text-align: right;
+    font-size: 12px;
+    color: rgba(255, 255, 255, 0.4);
+}
+
+.statusOnline {
+    color: #10b981;
+    font-weight: 600;
+}
+
+.statusOffline {
+    color: #ef4444;
+    font-weight: 600;
+}
+
+/* Drop Zone */
+.dropZone {
+    position: relative;
+}
+
+.dropZone::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border: 2px dashed transparent;
+    border-radius: 16px;
+    pointer-events: none;
+    transition: all 0.3s ease;
+}
+
+.dropZone.dragging::before {
+    border-color: #60a5fa;
+    background: rgba(96, 165, 250, 0.1);
+}
+
+/* Master Tab Bar */
+.masterTabBar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 16px;
+    padding: 8px;
+    background: rgba(0, 0, 0, 0.3);
+    border-radius: 12px;
+    border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.tabGroup {
+    display: flex;
+    gap: 4px;
+    overflow-x: auto;
+    flex: 1;
+    padding-right: 16px;
+}
+
+.tab {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 10px 16px;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid transparent;
+    border-radius: 8px;
+    color: rgba(255, 255, 255, 0.6);
+    font-size: 13px;
+    font-weight: 500;
+    cursor: pointer;
+    white-space: nowrap;
+    transition: all 0.2s ease;
+}
+
+.tab:hover {
+    background: rgba(255, 255, 255, 0.1);
+    color: white;
+}
+
+.tabActive {
+    background: linear-gradient(135deg, rgba(59, 130, 246, 0.3), rgba(139, 92, 246, 0.3));
+    border-color: rgba(59, 130, 246, 0.5);
+    color: white;
+}
+
+.tabPlaying {
+    border-color: #10b981;
+}
+
+.liveIndicator {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: #10b981;
+    box-shadow: 0 0 8px #10b981;
+    animation: pulse 1.5s ease-in-out infinite;
+}
+
+.idleIndicator {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.3);
+}
+
+@keyframes pulse {
+
+    0%,
+    100% {
+        opacity: 1;
+    }
+
+    50% {
+        opacity: 0.5;
+    }
+}
+
+/* Layout Switcher */
+.layoutSwitcher {
+    display: flex;
+    gap: 4px;
+    padding: 4px;
+    background: rgba(0, 0, 0, 0.2);
+    border-radius: 8px;
+}
+
+.layoutBtn {
+    width: 36px;
+    height: 36px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: transparent;
+    border: none;
+    border-radius: 6px;
+    color: rgba(255, 255, 255, 0.5);
+    font-size: 16px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.layoutBtn:hover {
+    background: rgba(255, 255, 255, 0.1);
+    color: white;
+}
+
+.layoutActive {
+    background: rgba(59, 130, 246, 0.3);
+    color: #60a5fa;
+}
+
+/* Main Content Layout */
+.mainContent {
+    display: flex;
+    gap: 24px;
+}
+
+.primaryPanel {
+    flex: 1;
+    min-width: 0;
+}
+
+/* Grid Layouts */
+.cardsGrid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(380px, 1fr));
+    gap: 24px;
+    margin-bottom: 32px;
+}
+
+.card {
+    background: linear-gradient(135deg, rgba(30, 30, 50, 0.8), rgba(20, 20, 40, 0.9));
+    backdrop-filter: blur(20px);
+    border-radius: 16px;
+    padding: 24px;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 12px 48px rgba(0, 0, 0, 0.4);
+}
+
+.cardTitle {
+    font-size: 1.1rem;
+    font-weight: 600;
+    margin-bottom: 16px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.cardTitleIcon {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+}
+
+.iconBlue {
+    background: #3b82f6;
+    box-shadow: 0 0 12px rgba(59, 130, 246, 0.5);
+}
+
+.iconGreen {
+    background: #10b981;
+    box-shadow: 0 0 12px rgba(16, 185, 129, 0.5);
+}
+
+.iconPurple {
+    background: #8b5cf6;
+    box-shadow: 0 0 12px rgba(139, 92, 246, 0.5);
+}
+
+.iconOrange {
+    background: #f59e0b;
+    box-shadow: 0 0 12px rgba(245, 158, 11, 0.5);
+}
+
+/* Stats */
+.statsRow {
+    display: flex;
+    justify-content: space-between;
+    padding: 8px 0;
+    font-size: 14px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.statsRow:last-child {
+    border-bottom: none;
+}
+
+.statsLabel {
+    color: rgba(255, 255, 255, 0.5);
+}
+
+.statsValue {
+    font-weight: 600;
+    font-variant-numeric: tabular-nums;
+}
+
+/* Progress Bars */
+.progressContainer {
+    margin-top: 16px;
+}
+
+.progressItem {
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 12px;
+    padding: 12px;
+    margin-bottom: 12px;
+}
+
+.progressHeader {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 8px;
+    font-size: 13px;
+}
+
+.progressName {
+    color: rgba(255, 255, 255, 0.8);
+    max-width: 60%;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.progressPercent {
+    font-weight: 600;
+    color: white;
+}
+
+.progressTrack {
+    height: 6px;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 3px;
+    overflow: hidden;
+}
+
+.progressFill {
+    height: 100%;
+    border-radius: 3px;
+    transition: width 0.5s ease;
+}
+
+.progressFillBlue {
+    background: linear-gradient(90deg, #3b82f6, #60a5fa);
+}
+
+.progressFillGreen {
+    background: linear-gradient(90deg, #10b981, #34d399);
+}
+
+.progressMeta {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 6px;
+    font-size: 11px;
+    color: rgba(255, 255, 255, 0.4);
+}
+
+.playableTag {
+    color: #10b981;
+    font-weight: 700;
+}
+
+.pendingTag {
+    color: #f59e0b;
+}
+
+/* Remote Node Cards */
+.nodeCard {
+    composes: card;
+    position: relative;
+    overflow: hidden;
+    cursor: pointer;
+}
+
+.nodeCard.dropTarget {
+    border-color: #60a5fa;
+    background: rgba(96, 165, 250, 0.1);
+}
+
+.nodeHostname {
+    font-size: 1.25rem;
+    font-weight: 700;
+    margin-bottom: 4px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.nodeId {
+    font-family: monospace;
+    font-size: 11px;
+    color: rgba(255, 255, 255, 0.3);
+    margin-bottom: 16px;
+}
+
+/* Confidence Monitor */
+.confidenceMonitor {
+    margin-top: 16px;
+    padding-top: 16px;
+    border-top: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.confidenceLabel {
+    font-size: 10px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: rgba(255, 255, 255, 0.4);
+    margin-bottom: 8px;
+}
+
+.confidencePreview {
+    aspect-ratio: 16/9;
+    background: #000;
+    border-radius: 8px;
+    overflow: hidden;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.noSignal {
+    color: rgba(255, 255, 255, 0.2);
+    font-size: 12px;
+}
+
+.confidenceOverlay {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    padding: 8px;
+    background: linear-gradient(transparent, rgba(0, 0, 0, 0.8));
+    font-size: 11px;
+}
+
+/* Devices Section */
+.devicesGrid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 16px;
+    margin-top: 16px;
+}
+
+.deviceCard {
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 12px;
+    padding: 16px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    transition: all 0.2s ease;
+    cursor: pointer;
+}
+
+.deviceCard:hover {
+    background: rgba(255, 255, 255, 0.08);
+    transform: translateX(4px);
+}
+
+.deviceIcon {
+    width: 40px;
+    height: 40px;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 20px;
+}
+
+.deviceInfo {
+    flex: 1;
+}
+
+.deviceName {
+    font-weight: 600;
+    font-size: 14px;
+}
+
+.deviceIp {
+    font-size: 11px;
+    color: rgba(255, 255, 255, 0.4);
+    font-family: monospace;
+}
+
+/* Inventory Table */
+.inventorySection {
+    margin-top: 32px;
+}
+
+.inventoryTitle {
+    font-size: 1.5rem;
+    font-weight: 700;
+    margin-bottom: 16px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.inventoryTable {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.inventoryTable th {
+    text-align: left;
+    padding: 12px 16px;
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: rgba(255, 255, 255, 0.4);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.inventoryTable td {
+    padding: 12px 16px;
+    font-size: 13px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.inventoryTable tr {
+    transition: background 0.2s ease;
+    cursor: grab;
+}
+
+.inventoryTable tr:active {
+    cursor: grabbing;
+}
+
+.inventoryTable tr:hover {
+    background: rgba(255, 255, 255, 0.05);
+}
+
+.hashCell {
+    font-family: monospace;
+    color: #60a5fa;
+}
+
+.statusBadge {
+    display: inline-block;
+    padding: 4px 10px;
+    border-radius: 20px;
+    font-size: 11px;
+    font-weight: 600;
+}
+
+.statusReady {
+    background: rgba(16, 185, 129, 0.2);
+    color: #34d399;
+}
+
+.statusPending {
+    background: rgba(245, 158, 11, 0.2);
+    color: #fbbf24;
+}
+
+.emptyState {
+    text-align: center;
+    padding: 48px;
+    color: rgba(255, 255, 255, 0.3);
+    font-style: italic;
+}
+
+/* Quick Actions */
+.quickActions {
+    display: flex;
+    gap: 12px;
+    margin-top: 16px;
+}
+
+.actionButton {
+    flex: 1;
+    padding: 10px 16px;
+    border: none;
+    border-radius: 10px;
+    font-size: 13px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+}
+
+.actionPrimary {
+    background: linear-gradient(135deg, #3b82f6, #2563eb);
+    color: white;
+}
+
+.actionPrimary:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 20px rgba(59, 130, 246, 0.4);
+}
+
+.actionSecondary {
+    background: rgba(255, 255, 255, 0.1);
+    color: white;
+}
+
+.actionSecondary:hover {
+    background: rgba(255, 255, 255, 0.15);
+}
+
+/* Temp Bucket */
+.tempBucket {
+    width: 280px;
+    flex-shrink: 0;
+    background: linear-gradient(135deg, rgba(30, 30, 50, 0.8), rgba(20, 20, 40, 0.9));
+    backdrop-filter: blur(20px);
+    border-radius: 16px;
+    padding: 20px;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    height: fit-content;
+    position: sticky;
+    top: 24px;
+}
+
+.bucketTitle {
+    font-size: 16px;
+    font-weight: 600;
+    margin-bottom: 8px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.bucketHint {
+    font-size: 12px;
+    color: rgba(255, 255, 255, 0.4);
+    margin-bottom: 16px;
+}
+
+.bucketEmpty {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 40px 20px;
+    border: 2px dashed rgba(255, 255, 255, 0.1);
+    border-radius: 12px;
+    color: rgba(255, 255, 255, 0.3);
+    font-size: 13px;
+}
+
+.bucketItems {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.bucketItem {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 10px 12px;
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 10px;
+    cursor: grab;
+    transition: all 0.2s ease;
+}
+
+.bucketItem:hover {
+    background: rgba(255, 255, 255, 0.1);
+}
+
+.bucketItem:active {
+    cursor: grabbing;
+}
+
+.bucketItemIcon {
+    font-size: 16px;
+}
+
+.bucketItemLabel {
+    flex: 1;
+    font-size: 13px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.bucketItemRemove {
+    width: 24px;
+    height: 24px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: transparent;
+    border: none;
+    border-radius: 6px;
+    color: rgba(255, 255, 255, 0.4);
+    font-size: 16px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.bucketItemRemove:hover {
+    background: rgba(239, 68, 68, 0.2);
+    color: #ef4444;
+}
+
+/* Focused Peer View */
+.focusedPeerView {
+    max-width: 900px;
+}
+
+.focusedHeader {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    margin-bottom: 24px;
+}
+
+.focusedHeader h2 {
+    font-size: 2rem;
+    font-weight: 700;
+}
+
+.liveTag {
+    padding: 6px 14px;
+    border-radius: 20px;
+    font-size: 12px;
+    font-weight: 700;
+    background: rgba(16, 185, 129, 0.2);
+    color: #34d399;
+    animation: pulse 1.5s ease-in-out infinite;
+}
+
+.offlineTag {
+    padding: 6px 14px;
+    border-radius: 20px;
+    font-size: 12px;
+    font-weight: 700;
+    background: rgba(255, 255, 255, 0.1);
+    color: rgba(255, 255, 255, 0.5);
+}
+
+.focusedMonitor {
+    aspect-ratio: 16/9;
+    background: #000;
+    border-radius: 16px;
+    overflow: hidden;
+    position: relative;
+    margin-bottom: 24px;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.5);
+}
+
+.focusedMonitor img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.noSignalLarge {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+    color: rgba(255, 255, 255, 0.2);
+    font-size: 24px;
+}
+
+.focusedOverlay {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    padding: 16px 24px;
+    background: linear-gradient(transparent, rgba(0, 0, 0, 0.9));
+    font-size: 16px;
+    font-weight: 500;
+}
+
+.focusedControls {
+    display: flex;
+    gap: 12px;
+}

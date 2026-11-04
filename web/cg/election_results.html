@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=1920, initial-scale=1.0">
+    <title>Election Results</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            width: 1920px; height: 1080px; overflow: hidden;
+            background: transparent;
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+        }
+        .results-container {
+            position: absolute;
+            bottom: 80px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 1400px;
+            background: rgba(10, 15, 30, 0.95);
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.6);
+            border: 1px solid rgba(255,255,255,0.08);
+        }
+        .header-bar {
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+            padding: 14px 40px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            border-bottom: 2px solid rgba(255,255,255,0.1);
+        }
+        .election-label {
+            font-size: 20px;
+            font-weight: 700;
+            color: #fff;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+        }
+        .reporting-pct {
+            font-size: 16px;
+            color: #94a3b8;
+            font-weight: 500;
+        }
+        .candidates-row {
+            display: flex;
+            align-items: stretch;
+        }
+        .candidate {
+            flex: 1;
+            padding: 24px 40px;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+        .candidate-1 { border-right: 1px solid rgba(255,255,255,0.08); }
+        .candidate-info {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+        .candidate-name {
+            font-size: 40px;
+            font-weight: 800;
+            color: #fff;
+            text-transform: uppercase;
+        }
+        .candidate-party {
+            font-size: 18px;
+            font-weight: 600;
+            padding: 4px 16px;
+            border-radius: 4px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        .vote-pct {
+            font-size: 64px;
+            font-weight: 900;
+            line-height: 1;
+        }
+        .vote-count {
+            font-size: 18px;
+            color: #94a3b8;
+            font-weight: 500;
+        }
+        .bar-track {
+            height: 12px;
+            background: rgba(255,255,255,0.1);
+            border-radius: 6px;
+            overflow: hidden;
+            margin-top: 6px;
+        }
+        .bar-fill {
+            height: 100%;
+            border-radius: 6px;
+            transition: width 1.5s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .winner-badge {
+            display: none;
+            font-size: 14px;
+            font-weight: 700;
+            color: #fbbf24;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-top: 4px;
+        }
+        .winner-badge.visible { display: block; }
+        .divider-votes {
+            padding: 24px 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #475569;
+            font-size: 24px;
+            font-weight: 700;
+        }
+    </style>
+</head>
+<body>
+    <div class="results-container" id="resultsContainer" data-cg-auto>
+        <div class="header-bar">
+            <span class="election-label" id="raceLabel">Election Results</span>
+            <span class="reporting-pct" id="reportingPct">100% Reporting</span>
+        </div>
+        <div class="candidates-row">
+            <div class="candidate candidate-1">
+                <div class="candidate-info">
+                    <span class="candidate-name" id="name1" data-field="candidate1">Candidate A</span>
+                    <span class="candidate-party" id="party1Label">DEM</span>
+                </div>
+                <div class="vote-pct" id="pct1">52<span style="font-size:32px">%</span></div>
+                <div class="vote-count" id="votes1Display">1,245,832 votes</div>
+                <div class="bar-track"><div class="bar-fill" id="bar1" style="width:52%"></div></div>
+                <div class="winner-badge" id="winner1">&#9733; WINNER PROJECTED</div>
+            </div>
+            <div class="divider-votes">vs</div>
+            <div class="candidate">
+                <div class="candidate-info">
+                    <span class="candidate-name" id="name2" data-field="candidate2">Candidate B</span>
+                    <span class="candidate-party" id="party2Label">REP</span>
+                </div>
+                <div class="vote-pct" id="pct2">48<span style="font-size:32px">%</span></div>
+                <div class="vote-count" id="votes2Display">1,145,210 votes</div>
+                <div class="bar-track"><div class="bar-fill" id="bar2" style="width:48%"></div></div>
+                <div class="winner-badge" id="winner2">&#9733; WINNER PROJECTED</div>
+            </div>
+        </div>
+    </div>
+    <script src="js/cg-animations.js"></script>
+    <script>
+        const p = new URLSearchParams(window.location.search);
+        const c1 = p.get('candidate1') || 'Candidate A';
+        const c2 = p.get('candidate2') || 'Candidate B';
+        const v1 = parseFloat(p.get('votes1') || '52');
+        const v2 = parseFloat(p.get('votes2') || '48');
+        const color1 = p.get('color1') || '2563eb';
+        const color2 = p.get('color2') || 'dc2626';
+        const party1 = p.get('party1') || 'DEM';
+        const party2 = p.get('party2') || 'REP';
+        const label  = p.get('label')  || 'Election Results';
+        const reporting = p.get('reporting') || '100% Reporting';
+        const winner = p.get('winner') || '';
+
+        document.getElementById('name1').textContent = c1;
+        document.getElementById('name2').textContent = c2;
+        document.getElementById('pct1').innerHTML = v1 + '<span style="font-size:32px">%</span>';
+        document.getElementById('pct2').innerHTML = v2 + '<span style="font-size:32px">%</span>';
+        document.getElementById('raceLabel').textContent = label;
+        document.getElementById('reportingPct').textContent = reporting;
+        document.getElementById('party1Label').textContent = party1;
+        document.getElementById('party2Label').textContent = party2;
+
+        const bar1El = document.getElementById('bar1');
+        const bar2El = document.getElementById('bar2');
+        bar1El.style.background = '#' + color1.replace('#','');
+        bar2El.style.background = '#' + color2.replace('#','');
+        document.getElementById('party1Label').style.background = '#' + color1.replace('#','');
+        document.getElementById('party1Label').style.color = '#fff';
+        document.getElementById('party2Label').style.background = '#' + color2.replace('#','');
+        document.getElementById('party2Label').style.color = '#fff';
+        document.getElementById('pct1').style.color = '#' + color1.replace('#','');
+        document.getElementById('pct2').style.color = '#' + color2.replace('#','');
+
+        setTimeout(() => {
+            bar1El.style.width = v1 + '%';
+            bar2El.style.width = v2 + '%';
+        }, 300);
+
+        if (winner === '1') document.getElementById('winner1').classList.add('visible');
+        if (winner === '2') document.getElementById('winner2').classList.add('visible');
+    </script>
+</body>
+</html>

@@ -1,0 +1,2589 @@
+{
+    "acts": [
+    ],
+    "ambiguous": [
+    ],
+    "channel": "mptest",
+    "diagnostics": [
+        {
+            "code": "MP005",
+            "col": 1,
+            "days": [
+            ],
+            "file": "import_times.in",
+            "line": 30,
+            "message": "not in the library: D:\\Media\\Missing\\Gone.mpg",
+            "severity": "warning"
+        },
+        {
+            "code": "MP016",
+            "col": 1,
+            "days": [
+                "Sun"
+            ],
+            "file": "import_times.in",
+            "line": 1,
+            "message": "the event's content (1:40:30) is 21:19:30 shorter than its window (until the next event at 00:00:00) (EventDuration says 1:40:30): the rest is left to the fill policy (and the emergency loop through hours with nothing queued)",
+            "severity": "warning"
+        },
+        {
+            "code": "MP016",
+            "col": 1,
+            "days": [
+                "Mon"
+            ],
+            "file": "import_times.in",
+            "line": 1,
+            "message": "the event's content (1:40:30) is 6:49:30 shorter than its window (until the next event at 08:30:00) (EventDuration says 1:40:30): the rest is left to the fill policy (and the emergency loop through hours with nothing queued)",
+            "severity": "warning"
+        },
+        {
+            "code": "MP016",
+            "col": 1,
+            "days": [
+                "Mon"
+            ],
+            "file": "import_times.in",
+            "line": 6,
+            "message": "the event's content (45:00) runs 8:00 past the next event at 09:07:00 (EventDuration says 45:00): what is still playing then is cut",
+            "severity": "warning"
+        },
+        {
+            "code": "MP016",
+            "col": 1,
+            "days": [
+                "Mon"
+            ],
+            "file": "import_times.in",
+            "line": 8,
+            "message": "the event's content (1:06:30) runs 6:30 past the next event at 10:07:00 (EventDuration says 1:00:00): the item playing then finishes (by at most 300 s), the rest is skipped",
+            "severity": "warning"
+        },
+        {
+            "code": "MP016",
+            "col": 1,
+            "days": [
+                "Mon"
+            ],
+            "file": "import_times.in",
+            "line": 20,
+            "message": "the event's content (55:00) runs 3:30 past the next event at 12:00:00 (EventDuration says 55:00): that event (floating play all) starts after it",
+            "severity": "warning"
+        },
+        {
+            "code": "MP016",
+            "col": 1,
+            "days": [
+                "Mon"
+            ],
+            "file": "import_times.in",
+            "line": 23,
+            "message": "the event's content (1:30:30) runs 14:00 past the next event at 13:20:00 (EventDuration says 1:30:00): what is still playing then is cut",
+            "severity": "warning"
+        },
+        {
+            "code": "MP016",
+            "col": 1,
+            "days": [
+                "Mon"
+            ],
+            "file": "import_times.in",
+            "line": 35,
+            "message": "the event's content (5:00) is 7:55:00 shorter than its window (until the next event at 00:00:00) (EventDuration says 5:00): the rest is left to the fill policy (and the emergency loop through hours with nothing queued)",
+            "severity": "warning"
+        },
+        {
+            "code": "MP016",
+            "col": 1,
+            "days": [
+                "Tue",
+                "Wed",
+                "Thu",
+                "Fri"
+            ],
+            "file": "import_times.in",
+            "line": 1,
+            "message": "the event's content (1:40:30) is 22:19:30 shorter than its window (until the next event at 00:00:00) (EventDuration says 1:40:30): the rest is left to the fill policy (and the emergency loop through hours with nothing queued)",
+            "severity": "warning"
+        },
+        {
+            "code": "MP016",
+            "col": 1,
+            "days": [
+                "Sat"
+            ],
+            "file": "import_times.in",
+            "line": 1,
+            "message": "the event's content (1:40:30) is 21:49:30 shorter than its window (until the next event at 23:30:00) (EventDuration says 1:40:30): the rest is left to the fill policy (and the emergency loop through hours with nothing queued)",
+            "severity": "warning"
+        },
+        {
+            "code": "MP016",
+            "col": 1,
+            "days": [
+                "Sat"
+            ],
+            "file": "import_times.in",
+            "line": 37,
+            "message": "the event's content (1:30:00) runs 1:00:00 past the next event at 00:00:00 (EventDuration says 1:30:00): that event (floating play all) starts after it",
+            "severity": "warning"
+        }
+    ],
+    "dropped": [
+        {
+            "at": "13:33:30",
+            "day": "Mon",
+            "durationSec": 30,
+            "file": "import_times.in",
+            "kind": "media",
+            "line": 25,
+            "path": "D:\\Media\\Spots\\Spot A.mpg",
+            "reason": "cutByEvent",
+            "title": "Spot A"
+        },
+        {
+            "at": "13:31:00",
+            "day": "Mon",
+            "file": "import_times.in",
+            "kind": "media",
+            "line": 30,
+            "path": "D:\\Media\\Missing\\Gone.mpg",
+            "reason": "missing"
+        }
+    ],
+    "errors": [
+    ],
+    "file": "import_times.in",
+    "folders": [
+    ],
+    "hours": [
+        {
+            "continuation": {
+                "carrySec": 3600,
+                "rootSlotId": "6-23"
+            },
+            "covered": true,
+            "events": 1,
+            "hard": 0,
+            "hourStartMs": 1757203200000,
+            "id": "0-0",
+            "items": 0,
+            "plannedSec": 3600,
+            "written": true
+        },
+        {
+            "covered": true,
+            "events": 1,
+            "hard": 0,
+            "hourStartMs": 1757206800000,
+            "id": "0-1",
+            "items": 1,
+            "plannedSec": 3600,
+            "written": true
+        },
+        {
+            "continuation": {
+                "carrySec": 1800,
+                "rootSlotId": "0-1"
+            },
+            "covered": true,
+            "events": 1,
+            "hard": 0,
+            "hourStartMs": 1757210400000,
+            "id": "0-2",
+            "items": 2,
+            "plannedSec": 2430,
+            "written": true
+        },
+        {
+            "covered": true,
+            "events": 1,
+            "filtered": true,
+            "id": "0-3",
+            "plannedSec": 0,
+            "written": false
+        },
+        {
+            "covered": true,
+            "events": 1,
+            "filtered": true,
+            "id": "0-4",
+            "plannedSec": 0,
+            "written": false
+        },
+        {
+            "covered": true,
+            "events": 1,
+            "filtered": true,
+            "id": "0-5",
+            "plannedSec": 0,
+            "written": false
+        },
+        {
+            "covered": true,
+            "events": 1,
+            "filtered": true,
+            "id": "0-6",
+            "plannedSec": 0,
+            "written": false
+        },
+        {
+            "covered": true,
+            "events": 1,
+            "filtered": true,
+            "id": "0-7",
+            "plannedSec": 0,
+            "written": false
+        },
+        {
+            "covered": true,
+            "events": 1,
+            "filtered": true,
+            "id": "0-8",
+            "plannedSec": 0,
+            "written": false
+        },
+        {
+            "covered": true,
+            "events": 1,
+            "filtered": true,
+            "id": "0-9",
+            "plannedSec": 0,
+            "written": false
+        },
+        {
+            "covered": true,
+            "events": 1,
+            "filtered": true,
+            "id": "0-10",
+            "plannedSec": 0,
+            "written": false
+        },
+        {
+            "covered": true,
+            "events": 1,
+            "filtered": true,
+            "id": "0-11",
+            "plannedSec": 0,
+            "written": false
+        },
+        {
+            "covered": true,
+            "events": 1,
+            "filtered": true,
+            "id": "0-12",
+            "plannedSec": 0,
+            "written": false
+        },
+        {
+            "covered": true,
+            "events": 1,
+            "filtered": true,
+            "id": "0-13",
+            "plannedSec": 0,
+            "written": false
+        },
+        {
+            "covered": true,
+            "events": 1,
+            "filtered": true,
+            "id": "0-14",
+            "plannedSec": 0,
+            "written": false
+        },
+        {
+            "covered": true,
+            "events": 1,
+            "filtered": true,
+            "id": "0-15",
+            "plannedSec": 0,
+            "written": false
+        },
+        {
+            "covered": true,
+            "events": 1,
+            "filtered": true,
+            "id": "0-16",
+            "plannedSec": 0,
+            "written": false
+        },
+        {
+            "covered": true,
+            "events": 1,
+            "filtered": true,
+            "id": "0-17",
+            "plannedSec": 0,
+            "written": false
+        },
+        {
+            "covered": true,
+            "events": 1,
+            "filtered": true,
+            "id": "0-18",
+            "plannedSec": 0,
+            "written": false
+        },
+        {
+            "covered": true,
+            "events": 1,
+            "filtered": true,
+            "id": "0-19",
+            "plannedSec": 0,
+            "written": false
+        },
+        {
+            "covered": true,
+            "events": 1,
+            "filtered": true,
+            "id": "0-20",
+            "plannedSec": 0,
+            "written": false
+        },
+        {
+            "covered": true,
+            "events": 1,
+            "filtered": true,
+            "id": "0-21",
+            "plannedSec": 0,
+            "written": false
+        },
+        {
+            "covered": true,
+            "events": 1,
+            "filtered": true,
+            "id": "0-22",
+            "plannedSec": 0,
+            "written": false
+        },
+        {
+            "covered": true,
+            "events": 1,
+            "hard": 0,
+            "hourStartMs": 1757286000000,
+            "id": "0-23",
+            "items": 0,
+            "plannedSec": 0,
+            "written": true
+        },
+        {
+            "covered": true,
+            "events": 1,
+            "filtered": true,
+            "id": "1-0",
+            "plannedSec": 3600,
+            "written": false
+        },
+        {
+            "covered": true,
+            "events": 1,
+            "filtered": true,
+            "id": "1-1",
+            "plannedSec": 2430,
+            "written": false
+        },
+        {
+            "covered": true,
+            "events": 1,
+            "filtered": true,
+            "id": "1-2",
+            "plannedSec": 0,
+            "written": false
+        },
+        {
+            "covered": true,
+            "events": 1,
+            "filtered": true,
+            "id": "1-3",
+            "plannedSec": 0,
+            "written": false
+        },
+        {
+            "covered": true,
+            "events": 1,
+            "filtered": true,
+            "id": "1-4",
+            "plannedSec": 0,
+            "written": false
+        },
+        {
+            "covered": true,
+            "events": 1,
+            "filtered": true,
+            "id": "1-5",
+            "plannedSec": 0,
+            "written": false
+        },
+        {
+            "covered": true,
+            "events": 1,
+            "filtered": true,
+            "id": "1-6",
+            "plannedSec": 0,
+            "written": false
+        },
+        {
+            "covered": true,
+            "events": 1,
+            "filtered": true,
+            "id": "1-7",
+            "plannedSec": 0,
+            "written": false
+        },
+        {
+            "covered": true,
+            "events": 2,
+            "filtered": true,
+            "id": "1-8",
+            "plannedSec": 1800,
+            "written": false
+        },
+        {
+            "covered": true,
+            "events": 2,
+            "filtered": true,
+            "id": "1-9",
+            "plannedSec": 3600,
+            "written": false
+        },
+        {
+            "covered": true,
+            "events": 2,
+            "filtered": true,
+            "id": "1-10",
+            "plannedSec": 3600,
+            "written": false
+        },
+        {
+            "covered": true,
+            "events": 2,
+            "filtered": true,
+            "id": "1-11",
+            "plannedSec": 3600,
+            "written": false
+        },
+        {
+            "covered": true,
+            "events": 1,
+            "filtered": true,
+            "id": "1-12",
+            "plannedSec": 3600,
+            "written": false
+        },
+        {
+            "covered": true,
+            "events": 2,
+            "filtered": true,
+            "id": "1-13",
+            "plannedSec": 3600,
+            "written": false
+        },
+        {
+            "covered": true,
+            "events": 1,
+            "filtered": true,
+            "id": "1-14",
+            "plannedSec": 3600,
+            "written": false
+        },
+        {
+            "covered": true,
+            "events": 1,
+            "filtered": true,
+            "id": "1-15",
+            "plannedSec": 1610,
+            "written": false
+        },
+        {
+            "covered": true,
+            "events": 1,
+            "filtered": true,
+            "id": "1-16",
+            "plannedSec": 300,
+            "written": false
+        },
+        {
+            "covered": true,
+            "events": 1,
+            "filtered": true,
+            "id": "1-17",
+            "plannedSec": 0,
+            "written": false
+        },
+        {
+            "covered": true,
+            "events": 1,
+            "filtered": true,
+            "id": "1-18",
+            "plannedSec": 0,
+            "written": false
+        },
+        {
+            "covered": true,
+            "events": 1,
+            "filtered": true,
+            "id": "1-19",
+            "plannedSec": 0,
+            "written": false
+        },
+        {
+            "covered": true,
+            "events": 1,
+            "filtered": true,
+            "id": "1-20",
+            "plannedSec": 0,
+            "written": false
+        },
+        {
+            "covered": true,
+            "events": 1,
+            "filtered": true,
+            "id": "1-21",
+            "plannedSec": 0,
+            "written": false
+        },
+        {
+            "covered": true,
+            "events": 1,
+            "filtered": true,
+            "id": "1-22",
+            "plannedSec": 0,
+            "written": false
+        },
+        {
+            "covered": true,
+            "events": 1,
+            "filtered": true,
+            "id": "1-23",
+            "plannedSec": 0,
+            "written": false
+        },
+        {
+            "covered": true,
+            "events": 1,
+            "filtered": true,
+            "id": "2-0",
+            "plannedSec": 3600,
+            "written": false
+        },
+        {
+            "covered": true,
+            "events": 1,
+            "filtered": true,
+            "id": "2-1",
+            "plannedSec": 2430,
+            "written": false
+        },
+        {
+            "covered": true,
+            "events": 1,
+            "filtered": true,
+            "id": "2-2",
+            "plannedSec": 0,
+            "written": false
+        },
+        {
+            "covered": true,
+            "events": 1,
+            "filtered": true,
+            "id": "2-3",
+            "plannedSec": 0,
+            "written": false
+        },
+        {
+            "covered": true,
+            "events": 1,
+            "filtered": true,
+            "id": "2-4",
+            "plannedSec": 0,
+            "written": false
+        },
+        {
+            "covered": true,
+            "events": 1,
+            "filtered": true,
+            "id": "2-5",
+            "plannedSec": 0,
+            "written": false
+        },
+        {
+            "covered": true,
+            "events": 1,
+            "filtered": true,
+            "id": "2-6",
+            "plannedSec": 0,
+            "written": false
+        },
+        {
+            "covered": true,
+            "events": 1,
+            "filtered": true,
+            "id": "2-7",
+            "plannedSec": 0,
+            "written": false
+        },
+        {
+            "covered": true,
+            "events": 1,
+            "filtered": true,
+            "id": "2-8",
+            "plannedSec": 0,
+            "written": false
+        },
+        {
+            "covered": true,
+            "events": 1,
+            "filtered": true,
+            "id": "2-9",
+            "plannedSec": 0,
+            "written": false
+        },
+        {
+            "covered": true,
+            "events": 1,
+            "filtered": true,
+            "id": "2-10",
+            "plannedSec": 0,
+            "written": false
+        },
+        {
+            "covered": true,
+            "events": 1,
+            "filtered": true,
+            "id": "2-11",
+            "plannedSec": 0,
+            "written": false
+        },
+        {
+            "covered": true,
+            "events": 1,
+            "filtered": true,
+            "id": "2-12",
+            "plannedSec": 0,
+            "written": false
+        },
+        {
+            "covered": true,
+            "events": 1,
+            "filtered": true,
+            "id": "2-13",
+            "plannedSec": 0,
+            "written": false
+        },
+        {
+            "covered": true,
+            "events": 1,
+            "filtered": true,
+            "id": "2-14",
+            "plannedSec": 0,
+            "written": false
+        },
+        {
+            "covered": true,
+            "events": 1,
+            "filtered": true,
+            "id": "2-15",
+            "plannedSec": 0,
+            "written": false
+        },
+        {
+            "covered": true,
+            "events": 1,
+            "filtered": true,
+            "id": "2-16",
+            "plannedSec": 0,
+            "written": false
+        },
+        {
+            "covered": true,
+            "events": 1,
+            "filtered": true,
+            "id": "2-17",
+            "plannedSec": 0,
+            "written": false
+        },
+        {
+            "covered": true,
+            "events": 1,
+            "filtered": true,
+            "id": "2-18",
+            "plannedSec": 0,
+            "written": false
+        },
+        {
+            "covered": true,
+            "events": 1,
+            "filtered": true,
+            "id": "2-19",
+            "plannedSec": 0,
+            "written": false
+        },
+        {
+            "covered": true,
+            "events": 1,
+            "filtered": true,
+            "id": "2-20",
+            "plannedSec": 0,
+            "written": false
+        },
+        {
+            "covered": true,
+            "events": 1,
+            "filtered": true,
+            "id": "2-21",
+            "plannedSec": 0,
+            "written": false
+        },
+        {
+            "covered": true,
+            "events": 1,
+            "filtered": true,
+            "id": "2-22",
+            "plannedSec": 0,
+            "written": false
+        },
+        {
+            "covered": true,
+            "events": 1,
+            "filtered": true,
+            "id": "2-23",
+            "plannedSec": 0,
+            "written": false
+        },
+        {
+            "covered": true,
+            "events": 1,
+            "filtered": true,
+            "id": "3-0",
+            "plannedSec": 3600,
+            "written": false
+        },
+        {
+            "covered": true,
+            "events": 1,
+            "filtered": true,
+            "id": "3-1",
+            "plannedSec": 2430,
+            "written": false
+        },
+        {
+            "covered": true,
+            "events": 1,
+            "filtered": true,
+            "id": "3-2",
+            "plannedSec": 0,
+            "written": false
+        },
+        {
+            "covered": true,
+            "events": 1,
+            "filtered": true,
+            "id": "3-3",
+            "plannedSec": 0,
+            "written": false
+        },
+        {
+            "covered": true,
+            "events": 1,
+            "filtered": true,
+            "id": "3-4",
+            "plannedSec": 0,
+            "written": false
+        },
+        {
+            "covered": true,
+            "events": 1,
+            "filtered": true,
+            "id": "3-5",
+            "plannedSec": 0,
+            "written": false
+        },
+        {
+            "covered": true,
+            "events": 1,
+            "filtered": true,
+            "id": "3-6",
+            "plannedSec": 0,
+            "written": false
+        },
+        {
+            "covered": true,
+            "events": 1,
+            "filtered": true,
+            "id": "3-7",
+            "plannedSec": 0,
+            "written": false
+        },
+        {
+            "covered": true,
+            "events": 1,
+            "filtered": true,
+            "id": "3-8",
+            "plannedSec": 0,
+            "written": false
+        },
+        {
+            "covered": true,
+            "events": 1,
+            "filtered": true,
+            "id": "3-9",
+            "plannedSec": 0,
+            "written": false
+        },
+        {
+            "covered": true,
+            "events": 1,
+            "filtered": true,
+            "id": "3-10",
+            "plannedSec": 0,
+            "written": false
+        },
+        {
+            "covered": true,
+            "events": 1,
+            "filtered": true,
+            "id": "3-11",
+            "plannedSec": 0,
+            "written": false
+        },
+        {
+            "covered": true,
+            "events": 1,
+            "filtered": true,
+            "id": "3-12",
+            "plannedSec": 0,
+            "written": false
+        },
+        {
+            "covered": true,
+            "events": 1,
+            "filtered": true,
+            "id": "3-13",
+            "plannedSec": 0,
+            "written": false
+        },
+        {
+            "covered": true,
+            "events": 1,
+            "filtered": true,
+            "id": "3-14",
+            "plannedSec": 0,
+            "written": false
+        },
+        {
+            "covered": true,
+            "events": 1,
+            "filtered": true,
+            "id": "3-15",
+            "plannedSec": 0,
+            "written": false
+        },
+        {
+            "covered": true,
+            "events": 1,
+            "filtered": true,
+            "id": "3-16",
+            "plannedSec": 0,
+            "written": false
+        },
+        {
+            "covered": true,
+            "events": 1,
+            "filtered": true,
+            "id": "3-17",
+            "plannedSec": 0,
+            "written": false
+        },
+        {
+            "covered": true,
+            "events": 1,
+            "filtered": true,
+            "id": "3-18",
+            "plannedSec": 0,
+            "written": false
+        },
+        {
+            "covered": true,
+            "events": 1,
+            "filtered": true,
+            "id": "3-19",
+            "plannedSec": 0,
+            "written": false
+        },
+        {
+            "covered": true,
+            "events": 1,
+            "filtered": true,
+            "id": "3-20",
+            "plannedSec": 0,
+            "written": false
+        },
+        {
+            "covered": true,
+            "events": 1,
+            "filtered": true,
+            "id": "3-21",
+            "plannedSec": 0,
+            "written": false
+        },
+        {
+            "covered": true,
+            "events": 1,
+            "filtered": true,
+            "id": "3-22",
+            "plannedSec": 0,
+            "written": false
+        },
+        {
+            "covered": true,
+            "events": 1,
+            "filtered": true,
+            "id": "3-23",
+            "plannedSec": 0,
+            "written": false
+        },
+        {
+            "covered": true,
+            "events": 1,
+            "filtered": true,
+            "id": "4-0",
+            "plannedSec": 3600,
+            "written": false
+        },
+        {
+            "covered": true,
+            "events": 1,
+            "filtered": true,
+            "id": "4-1",
+            "plannedSec": 2430,
+            "written": false
+        },
+        {
+            "covered": true,
+            "events": 1,
+            "filtered": true,
+            "id": "4-2",
+            "plannedSec": 0,
+            "written": false
+        },
+        {
+            "covered": true,
+            "events": 1,
+            "filtered": true,
+            "id": "4-3",
+            "plannedSec": 0,
+            "written": false
+        },
+        {
+            "covered": true,
+            "events": 1,
+            "filtered": true,
+            "id": "4-4",
+            "plannedSec": 0,
+            "written": false
+        },
+        {
+            "covered": true,
+            "events": 1,
+            "filtered": true,
+            "id": "4-5",
+            "plannedSec": 0,
+            "written": false
+        },
+        {
+            "covered": true,
+            "events": 1,
+            "filtered": true,
+            "id": "4-6",
+            "plannedSec": 0,
+            "written": false
+        },
+        {
+            "covered": true,
+            "events": 1,
+            "filtered": true,
+            "id": "4-7",
+            "plannedSec": 0,
+            "written": false
+        },
+        {
+            "covered": true,
+            "events": 1,
+            "filtered": true,
+            "id": "4-8",
+            "plannedSec": 0,
+            "written": false
+        },
+        {
+            "covered": true,
+            "events": 1,
+            "filtered": true,
+            "id": "4-9",
+            "plannedSec": 0,
+            "written": false
+        },
+        {
+            "covered": true,
+            "events": 1,
+            "filtered": true,
+            "id": "4-10",
+            "plannedSec": 0,
+            "written": false
+        },
+        {
+            "covered": true,
+            "events": 1,
+            "filtered": true,
+            "id": "4-11",
+            "plannedSec": 0,
+            "written": false
+        },
+        {
+            "covered": true,
+            "events": 1,
+            "filtered": true,
+            "id": "4-12",
+            "plannedSec": 0,
+            "written": false
+        },
+        {
+            "covered": true,
+            "events": 1,
+            "filtered": true,
+            "id": "4-13",
+            "plannedSec": 0,
+            "written": false
+        },
+        {
+            "covered": true,
+            "events": 1,
+            "filtered": true,
+            "id": "4-14",
+            "plannedSec": 0,
+            "written": false
+        },
+        {
+            "covered": true,
+            "events": 1,
+            "filtered": true,
+            "id": "4-15",
+            "plannedSec": 0,
+            "written": false
+        },
+        {
+            "covered": true,
+            "events": 1,
+            "filtered": true,
+            "id": "4-16",
+            "plannedSec": 0,
+            "written": false
+        },
+        {
+            "covered": true,
+            "events": 1,
+            "filtered": true,
+            "id": "4-17",
+            "plannedSec": 0,
+            "written": false
+        },
+        {
+            "covered": true,
+            "events": 1,
+            "filtered": true,
+            "id": "4-18",
+            "plannedSec": 0,
+            "written": false
+        },
+        {
+            "covered": true,
+            "events": 1,
+            "filtered": true,
+            "id": "4-19",
+            "plannedSec": 0,
+            "written": false
+        },
+        {
+            "covered": true,
+            "events": 1,
+            "filtered": true,
+            "id": "4-20",
+            "plannedSec": 0,
+            "written": false
+        },
+        {
+            "covered": true,
+            "events": 1,
+            "filtered": true,
+            "id": "4-21",
+            "plannedSec": 0,
+            "written": false
+        },
+        {
+            "covered": true,
+            "events": 1,
+            "filtered": true,
+            "id": "4-22",
+            "plannedSec": 0,
+            "written": false
+        },
+        {
+            "covered": true,
+            "events": 1,
+            "filtered": true,
+            "id": "4-23",
+            "plannedSec": 0,
+            "written": false
+        },
+        {
+            "covered": true,
+            "events": 1,
+            "filtered": true,
+            "id": "5-0",
+            "plannedSec": 3600,
+            "written": false
+        },
+        {
+            "covered": true,
+            "events": 1,
+            "filtered": true,
+            "id": "5-1",
+            "plannedSec": 2430,
+            "written": false
+        },
+        {
+            "covered": true,
+            "events": 1,
+            "filtered": true,
+            "id": "5-2",
+            "plannedSec": 0,
+            "written": false
+        },
+        {
+            "covered": true,
+            "events": 1,
+            "filtered": true,
+            "id": "5-3",
+            "plannedSec": 0,
+            "written": false
+        },
+        {
+            "covered": true,
+            "events": 1,
+            "filtered": true,
+            "id": "5-4",
+            "plannedSec": 0,
+            "written": false
+        },
+        {
+            "covered": true,
+            "events": 1,
+            "filtered": true,
+            "id": "5-5",
+            "plannedSec": 0,
+            "written": false
+        },
+        {
+            "covered": true,
+            "events": 1,
+            "filtered": true,
+            "id": "5-6",
+            "plannedSec": 0,
+            "written": false
+        },
+        {
+            "covered": true,
+            "events": 1,
+            "filtered": true,
+            "id": "5-7",
+            "plannedSec": 0,
+            "written": false
+        },
+        {
+            "covered": true,
+            "events": 1,
+            "filtered": true,
+            "id": "5-8",
+            "plannedSec": 0,
+            "written": false
+        },
+        {
+            "covered": true,
+            "events": 1,
+            "filtered": true,
+            "id": "5-9",
+            "plannedSec": 0,
+            "written": false
+        },
+        {
+            "covered": true,
+            "events": 1,
+            "filtered": true,
+            "id": "5-10",
+            "plannedSec": 0,
+            "written": false
+        },
+        {
+            "covered": true,
+            "events": 1,
+            "filtered": true,
+            "id": "5-11",
+            "plannedSec": 0,
+            "written": false
+        },
+        {
+            "covered": true,
+            "events": 1,
+            "filtered": true,
+            "id": "5-12",
+            "plannedSec": 0,
+            "written": false
+        },
+        {
+            "covered": true,
+            "events": 1,
+            "filtered": true,
+            "id": "5-13",
+            "plannedSec": 0,
+            "written": false
+        },
+        {
+            "covered": true,
+            "events": 1,
+            "filtered": true,
+            "id": "5-14",
+            "plannedSec": 0,
+            "written": false
+        },
+        {
+            "covered": true,
+            "events": 1,
+            "filtered": true,
+            "id": "5-15",
+            "plannedSec": 0,
+            "written": false
+        },
+        {
+            "covered": true,
+            "events": 1,
+            "filtered": true,
+            "id": "5-16",
+            "plannedSec": 0,
+            "written": false
+        },
+        {
+            "covered": true,
+            "events": 1,
+            "filtered": true,
+            "id": "5-17",
+            "plannedSec": 0,
+            "written": false
+        },
+        {
+            "covered": true,
+            "events": 1,
+            "filtered": true,
+            "id": "5-18",
+            "plannedSec": 0,
+            "written": false
+        },
+        {
+            "covered": true,
+            "events": 1,
+            "filtered": true,
+            "id": "5-19",
+            "plannedSec": 0,
+            "written": false
+        },
+        {
+            "covered": true,
+            "events": 1,
+            "filtered": true,
+            "id": "5-20",
+            "plannedSec": 0,
+            "written": false
+        },
+        {
+            "covered": true,
+            "events": 1,
+            "filtered": true,
+            "id": "5-21",
+            "plannedSec": 0,
+            "written": false
+        },
+        {
+            "covered": true,
+            "events": 1,
+            "filtered": true,
+            "id": "5-22",
+            "plannedSec": 0,
+            "written": false
+        },
+        {
+            "covered": true,
+            "events": 1,
+            "filtered": true,
+            "id": "5-23",
+            "plannedSec": 0,
+            "written": false
+        },
+        {
+            "covered": true,
+            "events": 1,
+            "hard": 1,
+            "hourStartMs": 1757116800000,
+            "id": "6-0",
+            "items": 1,
+            "plannedSec": 3600,
+            "written": true
+        },
+        {
+            "continuation": {
+                "carrySec": 1800,
+                "rootSlotId": "6-0"
+            },
+            "covered": true,
+            "events": 1,
+            "hard": 0,
+            "hourStartMs": 1757120400000,
+            "id": "6-1",
+            "items": 2,
+            "plannedSec": 2430,
+            "written": true
+        },
+        {
+            "covered": true,
+            "events": 1,
+            "hard": 0,
+            "hourStartMs": 1757124000000,
+            "id": "6-2",
+            "items": 0,
+            "plannedSec": 0,
+            "written": true
+        },
+        {
+            "covered": true,
+            "events": 1,
+            "filtered": true,
+            "id": "6-3",
+            "plannedSec": 0,
+            "written": false
+        },
+        {
+            "covered": true,
+            "events": 1,
+            "filtered": true,
+            "id": "6-4",
+            "plannedSec": 0,
+            "written": false
+        },
+        {
+            "covered": true,
+            "events": 1,
+            "filtered": true,
+            "id": "6-5",
+            "plannedSec": 0,
+            "written": false
+        },
+        {
+            "covered": true,
+            "events": 1,
+            "filtered": true,
+            "id": "6-6",
+            "plannedSec": 0,
+            "written": false
+        },
+        {
+            "covered": true,
+            "events": 1,
+            "filtered": true,
+            "id": "6-7",
+            "plannedSec": 0,
+            "written": false
+        },
+        {
+            "covered": true,
+            "events": 1,
+            "filtered": true,
+            "id": "6-8",
+            "plannedSec": 0,
+            "written": false
+        },
+        {
+            "covered": true,
+            "events": 1,
+            "filtered": true,
+            "id": "6-9",
+            "plannedSec": 0,
+            "written": false
+        },
+        {
+            "covered": true,
+            "events": 1,
+            "filtered": true,
+            "id": "6-10",
+            "plannedSec": 0,
+            "written": false
+        },
+        {
+            "covered": true,
+            "events": 1,
+            "filtered": true,
+            "id": "6-11",
+            "plannedSec": 0,
+            "written": false
+        },
+        {
+            "covered": true,
+            "events": 1,
+            "filtered": true,
+            "id": "6-12",
+            "plannedSec": 0,
+            "written": false
+        },
+        {
+            "covered": true,
+            "events": 1,
+            "filtered": true,
+            "id": "6-13",
+            "plannedSec": 0,
+            "written": false
+        },
+        {
+            "covered": true,
+            "events": 1,
+            "filtered": true,
+            "id": "6-14",
+            "plannedSec": 0,
+            "written": false
+        },
+        {
+            "covered": true,
+            "events": 1,
+            "filtered": true,
+            "id": "6-15",
+            "plannedSec": 0,
+            "written": false
+        },
+        {
+            "covered": true,
+            "events": 1,
+            "filtered": true,
+            "id": "6-16",
+            "plannedSec": 0,
+            "written": false
+        },
+        {
+            "covered": true,
+            "events": 1,
+            "filtered": true,
+            "id": "6-17",
+            "plannedSec": 0,
+            "written": false
+        },
+        {
+            "covered": true,
+            "events": 1,
+            "filtered": true,
+            "id": "6-18",
+            "plannedSec": 0,
+            "written": false
+        },
+        {
+            "covered": true,
+            "events": 1,
+            "filtered": true,
+            "id": "6-19",
+            "plannedSec": 0,
+            "written": false
+        },
+        {
+            "covered": true,
+            "events": 1,
+            "filtered": true,
+            "id": "6-20",
+            "plannedSec": 0,
+            "written": false
+        },
+        {
+            "covered": true,
+            "events": 1,
+            "filtered": true,
+            "id": "6-21",
+            "plannedSec": 0,
+            "written": false
+        },
+        {
+            "covered": true,
+            "events": 1,
+            "filtered": true,
+            "id": "6-22",
+            "plannedSec": 0,
+            "written": false
+        },
+        {
+            "covered": true,
+            "events": 2,
+            "hard": 1,
+            "hourStartMs": 1757199600000,
+            "id": "6-23",
+            "items": 1,
+            "plannedSec": 1800,
+            "written": true
+        }
+    ],
+    "ingest": [
+    ],
+    "missing": [
+        {
+            "candidates": [
+            ],
+            "events": [
+                {
+                    "file": "import_times.in",
+                    "line": 26,
+                    "stamp": "0000-00-02T13:20:00"
+                }
+            ],
+            "file": "import_times.in",
+            "hashSkipped": "off",
+            "lines": [
+                30
+            ],
+            "mapped": "D:\\Media\\Missing\\Gone.mpg",
+            "path": "D:\\Media\\Missing\\Gone.mpg",
+            "type": "unknown",
+            "uses": 1
+        }
+    ],
+    "mode": "grid",
+    "notes": [
+    ],
+    "onAirSlots": [
+    ],
+    "options": {
+        "breaks": "asScheduled",
+        "channel": "mptest",
+        "clearUncovered": false,
+        "collapseUnsegmentedActs": true,
+        "dayChange": "00:00:00",
+        "floatingSkipMaxLateSec": 300,
+        "followChangePlaylist": false,
+        "fps": 30,
+        "hourBoundary": "continue",
+        "hours": [
+            0,
+            1,
+            2,
+            23
+        ],
+        "inputMap": {
+        },
+        "legacyDateOrder": "auto",
+        "maxDepth": 4,
+        "maxItems": 20000,
+        "maxUnrollItems": 20000,
+        "minItemSec": 0.5,
+        "missing": "drop",
+        "mode": "grid",
+        "networkInput": "",
+        "nowMs": 1756728000000,
+        "osd": "auto",
+        "repeat": "loop",
+        "samePriority": false,
+        "selectRandomOrder": "random",
+        "subPlaylists": "expand",
+        "timeShiftMin": 0,
+        "timeZone": "UTC",
+        "validate": true,
+        "validateFiles": false,
+        "weekdays": [
+            0,
+            6
+        ]
+    },
+    "overlays": [
+        {
+            "end": "replaced",
+            "file": "import_times.in",
+            "filePath": "D:\\Media\\Logos\\bug.png",
+            "firstSlot": "0-1",
+            "id": "mp-logo-fa8b90a4d5",
+            "items": 2,
+            "kind": "logo",
+            "lastSlot": "0-2",
+            "line": 4,
+            "mode": "cue",
+            "role": "bug"
+        },
+        {
+            "end": "replaced",
+            "file": "import_times.in",
+            "filePath": "D:\\Media\\Logos\\bug.png",
+            "firstSlot": "0-2",
+            "id": "mp-logo-fa8b90a4d5",
+            "items": 3,
+            "kind": "logo",
+            "lastSlot": "0-2",
+            "line": 4,
+            "mode": "cue",
+            "role": "bug"
+        },
+        {
+            "end": "replaced",
+            "file": "import_times.in",
+            "filePath": "D:\\Media\\Logos\\bug.png",
+            "id": "mp-logo-fa8b90a4d5",
+            "items": 24,
+            "kind": "logo",
+            "line": 4,
+            "mode": "cue",
+            "role": "bug"
+        },
+        {
+            "end": "replaced",
+            "file": "import_times.in",
+            "filePath": "D:\\Media\\Logos\\bug.png",
+            "id": "mp-logo-fa8b90a4d5",
+            "items": 3,
+            "kind": "logo",
+            "line": 4,
+            "mode": "cue",
+            "role": "bug"
+        },
+        {
+            "end": "replaced",
+            "file": "import_times.in",
+            "filePath": "D:\\Media\\Logos\\bug.png",
+            "id": "mp-logo-fa8b90a4d5",
+            "items": 3,
+            "kind": "logo",
+            "line": 4,
+            "mode": "cue",
+            "role": "bug"
+        },
+        {
+            "end": "replaced",
+            "file": "import_times.in",
+            "filePath": "D:\\Media\\Logos\\bug.png",
+            "id": "mp-logo-fa8b90a4d5",
+            "items": 3,
+            "kind": "logo",
+            "line": 4,
+            "mode": "cue",
+            "role": "bug"
+        },
+        {
+            "end": "replaced",
+            "file": "import_times.in",
+            "filePath": "D:\\Media\\Logos\\bug.png",
+            "firstSlot": "6-0",
+            "id": "mp-logo-fa8b90a4d5",
+            "items": 3,
+            "kind": "logo",
+            "lastSlot": "6-1",
+            "line": 4,
+            "mode": "cue",
+            "role": "bug"
+        },
+        {
+            "end": "end",
+            "file": "import_times.in",
+            "filePath": "D:\\Media\\Logos\\bug.png",
+            "firstSlot": "6-1",
+            "id": "mp-logo-fa8b90a4d5",
+            "items": 2,
+            "kind": "logo",
+            "lastSlot": "6-23",
+            "line": 4,
+            "mode": "cue",
+            "role": "bug"
+        }
+    ],
+    "pods": [
+    ],
+    "sha256": "a480c2f5e36aa2778a43893ba7d6199b6867bf7262a943fc1ea46da5e82367e8",
+    "slotOrder": [
+        "0-0",
+        "0-1",
+        "0-2",
+        "0-23",
+        "6-0",
+        "6-1",
+        "6-2",
+        "6-23"
+    ],
+    "slots": {
+        "0-0": {
+            "blockType": "show",
+            "channelId": "mptest",
+            "dayOfWeek": 0,
+            "hour": 0,
+            "id": "0-0",
+            "isLooping": false,
+            "items": [
+            ],
+            "keepProgramOrder": true,
+            "mergedEvent": {
+                "carrySec": 3600,
+                "isContinuation": true,
+                "rootSlotId": "6-23",
+                "source": "masterplay",
+                "title": "Movie"
+            },
+            "randomizeAds": false,
+            "showBlock": {
+                "masterplay": {
+                    "events": [
+                        {
+                            "day": "Sun",
+                            "eventType": 2,
+                            "line": 1,
+                            "name": "Overnight",
+                            "playMode": 1,
+                            "stamp": "0000-00-00T00:00:00",
+                            "start": "00:00:00"
+                        }
+                    ],
+                    "file": "import_times.in",
+                    "sha256": "a480c2f5e36aa2778a43893ba7d6199b6867bf7262a943fc1ea46da5e82367e8"
+                },
+                "title": "Overnight"
+            },
+            "updatedAt": 0
+        },
+        "0-1": {
+            "blockType": "show",
+            "channelId": "mptest",
+            "dayOfWeek": 0,
+            "hour": 1,
+            "id": "0-1",
+            "isLooping": false,
+            "items": [
+                {
+                    "cgOverlays": [
+                        {
+                            "filePath": "D:\\Media\\Logos\\bug.png",
+                            "id": "mp-logo-fa8b90a4d5",
+                            "params": {
+                                "placement": {
+                                    "anchor": "top_right",
+                                    "marginX": 60,
+                                    "marginY": 60
+                                }
+                            },
+                            "role": "bug",
+                            "startOffset": 0
+                        }
+                    ],
+                    "duration": 5400,
+                    "id": "mp-e464dcc62694f5ac",
+                    "isLocked": false,
+                    "loop": false,
+                    "masterplay": {
+                        "anchor": {
+                            "eventType": 2,
+                            "lateSec": 3600,
+                            "start": "soft",
+                            "time": "00:00:00"
+                        },
+                        "day": "Sun",
+                        "event": "0000-00-00T00:00:00",
+                        "eventSrc": "import_times.in#1",
+                        "line": 2,
+                        "raw": "D:\\Media\\Prog\\Movie.mpg",
+                        "resolvedBy": "path",
+                        "src": "import_times.in#2",
+                        "via": "mapped"
+                    },
+                    "mediaId": "movie",
+                    "path": "D:\\Media\\Prog\\Movie.mpg",
+                    "priority": 0,
+                    "timeIn": 0,
+                    "timeOut": 0,
+                    "timingMode": "soft_start",
+                    "title": "Movie",
+                    "transitionType": "cut",
+                    "type": "program"
+                }
+            ],
+            "keepProgramOrder": true,
+            "randomizeAds": false,
+            "showBlock": {
+                "masterplay": {
+                    "events": [
+                        {
+                            "day": "Sun",
+                            "eventType": 2,
+                            "line": 1,
+                            "name": "Overnight",
+                            "playMode": 1,
+                            "stamp": "0000-00-00T00:00:00",
+                            "start": "00:00:00"
+                        }
+                    ],
+                    "file": "import_times.in",
+                    "sha256": "a480c2f5e36aa2778a43893ba7d6199b6867bf7262a943fc1ea46da5e82367e8"
+                },
+                "title": "Overnight"
+            },
+            "updatedAt": 0
+        },
+        "0-2": {
+            "blockType": "show",
+            "channelId": "mptest",
+            "dayOfWeek": 0,
+            "hour": 2,
+            "id": "0-2",
+            "isLooping": false,
+            "items": [
+                {
+                    "cgOverlays": [
+                        {
+                            "filePath": "D:\\Media\\Logos\\bug.png",
+                            "id": "mp-logo-fa8b90a4d5",
+                            "params": {
+                                "placement": {
+                                    "anchor": "top_right",
+                                    "marginX": 60,
+                                    "marginY": 60
+                                }
+                            },
+                            "role": "bug",
+                            "startOffset": 0
+                        }
+                    ],
+                    "duration": 30,
+                    "id": "mp-8571a2202a386745",
+                    "isLocked": false,
+                    "loop": false,
+                    "masterplay": {
+                        "day": "Sun",
+                        "event": "0000-00-00T00:00:00",
+                        "eventSrc": "import_times.in#1",
+                        "line": 3,
+                        "raw": "D:\\Media\\Spots\\Spot A.mpg",
+                        "resolvedBy": "path",
+                        "src": "import_times.in#3",
+                        "via": "mapped"
+                    },
+                    "mediaId": "spotA",
+                    "path": "D:\\Media\\Spots\\Spot A.mpg",
+                    "priority": 0,
+                    "timeIn": 0,
+                    "timeOut": 0,
+                    "timingMode": "soft_start",
+                    "title": "Spot A",
+                    "transitionType": "cut",
+                    "type": "ad"
+                },
+                {
+                    "cgOverlays": [
+                        {
+                            "filePath": "D:\\Media\\Logos\\bug.png",
+                            "id": "mp-logo-fa8b90a4d5",
+                            "params": {
+                                "placement": {
+                                    "anchor": "top_right",
+                                    "marginX": 60,
+                                    "marginY": 60
+                                }
+                            },
+                            "role": "bug",
+                            "startOffset": 0
+                        }
+                    ],
+                    "duration": 600,
+                    "id": "mp-d2bf5a36af035ced",
+                    "isLocked": false,
+                    "loop": false,
+                    "masterplay": {
+                        "day": "Sun",
+                        "event": "0000-00-00T00:00:00",
+                        "eventSrc": "import_times.in#1",
+                        "instructions": [
+                            {
+                                "line": 4,
+                                "name": "ShowLogo",
+                                "raw": "!ShowLogo\tf=D:\\Media\\Logos\\bug.png\tLayer=1",
+                                "state": "mapped"
+                            }
+                        ],
+                        "line": 5,
+                        "raw": "D:\\Media\\Prog\\Talk.mpg",
+                        "resolvedBy": "path",
+                        "src": "import_times.in#5",
+                        "via": "mapped"
+                    },
+                    "mediaId": "talk",
+                    "path": "D:\\Media\\Prog\\Talk.mpg",
+                    "priority": 0,
+                    "timeIn": 0,
+                    "timeOut": 0,
+                    "timingMode": "soft_start",
+                    "title": "Talk",
+                    "transitionType": "cut",
+                    "type": "program"
+                }
+            ],
+            "keepProgramOrder": true,
+            "mergedEvent": {
+                "carrySec": 1800,
+                "isContinuation": true,
+                "rootSlotId": "0-1",
+                "source": "masterplay",
+                "title": "Movie"
+            },
+            "randomizeAds": false,
+            "showBlock": {
+                "masterplay": {
+                    "events": [
+                        {
+                            "day": "Sun",
+                            "eventType": 2,
+                            "line": 1,
+                            "name": "Overnight",
+                            "playMode": 1,
+                            "stamp": "0000-00-00T00:00:00",
+                            "start": "00:00:00"
+                        }
+                    ],
+                    "file": "import_times.in",
+                    "sha256": "a480c2f5e36aa2778a43893ba7d6199b6867bf7262a943fc1ea46da5e82367e8"
+                },
+                "title": "Overnight"
+            },
+            "updatedAt": 0
+        },
+        "0-23": {
+            "blockType": "show",
+            "channelId": "mptest",
+            "dayOfWeek": 0,
+            "hour": 23,
+            "id": "0-23",
+            "isLooping": false,
+            "items": [
+            ],
+            "keepProgramOrder": true,
+            "randomizeAds": false,
+            "showBlock": {
+                "masterplay": {
+                    "events": [
+                        {
+                            "day": "Sun",
+                            "eventType": 2,
+                            "line": 1,
+                            "name": "Overnight",
+                            "playMode": 1,
+                            "stamp": "0000-00-00T00:00:00",
+                            "start": "00:00:00"
+                        }
+                    ],
+                    "file": "import_times.in",
+                    "sha256": "a480c2f5e36aa2778a43893ba7d6199b6867bf7262a943fc1ea46da5e82367e8"
+                },
+                "title": "Overnight"
+            },
+            "updatedAt": 0
+        },
+        "6-0": {
+            "blockType": "show",
+            "channelId": "mptest",
+            "dayOfWeek": 6,
+            "hour": 0,
+            "id": "6-0",
+            "isLooping": false,
+            "items": [
+                {
+                    "cgOverlays": [
+                        {
+                            "filePath": "D:\\Media\\Logos\\bug.png",
+                            "id": "mp-logo-fa8b90a4d5",
+                            "params": {
+                                "placement": {
+                                    "anchor": "top_right",
+                                    "marginX": 60,
+                                    "marginY": 60
+                                }
+                            },
+                            "role": "bug",
+                            "startOffset": 0
+                        }
+                    ],
+                    "conflictPolicy": "finish_previous",
+                    "duration": 5400,
+                    "fixedOffsetSec": 0,
+                    "id": "mp-eab1b2a268752539",
+                    "isLocked": false,
+                    "loop": false,
+                    "masterplay": {
+                        "anchor": {
+                            "eventType": 2,
+                            "start": "onTime",
+                            "time": "00:00:00"
+                        },
+                        "day": "Sat",
+                        "event": "0000-00-00T00:00:00",
+                        "eventSrc": "import_times.in#1",
+                        "line": 2,
+                        "raw": "D:\\Media\\Prog\\Movie.mpg",
+                        "resolvedBy": "path",
+                        "src": "import_times.in#2",
+                        "via": "mapped"
+                    },
+                    "mediaId": "movie",
+                    "path": "D:\\Media\\Prog\\Movie.mpg",
+                    "priority": 0,
+                    "timeIn": 0,
+                    "timeOut": 0,
+                    "timingMode": "hard_start",
+                    "title": "Movie",
+                    "transitionType": "cut",
+                    "type": "program"
+                }
+            ],
+            "keepProgramOrder": true,
+            "randomizeAds": false,
+            "showBlock": {
+                "masterplay": {
+                    "events": [
+                        {
+                            "day": "Sat",
+                            "eventType": 2,
+                            "line": 1,
+                            "name": "Overnight",
+                            "playMode": 1,
+                            "stamp": "0000-00-00T00:00:00",
+                            "start": "00:00:00"
+                        }
+                    ],
+                    "file": "import_times.in",
+                    "sha256": "a480c2f5e36aa2778a43893ba7d6199b6867bf7262a943fc1ea46da5e82367e8"
+                },
+                "title": "Overnight"
+            },
+            "updatedAt": 0
+        },
+        "6-1": {
+            "blockType": "show",
+            "channelId": "mptest",
+            "dayOfWeek": 6,
+            "hour": 1,
+            "id": "6-1",
+            "isLooping": false,
+            "items": [
+                {
+                    "cgOverlays": [
+                        {
+                            "filePath": "D:\\Media\\Logos\\bug.png",
+                            "id": "mp-logo-fa8b90a4d5",
+                            "params": {
+                                "placement": {
+                                    "anchor": "top_right",
+                                    "marginX": 60,
+                                    "marginY": 60
+                                }
+                            },
+                            "role": "bug",
+                            "startOffset": 0
+                        }
+                    ],
+                    "duration": 30,
+                    "id": "mp-43a2b71f69913afb",
+                    "isLocked": false,
+                    "loop": false,
+                    "masterplay": {
+                        "day": "Sat",
+                        "event": "0000-00-00T00:00:00",
+                        "eventSrc": "import_times.in#1",
+                        "line": 3,
+                        "raw": "D:\\Media\\Spots\\Spot A.mpg",
+                        "resolvedBy": "path",
+                        "src": "import_times.in#3",
+                        "via": "mapped"
+                    },
+                    "mediaId": "spotA",
+                    "path": "D:\\Media\\Spots\\Spot A.mpg",
+                    "priority": 0,
+                    "timeIn": 0,
+                    "timeOut": 0,
+                    "timingMode": "soft_start",
+                    "title": "Spot A",
+                    "transitionType": "cut",
+                    "type": "ad"
+                },
+                {
+                    "cgOverlays": [
+                        {
+                            "filePath": "D:\\Media\\Logos\\bug.png",
+                            "id": "mp-logo-fa8b90a4d5",
+                            "params": {
+                                "placement": {
+                                    "anchor": "top_right",
+                                    "marginX": 60,
+                                    "marginY": 60
+                                }
+                            },
+                            "role": "bug",
+                            "startOffset": 0
+                        }
+                    ],
+                    "duration": 600,
+                    "id": "mp-01e611da6a6ef2dd",
+                    "isLocked": false,
+                    "loop": false,
+                    "masterplay": {
+                        "day": "Sat",
+                        "event": "0000-00-00T00:00:00",
+                        "eventSrc": "import_times.in#1",
+                        "instructions": [
+                            {
+                                "line": 4,
+                                "name": "ShowLogo",
+                                "raw": "!ShowLogo\tf=D:\\Media\\Logos\\bug.png\tLayer=1",
+                                "state": "mapped"
+                            }
+                        ],
+                        "line": 5,
+                        "raw": "D:\\Media\\Prog\\Talk.mpg",
+                        "resolvedBy": "path",
+                        "src": "import_times.in#5",
+                        "via": "mapped"
+                    },
+                    "mediaId": "talk",
+                    "path": "D:\\Media\\Prog\\Talk.mpg",
+                    "priority": 0,
+                    "timeIn": 0,
+                    "timeOut": 0,
+                    "timingMode": "soft_start",
+                    "title": "Talk",
+                    "transitionType": "cut",
+                    "type": "program"
+                }
+            ],
+            "keepProgramOrder": true,
+            "mergedEvent": {
+                "carrySec": 1800,
+                "isContinuation": true,
+                "rootSlotId": "6-0",
+                "source": "masterplay",
+                "title": "Movie"
+            },
+            "randomizeAds": false,
+            "showBlock": {
+                "masterplay": {
+                    "events": [
+                        {
+                            "day": "Sat",
+                            "eventType": 2,
+                            "line": 1,
+                            "name": "Overnight",
+                            "playMode": 1,
+                            "stamp": "0000-00-00T00:00:00",
+                            "start": "00:00:00"
+                        }
+                    ],
+                    "file": "import_times.in",
+                    "sha256": "a480c2f5e36aa2778a43893ba7d6199b6867bf7262a943fc1ea46da5e82367e8"
+                },
+                "title": "Overnight"
+            },
+            "updatedAt": 0
+        },
+        "6-2": {
+            "blockType": "show",
+            "channelId": "mptest",
+            "dayOfWeek": 6,
+            "hour": 2,
+            "id": "6-2",
+            "isLooping": false,
+            "items": [
+            ],
+            "keepProgramOrder": true,
+            "randomizeAds": false,
+            "showBlock": {
+                "masterplay": {
+                    "events": [
+                        {
+                            "day": "Sat",
+                            "eventType": 2,
+                            "line": 1,
+                            "name": "Overnight",
+                            "playMode": 1,
+                            "stamp": "0000-00-00T00:00:00",
+                            "start": "00:00:00"
+                        }
+                    ],
+                    "file": "import_times.in",
+                    "sha256": "a480c2f5e36aa2778a43893ba7d6199b6867bf7262a943fc1ea46da5e82367e8"
+                },
+                "title": "Overnight"
+            },
+            "updatedAt": 0
+        },
+        "6-23": {
+            "blockType": "show",
+            "channelId": "mptest",
+            "dayOfWeek": 6,
+            "hour": 23,
+            "id": "6-23",
+            "isLooping": false,
+            "items": [
+                {
+                    "cgOverlays": [
+                        {
+                            "filePath": "D:\\Media\\Logos\\bug.png",
+                            "id": "mp-logo-fa8b90a4d5",
+                            "params": {
+                                "placement": {
+                                    "anchor": "top_right",
+                                    "marginX": 60,
+                                    "marginY": 60
+                                }
+                            },
+                            "role": "bug",
+                            "startOffset": 0
+                        }
+                    ],
+                    "conflictPolicy": "truncate",
+                    "duration": 5400,
+                    "fixedOffsetSec": 1800,
+                    "id": "mp-8db074146abe134d",
+                    "isLocked": false,
+                    "loop": false,
+                    "masterplay": {
+                        "anchor": {
+                            "eventType": 0,
+                            "start": "onTime",
+                            "time": "23:30:00"
+                        },
+                        "day": "Sat",
+                        "event": "0000-00-07T23:30:00",
+                        "eventSrc": "import_times.in#37",
+                        "line": 38,
+                        "raw": "D:\\Media\\Prog\\Movie.mpg",
+                        "resolvedBy": "path",
+                        "src": "import_times.in#38",
+                        "via": "mapped"
+                    },
+                    "mediaId": "movie",
+                    "path": "D:\\Media\\Prog\\Movie.mpg",
+                    "priority": 0,
+                    "timeIn": 0,
+                    "timeOut": 0,
+                    "timingMode": "hard_start",
+                    "title": "Movie",
+                    "transitionType": "cut",
+                    "type": "program"
+                }
+            ],
+            "keepProgramOrder": true,
+            "randomizeAds": false,
+            "showBlock": {
+                "masterplay": {
+                    "events": [
+                        {
+                            "day": "Sat",
+                            "eventType": 2,
+                            "line": 1,
+                            "name": "Overnight",
+                            "playMode": 1,
+                            "stamp": "0000-00-00T00:00:00",
+                            "start": "00:00:00"
+                        },
+                        {
+                            "day": "Sat",
+                            "eventType": 0,
+                            "line": 37,
+                            "name": "Late Movie",
+                            "playMode": 1,
+                            "stamp": "0000-00-07T23:30:00",
+                            "start": "23:30:00"
+                        }
+                    ],
+                    "file": "import_times.in",
+                    "sha256": "a480c2f5e36aa2778a43893ba7d6199b6867bf7262a943fc1ea46da5e82367e8"
+                },
+                "title": "Late Movie"
+            },
+            "updatedAt": 0
+        }
+    },
+    "sources": [
+        {
+            "diagnostics": {
+                "error": 0,
+                "info": 0,
+                "warning": 0
+            },
+            "encoding": "utf8bom",
+            "events": 9,
+            "items": 29,
+            "ok": true,
+            "path": "import_times.in",
+            "root": true
+        }
+    ],
+    "stats": {
+        "acts": 0,
+        "carries": 0,
+        "continuations": 3,
+        "days": 7,
+        "diagnostics": {
+            "error": 0,
+            "info": 0,
+            "warning": 11
+        },
+        "dropped": {
+            "cutByEvent": 1,
+            "missing": 1
+        },
+        "events": 15,
+        "folderPicks": 0,
+        "hardStarts": 2,
+        "items": 7,
+        "joins": 0,
+        "liveItems": 0,
+        "loops": {
+            "events": 0,
+            "unrolledLines": 0
+        },
+        "overlays": 8,
+        "placed": 7,
+        "placements": {
+            "break": 0,
+            "folder": 0,
+            "info": 1,
+            "live": 0,
+            "media": 45,
+            "osd": 7,
+            "structural": 0,
+            "unsupported": 0
+        },
+        "plannedSec": 17460,
+        "pods": 0,
+        "resolver": {
+            "ambiguousFiles": 0,
+            "byResolvedBy": {
+                "hash": 0,
+                "name": 0,
+                "none": 1,
+                "path": 26
+            },
+            "emptyFolders": 0,
+            "files": 10,
+            "folderUses": 0,
+            "folders": 0,
+            "items": 27,
+            "live": 0,
+            "missingFiles": 1,
+            "pickedByFolder": 0,
+            "resolved": 26,
+            "urls": 0
+        },
+        "slots": {
+            "covered": 168,
+            "empty": 3,
+            "filtered": 160,
+            "looping": 0,
+            "onAir": 0,
+            "uncovered": 0,
+            "written": 8
+        },
+        "starts": {
+            "native": 2,
+            "onTime": 11,
+            "soft": 2
+        },
+        "unsupported": 0,
+        "validation": {
+            "errors": 0,
+            "ok": 8,
+            "slots": 8,
+            "warnings": 6
+        },
+        "windows": 15
+    },
+    "unsupported": [
+    ],
+    "validation": [
+        {
+            "channelId": "mptest",
+            "errors": 0,
+            "gapSeconds": 0,
+            "issues": [
+                {
+                    "code": "gap",
+                    "itemId": "",
+                    "message": "the hour is covered by 'Movie' carried in from 6-23",
+                    "severity": "info"
+                }
+            ],
+            "ok": true,
+            "overrunSeconds": 0,
+            "slotId": "0-0",
+            "totalSeconds": 0,
+            "warnings": 0
+        },
+        {
+            "channelId": "mptest",
+            "errors": 0,
+            "gapSeconds": 0,
+            "issues": [
+                {
+                    "code": "overfill",
+                    "itemId": "",
+                    "message": "5400.0 s scheduled; 1800.0 s will be cut (the next hour continues it: nothing is cut at the top of the hour)",
+                    "severity": "info"
+                }
+            ],
+            "ok": true,
+            "overrunSeconds": 1800,
+            "slotId": "0-1",
+            "totalSeconds": 5400,
+            "warnings": 0
+        },
+        {
+            "channelId": "mptest",
+            "errors": 0,
+            "gapSeconds": 1170,
+            "issues": [
+                {
+                    "code": "underfill",
+                    "itemId": "",
+                    "message": "1170.0 s unfilled (fill policy will cover it at playout)",
+                    "severity": "warning"
+                },
+                {
+                    "code": "gap",
+                    "itemId": "",
+                    "message": "gaps total 1170.0 s",
+                    "severity": "info"
+                }
+            ],
+            "ok": true,
+            "overrunSeconds": 0,
+            "slotId": "0-2",
+            "totalSeconds": 630,
+            "warnings": 1
+        },
+        {
+            "channelId": "mptest",
+            "errors": 0,
+            "gapSeconds": 3600,
+            "issues": [
+                {
+                    "code": "underfill",
+                    "itemId": "",
+                    "message": "3600.0 s unfilled (fill policy will cover it at playout)",
+                    "severity": "warning"
+                },
+                {
+                    "code": "gap",
+                    "itemId": "",
+                    "message": "gaps total 3600.0 s",
+                    "severity": "info"
+                },
+                {
+                    "code": "gap",
+                    "itemId": "",
+                    "message": "hour is empty; emergency loop will play",
+                    "severity": "warning"
+                }
+            ],
+            "ok": true,
+            "overrunSeconds": 0,
+            "slotId": "0-23",
+            "totalSeconds": 0,
+            "warnings": 2
+        },
+        {
+            "channelId": "mptest",
+            "errors": 0,
+            "gapSeconds": 0,
+            "issues": [
+                {
+                    "code": "overfill",
+                    "itemId": "",
+                    "message": "5400.0 s scheduled; 1800.0 s will be cut (the next hour continues it: nothing is cut at the top of the hour)",
+                    "severity": "info"
+                }
+            ],
+            "ok": true,
+            "overrunSeconds": 1800,
+            "slotId": "6-0",
+            "totalSeconds": 5400,
+            "warnings": 0
+        },
+        {
+            "channelId": "mptest",
+            "errors": 0,
+            "gapSeconds": 1170,
+            "issues": [
+                {
+                    "code": "underfill",
+                    "itemId": "",
+                    "message": "1170.0 s unfilled (fill policy will cover it at playout)",
+                    "severity": "warning"
+                },
+                {
+                    "code": "gap",
+                    "itemId": "",
+                    "message": "gaps total 1170.0 s",
+                    "severity": "info"
+                }
+            ],
+            "ok": true,
+            "overrunSeconds": 0,
+            "slotId": "6-1",
+            "totalSeconds": 630,
+            "warnings": 1
+        },
+        {
+            "channelId": "mptest",
+            "errors": 0,
+            "gapSeconds": 3600,
+            "issues": [
+                {
+                    "code": "underfill",
+                    "itemId": "",
+                    "message": "3600.0 s unfilled (fill policy will cover it at playout)",
+                    "severity": "warning"
+                },
+                {
+                    "code": "gap",
+                    "itemId": "",
+                    "message": "gaps total 3600.0 s",
+                    "severity": "info"
+                },
+                {
+                    "code": "gap",
+                    "itemId": "",
+                    "message": "hour is empty; emergency loop will play",
+                    "severity": "warning"
+                }
+            ],
+            "ok": true,
+            "overrunSeconds": 0,
+            "slotId": "6-2",
+            "totalSeconds": 0,
+            "warnings": 2
+        },
+        {
+            "channelId": "mptest",
+            "errors": 0,
+            "gapSeconds": 1800,
+            "issues": [
+                {
+                    "code": "overfill",
+                    "itemId": "",
+                    "message": "5400.0 s scheduled; 1800.0 s will be cut (the next hour continues it: nothing is cut at the top of the hour)",
+                    "severity": "info"
+                }
+            ],
+            "ok": true,
+            "overrunSeconds": 1800,
+            "slotId": "6-23",
+            "totalSeconds": 5400,
+            "warnings": 0
+        }
+    ]
+}

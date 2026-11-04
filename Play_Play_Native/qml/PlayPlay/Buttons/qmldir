@@ -1,0 +1,22 @@
+module PlayPlay.Buttons
+singleton BtnTokens 1.0 BtnTokens.qml
+singleton ButtonPrefs 1.0 ButtonPrefs.qml
+Spec 1.0 spec.js
+Icon 1.0 Icon.qml
+PButton 1.0 PButton.qml
+IconButton 1.0 IconButton.qml
+ToggleButton 1.0 ToggleButton.qml
+ChipGroup 1.0 ChipGroup.qml
+SplitButton 1.0 SplitButton.qml
+DisclosureButton 1.0 DisclosureButton.qml
+CycleButton 1.0 CycleButton.qml
+BigActionButton 1.0 BigActionButton.qml
+HoldButton 1.0 HoldButton.qml
+PtzPad 1.0 PtzPad.qml
+PadButton 1.0 PadButton.qml
+RailButton 1.0 RailButton.qml
+ConfirmPopup 1.0 ConfirmPopup.qml
+ButtonEditor 1.0 ButtonEditor.qml
+IconPicker 1.0 IconPicker.qml
+SwatchPicker 1.0 SwatchPicker.qml
+HotkeyField 1.0 HotkeyField.qml

@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Pillar panels</title>
+<style>
+  :root { --accent: #ffc94a; --accent2: #6fd3ff; --ink: #f4f6ff; --ink2: rgba(226, 232, 255, .72); --ink3: rgba(200, 210, 255, .5);
+          --card: rgba(9, 14, 38, .62); --card2: rgba(18, 26, 64, .55); --line: rgba(160, 180, 255, .16); --s: 1; --bar: 656px; }
+  html, body { margin: 0; width: 1920px; height: 1080px; overflow: hidden; background: transparent; }
+  body { position: relative; font-family: "Bahnschrift", "Segoe UI", system-ui, sans-serif; color: var(--ink); -webkit-font-smoothing: antialiased; }
+  .bar { position: absolute; top: 0; height: 1080px; width: var(--bar); overflow: hidden;
+         background: radial-gradient(120% 60% at 30% 20%, rgba(70, 60, 160, .35), transparent 60%),
+                     radial-gradient(90% 50% at 70% 85%, rgba(20, 110, 170, .28), transparent 65%),
+                     linear-gradient(180deg, #050816 0%, #070b22 50%, #04060f 100%); }
+  .bar.left { left: 0; } .bar.right { right: 0; }
+  .bar canvas { position: absolute; inset: 0; }
+  .bar::after { content: ""; position: absolute; top: 0; bottom: 0; width: 2px;
+                background: linear-gradient(180deg, transparent, var(--accent) 30%, var(--accent2) 70%, transparent); opacity: .55; }
+  .bar.left::after { right: 0; } .bar.right::after { left: 0; }
+  .col { position: absolute; top: 54px; bottom: 54px; left: calc(var(--bar) * .075); right: calc(var(--bar) * .075);
+         display: flex; flex-direction: column; gap: calc(22px * var(--s)); }
+  .card { position: relative; background: linear-gradient(160deg, var(--card2), var(--card)); border: 1px solid var(--line);
+          border-radius: calc(16px * var(--s)); padding: calc(22px * var(--s)) calc(24px * var(--s));
+          box-shadow: 0 calc(10px * var(--s)) calc(30px * var(--s)) rgba(0, 0, 0, .35), inset 0 1px 0 rgba(255, 255, 255, .06);
+          opacity: 0; transform: translateY(calc(18px * var(--s))); transition: opacity .7s ease, transform .7s cubic-bezier(.2, .8, .2, 1); }
+  .shown .card { opacity: 1; transform: none; }
+  .shown .card:nth-child(2) { transition-delay: .12s; } .shown .card:nth-child(3) { transition-delay: .24s; } .shown .card:nth-child(4) { transition-delay: .36s; }
+  .kicker { font-size: calc(17px * var(--s)); letter-spacing: .16em; text-transform: uppercase; color: var(--accent); font-weight: 600; display: flex; align-items: center; gap: .6em; }
+  .kicker .dim { color: var(--ink3); letter-spacing: .08em; }
+  .kicker::before { content: ""; width: calc(8px * var(--s)); height: calc(8px * var(--s)); border-radius: 50%; background: var(--accent); box-shadow: 0 0 calc(10px * var(--s)) var(--accent); flex: none; }
+  .head { display: flex; align-items: baseline; justify-content: space-between; padding: 0 calc(4px * var(--s)); opacity: 0; transition: opacity .8s ease; }
+  .shown .head { opacity: 1; }
+  .station { font-size: calc(26px * var(--s)); font-weight: 700; letter-spacing: .14em; text-transform: uppercase; }
+  .clock { font-size: calc(26px * var(--s)); font-weight: 600; color: var(--ink2); font-variant-numeric: tabular-nums; }
+
+  /* weather */
+  .wx-now { display: flex; align-items: center; gap: calc(18px * var(--s)); margin-top: calc(12px * var(--s)); }
+  .wx-now svg { width: calc(108px * var(--s)); height: calc(108px * var(--s)); flex: none; filter: drop-shadow(0 0 calc(14px * var(--s)) rgba(255, 200, 80, .25)); }
+  .wx-temp { font-size: calc(104px * var(--s)); font-weight: 600; line-height: .9; letter-spacing: -.02em; font-variant-numeric: tabular-nums; }
+  .wx-temp sup { font-size: .42em; vertical-align: top; position: relative; top: .18em; margin-left: .04em; color: var(--ink2); }
+  .wx-cond { font-size: calc(30px * var(--s)); font-weight: 600; margin-top: calc(6px * var(--s)); }
+  .wx-hilo { font-size: calc(22px * var(--s)); color: var(--ink2); margin-top: calc(4px * var(--s)); font-variant-numeric: tabular-nums; }
+  .wx-hilo b { color: var(--ink); font-weight: 600; }
+  .wx-days { display: grid; grid-template-columns: repeat(3, 1fr); gap: calc(10px * var(--s)); margin-top: calc(18px * var(--s));
+             border-top: 1px solid var(--line); padding-top: calc(14px * var(--s)); }
+  .wx-day { text-align: center; }
+  .wx-day .d { font-size: calc(17px * var(--s)); letter-spacing: .1em; text-transform: uppercase; color: var(--ink3); }
+  .wx-day svg { width: calc(46px * var(--s)); height: calc(46px * var(--s)); margin: calc(4px * var(--s)) 0; }
+  .wx-day .t { font-size: calc(20px * var(--s)); font-variant-numeric: tabular-nums; } .wx-day .t span { color: var(--ink3); }
+
+  /* history */
+  .hist { flex: 1 1 auto; min-height: 0; display: flex; flex-direction: column; }
+  .rot { position: relative; flex: 1 1 auto; margin-top: calc(14px * var(--s)); min-height: calc(140px * var(--s)); }
+  .rot > div { position: absolute; inset: 0; opacity: 0; transform: translateY(calc(10px * var(--s))); transition: opacity .9s ease, transform .9s ease; }
+  .rot > div.on { opacity: 1; transform: none; }
+  .yr { font-size: calc(64px * var(--s)); font-weight: 700; line-height: 1; color: var(--accent); letter-spacing: -.01em; font-variant-numeric: tabular-nums; }
+  .ev { font-family: "Segoe UI", system-ui, sans-serif; font-size: calc(26px * var(--s)); line-height: 1.32; margin-top: calc(10px * var(--s)); color: var(--ink);
+        display: -webkit-box; -webkit-box-orient: vertical; -webkit-line-clamp: 6; overflow: hidden; }
+  .src { font-size: calc(14px * var(--s)); color: var(--ink3); letter-spacing: .08em; text-transform: uppercase; margin-top: calc(8px * var(--s)); }
+
+  /* up next */
+  .next-list { margin-top: calc(10px * var(--s)); }
+  .nx { display: grid; grid-template-columns: auto 1fr; column-gap: calc(16px * var(--s)); align-items: baseline;
+        padding: calc(12px * var(--s)) 0; border-top: 1px solid var(--line); }
+  .nx:first-child { border-top: 0; }
+  .nx .tm { font-size: calc(22px * var(--s)); color: var(--ink2); font-variant-numeric: tabular-nums; white-space: nowrap; }
+  .nx .ti { font-size: calc(28px * var(--s)); font-weight: 600; line-height: 1.15; overflow: hidden; display: -webkit-box; -webkit-box-orient: vertical; -webkit-line-clamp: 2; }
+  .nx.first .ti { font-size: calc(34px * var(--s)); }
+  .nx .tag { grid-column: 1 / -1; font-size: calc(14px * var(--s)); letter-spacing: .18em; color: #0a0d1c; background: var(--accent); justify-self: start;
+             padding: calc(3px * var(--s)) calc(10px * var(--s)); border-radius: calc(4px * var(--s)); margin-bottom: calc(8px * var(--s)); font-weight: 700; }
+  .empty { color: var(--ink3); font-size: calc(22px * var(--s)); margin-top: calc(10px * var(--s)); }
+
+  /* sponsors */
+  .spons { display: flex; flex-direction: column; gap: calc(16px * var(--s)); flex: 1 1 auto; min-height: 0; justify-content: flex-end; }
+  .sp { padding: 0; overflow: hidden; height: calc(190px * var(--s)); flex: none; }
+  .sp .rot { position: absolute; inset: 0; margin: 0; }
+  .sp .rot > div { display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; padding: calc(18px * var(--s)); box-sizing: border-box; }
+  .sp img { max-width: 86%; max-height: calc(110px * var(--s)); object-fit: contain; }
+  .sp .nm { font-size: calc(36px * var(--s)); font-weight: 700; letter-spacing: .02em; line-height: 1.05; }
+  .sp .tl { font-size: calc(20px * var(--s)); color: var(--ink2); margin-top: calc(8px * var(--s)); }
+  .sp .lab { position: absolute; top: calc(10px * var(--s)); left: 0; right: 0; text-align: center; font-size: calc(12px * var(--s)); letter-spacing: .24em; color: var(--ink3); text-transform: uppercase; z-index: 2; }
+  .sp .stripe { position: absolute; left: 0; top: 0; bottom: 0; width: calc(6px * var(--s)); z-index: 2; }
+
+  /* compact: 4:3 and square pictures leave narrow bars */
+  .compact .wx-days, .compact .src, .compact .head .clock { display: none; }
+  .compact .wx-now { flex-direction: column; align-items: flex-start; gap: calc(6px * var(--s)); }
+  .compact .sp:nth-child(2) { display: none; }
+  .compact .col { left: calc(var(--bar) * .06); right: calc(var(--bar) * .06); }
+  .compact .card { padding: calc(16px * var(--s)) calc(16px * var(--s)); }
+  .compact .ev { -webkit-line-clamp: 9; font-size: calc(24px * var(--s)); }
+  .compact .kicker .dim { display: none; }
+  .compact .nx { grid-template-columns: 1fr; }
+  .compact .wx-temp { font-size: calc(92px * var(--s)); }
+  .tiny .hist, .tiny .card.next, .tiny .spons, .tiny .head { display: none; }
+  #status { position: absolute; left: 8px; top: 8px; font: 12px monospace; color: #fff; background: rgba(0, 0, 0, .6); padding: 2px 6px; display: none; }
+  body.debug #status { display: block; }
+</style>
+</head>
+<body>
+<!--
+  Pillar panels: information in the side bars when a narrow picture (9:16, 4:3, 1:1) plays on a 16:9 channel (docs/pillar-panels.md).
+  The page draws only in the two bars; the middle (1080 x aspect pixels of 1920) stays transparent, so the picture shows through.
+  Query parameters: aspect (picture width / height, default 0.5625), data (JSON, see below), demo=1 (sample data), debug=1.
+  data: { station, accent, tz, panels:{weather,sponsors,history,upNext}, weather:{place,tempF,cond,icon,hiF,loF,days:[{dow,hiF,loF,icon}]},
+          history:{date, items:[{year,text}], source}, upNext:[{time,title}], sponsors:[{name,tagline,image,color}],
+          rotate:{sponsorSec,historySec}, stars:{speed,density,fps} }
+  Script API: window.update({data?, aspect?}) merges and redraws (rotation positions are kept); window.CGAnim.animateIn/animateOut/replay.
+  Built by the Supervisor's PillarPanels (weather, history and up next are fetched and cached there; this page fetches nothing).
+-->
+<div class="bar left" id="L"><canvas></canvas><div class="col" id="colL"></div></div>
+<div class="bar right" id="R"><canvas></canvas><div class="col" id="colR"></div></div>
+<div id="status"></div>
+<script>
+(function () {
+  const q = new URLSearchParams(location.search);
+  const DEMO = {
+    station: "STAR NEWS", accent: "#ffc94a", tz: "America/New_York",
+    panels: { weather: true, sponsors: true, history: true, upNext: true },
+    weather: { place: "Martinsville", tempF: 64, cond: "Partly Cloudy", icon: "partly", hiF: 68, loF: 47,
+               days: [{ dow: "Tomorrow", hiF: 70, loF: 49, icon: "sun" }, { dow: "Sat", hiF: 63, loF: 45, icon: "rain" }, { dow: "Sun", hiF: 59, loF: 41, icon: "cloud" }] },
+    history: { date: "October 23", source: "Wikipedia", items: [
+      { year: 1958, text: "The Smurfs appear for the first time in a story in the Belgian comics magazine Spirou." },
+      { year: 1911, text: "An Italian pilot makes the first military use of an aircraft, a reconnaissance flight in Libya." },
+      { year: 1864, text: "Union forces win the Battle of Westport, the largest battle fought west of the Mississippi River." }] },
+    upNext: [{ time: "7:30 PM", title: "Evening News" }, { time: "8:00 PM", title: "High School Football Friday" }, { time: "10:00 PM", title: "Weather Wrap" }],
+    sponsors: [{ name: "Uptown Hardware", tagline: "Since 1952 on Church Street", color: "#ffc94a" }, { name: "Blue Ridge Credit Union", tagline: "Local people, local decisions", color: "#6fd3ff" },
+               { name: "Hollywood Cinema", tagline: "Now showing all week", color: "#ff7a90" }],
+    rotate: { sponsorSec: 9, historySec: 11 }, stars: { speed: 1, density: 1, fps: 24 }
+  };
+  let D = {}; let aspect = parseFloat(q.get('aspect')) || 0.5625;
+  try { D = q.get('data') ? JSON.parse(q.get('data')) : (q.get('demo') === '1' ? DEMO : {}); } catch (e) { D = {}; }
+  if (q.get('debug') === '1') document.body.classList.add('debug');
+  const $ = id => document.getElementById(id);
+  const esc = s => String(s ?? '').replace(/[&<>"]/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]));
+  const root = document.documentElement.style;
+
+  // ------------------------------------------------------------------ icons (24-unit viewBox, two-tone)
+  const SUN = '<circle cx="24" cy="24" r="9" fill="#ffd25e"/><g stroke="#ffd25e" stroke-width="3" stroke-linecap="round">' +
+    [0, 45, 90, 135, 180, 225, 270, 315].map(a => { const r = a * Math.PI / 180, c = Math.cos(r), s = Math.sin(r); return `<line x1="${24 + c * 14}" y1="${24 + s * 14}" x2="${24 + c * 19}" y2="${24 + s * 19}"/>`; }).join('') + '</g>';
+  const CLOUD = (y = 0, f = '#dfe6ff') => `<path transform="translate(0 ${y})" d="M14 36h20a8 8 0 0 0 1-15.9A11 11 0 0 0 14.3 19 8.5 8.5 0 0 0 14 36z" fill="${f}"/>`;
+  const MOON = '<path d="M30 8a15 15 0 1 0 10 26A13 13 0 0 1 30 8z" fill="#e8ecff"/>';
+  const ICONS = {
+    sun: SUN, moon: MOON,
+    partly: '<g transform="translate(-6 -6) scale(.8)">' + SUN + '</g>' + CLOUD(4),
+    partly_night: '<g transform="translate(-4 -6) scale(.75)">' + MOON + '</g>' + CLOUD(4),
+    cloud: CLOUD(0, '#c9d3f2') + '<g opacity=".7">' + CLOUD(-6, '#e9eeff') + '</g>',
+    fog: '<g stroke="#c9d3f2" stroke-width="3" stroke-linecap="round"><line x1="8" y1="18" x2="40" y2="18"/><line x1="12" y1="26" x2="36" y2="26"/><line x1="8" y1="34" x2="40" y2="34"/></g>',
+    drizzle: CLOUD(-4) + '<g stroke="#6fd3ff" stroke-width="2.5" stroke-linecap="round"><line x1="18" y1="38" x2="17" y2="41"/><line x1="26" y1="38" x2="25" y2="41"/><line x1="34" y1="38" x2="33" y2="41"/></g>',
+    rain: CLOUD(-4) + '<g stroke="#6fd3ff" stroke-width="3" stroke-linecap="round"><line x1="17" y1="37" x2="14" y2="44"/><line x1="25" y1="37" x2="22" y2="44"/><line x1="33" y1="37" x2="30" y2="44"/></g>',
+    storm: CLOUD(-4, '#b8c2e6') + '<path d="M26 34l-6 8h5l-3 6 9-10h-5l3-4z" fill="#ffd25e"/>',
+    snow: CLOUD(-4) + '<g fill="#ffffff"><circle cx="17" cy="40" r="2"/><circle cx="25" cy="43" r="2"/><circle cx="33" cy="40" r="2"/></g>',
+  };
+  const icon = k => `<svg viewBox="0 0 48 48">${ICONS[k] || ICONS.cloud}</svg>`;
+
+  // ------------------------------------------------------------------ layout
+  let barW = 656, mode = 'full';
+  function layout() {
+    const a = Math.min(1.76, Math.max(0.3, aspect));
+    const vw = Math.round(1080 * a);
+    barW = Math.max(0, Math.floor((1920 - vw) / 2));
+    root.setProperty('--bar', barW + 'px');
+    mode = barW < 200 ? 'tiny' : barW < 360 ? 'compact' : 'full';
+    // full bars (9:16, 1:1) scale with the bar; narrow ones (4:3) keep the type readable and show less
+    const s = mode === 'full' ? Math.min(1.12, Math.max(0.4, barW / 600)) : Math.min(1, Math.max(0.55, barW / 330));
+    root.setProperty('--s', s.toFixed(3));
+    document.body.classList.toggle('compact', mode !== 'full');
+    document.body.classList.toggle('tiny', mode === 'tiny');
+    for (const b of [$('L'), $('R')]) { const c = b.querySelector('canvas'); c.width = Math.max(1, barW); c.height = 1080; b.style.display = barW < 24 ? 'none' : ''; }
+    seedStars();
+  }
+
+  // ------------------------------------------------------------------ panels
+  const rot = { hist: 0, sp: 0 };
+  const P = () => Object.assign({ weather: true, sponsors: true, history: true, upNext: true }, D.panels || {});
+  function weatherCard() {
+    const w = D.weather || {};
+    if (!P().weather) return '';
+    if (w.tempF === undefined) return `<div class="card"><div class="kicker">Weather <span class="dim">${esc(w.place || '')}</span></div><div class="empty">Forecast loading…</div></div>`;
+    const days = (w.days || []).slice(0, 3).map(d => `<div class="wx-day"><div class="d">${esc(d.dow)}</div>${icon(d.icon)}<div class="t">${esc(d.hiF)}° <span>${esc(d.loF)}°</span></div></div>`).join('');
+    return `<div class="card"><div class="kicker">Weather <span class="dim">${esc(w.place || '')}</span></div>
+      <div class="wx-now">${icon(w.icon)}<div><div class="wx-temp">${esc(w.tempF)}<sup>°F</sup></div></div></div>
+      <div class="wx-cond">${esc(w.cond || '')}</div>
+      <div class="wx-hilo">High <b>${esc(w.hiF ?? '–')}°</b> &nbsp; Low <b>${esc(w.loF ?? '–')}°</b>${w.rainPct ? ` &nbsp; Rain <b>${esc(w.rainPct)}%</b>` : ''}</div>
+      ${days ? `<div class="wx-days">${days}</div>` : ''}</div>`;
+  }
+  function historyCard() {
+    const h = D.history || {}, items = h.items || [];
+    if (!P().history || !items.length) return '';
+    const slides = items.map((e, i) => `<div data-i="${i}"><div class="yr">${esc(e.year)}</div><div class="ev">${esc(e.text)}</div></div>`).join('');
+    return `<div class="card hist"><div class="kicker">This day in history <span class="dim">${esc(h.date || '')}</span></div><div class="rot" id="histRot">${slides}</div>${h.source ? `<div class="src">Source: ${esc(h.source)}</div>` : ''}</div>`;
+  }
+  function nextCard() {
+    if (!P().upNext) return '';
+    const n = (D.upNext || []).slice(0, mode === 'full' ? 3 : 2);
+    const rows = n.map((x, i) => `<div class="nx${i === 0 ? ' first' : ''}">${i === 0 ? '<div class="tag">NEXT</div>' : ''}<div class="tm">${esc(x.time)}</div><div class="ti">${esc(x.title)}</div></div>`).join('');
+    return `<div class="card next"><div class="kicker">Coming up</div><div class="next-list">${rows || '<div class="empty">Stay with us</div>'}</div></div>`;
+  }
+  function sponsorSlot(k) {
+    const sp = D.sponsors || [];
+    const slides = sp.map((x, i) => { const img = x.image ? `<img src="${esc(x.image)}" alt="">` : '';
+      return `<div data-i="${i}"><div class="stripe" style="background:${esc(x.color || 'var(--accent)')}"></div>${img}${!img || x.showName ? `<div class="nm">${esc(x.name || '')}</div>` : ''}${x.tagline ? `<div class="tl">${esc(x.tagline)}</div>` : ''}</div>`; }).join('');
+    return `<div class="card sp"><div class="lab">${k === 0 ? 'Proudly supported by' : 'Thanks to our sponsors'}</div><div class="rot" id="spRot${k}">${slides}</div></div>`;
+  }
+  function sponsorsBlock() {
+    const sp = D.sponsors || [];
+    if (!P().sponsors || !sp.length) return '';
+    const n = sp.length > 1 && mode === 'full' ? 2 : 1;
+    let h = ''; for (let k = 0; k < n; ++k) h += sponsorSlot(k);
+    return `<div class="spons">${h}</div>`;
+  }
+  function render() {
+    if (D.accent) root.setProperty('--accent', D.accent);
+    const head = `<div class="head"><div class="station">${esc(D.station || '')}</div><div class="clock" id="clock"></div></div>`;
+    $('colL').innerHTML = head + weatherCard() + historyCard();
+    $('colR').innerHTML = nextCard() + sponsorsBlock();
+    if (!$('colR').innerHTML.trim() && D.station) $('colR').innerHTML = `<div class="card"><div class="kicker">${esc(D.station)}</div></div>`;
+    applyRot(); tickClock();
+    if (shown) requestAnimationFrame(() => document.body.classList.add('shown'));
+  }
+  function showSlide(el, i) { if (!el) return; const kids = el.children; for (let k = 0; k < kids.length; ++k) kids[k].classList.toggle('on', k === i % Math.max(1, kids.length)); }
+  function applyRot() {
+    showSlide($('histRot'), rot.hist);
+    const n = (D.sponsors || []).length;
+    showSlide($('spRot0'), rot.sp); showSlide($('spRot1'), rot.sp + Math.max(1, Math.floor(n / 2)));
+  }
+  let tHist = 0, tSp = 0;
+  function rotTimers() {
+    clearInterval(tHist); clearInterval(tSp);
+    const r = D.rotate || {};
+    tHist = setInterval(() => { rot.hist++; applyRot(); }, Math.max(4, r.historySec || 11) * 1000);
+    tSp = setInterval(() => { rot.sp++; applyRot(); }, Math.max(3, r.sponsorSec || 9) * 1000);
+  }
+  function tickClock() {
+    const el = $('clock'); if (!el) return;
+    try { el.textContent = new Date().toLocaleTimeString('en-US', { hour: 'numeric', minute: '2-digit', timeZone: D.tz || undefined }); }
+    catch (e) { el.textContent = new Date().toLocaleTimeString('en-US', { hour: 'numeric', minute: '2-digit' }); }
+  }
+  setInterval(tickClock, 10000);
+
+  // ------------------------------------------------------------------ starfield (both bars, slow parallax drift + twinkle)
+  let stars = [], shoot = null, lastT = 0, acc = 0;
+  const sprite = (() => { const c = document.createElement('canvas'); c.width = c.height = 16; const g = c.getContext('2d');
+    const gr = g.createRadialGradient(8, 8, 0, 8, 8, 8); gr.addColorStop(0, 'rgba(255,255,255,1)'); gr.addColorStop(.25, 'rgba(220,230,255,.65)'); gr.addColorStop(1, 'rgba(160,190,255,0)');
+    g.fillStyle = gr; g.fillRect(0, 0, 16, 16); return c; })();
+  function seedStars() {
+    const st = D.stars || {}; const dens = Math.max(.2, Math.min(3, st.density || 1));
+    const n = Math.round(barW * 1080 / 2400 * dens);
+    stars = [];
+    for (const side of [0, 1]) for (let i = 0; i < n; ++i) {
+      const z = Math.random(); stars.push({ side, x: Math.random() * barW, y: Math.random() * 1080, z,
+        r: .5 + z * 1.6, a: .25 + z * .6, tw: Math.random() * Math.PI * 2, tws: .4 + Math.random() * 1.4, glow: z > .86 });
+    }
+  }
+  function frame(t) {
+    requestAnimationFrame(frame);
+    const st = D.stars || {}; const fps = Math.max(8, Math.min(60, st.fps || 24));
+    const dt = Math.min(.25, (t - lastT) / 1000 || 0); lastT = t; acc += dt;
+    if (acc < 1 / fps) return;
+    const step = acc; acc = 0;
+    const sp = Math.max(0, Math.min(4, st.speed ?? 1));
+    const ctx = [$('L').querySelector('canvas').getContext('2d'), $('R').querySelector('canvas').getContext('2d')];
+    for (const c of ctx) c.clearRect(0, 0, barW, 1080);
+    for (const s of stars) {
+      s.y += (3 + s.z * 14) * sp * step; s.x += (s.side ? -1 : 1) * (.6 + s.z * 2) * sp * step;     // drift down and outward, near stars faster
+      if (s.y > 1084) { s.y = -4; s.x = Math.random() * barW; } if (s.x < -4) s.x = barW + 2; if (s.x > barW + 4) s.x = -2;
+      s.tw += s.tws * step;
+      const a = s.a * (.72 + .28 * Math.sin(s.tw));
+      const c = ctx[s.side]; c.globalAlpha = a;
+      if (s.glow) { const g = 6 + s.r * 4; c.drawImage(sprite, s.x - g / 2, s.y - g / 2, g, g); }
+      else { c.fillStyle = '#e8eeff'; c.fillRect(s.x, s.y, s.r, s.r); }
+    }
+    // an occasional shooting star, faint
+    if (!shoot && sp > 0 && Math.random() < step / 25) shoot = { side: Math.random() < .5 ? 0 : 1, x: Math.random() * barW, y: Math.random() * 500, life: 0 };
+    if (shoot) {
+      shoot.life += step; const p = shoot.life / 1.1; const c = ctx[shoot.side];
+      const x = shoot.x + p * 260, y = shoot.y + p * 140;
+      const g = c.createLinearGradient(x - 90, y - 48, x, y); g.addColorStop(0, 'rgba(255,255,255,0)'); g.addColorStop(1, 'rgba(255,255,255,.7)');
+      c.globalAlpha = Math.sin(Math.min(1, p) * Math.PI); c.strokeStyle = g; c.lineWidth = 1.6; c.beginPath(); c.moveTo(x - 90, y - 48); c.lineTo(x, y); c.stroke();
+      if (p >= 1) shoot = null;
+    }
+    for (const c of ctx) c.globalAlpha = 1;
+  }
+
+  // ------------------------------------------------------------------ API
+  let shown = false;
+  window.CGAnim = {
+    animateIn() { shown = true; document.body.classList.add('shown'); document.body.style.transition = 'opacity .5s'; document.body.style.opacity = 1; },
+    animateOut() { shown = false; document.body.classList.remove('shown'); document.body.style.transition = 'opacity .4s'; document.body.style.opacity = 0; },
+    replay() { document.body.classList.remove('shown'); void document.body.offsetWidth; shown = true; setTimeout(() => document.body.classList.add('shown'), 30); document.body.style.opacity = 1; },
+  };
+  window.update = function (f) {
+    f = f || {};
+    if (f.aspect !== undefined && parseFloat(f.aspect) > 0) { aspect = parseFloat(f.aspect); layout(); }
+    if (f.data !== undefined) { try { const d = typeof f.data === 'string' ? JSON.parse(f.data) : f.data; D = Object.assign({}, D, d); } catch (e) { $('status').textContent = 'bad data: ' + e.message; } }
+    render(); rotTimers();
+  };
+  layout(); render(); rotTimers(); requestAnimationFrame(frame);
+  setTimeout(() => window.CGAnim.animateIn(), 60);
+  $('status').textContent = `aspect ${aspect} bar ${barW}px ${mode}`;
+})();
+</script>
+</body>
+</html>

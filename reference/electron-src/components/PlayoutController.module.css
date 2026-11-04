@@ -1,0 +1,1429 @@
+/* PlayoutController - Complete Broadcast Suite */
+
+/* App Container */
+.appContainer {
+    display: flex;
+    height: 100vh;
+    width: 100vw;
+    background: var(--background);
+    overflow: hidden;
+}
+
+/* Sidebar Navigation — keep above stray overlays in the workspace; clip URL strips so they
+   don't paint over the main area. Caspar spawn uses windowsHide by default so a cmd window
+   doesn't cover this rail on Windows (see PLAYPLAY_CASPAR_SHOW_CONSOLE). */
+.sidebar {
+    width: 72px;
+    min-width: 72px;
+    flex-shrink: 0;
+    position: relative;
+    z-index: 30;
+    background: linear-gradient(180deg, #0a0a0c 0%, #111113 100%);
+    border-right: 1px solid var(--border);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 0.6rem 0.45rem;
+    overflow-x: hidden;
+    overflow-y: auto;
+}
+
+/* Compact mode — designed for low-DPI / 1366×768 displays.
+   Shrinks sidebar from 72→52px, button 48→34, icons 25→17.
+   Applied via .compact class on the appContainer. */
+.appContainer.compact .sidebar {
+    width: 52px;
+    padding: 0.35rem 0.2rem;
+}
+.appContainer.compact .navItem {
+    width: 36px;
+    height: 36px;
+    border-radius: 8px;
+}
+.appContainer.compact .navItem svg {
+    width: 17px !important;
+    height: 17px !important;
+    stroke-width: 2;
+}
+.appContainer.compact .navItems {
+    gap: 0.25rem;
+}
+.appContainer.compact .navBottom {
+    gap: 0.25rem;
+}
+
+.logo {
+    font-size: 0.58rem;
+    font-weight: 800;
+    color: var(--accent);
+    padding: 0.35rem 0;
+    margin-bottom: 0.55rem;
+    letter-spacing: 0.1em;
+    text-align: center;
+}
+
+/* Channel switcher (vertical pills at top of sidebar) */
+.channelSwitcher {
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 4px;
+    width: 100%;
+    padding: 0 2px 6px;
+    margin-bottom: 6px;
+    border-bottom: 1px solid var(--border);
+}
+.channelPill {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 4px;
+    height: 28px;
+    padding: 0 6px;
+    background: rgba(255, 255, 255, 0.04);
+    border: 1px solid transparent;
+    border-radius: 6px;
+    color: var(--text-muted);
+    cursor: pointer;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.04em;
+    transition: background 0.12s, color 0.12s, border-color 0.12s;
+    position: relative;
+}
+.channelPill:hover {
+    background: var(--surface-highlight);
+    color: var(--text-primary);
+}
+.channelPill.active {
+    background: var(--accent);
+    color: white;
+    border-color: rgba(255,255,255,0.18);
+}
+.channelPillClose {
+    display: none;
+    margin-left: 2px;
+    width: 13px;
+    height: 13px;
+    background: transparent;
+    border: none;
+    color: rgba(255,255,255,0.6);
+    border-radius: 3px;
+    font-size: 11px;
+    line-height: 1;
+    padding: 0;
+    cursor: pointer;
+}
+.channelPill:hover .channelPillClose {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+}
+.channelPillClose:hover {
+    background: rgba(239, 68, 68, 0.85);
+    color: white;
+}
+.channelPill .liveDot {
+    width: 6px;
+    height: 6px;
+    background: #ef4444;
+    border-radius: 50%;
+    box-shadow: 0 0 6px rgba(239,68,68,0.7);
+}
+.channelPillAdd {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 24px;
+    background: transparent;
+    border: 1px dashed var(--border);
+    border-radius: 6px;
+    color: var(--text-muted);
+    cursor: pointer;
+    transition: color 0.12s, border-color 0.12s;
+}
+.channelPillAdd:hover {
+    color: var(--text-primary);
+    border-color: var(--accent);
+}
+.channelPillAdd:disabled {
+    opacity: 0.35;
+    cursor: not-allowed;
+}
+.appContainer.compact .channelPill {
+    height: 24px;
+    font-size: 10px;
+    padding: 0 4px;
+}
+.appContainer.compact .channelPillAdd {
+    height: 20px;
+}
+.appContainer.compact .logo {
+    display: none;
+}
+
+/* Preview Jack — horizontal channel router strip above the preview pane.
+   One pane, one channel at a time; click to patch the preview to a different
+   channel. Background editing context follows because previewing a channel
+   makes it the active channel (snapshot/restore preserves the others). */
+.previewJack {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 6px 10px;
+    background: rgba(8, 8, 10, 0.9);
+    border-bottom: 1px solid var(--border);
+    font-size: 11px;
+    overflow-x: auto;
+    overflow-y: hidden;
+}
+.previewJackLabel {
+    flex-shrink: 0;
+    font-weight: 800;
+    letter-spacing: 0.1em;
+    color: var(--text-muted);
+    padding: 2px 6px;
+    background: rgba(255,255,255,0.05);
+    border-radius: 3px;
+}
+.previewJackButtons {
+    display: flex;
+    gap: 4px;
+    flex: 1;
+    flex-wrap: wrap;
+}
+.jackButton {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    height: 24px;
+    padding: 0 8px;
+    background: transparent;
+    border: 1px solid var(--border);
+    color: var(--text-muted);
+    border-radius: 4px;
+    cursor: pointer;
+    font-weight: 700;
+    font-size: 10px;
+    letter-spacing: 0.04em;
+    transition: background 0.12s, color 0.12s, border-color 0.12s;
+    white-space: nowrap;
+}
+.jackButton:hover {
+    color: var(--text-primary);
+    border-color: var(--accent);
+}
+.jackButton.jackButtonOn {
+    background: var(--accent);
+    color: white;
+    border-color: var(--accent);
+    box-shadow: 0 0 0 1px rgba(255,255,255,0.15) inset;
+}
+.jackLiveDot {
+    width: 5px;
+    height: 5px;
+    border-radius: 50%;
+    background: #ef4444;
+    box-shadow: 0 0 5px rgba(239,68,68,0.8);
+}
+.previewJackCurrent {
+    flex-shrink: 0;
+    font-weight: 600;
+    color: var(--text-primary);
+    padding: 2px 6px;
+    border-left: 1px solid var(--border);
+    margin-left: 4px;
+}
+
+/* In compact mode, shrink jack height */
+.appContainer.compact .previewJack {
+    padding: 3px 6px;
+    gap: 5px;
+    font-size: 10px;
+}
+.appContainer.compact .jackButton {
+    height: 20px;
+    padding: 0 6px;
+    font-size: 9px;
+}
+
+/* "OBS URLs" reveal toggle in the sidebar */
+.obsUrlsToggle {
+    background: transparent;
+    border: 1px solid var(--border);
+    color: var(--text-muted);
+    border-radius: 4px;
+    padding: 2px 6px;
+    font-size: 9px;
+    font-weight: 700;
+    letter-spacing: 0.05em;
+    cursor: pointer;
+    text-align: center;
+    margin-top: 4px;
+}
+.obsUrlsToggle:hover {
+    color: var(--text-primary);
+    border-color: var(--accent);
+}
+
+/* Affinity badge under the channel switcher when output is detached */
+.affinityBadge {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 3px;
+    width: 100%;
+    padding: 3px 0;
+    margin-bottom: 4px;
+    background: rgba(34, 197, 94, 0.1);
+    border: 1px solid rgba(34, 197, 94, 0.3);
+    border-radius: 4px;
+    color: #22c55e;
+    font-size: 9px;
+    font-weight: 700;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+}
+
+.navItems {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.4rem;
+    flex: 1;
+    width: 100%;
+    padding: 0.4rem 0;
+    overflow-y: auto;
+    overflow-x: hidden;
+}
+
+.navBottom {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.4rem;
+    padding-top: 0.65rem;
+    border-top: 1px solid var(--border);
+    margin-top: auto;
+    width: 100%;
+}
+
+.navItem {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 48px;
+    height: 48px;
+    background: transparent;
+    border: 1px solid transparent;
+    color: var(--text-muted);
+    cursor: pointer;
+    border-radius: var(--radius-md);
+    transition: all 0.15s;
+}
+
+.navItem svg {
+    width: 25px !important;
+    height: 25px !important;
+    stroke-width: 2.2;
+}
+
+.navItem:hover {
+    background: var(--surface-highlight);
+    border-color: var(--border);
+    color: var(--text-primary);
+}
+
+.navItem.active {
+    background: var(--accent);
+    color: white;
+    box-shadow: 0 2px 8px rgba(59, 130, 246, 0.3);
+    border-left: 3px solid rgba(255, 255, 255, 0.9);
+}
+
+/* Main Area */
+.mainArea {
+    flex: 1;
+    display: flex;
+    overflow: hidden;
+    flex-direction: column;
+    min-width: 0;
+}
+
+.operatorMenuBar {
+    height: 38px;
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.75rem;
+    padding: 0.35rem 0.65rem;
+    background: linear-gradient(180deg, #111117 0%, #0b0b10 100%);
+    border-bottom: 1px solid var(--border);
+    box-shadow: 0 1px 0 rgba(255, 255, 255, 0.04) inset;
+}
+
+.menuGroup {
+    display: flex;
+    align-items: center;
+    gap: 0.35rem;
+    min-width: 0;
+}
+
+.menuButton {
+    height: 28px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.35rem;
+    padding: 0 0.65rem;
+    border: 1px solid transparent;
+    border-radius: var(--radius-sm);
+    background: transparent;
+    color: var(--text-secondary);
+    font-size: 0.72rem;
+    font-weight: 700;
+    line-height: 1;
+    cursor: pointer;
+    white-space: nowrap;
+    transition: background 0.15s, border-color 0.15s, color 0.15s;
+}
+
+.menuButton:hover,
+.menuButtonActive {
+    background: var(--surface-highlight);
+    border-color: var(--border-bright);
+    color: var(--text-primary);
+}
+
+.workspaceArea {
+    flex: 1;
+    min-height: 0;
+    min-width: 0;
+    display: flex;
+    overflow: hidden;
+}
+
+.leftDock {
+    width: 760px;
+    min-width: 620px;
+    max-width: 1400px;
+    display: flex;
+    flex-direction: column;
+    overflow-y: hidden;
+    overflow-x: hidden;
+    border-right: 1px solid var(--border);
+    background: linear-gradient(180deg, #0f0f12 0%, var(--surface) 100%);
+}
+
+.leftRundownSection {
+    flex: 1;
+    min-height: 240px;
+    overflow: hidden;
+    border-top: 1px solid var(--border);
+    background: var(--surface);
+}
+
+.runOfShowSection {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    border-top: 1px solid var(--border);
+    background: var(--surface);
+}
+
+.rightArea {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    min-width: 0; /* Prevent flex collapse */
+}
+
+.contentArea {
+    flex: 1;
+    display: flex;
+    overflow: hidden;
+}
+
+/* Two-column playout: left = player, right = tabbed (Library | Run of Show) */
+.twoColumnPane {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    min-width: 0;
+    overflow: hidden;
+}
+
+.playoutTabBar {
+    display: flex;
+    gap: 0.25rem;
+    padding: 0.4rem 1rem;
+    background: var(--surface);
+    border-bottom: 1px solid var(--border);
+    flex-shrink: 0;
+}
+
+.playoutTab {
+    padding: 0.5rem 1rem;
+    border-radius: var(--radius-sm);
+    border: 1px solid var(--border);
+    background: var(--surface-highlight);
+    color: var(--text-primary);
+    font-size: 0.85rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.15s;
+}
+
+.playoutTab:hover {
+    background: var(--surface);
+    color: var(--text-primary);
+}
+
+.playoutTabActive {
+    background: var(--accent);
+    color: var(--text-on-accent);
+    border-color: var(--accent);
+}
+
+.playoutTabContent {
+    flex: 1;
+    min-height: 0;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+}
+
+.playoutTabContent .libraryColumn {
+    flex: 1;
+    min-height: 0;
+    overflow: hidden;
+}
+
+.playoutTabContent .runOfShowSection {
+    flex: 1;
+    min-height: 0;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+}
+
+/* Full View (for Scheduler, Analytics, Settings) */
+.fullView {
+    flex: 1;
+    padding: 1rem;
+    overflow: auto;
+}
+
+.centeredView {
+    flex: 1;
+    display: flex;
+    align-items: stretch; /* Stretch to full height */
+    justify-content: center;
+    padding: 1.5rem;
+    overflow: hidden; /* Scroll inside the content instead */
+}
+
+.centeredView>* {
+    max-width: 1400px; /* Much wider for settings */
+    width: 100%;
+    height: 100%; /* Use full available height */
+}
+
+/* Playout Layout */
+.layout {
+    display: grid;
+    /* Default: 280px library, auto resizer, 1fr main, auto resizer, 380px player */
+    grid-template-columns: 280px auto 1fr auto 380px;
+    flex: 1;
+    overflow: hidden;
+}
+
+.libraryColumn {
+    overflow: hidden;
+    background: linear-gradient(180deg, var(--surface) 0%, #0d0d0f 100%);
+    min-width: 180px;
+}
+
+.mainColumn {
+    padding: 1rem;
+    overflow: hidden;
+    background: var(--background);
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+    min-width: 300px;
+}
+
+.schedulerTabBar {
+    display: inline-flex;
+    gap: 0.5rem;
+    margin-bottom: 0.25rem;
+}
+
+.schedulerTab {
+    padding: 0.45rem 0.75rem;
+    border-radius: var(--radius-sm);
+    border: 1px solid var(--border);
+    background: var(--surface-highlight);
+    color: var(--text-primary);
+    cursor: pointer;
+}
+
+.schedulerTabActive {
+    background: var(--accent);
+    color: var(--text-on-accent);
+    border-color: var(--accent);
+}
+
+.schedulerPane {
+    flex: 1;
+    min-height: 0;
+    overflow: hidden;
+    display: flex;
+}
+
+.schedulerPane > * {
+    flex: 1;
+    min-width: 0;
+    min-height: 0;
+    display: flex;
+    flex-direction: column;
+}
+
+.playerColumn {
+    padding: 1rem;
+    background: linear-gradient(180deg, #0f0f12 0%, var(--surface) 100%);
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    overflow-y: auto;
+    min-width: 320px;
+}
+
+/* Column Resizers */
+.resizer {
+    width: 4px;
+    cursor: col-resize;
+    background: rgba(148, 163, 184, 0.25);
+    transition: background 0.15s, width 0.15s, box-shadow 0.15s;
+    position: relative;
+    z-index: 10;
+}
+
+.resizer:hover {
+    width: 5px;
+    background: rgba(59, 130, 246, 0.9);
+    box-shadow: 0 0 0 1px rgba(59, 130, 246, 0.25);
+}
+
+.resizer.resizerActive {
+    width: 5px;
+    background: rgba(59, 130, 246, 0.95);
+    box-shadow: 0 0 10px rgba(59, 130, 246, 0.5);
+}
+
+.resizer::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 1px;
+    height: 30px;
+    background: rgba(255, 255, 255, 0.25);
+    border-radius: 1px;
+    opacity: 0;
+    transition: opacity 0.15s;
+}
+
+.resizer:hover::before,
+.resizer.resizerActive::before {
+    opacity: 1;
+}
+
+/* Schedule Header Bar */
+.scheduleHeader {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 0.75rem 1rem;
+    padding: 0.75rem 1rem;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-md);
+}
+
+/* Lite: single playlist view header */
+.scheduleHeaderLite {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 0.75rem 1rem;
+    padding: 0.6rem 0.9rem;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-md);
+}
+
+.currentSlotBar {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    width: 100%;
+    padding-bottom: 0.35rem;
+    border-bottom: 1px solid var(--border);
+    margin-bottom: 0.25rem;
+}
+
+.currentSlotLabel {
+    font-size: 0.8rem;
+    font-weight: 600;
+    color: var(--text-primary);
+}
+
+.loadBtnPrimary {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    background: var(--accent);
+    border: none;
+    color: white;
+    padding: 0.45rem 0.8rem;
+    border-radius: var(--radius-sm);
+    font-size: 0.75rem;
+    font-weight: 600;
+    cursor: pointer;
+    margin-left: auto;
+}
+
+.loadBtnPrimary:hover {
+    filter: brightness(1.1);
+}
+
+.scheduleInfo {
+    display: flex;
+    flex-direction: column;
+}
+
+.scheduleLabel {
+    font-size: 0.6rem;
+    color: var(--text-muted);
+    font-weight: 700;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+}
+
+.scheduleTime {
+    font-family: var(--font-mono);
+    font-size: 1rem;
+    color: var(--text-primary);
+    font-weight: 600;
+}
+
+.scheduleActions {
+    margin-left: auto;
+}
+
+.snapBtn {
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+    background: linear-gradient(135deg, #2563eb 0%, #1d4ed8 100%);
+    border: none;
+    color: white;
+    padding: 0.5rem 0.75rem;
+    border-radius: var(--radius-sm);
+    font-size: 0.75rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s cubic-bezier(0.34, 1.56, 0.64, 1);
+    box-shadow: 0 2px 8px rgba(37, 99, 235, 0.3);
+    position: relative;
+    overflow: hidden;
+}
+
+.snapBtn::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 0;
+    height: 0;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.3);
+    transform: translate(-50%, -50%);
+    transition: width 0.6s, height 0.6s;
+}
+
+.snapBtn:active::before {
+    width: 300px;
+    height: 300px;
+}
+
+.snapBtn:hover {
+    background: linear-gradient(135deg, #1d4ed8 0%, #1e40af 100%);
+    box-shadow: 0 4px 12px rgba(37, 99, 235, 0.4);
+    transform: translateY(-2px) scale(1.02);
+}
+
+.snapBtn:active {
+    transform: translateY(0) scale(1);
+}
+
+.loadBtn {
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+    background: linear-gradient(135deg, #22c55e 0%, #16a34a 100%);
+    border: none;
+    color: white;
+    padding: 0.5rem 0.75rem;
+    border-radius: var(--radius-sm);
+    font-size: 0.75rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s cubic-bezier(0.34, 1.56, 0.64, 1);
+    letter-spacing: 0.05em;
+    position: relative;
+    overflow: hidden;
+}
+
+.loadBtn::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 0;
+    height: 0;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.3);
+    transform: translate(-50%, -50%);
+    transition: width 0.6s, height 0.6s;
+}
+
+.loadBtn:active::before {
+    width: 300px;
+    height: 300px;
+}
+
+.loadBtn:hover {
+    background: linear-gradient(135deg, #16a34a 0%, #15803d 100%);
+    box-shadow: 0 4px 12px rgba(34, 197, 94, 0.4);
+    transform: translateY(-2px) scale(1.02);
+}
+
+.loadBtn:active {
+    transform: translateY(0) scale(1);
+}
+
+/* Player Area */
+.playerWrapper {
+    --audio-rail-width: 96px;
+    position: relative;
+    width: 100%;
+    aspect-ratio: 16/9;
+    background: #000;
+    border-radius: var(--radius-md);
+    overflow: hidden;
+    box-sizing: border-box;
+    border: 2px solid #1a1a1f;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.6), inset 0 0 60px rgba(0, 0, 0, 0.3);
+}
+
+.previewGridContainer {
+    width: 100%;
+    height: 300px;
+    padding: 0.5rem;
+    min-height: 0;
+}
+
+.playerWrapper::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.1), transparent);
+    z-index: 10;
+}
+
+/* Transport Controls */
+.controlsGrid {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) auto;
+    align-items: center;
+    gap: 0.4rem;
+    background: linear-gradient(180deg, var(--surface-highlight) 0%, var(--surface) 100%);
+    padding: 0.35rem 0.55rem;
+    border-radius: var(--radius-md);
+    border: 1px solid var(--border);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+    min-height: 50px;
+}
+
+.transportRow {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 0.4rem;
+    position: relative;
+    min-width: 0;
+    flex-wrap: nowrap;
+}
+
+.controlSpacer {
+    flex: 1;
+    min-width: 8px;
+}
+
+.separator {
+    width: 1px;
+    height: 28px;
+    background: var(--border);
+}
+
+.copyTooltip {
+    position: absolute;
+    right: 0.25rem;
+    bottom: 100%;
+    background: var(--success);
+    color: white;
+    padding: 4px 8px;
+    border-radius: 4px;
+    font-size: 11px;
+    white-space: nowrap;
+    margin-bottom: 4px;
+    z-index: 100;
+}
+
+.interfaceRail {
+    position: relative;
+    display: grid;
+    grid-template-columns: 34px;
+    grid-auto-rows: 34px;
+    gap: 0.3rem;
+    padding-left: 0.45rem;
+    border-left: 1px solid var(--border);
+}
+
+.interfaceRail .controlBtn {
+    width: 34px;
+    height: 34px;
+    min-width: 34px;
+    padding: 0;
+}
+
+.interfaceRail .controlBtn svg {
+    width: 16px !important;
+    height: 16px !important;
+}
+
+.controlBtn {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    color: var(--text-primary);
+    cursor: pointer;
+    padding: 0.35rem 0.5rem;
+    border-radius: var(--radius-sm);
+    transition: all 0.15s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.25rem;
+    height: 32px;
+    min-width: 32px;
+    flex-shrink: 0;
+    font-size: 0.7rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.02em;
+}
+
+.btnLabel {
+    font-size: 0.65rem;
+    font-weight: 700;
+    letter-spacing: 0.04em;
+}
+
+.controlBtn:hover {
+    background: var(--accent);
+    border-color: var(--accent);
+    color: white;
+    transform: translateY(-1px);
+    box-shadow: 0 3px 8px rgba(59, 130, 246, 0.4);
+}
+
+.controlBtn.playBtn {
+    background: linear-gradient(135deg, #22c55e 0%, #16a34a 100%);
+    border-color: #22c55e;
+    color: white;
+    width: 42px;
+}
+
+.controlBtn.playBtn:hover {
+    background: linear-gradient(135deg, #16a34a 0%, #15803d 100%);
+    border-color: #16a34a;
+}
+
+.controlBtn.playing {
+    background: linear-gradient(135deg, #ef4444 0%, #dc2626 100%);
+    border-color: #ef4444;
+    color: white;
+    animation: pulse 1.5s infinite;
+}
+
+.controlBtn.outputActive {
+    background: var(--success);
+    border-color: var(--success);
+    color: white;
+}
+
+.controlBtn.breakBtn {
+    background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%);
+    border-color: #f59e0b;
+    color: white;
+}
+
+.controlBtn.breakBtn:hover {
+    background: linear-gradient(135deg, #d97706 0%, #b45309 100%);
+}
+
+@keyframes pulse {
+
+    0%,
+    100% {
+        box-shadow: 0 0 0 0 rgba(239, 68, 68, 0.4);
+    }
+
+    50% {
+        box-shadow: 0 0 0 8px rgba(239, 68, 68, 0);
+    }
+}
+
+.controlBtn:disabled {
+    opacity: 0.4;
+    cursor: not-allowed;
+    transform: none;
+    box-shadow: none;
+}
+
+.controlBtn.liveBtn {
+    width: auto;
+    padding: 0.6rem 0.8rem;
+    background: linear-gradient(135deg, #dc2626 0%, #b91c1c 100%);
+    border-color: #dc2626;
+    color: white;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+
+.controlBtn.liveBtn:hover {
+    background: linear-gradient(135deg, #ef4444 0%, #dc2626 100%);
+    border-color: #ef4444;
+    box-shadow: 0 4px 12px rgba(239, 68, 68, 0.5);
+}
+
+/* PUSH › CHn — sends current playlist to the active CasparCG channel */
+.controlBtn.pushBtn {
+    width: auto;
+    padding: 0.6rem 0.85rem;
+    background: linear-gradient(135deg, #16a34a 0%, #15803d 100%);
+    border-color: #16a34a;
+    color: white;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+.controlBtn.pushBtn:hover {
+    background: linear-gradient(135deg, #22c55e 0%, #16a34a 100%);
+    border-color: #22c55e;
+    box-shadow: 0 4px 12px rgba(34, 197, 94, 0.45);
+}
+
+/* ARM Button */
+.controlBtn.armBtn {
+    width: auto;
+    padding: 0.6rem 0.8rem;
+    background: linear-gradient(135deg, #374151 0%, #1f2937 100%);
+    border-color: #4b5563;
+    color: #9ca3af;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+
+.controlBtn.armBtn:hover {
+    background: linear-gradient(135deg, #4b5563 0%, #374151 100%);
+    border-color: #6b7280;
+    color: #e5e7eb;
+}
+
+.controlBtn.armBtn.armed {
+    background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%);
+    border-color: #f59e0b;
+    color: white;
+    animation: armedPulse 1s infinite;
+    box-shadow: 0 0 20px rgba(245, 158, 11, 0.5);
+}
+
+/* Snap to wall-clock schedule */
+.controlBtn.snapScheduleBtn {
+    width: auto;
+    padding: 0.6rem 0.75rem;
+    background: linear-gradient(135deg, rgba(16, 185, 129, 0.22) 0%, rgba(5, 150, 105, 0.18) 100%);
+    border-color: rgba(16, 185, 129, 0.55);
+    color: #6ee7b7;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+
+.controlBtn.snapScheduleBtn:hover {
+    background: linear-gradient(135deg, rgba(16, 185, 129, 0.35) 0%, rgba(5, 150, 105, 0.28) 100%);
+    border-color: rgba(52, 211, 153, 0.85);
+    color: #ecfdf5;
+}
+
+/* STRICT Mode Button */
+.controlBtn.strictBtn {
+    width: auto;
+    padding: 0.6rem 0.8rem;
+    background: linear-gradient(135deg, #312e81 0%, #1e1b4b 100%);
+    border-color: #4c1d95;
+    color: #e0e7ff;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+
+.controlBtn.strictBtn:hover {
+    background: linear-gradient(135deg, #4338ca 0%, #312e81 100%);
+    border-color: #6d28d9;
+    color: #eef2ff;
+}
+
+.controlBtn.strictBtn.strictActive {
+    background: linear-gradient(135deg, #7c3aed 0%, #6d28d9 100%);
+    border-color: #a855f7;
+    color: #f9fafb;
+    box-shadow: 0 0 20px rgba(168, 85, 247, 0.5);
+}
+
+@keyframes armedPulse {
+    0%, 100% { box-shadow: 0 0 20px rgba(245, 158, 11, 0.5); }
+    50% { box-shadow: 0 0 30px rgba(245, 158, 11, 0.8); }
+}
+
+/* Countdown Overlay */
+.countdownOverlay {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 2rem 3rem;
+    border-radius: 12px;
+    z-index: 100;
+    animation: countdownFlash 0.5s ease-in-out infinite;
+    box-shadow: 0 0 60px rgba(0, 0, 0, 0.8);
+}
+
+@keyframes countdownFlash {
+    0%, 100% { transform: translate(-50%, -50%) scale(1); }
+    50% { transform: translate(-50%, -50%) scale(1.05); }
+}
+
+.countdownNumber {
+    font-size: 4rem;
+    font-weight: 900;
+    color: white;
+    line-height: 1;
+    text-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
+    font-family: 'JetBrains Mono', 'SF Mono', monospace;
+}
+
+.countdownLabel {
+    font-size: 0.7rem;
+    font-weight: 700;
+    color: rgba(255, 255, 255, 0.8);
+    text-transform: uppercase;
+    letter-spacing: 0.2em;
+    margin-top: 0.5rem;
+}
+
+.countdownTitle {
+    font-size: 1rem;
+    font-weight: 600;
+    color: white;
+    margin-top: 0.5rem;
+    max-width: 200px;
+    text-align: center;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+/* Now Playing Panel */
+.nowPlaying {
+    padding: 1rem;
+    background: linear-gradient(135deg, var(--surface-highlight) 0%, var(--surface) 100%);
+    border-radius: var(--radius-md);
+    border: 1px solid var(--border);
+    text-align: center;
+}
+
+.onAirBadge {
+    display: inline-block;
+    background: var(--danger);
+    color: white;
+    font-size: 0.7rem;
+    font-weight: 800;
+    letter-spacing: 0.15em;
+    padding: 0.25rem 0.75rem;
+    border-radius: 2px;
+    margin-bottom: 0.5rem;
+    animation: onAirPulse 2s infinite;
+}
+
+@keyframes spin {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+}
+
+@keyframes onAirPulse {
+
+    0%,
+    100% {
+        opacity: 1;
+    }
+
+    50% {
+        opacity: 0.7;
+    }
+}
+
+.standbyBadge {
+    display: inline-block;
+    background: var(--surface-highlight);
+    color: var(--text-muted);
+    font-size: 0.7rem;
+    font-weight: 700;
+    letter-spacing: 0.15em;
+    padding: 0.25rem 0.75rem;
+    border-radius: 2px;
+    border: 1px solid var(--border);
+}
+
+.nowPlayingTitle {
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: var(--text-primary);
+    margin-top: 0.25rem;
+}
+
+.gapWarning {
+    font-size: 0.75rem;
+    color: var(--warning);
+    font-weight: 700;
+    margin-top: 0.25rem;
+    letter-spacing: 0.1em;
+}
+
+/* Up Next Panel */
+.upNext {
+    padding: 0.75rem 1rem;
+    background: var(--surface);
+    border-radius: var(--radius-md);
+    border: 1px solid var(--border);
+}
+
+.upNextLabel {
+    font-size: 0.6rem;
+    color: var(--accent);
+    font-weight: 700;
+    letter-spacing: 0.15em;
+}
+
+.upNextTitle {
+    font-size: 0.95rem;
+    font-weight: 600;
+    color: var(--text-primary);
+    margin-top: 0.15rem;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.upNextTime {
+    display: flex;
+    align-items: center;
+    gap: 0.3rem;
+    font-size: 0.75rem;
+    color: var(--text-secondary);
+    font-family: var(--font-mono);
+    margin-top: 0.25rem;
+}
+
+/* Side Panel (CG, OBS, DDR) - right column; content fits and fills */
+.sidePanel {
+    width: 420px;
+    min-width: 0;
+    border-left: 1px solid var(--border);
+    background: var(--surface);
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+}
+
+.sidePanel.wide {
+    width: 800px;
+}
+
+.sidePanelContent {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    min-height: 0;
+    min-width: 0;
+    overflow: auto;
+    width: 100%;
+}
+
+/* DDR Add media picker */
+.ddrPicker {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    min-height: 0;
+    overflow: hidden;
+}
+
+.ddrPickerHeader {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0.5rem 0.75rem;
+    border-bottom: 1px solid var(--border);
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: var(--text-primary);
+}
+
+.ddrPickerCancel {
+    padding: 0.3rem 0.6rem;
+    border-radius: var(--radius-sm);
+    border: 1px solid var(--border);
+    background: var(--surface);
+    color: var(--text-secondary);
+    font-size: 0.75rem;
+    cursor: pointer;
+}
+
+.ddrPickerCancel:hover {
+    background: var(--surface-highlight);
+}
+
+.ddrPickerList {
+    flex: 1;
+    overflow: auto;
+    padding: 0.35rem;
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+}
+
+.ddrPickerEmpty {
+    padding: 1rem;
+    text-align: center;
+    color: var(--text-muted);
+    font-size: 0.8rem;
+}
+
+.ddrPickerItem {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.5rem 0.6rem;
+    border-radius: var(--radius-sm);
+    border: 1px solid transparent;
+    background: var(--surface-highlight);
+    color: var(--text-primary);
+    font-size: 0.8rem;
+    text-align: left;
+    cursor: pointer;
+    transition: background 0.15s, border-color 0.15s;
+}
+
+.ddrPickerItem:hover {
+    background: var(--surface);
+    border-color: var(--accent);
+}
+
+.ddrPickerItem span:first-of-type {
+    flex: 1;
+    min-width: 0;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.ddrPickerDuration {
+    flex-shrink: 0;
+    color: var(--text-muted);
+    font-size: 0.75rem;
+}
+
+/* Modal */
+.modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.7);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+    backdrop-filter: blur(4px);
+}
+
+.modalContent {
+    width: 90%;
+    max-width: 600px;
+    max-height: 90vh;
+    background: var(--surface);
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+}
+
+/* Legacy */
+.label {
+    font-size: 0.7rem;
+    color: var(--accent);
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    margin-bottom: 0.25rem;
+}
+
+.title {
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: var(--text-primary);
+}
+
+.smartLabel {
+    font-size: 0.7rem;
+    color: var(--success);
+    margin-top: 0.25rem;
+    font-family: var(--font-mono);
+}

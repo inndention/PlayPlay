@@ -1,0 +1,573 @@
+/* ============================================
+   PRECISION TIMELINE
+   Professional Broadcast-Grade Timeline Editor
+   ============================================ */
+
+.container {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    background: var(--background);
+    font-family: var(--font-sans);
+    overflow: hidden;
+    user-select: none;
+}
+
+/* ============================================
+   TOOLBAR
+   ============================================ */
+
+.toolbar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: var(--space-2) var(--space-3);
+    background: var(--surface);
+    border-bottom: 1px solid var(--border);
+    min-height: 44px;
+    gap: var(--space-4);
+}
+
+.toolbarLeft,
+.toolbarRight {
+    display: flex;
+    align-items: center;
+    gap: var(--space-2);
+}
+
+.toolbarCenter {
+    display: flex;
+    align-items: center;
+    gap: var(--space-3);
+}
+
+.transportGroup,
+.toolGroup,
+.zoomGroup {
+    display: flex;
+    align-items: center;
+    gap: var(--space-1);
+}
+
+.divider {
+    width: 1px;
+    height: 24px;
+    background: var(--border);
+    margin: 0 var(--space-2);
+}
+
+.toolBtn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 32px;
+    height: 32px;
+    background: transparent;
+    border: 1px solid transparent;
+    border-radius: var(--radius-md);
+    color: var(--text-secondary);
+    cursor: pointer;
+    transition: all var(--duration-fast);
+}
+
+.toolBtn:hover:not(:disabled) {
+    background: var(--surface-highlight);
+    color: var(--text-primary);
+}
+
+.toolBtn.active {
+    background: var(--accent-muted);
+    color: var(--accent);
+    border-color: var(--accent);
+}
+
+.toolBtn:disabled {
+    opacity: 0.4;
+    cursor: not-allowed;
+}
+
+/* Timecode Display */
+.timecodeDisplay {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.timecodeLabel {
+    font-size: 9px;
+    font-weight: 600;
+    color: var(--text-muted);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+
+.timecodeValue {
+    font-family: var(--font-mono);
+    font-size: 16px;
+    font-weight: 600;
+    color: var(--text-primary);
+    font-feature-settings: 'tnum' 1;
+}
+
+.timecodeDivider {
+    font-size: 14px;
+    color: var(--text-muted);
+}
+
+/* Zoom Controls */
+.zoomSlider {
+    width: 80px;
+}
+
+.zoomSlider input[type="range"] {
+    width: 100%;
+    height: 4px;
+    background: var(--surface-highlight);
+    border-radius: var(--radius-full);
+    appearance: none;
+    cursor: pointer;
+}
+
+.zoomSlider input[type="range"]::-webkit-slider-thumb {
+    appearance: none;
+    width: 12px;
+    height: 12px;
+    background: var(--accent);
+    border-radius: 50%;
+    cursor: grab;
+}
+
+.zoomLevel {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    color: var(--text-secondary);
+    min-width: 40px;
+}
+
+/* ============================================
+   TIMELINE AREA
+   ============================================ */
+
+.timelineArea {
+    display: flex;
+    flex: 1;
+    overflow: hidden;
+}
+
+/* Track Headers */
+.trackHeaders {
+    width: 180px;
+    min-width: 180px;
+    background: var(--surface);
+    border-right: 1px solid var(--border);
+    display: flex;
+    flex-direction: column;
+}
+
+.rulerHeader {
+    height: 28px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--surface-elevated);
+    border-bottom: 1px solid var(--border);
+    color: var(--text-muted);
+}
+
+.trackHeader {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 var(--space-2);
+    background: var(--surface);
+    border-bottom: 1px solid var(--border-subtle);
+    transition: background var(--duration-fast);
+}
+
+.trackHeader:hover {
+    background: var(--surface-highlight);
+}
+
+.trackInfo {
+    display: flex;
+    align-items: center;
+    gap: var(--space-2);
+    overflow: hidden;
+}
+
+.trackGrip {
+    color: var(--text-muted);
+    cursor: grab;
+    flex-shrink: 0;
+}
+
+.trackGrip:active {
+    cursor: grabbing;
+}
+
+.trackName {
+    font-size: 12px;
+    font-weight: 500;
+    color: var(--text-primary);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.trackControls {
+    display: flex;
+    align-items: center;
+    gap: 2px;
+}
+
+.trackBtn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 22px;
+    height: 22px;
+    background: transparent;
+    border: none;
+    border-radius: var(--radius-sm);
+    color: var(--text-muted);
+    font-size: 10px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all var(--duration-fast);
+}
+
+.trackBtn:hover {
+    background: var(--surface-highlight);
+    color: var(--text-secondary);
+}
+
+.trackBtn.muted {
+    color: var(--error);
+    background: rgba(255, 69, 58, 0.15);
+}
+
+.trackBtn.solo {
+    color: var(--warning);
+    background: rgba(255, 214, 10, 0.15);
+}
+
+.trackBtn.locked {
+    color: var(--accent);
+    background: var(--accent-muted);
+}
+
+/* Track Area (Scrollable) */
+.trackArea {
+    flex: 1;
+    overflow-x: auto;
+    overflow-y: hidden;
+    position: relative;
+    background: var(--background);
+}
+
+/* Ruler */
+.ruler {
+    height: 28px;
+    background: var(--surface-elevated);
+    border-bottom: 1px solid var(--border);
+    position: relative;
+    cursor: pointer;
+}
+
+.rulerTick {
+    position: absolute;
+    top: 0;
+    width: 1px;
+    height: 8px;
+    background: var(--border);
+}
+
+.rulerTick.major {
+    height: 14px;
+    background: var(--border-bright);
+}
+
+.rulerLabel {
+    position: absolute;
+    top: 14px;
+    left: 4px;
+    font-family: var(--font-mono);
+    font-size: 9px;
+    color: var(--text-muted);
+    white-space: nowrap;
+}
+
+/* Markers */
+.marker {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    width: 2px;
+    z-index: 10;
+}
+
+.markerFlag {
+    display: block;
+    width: 10px;
+    height: 10px;
+    background: var(--marker-color, var(--accent));
+    clip-path: polygon(0 0, 100% 0, 100% 70%, 50% 100%, 0 70%);
+    margin-left: -4px;
+}
+
+.marker.chapter .markerFlag { background: var(--accent); }
+.marker.error .markerFlag { background: var(--error); }
+.marker.cue .markerFlag { background: var(--cued); }
+
+/* Tracks */
+.tracks {
+    position: relative;
+}
+
+.track {
+    position: relative;
+    background: var(--background);
+    border-bottom: 1px solid var(--border-subtle);
+    transition: opacity var(--duration-fast);
+}
+
+.trackLocked {
+    opacity: 0.6;
+}
+
+.trackMuted {
+    opacity: 0.4;
+}
+
+/* Grid Lines */
+.trackGrid {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+}
+
+.gridLine {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    width: 1px;
+    background: var(--border-subtle);
+}
+
+/* ============================================
+   CLIPS
+   ============================================ */
+
+.clip {
+    position: absolute;
+    top: 4px;
+    bottom: 4px;
+    border-radius: var(--radius-sm);
+    cursor: pointer;
+    transition: box-shadow var(--duration-fast);
+    overflow: hidden;
+}
+
+.clip:hover {
+    box-shadow: 0 0 0 2px rgba(255, 255, 255, 0.2);
+}
+
+.clip.selected {
+    box-shadow: 0 0 0 2px var(--accent);
+}
+
+.clip.clipLocked {
+    opacity: 0.7;
+    cursor: not-allowed;
+}
+
+/* Trim Handles */
+.trimHandle {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    width: 6px;
+    background: transparent;
+    cursor: ew-resize;
+    z-index: 2;
+}
+
+.trimHandle:hover {
+    background: rgba(255, 255, 255, 0.3);
+}
+
+.trimStart { left: 0; }
+.trimEnd { right: 0; }
+
+.frameStripes {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    background-image: linear-gradient(to right, rgba(0,0,0,0.2) 1px, transparent 1px);
+    z-index: 1;
+}
+
+/* Clip Content */
+.clipContent {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    padding: 0 var(--space-2);
+    overflow: hidden;
+}
+
+.clipThumbnail {
+    position: absolute;
+    inset: 0;
+    opacity: 0.3;
+    background-size: contain;
+    background-repeat: repeat-x;
+    background-position: left center;
+    border-radius: var(--radius-xs);
+}
+
+.clipInfo {
+    display: flex;
+    align-items: center;
+    gap: var(--space-1);
+    overflow: hidden;
+}
+
+.clipIcon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 18px;
+    height: 18px;
+    background: rgba(0, 0, 0, 0.3);
+    border-radius: var(--radius-xs);
+    flex-shrink: 0;
+}
+
+.clipTitle {
+    font-size: 11px;
+    font-weight: 500;
+    color: white;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.5);
+}
+
+.clipDuration {
+    position: absolute;
+    right: var(--space-2);
+    top: 50%;
+    transform: translateY(-50%);
+    font-family: var(--font-mono);
+    font-size: 9px;
+    color: rgba(255, 255, 255, 0.7);
+    background: rgba(0, 0, 0, 0.4);
+    padding: 2px 4px;
+    border-radius: var(--radius-xs);
+}
+
+/* Waveform */
+.waveform {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    gap: 1px;
+    padding: 4px;
+    opacity: 0.6;
+}
+
+.waveformBar {
+    flex: 1;
+    background: rgba(255, 255, 255, 0.8);
+    border-radius: 1px;
+    min-height: 2px;
+}
+
+/* ============================================
+   PLAYHEAD
+   ============================================ */
+
+.playhead {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    width: 2px;
+    z-index: 100;
+    pointer-events: none;
+}
+
+.playheadHead {
+    position: absolute;
+    top: 0;
+    left: -6px;
+    width: 14px;
+    height: 14px;
+    background: var(--on-air);
+    clip-path: polygon(0 0, 100% 0, 100% 60%, 50% 100%, 0 60%);
+}
+
+.playheadLine {
+    position: absolute;
+    top: 14px;
+    left: 0;
+    bottom: 0;
+    width: 2px;
+    background: var(--on-air);
+    box-shadow: 0 0 8px var(--on-air-glow);
+}
+
+/* ============================================
+   MINI MAP
+   ============================================ */
+
+.miniMap {
+    height: 24px;
+    background: var(--surface);
+    border-top: 1px solid var(--border);
+    position: relative;
+    margin-left: 180px;
+}
+
+.miniMapView {
+    position: absolute;
+    top: 2px;
+    bottom: 2px;
+    background: rgba(255, 255, 255, 0.1);
+    border: 1px solid var(--border-bright);
+    border-radius: var(--radius-xs);
+    pointer-events: none;
+}
+
+.miniMapClip {
+    position: absolute;
+    top: 6px;
+    height: 12px;
+    border-radius: 2px;
+    opacity: 0.6;
+}
+
+.miniMapPlayhead {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    width: 2px;
+    background: var(--on-air);
+}
+
+/* ============================================
+   RESPONSIVE
+   ============================================ */
+
+@media (max-width: 1200px) {
+    .trackHeaders {
+        width: 140px;
+        min-width: 140px;
+    }
+    
+    .miniMap {
+        margin-left: 140px;
+    }
+}

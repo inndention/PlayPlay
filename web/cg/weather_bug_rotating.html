@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=1920, initial-scale=1.0">
+    <title>Weather Bug - Rotating Logo/Time/Temp</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            width: 1920px;
+            height: 1080px;
+            overflow: hidden;
+            background: transparent;
+            font-family: 'Roboto', 'Arial', sans-serif;
+        }
+
+        .weather-bug {
+            position: absolute;
+            top: 30px;
+            right: 30px;
+            width: 240px;
+            height: 100px;
+            background: rgba(0, 0, 0, 0.7);
+            backdrop-filter: blur(20px);
+            border-radius: 16px;
+            border: 2px solid rgba(255, 255, 255, 0.2);
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
+            overflow: hidden;
+            animation: fadeIn 0.5s ease-out;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateX(100px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        .slide {
+            width: 100%;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: absolute;
+            transition: transform 0.8s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+        }
+
+        .slide.active {
+            transform: translateX(0);
+        }
+
+        .slide.next {
+            transform: translateX(100%);
+        }
+
+        .slide.prev {
+            transform: translateX(-100%);
+        }
+
+        /* Logo Slide */
+        .logo-slide {
+            background: linear-gradient(135deg, #00D9FF 0%, #A855F7 100%);
+        }
+
+        .logo {
+            max-width: 180px;
+            max-height: 70px;
+            object-fit: contain;
+        }
+
+        .logo-placeholder {
+            font-size: 48px;
+            font-weight: 900;
+            color: white;
+            text-shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
+        }
+
+        /* Time Slide */
+        .time-slide {
+            flex-direction: column;
+            gap: 4px;
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+        }
+
+        .time-display {
+            font-size: 42px;
+            font-weight: 900;
+            color: #00D9FF;
+            font-family: 'Courier New', monospace;
+            text-shadow: 0 0 20px rgba(0, 217, 255, 0.5);
+        }
+
+        .date-display {
+            font-size: 16px;
+            color: rgba(255, 255, 255, 0.8);
+            font-weight: 500;
+        }
+
+        /* Weather Slide */
+        .weather-slide {
+            flex-direction: column;
+            gap: 8px;
+            padding: 16px;
+            background: linear-gradient(135deg, #0f2027 0%, #203a43 50%, #2c5364 100%);
+        }
+
+        .temp-display {
+            font-size: 48px;
+            font-weight: 900;
+            color: #FFD700;
+            text-shadow: 0 0 20px rgba(255, 215, 0, 0.5);
+        }
+
+        .weather-info {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .weather-icon {
+            width: 40px;
+            height: 40px;
+        }
+
+        .weather-desc {
+            font-size: 16px;
+            color: white;
+            font-weight: 500;
+        }
+
+        .location {
+            font-size: 12px;
+            color: rgba(255, 255, 255, 0.7);
+            position: absolute;
+            bottom: 8px;
+            right: 12px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="weather-bug">
+        <!-- Slide 1: Logo -->
+        <div class="slide logo-slide active" id="logoSlide">
+            <img class="logo" id="logoImg" style="display: none;">
+            <div class="logo-placeholder" id="logoPlaceholder">LOGO</div>
+        </div>
+
+        <!-- Slide 2: Time -->
+        <div class="slide time-slide next" id="timeSlide">
+            <div class="time-display" id="timeDisplay">12:00 PM</div>
+            <div class="date-display" id="dateDisplay">Monday, Jan 1</div>
+        </div>
+
+        <!-- Slide 3: Weather -->
+        <div class="slide weather-slide next" id="weatherSlide">
+            <div class="temp-display" id="tempDisplay">72°</div>
+            <div class="weather-info">
+                <img class="weather-icon" id="weatherIcon" src="https://openweathermap.org/img/wn/01d@2x.png"
+                    alt="Weather">
+                <div class="weather-desc" id="weatherDesc">Sunny</div>
+            </div>
+            <div class="location">Martinsville, VA</div>
+        </div>
+    </div>
+
+    <script>
+        const params = new URLSearchParams(window.location.search);
+        const logo = params.get('logo') || '';
+        const location = params.get('location') || 'martinsville';
+        const interval = parseInt(params.get('interval') || '5000'); // 5 seconds per slide
+
+        // Set logo
+        const logoImg = document.getElementById('logoImg');
+        const logoPlaceholder = document.getElementById('logoPlaceholder');
+        if (logo) {
+            logoImg.src = logo;
+            logoImg.style.display = 'block';
+            logoPlaceholder.style.display = 'none';
+        }
+
+        const slides = ['logoSlide', 'timeSlide', 'weatherSlide'];
+        let currentIndex = 0;
+
+        // Update time
+        function updateTime() {
+            const now = new Date();
+            const timeStr = now.toLocaleTimeString('en-US', { hour: 'numeric', minute: '2-digit' });
+            const dateStr = now.toLocaleDateString('en-US', { weekday: 'long', month: 'short', day: 'numeric' });
+
+            document.getElementById('timeDisplay').textContent = timeStr;
+            document.getElementById('dateDisplay').textContent = dateStr;
+        }
+
+        // Fetch weather
+        async function updateWeather() {
+            try {
+                const response = await fetch(`http://localhost:5000/api/weather/current/${location}`);
+                const data = await response.json();
+
+                if (data.success) {
+                    const weather = data.data;
+                    document.getElementById('tempDisplay').textContent = `${weather.temp}°`;
+                    document.getElementById('weatherDesc').textContent = weather.description;
+                    document.getElementById('weatherIcon').src = `https://openweathermap.org/img/wn/${weather.icon}@2x.png`;
+                }
+            } catch (error) {
+                console.error('Failed to fetch weather:', error);
+            }
+        }
+
+        // Rotate slides
+        function rotateSlides() {
+            const currentSlide = document.getElementById(slides[currentIndex]);
+            currentSlide.classList.remove('active');
+            currentSlide.classList.add('prev');
+
+            currentIndex = (currentIndex + 1) % slides.length;
+
+            const nextSlide = document.getElementById(slides[currentIndex]);
+            nextSlide.classList.remove('next', 'prev');
+            nextSlide.classList.add('active');
+
+            // Reset previous slide to next position after animation
+            setTimeout(() => {
+                const prevIndex = (currentIndex - 1 + slides.length) % slides.length;
+                const prevSlide = document.getElementById(slides[prevIndex]);
+                prevSlide.classList.remove('prev');
+                prevSlide.classList.add('next');
+            }, 800);
+        }
+
+        // Initialize
+        updateTime();
+        updateWeather();
+
+        // Update time every second
+        setInterval(updateTime, 1000);
+
+        // Update weather every 10 minutes
+        setInterval(updateWeather, 600000);
+
+        // Rotate slides
+        setInterval(rotateSlides, interval);
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,16 @@
+0000-00-00T00:00:00	EventDuration=24:00:00	PlayMode=2
+!Repeat
+S:\Fill\Café Loop – ½.mpg
+01/00/0000 06:00:00	EventDuration=00:30:00	PlayMode=1
+S:\COMMERCIALS 2025\Joe’s Diner 🎬.mpg	actinout=0
+S:\Specials\കĊ ഊ trap.mpg
+!ShowCrawl Wetter: 72° über München	cfg=D:\Masterplay\OSD\DefaultCrawl.osd
+02/00/0000 06:00:00	EventType=1	Name=Mañana Show	EventDuration=01:00:00	PlayMode=1
+S:\Promos\Weather.rtf[00:00:10;00]
+S:\Promos\Window.mpg[2025-01-01..2025-02-01]
+0000-00-01T06:00:00	EventDuration=00:05:00	PlayMode=1
+!ShowLogo f=D:\Bugs\BUG.png	cfg=D:\Bugs\bug.osd
+03/04/2025 10:00:00	EventDuration=00:05:00	PlayMode=1
+S:\Specials\￼ object.mpg
+ 	
+9999-99-99T00:00:00

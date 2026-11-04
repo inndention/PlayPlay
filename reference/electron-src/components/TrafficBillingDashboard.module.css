@@ -1,0 +1,1017 @@
+/* TrafficBillingDashboard.module.css - Comprehensive Traffic & Billing */
+
+.dashboard {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    background: var(--background);
+    color: var(--text-primary);
+    overflow: hidden;
+}
+
+/* Header */
+.header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: var(--spacing-md) var(--spacing-lg);
+    background: var(--surface);
+    border-bottom: 1px solid var(--border);
+}
+
+.headerTitle {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-sm);
+}
+
+.headerTitle h2 {
+    font-size: 18px;
+    font-weight: 600;
+    margin: 0;
+}
+
+.headerTitle svg {
+    color: var(--success);
+}
+
+.tabs {
+    display: flex;
+    gap: var(--spacing-xs);
+}
+
+.tabs button {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-xs);
+    padding: var(--spacing-sm) var(--spacing-md);
+    background: transparent;
+    border: none;
+    color: var(--text-secondary);
+    font-size: 13px;
+    cursor: pointer;
+    border-radius: var(--radius-md);
+    transition: all var(--transition-fast);
+}
+
+.tabs button:hover {
+    background: var(--surface-highlight);
+    color: var(--text-primary);
+}
+
+.tabs button.active {
+    background: var(--accent);
+    color: var(--accent-foreground);
+}
+
+.headerActions {
+    display: flex;
+    gap: var(--spacing-sm);
+}
+
+.exportBtn {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-xs);
+    padding: var(--spacing-sm) var(--spacing-md);
+    background: var(--surface-highlight);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-md);
+    color: var(--text-secondary);
+    font-size: 12px;
+    cursor: pointer;
+    transition: all var(--transition-fast);
+}
+
+.exportBtn:hover {
+    background: var(--border);
+    color: var(--text-primary);
+}
+
+/* Content */
+.content {
+    flex: 1;
+    overflow-y: auto;
+    padding: var(--spacing-lg);
+}
+
+/* Stats Grid */
+.statsGrid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: var(--spacing-md);
+    margin-bottom: var(--spacing-xl);
+}
+
+.statCard {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-lg);
+    padding: var(--spacing-lg);
+}
+
+.statIcon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    background: rgba(59, 130, 246, 0.15);
+    border-radius: var(--radius-md);
+    color: var(--accent);
+    margin-bottom: var(--spacing-sm);
+}
+
+.statInfo {
+    margin-bottom: var(--spacing-sm);
+}
+
+.statValue {
+    display: block;
+    font-size: 28px;
+    font-weight: 700;
+    color: var(--text-primary);
+    line-height: 1.2;
+}
+
+.statLabel {
+    font-size: 12px;
+    color: var(--text-muted);
+}
+
+.statBreakdown {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--spacing-sm);
+    font-size: 11px;
+}
+
+.statBreakdown .success {
+    color: var(--success);
+}
+
+.statBreakdown .pending {
+    color: var(--warning);
+}
+
+.statBreakdown .error {
+    color: var(--danger);
+}
+
+.statProgress {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.progressBar {
+    height: 6px;
+    background: var(--surface-highlight);
+    border-radius: 3px;
+    overflow: hidden;
+}
+
+.progressFill {
+    height: 100%;
+    background: var(--success);
+    border-radius: 3px;
+    transition: width var(--transition-base);
+}
+
+.statProgress span {
+    font-size: 11px;
+    color: var(--text-muted);
+}
+
+.statTrend {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    font-size: 11px;
+    color: var(--success);
+}
+
+.statExtra {
+    font-size: 11px;
+    color: var(--text-muted);
+}
+
+/* Section */
+.section {
+    margin-bottom: var(--spacing-xl);
+}
+
+.sectionHeader {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: var(--spacing-md);
+}
+
+.sectionHeader h3 {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-sm);
+    font-size: 16px;
+    font-weight: 600;
+    margin: 0;
+}
+
+.sectionHeader button {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-xs);
+    padding: var(--spacing-xs) var(--spacing-sm);
+    background: transparent;
+    border: none;
+    color: var(--accent);
+    font-size: 12px;
+    cursor: pointer;
+}
+
+.addBtn {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-xs);
+    padding: var(--spacing-sm) var(--spacing-md);
+    background: var(--accent);
+    border: none;
+    border-radius: var(--radius-md);
+    color: white;
+    font-size: 12px;
+    cursor: pointer;
+    transition: all var(--transition-fast);
+}
+
+.addBtn:hover {
+    filter: brightness(1.1);
+}
+
+/* Campaign List */
+.campaignList {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-sm);
+}
+
+.campaignCard {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-md);
+    overflow: hidden;
+}
+
+.campaignHeader {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-md);
+    padding: var(--spacing-md);
+    cursor: pointer;
+    transition: background var(--transition-fast);
+}
+
+.campaignHeader:hover {
+    background: var(--surface-highlight);
+}
+
+.campaignToggle {
+    color: var(--text-muted);
+}
+
+.campaignInfo {
+    flex: 1;
+    min-width: 0;
+}
+
+.campaignInfo h4 {
+    font-size: 14px;
+    font-weight: 600;
+    margin: 0;
+    color: var(--text-primary);
+}
+
+.campaignAdvertiser {
+    font-size: 12px;
+    color: var(--text-muted);
+}
+
+.campaignDates {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    font-size: 11px;
+    color: var(--text-secondary);
+}
+
+.campaignBudget {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    min-width: 150px;
+}
+
+.budgetProgress {
+    height: 4px;
+    background: var(--surface-highlight);
+    border-radius: 2px;
+    overflow: hidden;
+}
+
+.budgetFill {
+    height: 100%;
+    background: var(--accent);
+    border-radius: 2px;
+}
+
+.campaignBudget span {
+    font-size: 11px;
+    color: var(--text-muted);
+}
+
+.campaignSpots {
+    font-size: 12px;
+    color: var(--text-secondary);
+    white-space: nowrap;
+}
+
+.campaignDetails {
+    padding: 0 var(--spacing-md) var(--spacing-md);
+    padding-left: 40px;
+    border-top: 1px solid var(--border);
+    background: var(--background);
+}
+
+.miniSpotTable {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 12px;
+}
+
+.miniSpotTable th,
+.miniSpotTable td {
+    padding: var(--spacing-xs) var(--spacing-sm);
+    text-align: left;
+    border-bottom: 1px solid var(--border);
+}
+
+.miniSpotTable th {
+    font-weight: 500;
+    color: var(--text-muted);
+    font-size: 11px;
+}
+
+.viewMore {
+    padding: var(--spacing-sm);
+    text-align: center;
+    font-size: 12px;
+    color: var(--accent);
+    cursor: pointer;
+}
+
+/* Timeline */
+.timeline {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+}
+
+.timelineHeader {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: var(--spacing-md);
+    border-bottom: 1px solid var(--border);
+}
+
+.timelineHeader h4 {
+    font-size: 14px;
+    font-weight: 600;
+    margin: 0;
+}
+
+.timelineControls {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-xs);
+}
+
+.timelineControls button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 28px;
+    height: 28px;
+    background: var(--surface-highlight);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-sm);
+    color: var(--text-secondary);
+    cursor: pointer;
+}
+
+.timelineControls input {
+    padding: 4px 8px;
+    background: var(--background);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-sm);
+    color: var(--text-primary);
+    font-size: 12px;
+}
+
+.timelineGrid {
+    max-height: 400px;
+    overflow-y: auto;
+}
+
+.timelineHour {
+    display: flex;
+    border-bottom: 1px solid var(--border);
+}
+
+.hourLabel {
+    width: 60px;
+    padding: var(--spacing-sm);
+    font-size: 11px;
+    font-family: var(--font-mono);
+    color: var(--text-muted);
+    background: var(--background);
+    border-right: 1px solid var(--border);
+    flex-shrink: 0;
+}
+
+.hourSlots {
+    flex: 1;
+    position: relative;
+    min-height: 40px;
+    background: repeating-linear-gradient(
+        90deg,
+        transparent,
+        transparent 14px,
+        var(--border) 14px,
+        var(--border) 15px
+    );
+}
+
+.spotBlock {
+    position: absolute;
+    top: 4px;
+    height: calc(100% - 8px);
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    padding: 0 6px;
+    border-radius: var(--radius-sm);
+    font-size: 10px;
+    white-space: nowrap;
+    overflow: hidden;
+    cursor: pointer;
+    transition: all var(--transition-fast);
+}
+
+.spotBlock.aired {
+    background: rgba(34, 197, 94, 0.3);
+    border: 1px solid var(--success);
+    color: var(--success);
+}
+
+.spotBlock.scheduled {
+    background: rgba(59, 130, 246, 0.3);
+    border: 1px solid var(--accent);
+    color: var(--accent);
+}
+
+.spotBlock.missed {
+    background: rgba(239, 68, 68, 0.3);
+    border: 1px solid var(--danger);
+    color: var(--danger);
+}
+
+.spotBlock.preempted {
+    background: rgba(245, 158, 11, 0.3);
+    border: 1px solid var(--warning);
+    color: var(--warning);
+}
+
+.spotBlock:hover {
+    z-index: 10;
+    transform: scale(1.05);
+}
+
+.spotTime {
+    font-weight: 600;
+}
+
+.spotDuration {
+    opacity: 0.7;
+}
+
+.timelineLegend {
+    display: flex;
+    gap: var(--spacing-md);
+    padding: var(--spacing-sm) var(--spacing-md);
+    border-top: 1px solid var(--border);
+    background: var(--background);
+    font-size: 11px;
+    color: var(--text-muted);
+}
+
+.legendDot {
+    display: inline-block;
+    width: 10px;
+    height: 10px;
+    border-radius: 2px;
+    margin-right: 4px;
+}
+
+.legendDot.aired {
+    background: var(--success);
+}
+
+.legendDot.scheduled {
+    background: var(--accent);
+}
+
+.legendDot.missed {
+    background: var(--danger);
+}
+
+.legendDot.preempted {
+    background: var(--warning);
+}
+
+/* Spot List */
+.spotList {
+    margin-top: var(--spacing-lg);
+}
+
+.spotListHeader {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: var(--spacing-md);
+}
+
+.spotListFilters {
+    display: flex;
+    gap: var(--spacing-sm);
+}
+
+.searchBox {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-xs);
+    padding: var(--spacing-sm);
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-md);
+}
+
+.searchBox svg {
+    color: var(--text-muted);
+}
+
+.searchBox input {
+    background: transparent;
+    border: none;
+    color: var(--text-primary);
+    font-size: 13px;
+    width: 200px;
+}
+
+.searchBox input::placeholder {
+    color: var(--text-muted);
+}
+
+.searchBox input:focus {
+    outline: none;
+}
+
+.spotListFilters select {
+    padding: var(--spacing-sm);
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-md);
+    color: var(--text-primary);
+    font-size: 12px;
+}
+
+/* Spot Table */
+.spotTable {
+    width: 100%;
+    border-collapse: collapse;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-md);
+    overflow: hidden;
+}
+
+.spotTable th,
+.spotTable td {
+    padding: var(--spacing-sm) var(--spacing-md);
+    text-align: left;
+    border-bottom: 1px solid var(--border);
+}
+
+.spotTable th {
+    background: var(--background);
+    font-weight: 500;
+    font-size: 11px;
+    color: var(--text-muted);
+    text-transform: uppercase;
+}
+
+.spotTable td {
+    font-size: 13px;
+}
+
+.spotTable tr:hover td {
+    background: var(--surface-highlight);
+}
+
+.statusBadge {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    padding: 2px 8px;
+    border-radius: var(--radius-sm);
+    font-size: 11px;
+    font-weight: 500;
+    text-transform: capitalize;
+}
+
+.statusBadge.aired,
+.statusBadge.verified,
+.statusBadge.paid {
+    background: rgba(34, 197, 94, 0.15);
+    color: var(--success);
+}
+
+.statusBadge.scheduled,
+.statusBadge.pending {
+    background: rgba(59, 130, 246, 0.15);
+    color: var(--accent);
+}
+
+.statusBadge.missed,
+.statusBadge.disputed {
+    background: rgba(239, 68, 68, 0.15);
+    color: var(--danger);
+}
+
+.statusBadge.preempted {
+    background: rgba(245, 158, 11, 0.15);
+    color: var(--warning);
+}
+
+.verificationBadge {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    padding: 2px 6px;
+    border-radius: var(--radius-sm);
+    font-size: 10px;
+    text-transform: capitalize;
+}
+
+.scheduledTime {
+    font-family: var(--font-mono);
+}
+
+.actualTime {
+    font-size: 10px;
+    color: var(--text-muted);
+    margin-left: 4px;
+}
+
+.spotActions {
+    display: flex;
+    gap: 4px;
+}
+
+.spotActions button {
+    padding: 4px;
+    background: transparent;
+    border: 1px solid transparent;
+    border-radius: var(--radius-sm);
+    color: var(--text-muted);
+    cursor: pointer;
+    transition: all var(--transition-fast);
+}
+
+.spotActions button:hover {
+    background: var(--surface-highlight);
+    color: var(--text-primary);
+}
+
+.makeGoodBtn:hover {
+    background: rgba(245, 158, 11, 0.15);
+    border-color: var(--warning);
+    color: var(--warning);
+}
+
+/* Icons */
+.successIcon {
+    color: var(--success);
+}
+
+.errorIcon {
+    color: var(--danger);
+}
+
+.warningIcon {
+    color: var(--warning);
+}
+
+.pendingIcon {
+    color: var(--text-muted);
+}
+
+/* Billing Tab */
+.billing {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-lg);
+}
+
+.billingActions {
+    display: flex;
+    gap: var(--spacing-sm);
+}
+
+.primaryBtn {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-xs);
+    padding: var(--spacing-sm) var(--spacing-md);
+    background: var(--accent);
+    border: none;
+    border-radius: var(--radius-md);
+    color: white;
+    font-size: 13px;
+    cursor: pointer;
+}
+
+.secondaryBtn {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-xs);
+    padding: var(--spacing-sm) var(--spacing-md);
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-md);
+    color: var(--text-secondary);
+    font-size: 13px;
+    cursor: pointer;
+}
+
+.rateCard {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-lg);
+    padding: var(--spacing-lg);
+}
+
+.rateCard h3 {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-sm);
+    font-size: 14px;
+    font-weight: 600;
+    margin: 0 0 var(--spacing-md);
+}
+
+.rateTable {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.rateTable th,
+.rateTable td {
+    padding: var(--spacing-sm);
+    text-align: left;
+    border-bottom: 1px solid var(--border);
+}
+
+.rateTable th {
+    font-weight: 500;
+    font-size: 11px;
+    color: var(--text-muted);
+}
+
+.outstandingSection {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-lg);
+    padding: var(--spacing-lg);
+}
+
+.outstandingSection h3 {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-sm);
+    font-size: 14px;
+    font-weight: 600;
+    margin: 0 0 var(--spacing-md);
+}
+
+.noData {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: var(--spacing-xl);
+    color: var(--text-muted);
+}
+
+.noData svg {
+    opacity: 0.3;
+    margin-bottom: var(--spacing-sm);
+}
+
+/* Advertisers Tab */
+.advertisers {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-lg);
+}
+
+.advertiserHeader {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.advertiserGrid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+    gap: var(--spacing-md);
+}
+
+.advertiserCard {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-lg);
+    padding: var(--spacing-lg);
+}
+
+.advertiserCardHeader {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-md);
+    margin-bottom: var(--spacing-md);
+}
+
+.advertiserAvatar {
+    width: 48px;
+    height: 48px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(59, 130, 246, 0.15);
+    border-radius: var(--radius-md);
+    color: var(--accent);
+}
+
+.advertiserName h4 {
+    font-size: 14px;
+    font-weight: 600;
+    margin: 0;
+}
+
+.statusTag {
+    display: inline-block;
+    padding: 2px 6px;
+    border-radius: var(--radius-sm);
+    font-size: 10px;
+    text-transform: uppercase;
+}
+
+.statusTag.active {
+    background: rgba(34, 197, 94, 0.15);
+    color: var(--success);
+}
+
+.statusTag.inactive {
+    background: rgba(107, 114, 128, 0.15);
+    color: var(--text-muted);
+}
+
+.advertiserContact {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    font-size: 12px;
+    color: var(--text-secondary);
+    margin-bottom: var(--spacing-md);
+}
+
+.advertiserContact div {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-xs);
+}
+
+.advertiserStats {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: var(--spacing-sm);
+    padding: var(--spacing-sm) 0;
+    border-top: 1px solid var(--border);
+    border-bottom: 1px solid var(--border);
+    margin-bottom: var(--spacing-md);
+}
+
+.advertiserStat {
+    text-align: center;
+}
+
+.advertiserStat .statLabel {
+    font-size: 10px;
+    color: var(--text-muted);
+    display: block;
+}
+
+.advertiserStat .statValue {
+    font-size: 14px;
+    font-weight: 600;
+}
+
+.advertiserStat .statValue.owed {
+    color: var(--danger);
+}
+
+.advertiserActions {
+    display: flex;
+    gap: var(--spacing-xs);
+}
+
+.advertiserActions button {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 4px;
+    padding: var(--spacing-xs) var(--spacing-sm);
+    background: var(--surface-highlight);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-sm);
+    color: var(--text-secondary);
+    font-size: 11px;
+    cursor: pointer;
+    transition: all var(--transition-fast);
+}
+
+.advertiserActions button:hover {
+    background: var(--accent);
+    border-color: var(--accent);
+    color: white;
+}
+
+/* Reports Tab */
+.reports h3 {
+    font-size: 16px;
+    font-weight: 600;
+    margin: 0 0 var(--spacing-md);
+}
+
+.reportGrid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: var(--spacing-md);
+}
+
+.reportCard {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: var(--spacing-lg);
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-lg);
+    cursor: pointer;
+    transition: all var(--transition-fast);
+}
+
+.reportCard:hover {
+    border-color: var(--accent);
+    background: var(--surface-highlight);
+}
+
+.reportCard svg {
+    color: var(--accent);
+    margin-bottom: var(--spacing-sm);
+}
+
+.reportCard span {
+    font-size: 14px;
+    font-weight: 600;
+    text-align: center;
+    margin-bottom: var(--spacing-xs);
+}
+
+.reportCard p {
+    font-size: 11px;
+    color: var(--text-muted);
+    text-align: center;
+    margin: 0;
+}

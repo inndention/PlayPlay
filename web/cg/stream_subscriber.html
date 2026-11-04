@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=1920, initial-scale=1.0">
+    <title>Subscriber Alert</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            width: 1920px; height: 1080px; overflow: hidden;
+            background: transparent;
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+        }
+        .alert-wrapper {
+            position: absolute;
+            top: 60px;
+            right: 60px;
+            width: 540px;
+        }
+        .alert-box {
+            background: linear-gradient(135deg, rgba(15,23,42,0.97) 0%, rgba(30,27,75,0.97) 100%);
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: 0 25px 60px rgba(0,0,0,0.7), 0 0 0 1px rgba(139,92,246,0.3);
+        }
+        .alert-top {
+            background: linear-gradient(90deg, #7c3aed, #a855f7, #ec4899);
+            height: 4px;
+        }
+        .alert-body {
+            padding: 28px 32px;
+            text-align: center;
+        }
+        .milestone-icon {
+            font-size: 56px;
+            display: block;
+            margin-bottom: 12px;
+            animation: popIn 0.5s cubic-bezier(0.34,1.56,0.64,1) both;
+        }
+        @keyframes popIn {
+            from { transform: scale(0); opacity: 0; }
+            to   { transform: scale(1); opacity: 1; }
+        }
+        .milestone-label {
+            font-size: 13px;
+            font-weight: 700;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            color: #a78bfa;
+            margin-bottom: 6px;
+        }
+        .milestone-count {
+            font-size: 64px;
+            font-weight: 900;
+            background: linear-gradient(135deg, #c4b5fd, #a78bfa, #818cf8);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            line-height: 1;
+        }
+        .milestone-unit {
+            font-size: 20px;
+            font-weight: 600;
+            color: #a78bfa;
+            margin-bottom: 12px;
+        }
+        .username {
+            font-size: 28px;
+            font-weight: 700;
+            color: #fff;
+            margin-bottom: 4px;
+        }
+        .action-text {
+            font-size: 18px;
+            color: #94a3b8;
+        }
+        .confetti-bar {
+            height: 6px;
+            background: linear-gradient(90deg, #f59e0b, #ec4899, #8b5cf6, #06b6d4, #10b981);
+            background-size: 200%;
+            animation: rainbow 2s linear infinite;
+        }
+        @keyframes rainbow {
+            0% { background-position: 0%; }
+            100% { background-position: 200%; }
+        }
+    </style>
+</head>
+<body>
+    <div class="alert-wrapper" id="alertWrapper" data-cg-auto>
+        <div class="alert-box">
+            <div class="alert-top"></div>
+            <div class="alert-body">
+                <span class="milestone-icon" id="milestoneIcon">🎉</span>
+                <div class="milestone-label" id="milestoneLabel">SUBSCRIBER MILESTONE</div>
+                <div class="milestone-count" id="milestoneCount">10,000</div>
+                <div class="milestone-unit" id="milestoneUnit">Subscribers</div>
+                <div class="username" id="usernameText" data-field="username">Thank You!</div>
+                <div class="action-text" id="actionText" data-field="message">You're our newest subscriber</div>
+            </div>
+            <div class="confetti-bar"></div>
+        </div>
+    </div>
+    <script src="js/cg-animations.js"></script>
+    <script>
+        const p = new URLSearchParams(window.location.search);
+        const username  = p.get('username')  || 'Thank You!';
+        const message   = p.get('message')   || "You're our newest subscriber";
+        const milestone = p.get('milestone') || '10,000';
+        const unit      = p.get('unit')      || 'Subscribers';
+        const icon      = p.get('icon')      || '🎉';
+        const label     = p.get('label')     || 'SUBSCRIBER MILESTONE';
+
+        document.getElementById('usernameText').textContent   = username;
+        document.getElementById('actionText').textContent     = message;
+        document.getElementById('milestoneCount').textContent = milestone;
+        document.getElementById('milestoneUnit').textContent  = unit;
+        document.getElementById('milestoneIcon').textContent  = icon;
+        document.getElementById('milestoneLabel').textContent = label;
+    </script>
+</body>
+</html>

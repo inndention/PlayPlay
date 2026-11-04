@@ -1,0 +1,14 @@
+﻿0000-00-00T00:00:00	EventDuration=00:00:00	PlayMode=2
+!Repeat
+!ShowCrawl Sample Crawl Text	cfg=D:\Masterplay\OSD\DefaultCrawl.osd
+!InsertDirectory D:\Media\TestCards	SelectRandom=2
+!ShowLogo	f=D:\Masterplay\OSD\Logo\Masterplay Logo.bmp	cfg=D:\Masterplay\OSD\MasterPlay Logo.osd
+!InsertDirectory D:\Media\TestCards	SelectRandom=2
+!ShowClock	t=0	cfg=D:\Masterplay\OSD\DefaultRealtimeClock.osd
+!InsertDirectory D:\Media\TestCards	SelectRandom=2
+!Video 
+!TTS	Name=Announcement
+!DTMF
+!Normal
+!Macro 
+!ChangePlaylist

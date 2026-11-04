@@ -1,0 +1,543 @@
+/* CommandEditor Styles */
+
+.container {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    background: var(--surface);
+    border-radius: var(--radius-md);
+    overflow: hidden;
+}
+
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 1.5rem;
+    background: var(--surface-highlight);
+    border-bottom: 1px solid var(--border);
+}
+
+.title {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: var(--text-primary);
+    margin: 0;
+}
+
+.headerActions {
+    display: flex;
+    gap: 0.5rem;
+    align-items: center;
+}
+
+.saveBtn {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.5rem 1rem;
+    background: var(--accent);
+    color: white;
+    border: none;
+    border-radius: var(--radius-sm);
+    font-size: 0.85rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.saveBtn:hover {
+    opacity: 0.9;
+}
+
+.closeBtn {
+    padding: 0.5rem;
+    background: transparent;
+    border: none;
+    color: var(--text-secondary);
+    cursor: pointer;
+    border-radius: var(--radius-sm);
+}
+
+.closeBtn:hover {
+    background: var(--background);
+    color: var(--text-primary);
+}
+
+.content {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+}
+
+/* Timeline Visualization */
+.timeline {
+    padding: 1rem 1.5rem;
+    background: var(--background);
+    border-bottom: 1px solid var(--border);
+}
+
+.timelineHeader {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 0.85rem;
+    color: var(--text-secondary);
+    margin-bottom: 0.5rem;
+}
+
+.timelineDuration {
+    font-weight: 600;
+    color: var(--text-primary);
+}
+
+.timelineTrack {
+    position: relative;
+    height: 50px;
+    background: var(--surface);
+    border-radius: var(--radius-sm);
+    border: 1px solid var(--border);
+    overflow: visible;
+}
+
+.timelineCommand {
+    position: absolute;
+    top: 4px;
+    height: calc(100% - 8px);
+    border-radius: 4px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.15s ease;
+    overflow: hidden;
+    min-width: 20px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.timelineCommand:hover {
+    transform: scaleY(1.1);
+    z-index: 10;
+}
+
+.timelineCommand.selected {
+    box-shadow: 0 0 0 2px white, 0 0 0 4px var(--accent);
+    z-index: 20;
+}
+
+.timelineCommand.disabled {
+    opacity: 0.4;
+}
+
+.timelineLabel {
+    font-size: 0.7rem;
+    color: white;
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.5);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    padding: 0 6px;
+}
+
+.timeMarkers {
+    display: flex;
+    justify-content: space-between;
+    padding: 4px 0 0;
+    font-size: 0.7rem;
+    color: var(--text-secondary);
+}
+
+/* Panels */
+.panels {
+    flex: 1;
+    display: flex;
+    overflow: hidden;
+}
+
+/* Command List */
+.commandList {
+    width: 280px;
+    border-right: 1px solid var(--border);
+    display: flex;
+    flex-direction: column;
+    background: var(--surface-highlight);
+}
+
+.listHeader {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.75rem 1rem;
+    border-bottom: 1px solid var(--border);
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: var(--text-primary);
+}
+
+.addButtonWrapper {
+    position: relative;
+}
+
+.addBtn {
+    display: flex;
+    align-items: center;
+    gap: 0.25rem;
+    padding: 0.4rem 0.75rem;
+    background: var(--accent);
+    color: white;
+    border: none;
+    border-radius: var(--radius-sm);
+    font-size: 0.8rem;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.addBtn:hover {
+    opacity: 0.9;
+}
+
+.addMenu {
+    position: absolute;
+    top: 100%;
+    right: 0;
+    margin-top: 4px;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-md);
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
+    min-width: 260px;
+    z-index: 100;
+    max-height: 400px;
+    overflow-y: auto;
+}
+
+.addMenuItem {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.75rem;
+    width: 100%;
+    padding: 0.75rem 1rem;
+    background: transparent;
+    border: none;
+    text-align: left;
+    cursor: pointer;
+    transition: background 0.15s;
+    color: var(--text-primary);
+}
+
+.addMenuItem:hover {
+    background: var(--surface-highlight);
+}
+
+.addMenuItemText {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+}
+
+.addMenuItemLabel {
+    font-weight: 500;
+    font-size: 0.85rem;
+}
+
+.addMenuItemDesc {
+    font-size: 0.75rem;
+    color: var(--text-secondary);
+}
+
+.listItems {
+    flex: 1;
+    overflow-y: auto;
+    padding: 0.5rem;
+}
+
+.emptyList {
+    padding: 2rem 1rem;
+    text-align: center;
+    color: var(--text-secondary);
+    font-size: 0.85rem;
+}
+
+.listItem {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    padding: 0.75rem;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-sm);
+    margin-bottom: 0.5rem;
+    cursor: pointer;
+    transition: all 0.15s;
+}
+
+.listItem:hover {
+    border-color: var(--accent);
+}
+
+.listItem.selected {
+    background: var(--background);
+    border-color: var(--accent);
+    box-shadow: 0 0 0 2px rgba(59, 130, 246, 0.2);
+}
+
+.listItem.disabled {
+    opacity: 0.5;
+}
+
+.listItemIcon {
+    flex-shrink: 0;
+}
+
+.listItemContent {
+    flex: 1;
+    min-width: 0;
+}
+
+.listItemName {
+    display: block;
+    font-weight: 500;
+    font-size: 0.85rem;
+    color: var(--text-primary);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.listItemTime {
+    display: block;
+    font-size: 0.75rem;
+    color: var(--text-secondary);
+}
+
+.listItemActions {
+    display: flex;
+    gap: 0.25rem;
+    opacity: 0;
+    transition: opacity 0.15s;
+}
+
+.listItem:hover .listItemActions {
+    opacity: 1;
+}
+
+.iconBtn {
+    padding: 0.4rem;
+    background: transparent;
+    border: none;
+    color: var(--text-secondary);
+    cursor: pointer;
+    border-radius: var(--radius-sm);
+}
+
+.iconBtn:hover {
+    background: var(--surface-highlight);
+    color: var(--text-primary);
+}
+
+/* Details Panel */
+.detailsPanel {
+    flex: 1;
+    overflow-y: auto;
+    padding: 1.5rem;
+}
+
+.noSelection {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    color: var(--text-secondary);
+    font-size: 0.9rem;
+}
+
+.detailsHeader {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1.5rem;
+}
+
+.nameInput {
+    flex: 1;
+    padding: 0.75rem;
+    font-size: 1.1rem;
+    font-weight: 600;
+    background: var(--background);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-sm);
+    color: var(--text-primary);
+}
+
+.nameInput:focus {
+    outline: none;
+    border-color: var(--accent);
+}
+
+.enabledToggle {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.85rem;
+    color: var(--text-primary);
+    cursor: pointer;
+    margin-left: 1rem;
+}
+
+.section {
+    margin-bottom: 1.5rem;
+    padding-bottom: 1.5rem;
+    border-bottom: 1px solid var(--border);
+}
+
+.section:last-child {
+    border-bottom: none;
+}
+
+.sectionTitle {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: var(--text-primary);
+    margin: 0 0 1rem;
+}
+
+.timingRow {
+    display: flex;
+    gap: 1rem;
+    align-items: flex-end;
+    margin-bottom: 0.75rem;
+}
+
+.timeInput {
+    flex: 1;
+}
+
+.timeInput label {
+    display: block;
+    font-size: 0.8rem;
+    color: var(--text-secondary);
+    margin-bottom: 0.25rem;
+}
+
+.timeInput input {
+    width: 100%;
+    padding: 0.6rem;
+    background: var(--background);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-sm);
+    color: var(--text-primary);
+    font-size: 0.9rem;
+    font-family: monospace;
+}
+
+.timeInput input:focus {
+    outline: none;
+    border-color: var(--accent);
+}
+
+.durationDisplay {
+    padding: 0.6rem 1rem;
+    background: var(--surface-highlight);
+    border-radius: var(--radius-sm);
+    font-size: 0.85rem;
+    color: var(--accent);
+    font-weight: 600;
+    white-space: nowrap;
+}
+
+.quickDurations {
+    display: flex;
+    gap: 0.5rem;
+    flex-wrap: wrap;
+}
+
+.quickDurationBtn {
+    padding: 0.4rem 0.75rem;
+    background: var(--surface-highlight);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-sm);
+    color: var(--text-primary);
+    font-size: 0.8rem;
+    cursor: pointer;
+    transition: all 0.15s;
+}
+
+.quickDurationBtn:hover {
+    background: var(--background);
+    border-color: var(--accent);
+}
+
+.configFields {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.field {
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+}
+
+.field label {
+    font-size: 0.8rem;
+    color: var(--text-secondary);
+}
+
+.field input,
+.field select {
+    padding: 0.6rem;
+    background: var(--background);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-sm);
+    color: var(--text-primary);
+    font-size: 0.9rem;
+}
+
+.field input:focus,
+.field select:focus {
+    outline: none;
+    border-color: var(--accent);
+}
+
+.checkbox {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.85rem;
+    color: var(--text-primary);
+    cursor: pointer;
+    margin-bottom: 0.75rem;
+}
+
+.colorPicker {
+    display: flex;
+    gap: 0.5rem;
+    flex-wrap: wrap;
+}
+
+.colorBtn {
+    width: 32px;
+    height: 32px;
+    border: 2px solid transparent;
+    border-radius: 50%;
+    cursor: pointer;
+    transition: all 0.15s;
+}
+
+.colorBtn:hover {
+    transform: scale(1.1);
+}
+
+.colorBtn.selected {
+    border-color: white;
+    box-shadow: 0 0 0 2px var(--accent);
+}
+

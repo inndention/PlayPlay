@@ -1,0 +1,106 @@
+/* ui-buttons.css: the web dashboard's button system (button system design notes 3.2, 3.9). Loaded after style.css and the
+   generated ui-tokens.css. Two parts:
+   1. fixes for the legacy selectors style.css keeps (button.primary ...): hover and pressed feedback on filled buttons (the
+      old `button:hover` lost to the variant rule by source order), a keyboard focus ring, and the sprite icons inside them;
+   2. the token-based classes btn() / iconBtn() / chip() / padBtn() emit: .pb with size, role, fill and state layers. */
+
+/* ---- 1. legacy buttons --------------------------------------------------------------------------------------------- */
+button:focus-visible, .pb:focus-visible { outline: var(--btn-focus-w) solid var(--btn-focus-color); outline-offset: var(--btn-focus-offset) }
+button:focus:not(:focus-visible) { outline: none }
+button.primary:hover, button.success:hover, button.danger:hover, button.warn:hover, button.info:hover { filter: brightness(var(--btn-hover-k)) }
+button.primary:active, button.success:active, button.danger:active, button.warn:active, button.info:active { filter: brightness(.8) }
+button:active:not(:disabled):not(.primary):not(.success):not(.danger):not(.warn):not(.info):not(.pb) { background: var(--btn-press-bg) }
+button.ghost:hover:not(:disabled) { background: var(--btn-hover-bg); color: var(--t0) }
+button:disabled { filter: none }
+/* an icon inside any button: 1em square on the text baseline; a glyph button that upgrade() turned icon-only is square */
+.ic { width: 1.15em; height: 1.15em; display: inline-block; vertical-align: -0.22em; flex: none; pointer-events: none }
+.ic + .pb-label, .pb-label + .ic-right { margin-left: .35em }
+button.pb-icon:not(.pb) { padding-left: 6px; padding-right: 6px; line-height: 1 }
+button.pb-icon:not(.pb) .ic { vertical-align: middle }
+#tokenBtn .ic, #zoomIn .ic, #zoomOut .ic { width: 14px; height: 14px }
+
+/* ---- 2. token buttons ---------------------------------------------------------------------------------------------- */
+.pb {
+  --pb-h: var(--btn-h-m); --pb-min-w: var(--btn-min-w-m); --pb-pad-x: var(--btn-pad-x-m); --pb-font: var(--btn-font-m); --pb-icon: var(--btn-icon-m);
+  --pb-radius: var(--btn-radius-m); --pb-tracking: var(--btn-tracking-m); --pb-gap: var(--btn-gap-m); --pb-sub-font: 9px;
+  --pb-tint: var(--role-neutral);
+  display: inline-flex; align-items: center; justify-content: center; gap: var(--pb-gap);
+  box-sizing: border-box; height: var(--pb-h); min-width: var(--pb-min-w); padding: 0 var(--pb-pad-x);
+  border-radius: var(--pb-radius); border: 1px solid transparent; position: relative; overflow: hidden;
+  font: inherit; font-weight: var(--btn-label-weight); font-size: var(--pb-font); letter-spacing: var(--pb-tracking); line-height: 1;
+  cursor: pointer; user-select: none; white-space: nowrap; text-transform: uppercase;
+  transition: background-color var(--btn-anim-ms), border-color var(--btn-anim-ms), color var(--btn-anim-ms), filter var(--btn-anim-ms);
+}
+.pb .ic { width: var(--pb-icon); height: var(--pb-icon); vertical-align: middle }
+.pb .ic + .pb-label, .pb .pb-label + .ic-right { margin-left: 0 }
+.pb-label { overflow: hidden; text-overflow: ellipsis; max-width: 100% }
+.pb-sub { font-size: var(--pb-sub-font); font-weight: 600; letter-spacing: .4px; opacity: .8; text-transform: none }
+.pb-badge { position: absolute; top: 2px; right: 3px; font-size: 8px; letter-spacing: .5px; opacity: .85 }
+/* sizes */
+.pb-xs { --pb-h: var(--btn-h-xs); --pb-min-w: var(--btn-min-w-xs); --pb-pad-x: var(--btn-pad-x-xs); --pb-font: var(--btn-font-xs); --pb-icon: var(--btn-icon-xs); --pb-radius: var(--btn-radius-xs); --pb-tracking: var(--btn-tracking-xs); --pb-gap: var(--btn-gap-xs) }
+.pb-s  { --pb-h: var(--btn-h-s);  --pb-min-w: var(--btn-min-w-s);  --pb-pad-x: var(--btn-pad-x-s);  --pb-font: var(--btn-font-s);  --pb-icon: var(--btn-icon-s);  --pb-radius: var(--btn-radius-s);  --pb-tracking: var(--btn-tracking-s);  --pb-gap: var(--btn-gap-s) }
+.pb-l  { --pb-h: var(--btn-h-l);  --pb-min-w: var(--btn-min-w-l);  --pb-pad-x: var(--btn-pad-x-l);  --pb-font: var(--btn-font-l);  --pb-icon: var(--btn-icon-l);  --pb-radius: var(--btn-radius-l);  --pb-tracking: var(--btn-tracking-l);  --pb-gap: var(--btn-gap-l);  --pb-sub-font: var(--btn-sub-font-l);  flex-direction: column }
+.pb-xl { --pb-h: var(--btn-h-xl); --pb-min-w: var(--btn-min-w-xl); --pb-pad-x: var(--btn-pad-x-xl); --pb-font: var(--btn-font-xl); --pb-icon: var(--btn-icon-xl); --pb-radius: var(--btn-radius-xl); --pb-tracking: var(--btn-tracking-xl); --pb-gap: var(--btn-gap-xl); --pb-sub-font: var(--btn-sub-font-xl); flex-direction: column }
+.pb-icon { min-width: var(--pb-h); width: var(--pb-h); padding: 0 }
+.pb-span2 { grid-column: span 2; min-width: calc(2 * var(--pb-min-w) + 8px) }
+/* roles: the tint; a user colour overrides it through an inline --pb-tint */
+.r-primary { --pb-tint: var(--role-primary) } .r-go { --pb-tint: var(--role-go) } .r-stop { --pb-tint: var(--role-stop) }
+.r-destructive { --pb-tint: var(--role-destructive) } .r-warn { --pb-tint: var(--role-warn) } .r-info { --pb-tint: var(--role-info) }
+.r-accent { --pb-tint: var(--role-accent) } .r-cued { --pb-tint: var(--role-cued) } .r-neutral { --pb-tint: var(--role-neutral) }
+/* fills */
+.f-solid { background: var(--pb-tint); color: var(--btn-on-fill); border-color: transparent }
+.f-solid.r-neutral { background: var(--bg3); color: var(--t0); border-color: var(--b1) }
+.f-tonal { background: color-mix(in srgb, var(--pb-tint) 18%, transparent); color: var(--pb-tint); border-color: var(--pb-tint) }
+.f-outline { background: var(--bg3); color: var(--t0); border-color: var(--b1) }
+.f-outline .ic, .f-ghost .ic { color: var(--t1) }
+.f-ghost { background: transparent; color: var(--t1); border-color: transparent }
+/* state layers (design 3.2): solid lightens / darkens, the others go bg4 / bg5 */
+.pb:hover:not(:disabled) { filter: brightness(var(--btn-hover-k)) }
+.f-outline:hover:not(:disabled), .f-ghost:hover:not(:disabled), .f-solid.r-neutral:hover:not(:disabled) { filter: none; background: var(--btn-hover-bg); border-color: var(--btn-hover-border); color: var(--t0) }
+.f-tonal:hover:not(:disabled) { filter: none; background: color-mix(in srgb, var(--pb-tint) 30%, transparent) }
+.pb:active:not(:disabled) { filter: brightness(.8) }
+.f-outline:active:not(:disabled), .f-ghost:active:not(:disabled), .f-solid.r-neutral:active:not(:disabled) { filter: none; background: var(--btn-press-bg) }
+.pb:disabled, .pb.is-busy { cursor: default; filter: none; background: var(--btn-disabled-bg); color: var(--btn-disabled-text); border-color: var(--btn-disabled-border); opacity: 1 }
+.pb-l:disabled, .pb-xl:disabled { background: var(--btn-disabled-bg-large) }
+.pb.is-active, .pb[aria-pressed="true"] { background: color-mix(in srgb, var(--pb-tint) 30%, transparent); color: var(--pb-tint); border-color: var(--pb-tint); box-shadow: inset 0 0 0 1px var(--pb-tint) }
+.pb.is-active .ic { color: var(--pb-tint) }
+/* armed: amber border pulsing at 2 Hz, the label gives way to CONFIRM, a 3 px bar drains over armMs (resumed after a
+   re-render through --pb-elapsed, set by ppui.apply) */
+@keyframes pb-pulse { from { border-color: var(--btn-arm-color) } to { border-color: color-mix(in srgb, var(--btn-arm-color) 45%, transparent) } }
+@keyframes pb-drain { from { width: 100% } to { width: 0 } }
+@keyframes pb-fill { from { width: 0 } to { width: 100% } }
+.pb.is-armed { border-color: var(--btn-arm-color); box-shadow: inset 0 0 0 1px var(--btn-arm-color); animation: pb-pulse 250ms ease-in-out infinite alternate }
+.pb.is-armed .pb-label { display: none }
+.pb.is-armed::after { content: attr(data-arm-label); font-size: var(--pb-font); letter-spacing: var(--pb-tracking) }
+.pb.is-armed::before { content: ""; position: absolute; left: 0; bottom: 0; height: var(--btn-arm-bar-h); background: var(--btn-arm-color); animation: pb-drain var(--btn-arm-ms) linear forwards; animation-delay: calc(-1 * var(--pb-elapsed, 0ms)) }
+/* holding: a tint fill grows left to right over holdMs */
+.pb.is-holding::before { content: ""; position: absolute; left: 0; top: 0; bottom: 0; background: color-mix(in srgb, var(--pb-tint) 35%, transparent); animation: pb-fill var(--btn-hold-ms) linear forwards; animation-delay: calc(-1 * var(--pb-elapsed, 0ms)); pointer-events: none }
+.pb.is-holding.f-solid::before { background: rgba(255,255,255,.35) }
+/* busy: dim label, three pulsing dots in place of the icon */
+@keyframes pb-dots { 0%, 80%, 100% { opacity: .25 } 40% { opacity: 1 } }
+.pb.is-busy .pb-label { opacity: var(--btn-busy-label-a) }
+.pb.is-busy .ic { display: none }
+.pb.is-busy::before { content: "\2022\2022\2022"; letter-spacing: 2px; font-size: var(--pb-font); animation: pb-dots 1s infinite }
+/* error flash */
+.pb.is-error { border-color: var(--btn-error-color) !important; box-shadow: inset 0 0 0 1px var(--btn-error-color) }
+/* LED / tally: a 4 px bar along the top (a 6 px dot on xs / s) */
+.led { position: absolute; left: 0; right: 0; top: 0; height: var(--led-bar-h); background: var(--t3); pointer-events: none }
+.pb-xs .led, .pb-s .led { left: auto; right: 3px; top: 3px; width: var(--led-dot-size); height: var(--led-dot-size); border-radius: 50% }
+.led-red { background: var(--led-red) } .led-green { background: var(--led-green) } .led-amber { background: var(--led-amber) } .led-blue { background: var(--led-blue) }
+@keyframes pb-blink { 50% { opacity: .15 } }
+.blink-slow { animation: pb-blink var(--led-blink-slow) steps(1) infinite } .blink-fast { animation: pb-blink var(--led-blink-fast) steps(1) infinite }
+@media (prefers-reduced-motion: reduce) { .pb, .led { animation-duration: .01ms !important } .pb.is-armed::before, .pb.is-holding::before { animation-duration: var(--btn-arm-ms) !important } }
+/* pad keys (remote.js): the theme colour comes through --pb-tint; text keeps the old shadow for legibility on any theme */
+.pb.pad-key { text-shadow: 0 1px 2px rgba(0,0,0,.35); color: #fff }
+.pb.pad-key.sel { outline: 2px solid var(--pd-accent, var(--accent)); outline-offset: 1px }
+
+/* ---- editor dialog ------------------------------------------------------------------------------------------------ */
+dialog.ppui-editor { background: var(--bg2); color: var(--t0); border: 1px solid var(--b1); border-radius: 8px; padding: 16px; min-width: 360px; max-width: 520px }
+dialog.ppui-editor::backdrop { background: rgba(0,0,0,.55) }
+.ppui-form { display: flex; flex-direction: column; gap: 10px } .ppui-form h3 { margin: 0 0 4px; font-size: 13px }
+.ppui-preview { display: flex; justify-content: center; padding: 12px; background: var(--bg1); border-radius: 6px; border: 1px solid var(--b0) }
+.ppui-swatches { gap: 4px } .ppui-swatch { width: 18px; height: 18px; padding: 0; border-radius: 4px; border: 1px solid var(--b1); background: var(--bg4) }
+.ppui-swatch.sel { outline: 2px solid var(--accent); outline-offset: 1px }
+.ppui-radio { display: inline-flex; gap: 4px; align-items: center; font-size: 12px; text-transform: none; letter-spacing: 0 }
+.ppui-msg { font-size: 10px; color: var(--t2); min-height: 12px; text-transform: none; letter-spacing: 0 } .ppui-msg.bad { color: var(--danger) }
+.ppui-actions { margin-top: 6px }

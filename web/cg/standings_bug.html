@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=1920, initial-scale=1.0">
+    <title>Standings Bug</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            width: 1920px; height: 1080px; overflow: hidden;
+            background: transparent;
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+        }
+        .standings-card {
+            position: absolute;
+            top: 60px;
+            left: 60px;
+            width: 340px;
+            background: rgba(8, 12, 24, 0.96);
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 16px 50px rgba(0,0,0,0.6);
+            border: 1px solid rgba(255,255,255,0.06);
+        }
+        .standings-header {
+            background: linear-gradient(90deg, #1e40af, #3b82f6);
+            padding: 10px 16px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .league-icon { font-size: 20px; }
+        .league-name {
+            font-size: 13px;
+            font-weight: 700;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: #fff;
+        }
+        .standings-table { width: 100%; }
+        .col-headers {
+            display: grid;
+            grid-template-columns: 28px 1fr 36px 36px 36px;
+            padding: 6px 12px;
+            border-bottom: 1px solid rgba(255,255,255,0.06);
+        }
+        .col-header {
+            font-size: 10px;
+            font-weight: 700;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            color: #475569;
+            text-align: center;
+        }
+        .col-header:nth-child(2) { text-align: left; }
+        .team-row {
+            display: grid;
+            grid-template-columns: 28px 1fr 36px 36px 36px;
+            padding: 7px 12px;
+            border-bottom: 1px solid rgba(255,255,255,0.04);
+            align-items: center;
+        }
+        .team-row:last-child { border-bottom: none; }
+        .team-rank {
+            font-size: 13px;
+            font-weight: 700;
+            color: #475569;
+            text-align: center;
+        }
+        .team-name {
+            font-size: 15px;
+            font-weight: 600;
+            color: #e2e8f0;
+        }
+        .team-stat {
+            font-size: 13px;
+            font-weight: 600;
+            color: #94a3b8;
+            text-align: center;
+            font-variant-numeric: tabular-nums;
+        }
+        .team-row.highlight .team-name { color: #fff; }
+        .team-row.highlight .team-rank { color: #fbbf24; }
+        .team-row.highlight {
+            background: rgba(251,191,36,0.06);
+        }
+    </style>
+</head>
+<body>
+    <div class="standings-card" id="standingsCard" data-cg-auto>
+        <div class="standings-header">
+            <span class="league-icon" id="leagueIcon">🏀</span>
+            <span class="league-name" id="leagueName">NBA Standings</span>
+        </div>
+        <div class="standings-table">
+            <div class="col-headers">
+                <span class="col-header">#</span>
+                <span class="col-header">Team</span>
+                <span class="col-header">W</span>
+                <span class="col-header">L</span>
+                <span class="col-header">PCT</span>
+            </div>
+            <div id="teamsContainer"></div>
+        </div>
+    </div>
+    <script src="js/cg-animations.js"></script>
+    <script>
+        const p = new URLSearchParams(window.location.search);
+        const league   = p.get('league')   || 'NBA Standings';
+        const icon     = p.get('icon')     || '🏀';
+        const color    = p.get('color')    || '1e40af';
+        const highlight = parseInt(p.get('highlight') || '1');
+
+        // Parse teams from URL: teams=LAL:42:28,BOS:44:26,MIA:38:32...
+        const teamsRaw = p.get('teams') || 'LAL:42:28,BOS:44:26,MIA:38:32,MIL:37:33,PHI:36:34';
+        const teams = teamsRaw.split(',').map((t, i) => {
+            const parts = t.split(':');
+            const w = parseInt(parts[1] || 0);
+            const l = parseInt(parts[2] || 0);
+            const pct = (w + l) > 0 ? (w / (w + l)).toFixed(3) : '.000';
+            return { rank: i + 1, name: parts[0] || '???', w, l, pct };
+        });
+
+        document.getElementById('leagueName').textContent = league;
+        document.getElementById('leagueIcon').textContent = icon;
+        document.querySelector('.standings-header').style.background =
+            'linear-gradient(90deg, #' + color.replace('#','') + ', ' + lighten(color) + ')';
+
+        const container = document.getElementById('teamsContainer');
+        container.innerHTML = teams.map(t => `
+            <div class="team-row ${t.rank === highlight ? 'highlight' : ''}">
+                <span class="team-rank">${t.rank}</span>
+                <span class="team-name">${t.name}</span>
+                <span class="team-stat">${t.w}</span>
+                <span class="team-stat">${t.l}</span>
+                <span class="team-stat">${t.pct}</span>
+            </div>
+        `).join('');
+
+        function lighten(hex) {
+            try {
+                const n = parseInt(hex.replace('#',''), 16);
+                const r = Math.min(255, (n >> 16) + 60);
+                const g = Math.min(255, ((n >> 8) & 0xff) + 60);
+                const b = Math.min(255, (n & 0xff) + 60);
+                return `rgb(${r},${g},${b})`;
+            } catch { return '#3b82f6'; }
+        }
+    </script>
+</body>
+</html>

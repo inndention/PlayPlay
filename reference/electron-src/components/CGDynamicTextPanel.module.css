@@ -1,0 +1,121 @@
+.panel {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-sm);
+    margin-bottom: 0.5rem;
+    overflow: hidden;
+}
+
+.header {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.5rem;
+    padding: 0.5rem 0.75rem;
+    background: var(--surface-highlight);
+    border: none;
+    color: var(--text-primary);
+    font-size: 0.8rem;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+.header:hover {
+    background: var(--surface);
+}
+
+.body {
+    padding: 0.75rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.field {
+    display: flex;
+    flex-direction: column;
+    gap: 0.2rem;
+}
+
+.field label {
+    font-size: 0.7rem;
+    color: var(--text-muted);
+}
+
+.field input,
+.field select {
+    padding: 0.35rem 0.5rem;
+    border-radius: var(--radius-sm);
+    border: 1px solid var(--border);
+    background: var(--background);
+    color: var(--text-primary);
+    font-size: 0.8rem;
+}
+
+.positionRow {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 0.35rem;
+}
+
+.actions {
+    display: flex;
+    gap: 0.35rem;
+    margin-top: 0.25rem;
+}
+
+.applyBtn,
+.browserBtn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.35rem;
+    padding: 0.4rem 0.6rem;
+    border-radius: var(--radius-sm);
+    border: none;
+    font-size: 0.75rem;
+    cursor: pointer;
+}
+
+.applyBtn {
+    background: var(--accent);
+    color: white;
+}
+
+.applyBtn:hover {
+    filter: brightness(1.1);
+}
+
+.browserBtn {
+    background: var(--surface-highlight);
+    color: var(--text-secondary);
+    border: 1px solid var(--border);
+}
+
+.browserBtn:hover {
+    background: var(--surface);
+    color: var(--text-primary);
+}
+
+.hint {
+    font-size: 0.75rem;
+    color: var(--text-muted);
+    margin: 0;
+}
+
+.browserOut {
+    margin-top: 0.25rem;
+}
+
+.link {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.35rem;
+    font-size: 0.75rem;
+    color: var(--accent);
+    text-decoration: none;
+}
+
+.link:hover {
+    text-decoration: underline;
+}

@@ -1,0 +1,72 @@
+/* Tooltip - Hover Help Styles */
+
+.wrapper {
+    display: inline-flex;
+}
+
+.tooltip {
+    position: fixed;
+    z-index: 99999;
+    background: #1a1a1f;
+    border: 1px solid var(--border);
+    border-radius: var(--radius-sm);
+    padding: 0.4rem 0.6rem;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
+    animation: tooltipFadeIn 0.15s ease-out;
+    pointer-events: none;
+    max-width: 280px;
+}
+
+@keyframes tooltipFadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(4px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.tooltip.top {
+    transform: translateX(-50%) translateY(-100%);
+}
+
+.tooltip.bottom {
+    transform: translateX(-50%);
+}
+
+.tooltip.left {
+    transform: translateX(-100%) translateY(-50%);
+}
+
+.tooltip.right {
+    transform: translateY(-50%);
+}
+
+.content {
+    font-size: 0.75rem;
+    color: var(--text-primary);
+    line-height: 1.4;
+}
+
+.shortcut {
+    display: inline-block;
+    margin-left: 0.5rem;
+    padding: 0.1rem 0.35rem;
+    background: var(--surface-highlight);
+    border: 1px solid var(--border);
+    border-radius: 3px;
+    font-size: 0.65rem;
+    font-family: var(--font-mono);
+    color: var(--text-muted);
+}
+
+.helpLink {
+    display: block;
+    margin-top: 0.25rem;
+    font-size: 0.6rem;
+    color: var(--accent);
+    opacity: 0.8;
+}

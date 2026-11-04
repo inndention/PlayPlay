@@ -1,0 +1,353 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CG Client Demo</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+            min-height: 100vh;
+            padding: 40px;
+            color: #fff;
+        }
+        
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        h1 {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+            background: linear-gradient(90deg, #00d9ff, #a855f7);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        
+        .subtitle {
+            color: #8892b0;
+            margin-bottom: 40px;
+        }
+        
+        .section {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 12px;
+            padding: 24px;
+            margin-bottom: 20px;
+        }
+        
+        .section h2 {
+            font-size: 1.2rem;
+            margin-bottom: 16px;
+            color: #00d9ff;
+        }
+        
+        .button-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 12px;
+        }
+        
+        button {
+            padding: 14px 20px;
+            border: none;
+            border-radius: 8px;
+            font-size: 14px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .btn-primary {
+            background: linear-gradient(135deg, #00d9ff 0%, #0099cc 100%);
+            color: #000;
+        }
+        
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 20px rgba(0, 217, 255, 0.4);
+        }
+        
+        .btn-danger {
+            background: linear-gradient(135deg, #ef4444 0%, #dc2626 100%);
+            color: #fff;
+        }
+        
+        .btn-success {
+            background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+            color: #fff;
+        }
+        
+        .btn-warning {
+            background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%);
+            color: #000;
+        }
+        
+        .btn-info {
+            background: linear-gradient(135deg, #8b5cf6 0%, #7c3aed 100%);
+            color: #fff;
+        }
+        
+        .form-group {
+            margin-bottom: 16px;
+        }
+        
+        label {
+            display: block;
+            margin-bottom: 6px;
+            font-size: 13px;
+            color: #8892b0;
+        }
+        
+        input, textarea, select {
+            width: 100%;
+            padding: 12px;
+            background: rgba(0, 0, 0, 0.3);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 6px;
+            color: #fff;
+            font-size: 14px;
+        }
+        
+        input:focus, textarea:focus, select:focus {
+            outline: none;
+            border-color: #00d9ff;
+        }
+        
+        textarea {
+            min-height: 80px;
+            resize: vertical;
+        }
+        
+        .code-block {
+            background: #0d1117;
+            border-radius: 8px;
+            padding: 16px;
+            font-family: 'Courier New', monospace;
+            font-size: 13px;
+            overflow-x: auto;
+            color: #c9d1d9;
+            margin-top: 12px;
+        }
+        
+        .code-block .comment {
+            color: #8b949e;
+        }
+        
+        .code-block .keyword {
+            color: #ff7b72;
+        }
+        
+        .code-block .string {
+            color: #a5d6ff;
+        }
+        
+        .output {
+            margin-top: 20px;
+            padding: 16px;
+            background: rgba(0, 0, 0, 0.3);
+            border-radius: 8px;
+            font-family: monospace;
+            font-size: 13px;
+            min-height: 60px;
+        }
+        
+        .output-label {
+            color: #00d9ff;
+            font-weight: bold;
+            margin-bottom: 8px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🎬 CG Client Demo</h1>
+        <p class="subtitle">Quick examples of the CGBroadcast JavaScript client</p>
+        
+        <div class="section">
+            <h2>Quick Actions</h2>
+            <div class="button-grid">
+                <button class="btn-primary" onclick="demoLowerThird()">
+                    👤 Lower Third
+                </button>
+                <button class="btn-danger" onclick="demoBreakingNews()">
+                    📰 Breaking News
+                </button>
+                <button class="btn-warning" onclick="demoEmergency()">
+                    ⚠️ Emergency
+                </button>
+                <button class="btn-info" onclick="demoTicker()">
+                    ↔️ News Ticker
+                </button>
+                <button class="btn-success" onclick="demoScoreBug()">
+                    ⚽ Score Bug
+                </button>
+                <button class="btn-primary" onclick="demoCountdown()">
+                    ⏱ Countdown
+                </button>
+                <button class="btn-primary" onclick="demoLive()">
+                    🔴 LIVE
+                </button>
+                <button class="btn-info" onclick="demoWeather()">
+                    ☁️ Weather
+                </button>
+            </div>
+        </div>
+        
+        <div class="section">
+            <h2>Custom Parameters</h2>
+            <div class="form-group">
+                <label>Template</label>
+                <select id="templateSelect">
+                    <option value="lower_third_modern">Lower Third (Modern)</option>
+                    <option value="banner_breaking_news">Breaking News Banner</option>
+                    <option value="ticker_news">News Ticker</option>
+                    <option value="score_bug_sports">Sports Score Bug</option>
+                    <option value="emergency">Emergency Alert</option>
+                    <option value="countdown_timer">Countdown Timer</option>
+                    <option value="bug_live_indicator">LIVE Indicator</option>
+                    <option value="weather_forecast_ai">Weather Forecast</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label>Parameters (JSON)</label>
+                <textarea id="paramsInput">{
+  "name": "John Doe",
+  "title": "Senior Correspondent",
+  "position": "left"
+}</textarea>
+            </div>
+            <button class="btn-primary" onclick="demoCustom()">
+                🚀 Show Custom Template
+            </button>
+        </div>
+        
+        <div class="section">
+            <h2>JavaScript API</h2>
+            <div class="code-block">
+<span class="comment">// Include the client library</span>
+<script src="js/cg-client.js"></script>
+
+<span class="comment">// Use the global CG object</span>
+<span class="keyword">const</span> cg = <span class="keyword">new</span> CGBroadcastClient();
+
+<span class="comment">// Show a lower third</span>
+cg.lowerThird(<span class="string">'John Doe'</span>, <span class="string">'Reporter'</span>, <span class="string">'left'</span>);
+
+<span class="comment">// Show breaking news</span>
+cg.breakingNews(<span class="string">'Major story developing'</span>);
+
+<span class="comment">// Show emergency alert</span>
+cg.emergency(<span class="string">'This is a test'</span>);
+
+<span class="comment">// Custom template</span>
+cg.show(<span class="string">'lower_third_modern'</span>, {
+    name: <span class="string">'Jane Smith'</span>,
+    title: <span class="string">'Anchor'</span>,
+    color1: <span class="string">'ff0000'</span>
+});
+            </div>
+        </div>
+        
+        <div class="section">
+            <h2>Current Output</h2>
+            <div class="output" id="output">
+                <div class="output-label">No active output</div>
+                <div id="outputDetails"></div>
+            </div>
+            <div style="margin-top: 12px;">
+                <button class="btn-danger" onclick="demoClear()">Clear Output</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="js/cg-client.js"></script>
+    <script>
+        // Update output display
+        function updateOutput() {
+            const output = document.getElementById('output');
+            const details = document.getElementById('outputDetails');
+            const current = CG.getCurrentOutput();
+            
+            if (current) {
+                output.innerHTML = `
+                    <div class="output-label">Active Output</div>
+                    <div>Template: ${current.template}</div>
+                    <div>URL: ${current.url}</div>
+                `;
+            } else {
+                output.innerHTML = '<div class="output-label">No active output</div>';
+            }
+        }
+        
+        function demoLowerThird() {
+            CG.lowerThird('John Doe', 'Senior Correspondent', 'left');
+            updateOutput();
+        }
+        
+        function demoBreakingNews() {
+            CG.breakingNews('Breaking: Major story developing - More details coming up');
+            updateOutput();
+        }
+        
+        function demoEmergency() {
+            CG.emergency('This is a test of the emergency broadcast system');
+            updateOutput();
+        }
+        
+        function demoTicker() {
+            CG.ticker('Breaking news update • Another story here • More information coming soon', 'NEWS', 80);
+            updateOutput();
+        }
+        
+        function demoScoreBug() {
+            CG.scoreBug('Lakers', 112, 'Celtics', 108, 'Q4', '2:30');
+            updateOutput();
+        }
+        
+        function demoCountdown() {
+            const target = new Date(Date.now() + 3600000); // 1 hour from now
+            CG.countdown(target, 'Program Starts In');
+            updateOutput();
+        }
+        
+        function demoLive() {
+            CG.live('LIVE');
+            updateOutput();
+        }
+        
+        function demoWeather() {
+            CG.weather('New York');
+            updateOutput();
+        }
+        
+        function demoCustom() {
+            const template = document.getElementById('templateSelect').value;
+            try {
+                const params = JSON.parse(document.getElementById('paramsInput').value);
+                CG.show(template, params);
+                updateOutput();
+            } catch (e) {
+                alert('Invalid JSON parameters');
+            }
+        }
+        
+        function demoClear() {
+            CG.clear();
+            updateOutput();
+        }
+    </script>
+</body>
+</html>

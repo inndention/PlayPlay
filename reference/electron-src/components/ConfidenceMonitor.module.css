@@ -1,0 +1,571 @@
+/* ============================================
+   CONFIDENCE MONITOR
+   Professional Multi-View Monitoring
+   ============================================ */
+
+.container {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    background: var(--background);
+    color: var(--text-primary);
+    font-family: var(--font-sans);
+    overflow: hidden;
+}
+
+/* ============================================
+   HEADER
+   ============================================ */
+
+.header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: var(--space-3) var(--space-4);
+    background: var(--surface);
+    border-bottom: 1px solid var(--border);
+}
+
+.headerLeft,
+.headerRight {
+    display: flex;
+    align-items: center;
+    gap: var(--space-3);
+}
+
+.headerCenter {
+    display: flex;
+    align-items: center;
+}
+
+.title {
+    display: flex;
+    align-items: center;
+    gap: var(--space-2);
+    font-size: 16px;
+    font-weight: 600;
+    color: var(--text-primary);
+}
+
+.title svg {
+    color: var(--accent);
+}
+
+/* Status Badges */
+.statusBadges {
+    display: flex;
+    gap: var(--space-2);
+}
+
+.onAirBadge {
+    display: flex;
+    align-items: center;
+    gap: var(--space-1);
+    padding: var(--space-1) var(--space-3);
+    background: var(--on-air);
+    color: white;
+    font-size: 11px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    border-radius: var(--radius-full);
+    animation: pulseOnAir 2s ease-in-out infinite;
+}
+
+.errorBadge {
+    display: flex;
+    align-items: center;
+    gap: var(--space-1);
+    padding: var(--space-1) var(--space-3);
+    background: rgba(255, 69, 58, 0.2);
+    color: var(--error);
+    font-size: 11px;
+    font-weight: 700;
+    text-transform: uppercase;
+    border-radius: var(--radius-full);
+}
+
+.liveDot {
+    width: 6px;
+    height: 6px;
+    background: white;
+    border-radius: 50%;
+    animation: livePulse 1s ease-in-out infinite;
+}
+
+@keyframes pulseOnAir {
+    0%, 100% { box-shadow: 0 0 0 0 var(--on-air-pulse); }
+    50% { box-shadow: 0 0 0 6px transparent; }
+}
+
+@keyframes livePulse {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.5; }
+}
+
+/* Master Clock */
+.masterClock {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: var(--space-2) var(--space-4);
+    background: var(--surface-elevated);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-md);
+}
+
+.clockTime {
+    font-family: var(--font-mono);
+    font-size: 28px;
+    font-weight: 700;
+    color: var(--text-primary);
+    font-feature-settings: 'tnum' 1;
+}
+
+.clockDate {
+    font-size: 11px;
+    color: var(--text-secondary);
+}
+
+/* Header Controls */
+.layoutSelect {
+    padding: var(--space-2) var(--space-3);
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-md);
+    color: var(--text-primary);
+    font-size: 12px;
+    cursor: pointer;
+}
+
+.headerBtn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 36px;
+    height: 36px;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-md);
+    color: var(--text-secondary);
+    cursor: pointer;
+    transition: all var(--duration-fast);
+}
+
+.headerBtn:hover {
+    background: var(--surface-highlight);
+    color: var(--text-primary);
+}
+
+.headerBtn.active {
+    background: var(--accent-muted);
+    color: var(--accent);
+    border-color: var(--accent);
+}
+
+/* ============================================
+   MONITOR GRID
+   ============================================ */
+
+.monitorGrid {
+    flex: 1;
+    display: grid;
+    gap: var(--space-2);
+    padding: var(--space-2);
+    overflow: auto;
+}
+
+/* ============================================
+   SOURCE CARD
+   ============================================ */
+
+.sourceCard {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    background: var(--surface);
+    border: 2px solid var(--border);
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+    transition: all var(--duration-fast);
+    cursor: pointer;
+}
+
+.sourceCard:hover {
+    border-color: var(--border-bright);
+}
+
+.sourceCard.selected {
+    border-color: var(--accent);
+    box-shadow: 0 0 0 2px var(--accent-muted);
+}
+
+/* State-specific styling */
+.stateonair {
+    border-color: var(--on-air);
+    box-shadow: 0 0 20px var(--on-air-glow);
+}
+
+.statepreview {
+    border-color: var(--cued);
+}
+
+.stateerror {
+    border-color: var(--error);
+}
+
+.stateoffline {
+    opacity: 0.6;
+}
+
+/* Tally Light */
+.tally {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    z-index: 10;
+}
+
+.tallyonair {
+    background: var(--on-air);
+    box-shadow: 0 0 10px var(--on-air-glow);
+}
+
+.tallypreview {
+    background: var(--cued);
+}
+
+.tallystandby {
+    background: var(--surface-highlight);
+}
+
+.tallyoffline {
+    background: var(--surface-highlight);
+}
+
+.tallyerror {
+    background: var(--error);
+    animation: errorBlink 0.5s ease-in-out infinite;
+}
+
+@keyframes errorBlink {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.5; }
+}
+
+/* Preview Area */
+.previewArea {
+    position: relative;
+    aspect-ratio: 16 / 9;
+    background: #000;
+    overflow: hidden;
+}
+
+.previewImage {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.noSignal {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: var(--space-2);
+    height: 100%;
+    color: var(--text-muted);
+    font-size: 12px;
+}
+
+/* State Badge */
+.stateBadge {
+    position: absolute;
+    top: var(--space-2);
+    left: var(--space-2);
+    display: flex;
+    align-items: center;
+    gap: var(--space-1);
+    padding: 4px 8px;
+    font-size: 10px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    border-radius: var(--radius-sm);
+}
+
+.badgeonair {
+    background: var(--on-air);
+    color: white;
+}
+
+.badgepreview {
+    background: var(--cued);
+    color: white;
+}
+
+.badgestandby {
+    background: var(--surface-highlight);
+    color: var(--text-secondary);
+}
+
+.badgeoffline {
+    background: rgba(0, 0, 0, 0.6);
+    color: var(--text-muted);
+}
+
+.badgeerror {
+    background: var(--error);
+    color: white;
+}
+
+/* Countdown Overlay */
+.countdownOverlay {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-family: var(--font-mono);
+    font-size: 36px;
+    font-weight: 800;
+    color: white;
+    text-shadow: 0 2px 10px rgba(0, 0, 0, 0.8);
+    pointer-events: none;
+}
+
+.countdownNormal {
+    color: white;
+}
+
+.countdownWarning {
+    color: var(--warning);
+    text-shadow: 0 0 20px var(--warning-glow);
+}
+
+.countdownCritical {
+    color: var(--on-air);
+    text-shadow: 0 0 30px var(--on-air-glow);
+    animation: countdownPulse 0.5s ease-in-out infinite;
+}
+
+@keyframes countdownPulse {
+    0%, 100% { transform: translate(-50%, -50%) scale(1); }
+    50% { transform: translate(-50%, -50%) scale(1.05); }
+}
+
+/* Current Title */
+.currentTitle {
+    position: absolute;
+    bottom: var(--space-2);
+    left: var(--space-2);
+    right: var(--space-2);
+    padding: var(--space-1) var(--space-2);
+    background: rgba(0, 0, 0, 0.7);
+    color: white;
+    font-size: 11px;
+    font-weight: 500;
+    border-radius: var(--radius-sm);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+/* Signal Indicator */
+.signalIndicator {
+    position: absolute;
+    top: var(--space-2);
+    right: var(--space-2);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 24px;
+    height: 24px;
+    background: rgba(0, 0, 0, 0.6);
+    border-radius: var(--radius-sm);
+}
+
+.signalgood { color: var(--ready); }
+.signalweak { color: var(--warning); }
+.signalnone { color: var(--error); }
+
+/* Source Info */
+.sourceInfo {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: var(--space-2) var(--space-3);
+    background: var(--surface);
+}
+
+.sourceName {
+    display: flex;
+    align-items: center;
+    gap: var(--space-2);
+    font-size: 12px;
+    font-weight: 600;
+}
+
+.sourceType {
+    display: flex;
+    align-items: center;
+    color: var(--text-secondary);
+}
+
+.timecode {
+    display: flex;
+    align-items: center;
+    gap: var(--space-1);
+    font-family: var(--font-mono);
+    font-size: 10px;
+    color: var(--text-secondary);
+}
+
+/* Audio Meter */
+.audioMeter {
+    display: flex;
+    gap: var(--space-2);
+    padding: var(--space-2) var(--space-3);
+    background: var(--surface-elevated);
+    border-top: 1px solid var(--border-subtle);
+}
+
+.audioChannel {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    gap: var(--space-2);
+}
+
+.audioLabel {
+    font-size: 9px;
+    font-weight: 600;
+    color: var(--text-muted);
+    width: 10px;
+}
+
+.meterTrack {
+    flex: 1;
+    display: flex;
+    gap: 1px;
+    height: 8px;
+}
+
+.meterSegment {
+    flex: 1;
+    border-radius: 1px;
+}
+
+.meterOk { background: var(--ready); }
+.meterWarn { background: var(--warning); }
+.meterHot { background: var(--on-air); }
+.meterOff { background: var(--surface-highlight); }
+
+.audioDb {
+    font-family: var(--font-mono);
+    font-size: 9px;
+    color: var(--text-muted);
+    width: 20px;
+    text-align: right;
+}
+
+/* Technical Info */
+.techInfo {
+    display: flex;
+    gap: var(--space-3);
+    padding: var(--space-2) var(--space-3);
+    background: var(--surface);
+    border-top: 1px solid var(--border-subtle);
+    font-size: 10px;
+    color: var(--text-muted);
+}
+
+/* Error Indicator */
+.errorIndicator {
+    position: absolute;
+    bottom: var(--space-2);
+    right: var(--space-2);
+    display: flex;
+    align-items: center;
+    gap: var(--space-1);
+    padding: 4px 8px;
+    background: var(--error);
+    color: white;
+    font-size: 10px;
+    font-weight: 600;
+    border-radius: var(--radius-sm);
+}
+
+/* ============================================
+   FULLSCREEN
+   ============================================ */
+
+.fullscreenOverlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.9);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: var(--z-overlay);
+}
+
+.fullscreenPreview {
+    position: relative;
+    width: 90%;
+    max-width: 1600px;
+}
+
+.fullscreenPreview .sourceCard {
+    max-height: 90vh;
+}
+
+.closeFullscreen {
+    position: absolute;
+    top: var(--space-4);
+    right: var(--space-4);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 48px;
+    height: 48px;
+    background: rgba(0, 0, 0, 0.6);
+    border: none;
+    border-radius: var(--radius-full);
+    color: white;
+    cursor: pointer;
+    transition: all var(--duration-fast);
+}
+
+.closeFullscreen:hover {
+    background: rgba(255, 255, 255, 0.2);
+}
+
+/* ============================================
+   STATUS BAR
+   ============================================ */
+
+.statusBar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: var(--space-2) var(--space-4);
+    background: var(--surface);
+    border-top: 1px solid var(--border);
+    font-size: 11px;
+    color: var(--text-secondary);
+}
+
+.statusLeft,
+.statusRight {
+    display: flex;
+    align-items: center;
+    gap: var(--space-4);
+}
+
+.statusItem {
+    display: flex;
+    align-items: center;
+    gap: var(--space-1);
+}

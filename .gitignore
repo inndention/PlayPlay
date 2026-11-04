@@ -1,0 +1,69 @@
+# Build output
+build/
+build-*/
+out/
+dist/
+*.obj
+*.pdb
+*.ilk
+*.exp
+
+# Qt / CMake generated
+*_autogen/
+CMakeFiles/
+CMakeCache.txt
+cmake_install.cmake
+*.ninja
+.ninja_*
+.qt/
+qrc_*.cpp
+moc_*.cpp
+ui_*.h
+
+# Runtime data
+# Note: this also matches tools/studio/data and tests/inhouse/data, which are intentionally not part of this
+# repository (see the root README); anything that needs them is optional and skipped when they are absent.
+*.db
+*.db-journal
+*.sqlite
+logs/
+channels/
+data/
+*.log
+# ...except the small synthetic log fixtures used by the tests
+!tests/masterplay/fixtures/*.log
+
+# Secrets and local configuration: never commit these
+.env
+.env.*
+*.pfx
+*.pem
+*.key
+
+# Web dashboard and Node tooling
+node_modules/
+web/dist/
+tools/starnews-cg/desktop/node_modules/
+.playwright-cli/
+output/
+
+# Python bytecode (the spot scripts import each other)
+__pycache__/
+*.pyc
+
+# IDE / OS
+.vs/
+.vscode/
+.idea/
+*.user
+Thumbs.db
+.DS_Store
+
+# Local AI assistant / tooling state
+.claude/
+
+# Original HTML CG pack (ported into web/cg, which is what ships)
+cg_templates/
+
+# CG Designer pages (written into the web root on save; the records live in the settings DB)
+web/cg/cgd_*.html

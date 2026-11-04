@@ -1,0 +1,333 @@
+.wrapper {
+    display: grid;
+    grid-template-columns: 1.1fr 1fr;
+    gap: 0.75rem;
+    height: 100%;
+    overflow: hidden;
+}
+
+.column {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-md);
+    padding: 0.75rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    min-height: 0;
+    overflow: hidden;
+}
+
+.sectionHeader {
+    font-weight: 700;
+    font-size: 0.95rem;
+    color: var(--text-primary);
+}
+
+.sectionHeaderRow {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.5rem;
+    font-weight: 600;
+    color: var(--text-primary);
+}
+
+.socialHost {
+    min-height: 320px;
+    max-height: 520px;
+    overflow: hidden;
+    border: 1px solid var(--border);
+    border-radius: var(--radius-sm);
+}
+
+.microButton {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 0.35rem 0.65rem;
+    font-size: 0.8rem;
+    border-radius: var(--radius-sm);
+    border: 1px solid var(--border);
+    background: var(--surface-highlight);
+    color: var(--text-primary);
+    cursor: pointer;
+}
+
+.logList {
+    flex: 1;
+    overflow-y: auto;
+    border: 1px solid var(--border);
+    border-radius: var(--radius-sm);
+    padding: 0.5rem;
+    background: var(--background);
+    min-height: 120px;
+}
+
+.logItem {
+    border-bottom: 1px solid var(--border);
+    padding: 0.35rem 0;
+}
+
+.logItem:last-child {
+    border-bottom: none;
+}
+
+.logTitle {
+    display: flex;
+    gap: 0.5rem;
+    align-items: center;
+    flex-wrap: wrap;
+    font-weight: 600;
+}
+
+.logClient {
+    color: var(--accent);
+}
+
+.logChannels {
+    color: var(--text-secondary);
+    font-size: 0.8rem;
+}
+
+.logTime {
+    margin-left: auto;
+    font-size: 0.8rem;
+    color: var(--text-muted);
+}
+
+.logMessage {
+    color: var(--text-primary);
+    font-size: 0.9rem;
+    margin-top: 0.25rem;
+}
+
+.logMeta {
+    display: flex;
+    gap: 0.75rem;
+    font-size: 0.8rem;
+    color: var(--text-secondary);
+    flex-wrap: wrap;
+}
+
+.status {
+    padding: 2px 6px;
+    border-radius: var(--radius-xs);
+    background: var(--surface-highlight);
+}
+
+.obsShell {
+    flex: 1;
+    border: 1px solid var(--border);
+    border-radius: var(--radius-sm);
+    overflow: hidden;
+    min-height: 260px;
+}
+
+.generatorPanel {
+    border: 1px solid var(--border);
+    border-radius: var(--radius-sm);
+    padding: 0.5rem;
+    background: var(--background);
+}
+
+.generatorHeader {
+    display: flex;
+    align-items: center;
+    gap: 0.45rem;
+    font-size: 0.85rem;
+    font-weight: 700;
+    color: var(--text-primary);
+    margin-bottom: 0.5rem;
+}
+
+.generatorHeader button {
+    margin-left: auto;
+}
+
+.generatorButtons {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.4rem;
+}
+
+.generatorButtons button {
+    padding: 0.35rem 0.55rem;
+    border-radius: var(--radius-sm);
+    border: 1px solid var(--border);
+    background: var(--surface-highlight);
+    color: var(--text-primary);
+    font-size: 0.75rem;
+    cursor: pointer;
+}
+
+.generatorButtons button:hover {
+    border-color: var(--accent);
+}
+
+.productionPanel {
+    border: 1px solid var(--border);
+    border-radius: var(--radius-sm);
+    padding: 0.5rem;
+    background: var(--background);
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.productionToolGrid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    gap: 0.4rem;
+    max-height: 180px;
+    overflow-y: auto;
+}
+
+.voiceStack {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.35rem;
+}
+
+.voiceStack span {
+    border: 1px solid var(--border);
+    border-radius: var(--radius-sm);
+    background: var(--surface-highlight);
+    color: var(--text-secondary);
+    padding: 0.25rem 0.45rem;
+    font-size: 0.72rem;
+}
+
+.productionTool {
+    min-height: 54px;
+    text-align: left;
+    padding: 0.45rem 0.55rem;
+    border-radius: var(--radius-sm);
+    border: 1px solid var(--border);
+    background: var(--surface-highlight);
+    color: var(--text-primary);
+    cursor: pointer;
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+    font-size: 0.78rem;
+    line-height: 1.2;
+}
+
+.productionTool:hover {
+    border-color: var(--accent);
+}
+
+.toolCategory {
+    text-transform: uppercase;
+    font-size: 0.66rem;
+    font-weight: 800;
+    color: var(--accent);
+    letter-spacing: 0.04em;
+}
+
+.productionPlan {
+    border: 1px solid var(--border);
+    border-radius: var(--radius-sm);
+    padding: 0.5rem;
+    background: var(--surface);
+    display: flex;
+    flex-direction: column;
+    gap: 0.45rem;
+}
+
+.productionPlanTop {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.5rem;
+}
+
+.productionPlanTop > div {
+    display: flex;
+    flex-direction: column;
+    gap: 0.15rem;
+    min-width: 0;
+}
+
+.scriptBox {
+    border: 1px solid var(--border);
+    border-radius: var(--radius-sm);
+    padding: 0.45rem;
+    background: var(--background);
+    color: var(--text-primary);
+    font-size: 0.84rem;
+    line-height: 1.35;
+}
+
+.stepList {
+    display: grid;
+    gap: 0.25rem;
+    color: var(--text-secondary);
+    font-size: 0.78rem;
+}
+
+.slateGrid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 0.5rem;
+    overflow-y: auto;
+    border: 1px solid var(--border);
+    border-radius: var(--radius-sm);
+    padding: 0.5rem;
+    background: var(--background);
+    min-height: 140px;
+    max-height: 320px;
+}
+
+.slateCard {
+    border: 1px solid var(--border);
+    border-radius: var(--radius-sm);
+    padding: 0.5rem;
+    background: var(--surface-highlight);
+    display: flex;
+    flex-direction: column;
+    gap: 0.35rem;
+}
+
+.slateTop {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 0.8rem;
+}
+
+.slateType {
+    text-transform: uppercase;
+    font-weight: 700;
+    letter-spacing: 0.05em;
+    color: var(--accent);
+}
+
+.slateTimer {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    color: var(--text-secondary);
+}
+
+.slateTitle {
+    font-weight: 600;
+    color: var(--text-primary);
+}
+
+.slateContent {
+    color: var(--text-secondary);
+    font-size: 0.85rem;
+    line-height: 1.3;
+    max-height: 120px;
+    overflow: hidden;
+}
+
+.muted {
+    color: var(--text-secondary);
+    font-size: 0.85rem;
+    display: inline-flex;
+    gap: 0.35rem;
+    align-items: center;
+}

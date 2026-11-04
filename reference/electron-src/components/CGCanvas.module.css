@@ -1,0 +1,249 @@
+/* ============================================
+   CG CANVAS - Broadcast Graphics Canvas Styles
+   ============================================ */
+
+.canvasWrapper {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+}
+
+.canvas {
+    position: relative;
+    background: linear-gradient(135deg, #0a0a0a 0%, #1a1a1a 100%);
+    border: 2px solid rgba(59, 130, 246, 0.3);
+    border-radius: 4px;
+    overflow: hidden;
+    box-shadow: 
+        0 0 60px rgba(0, 0, 0, 0.8),
+        0 0 20px rgba(59, 130, 246, 0.1) inset;
+}
+
+.canvas.previewMode {
+    border-color: rgba(16, 185, 129, 0.5);
+    box-shadow: 
+        0 0 60px rgba(0, 0, 0, 0.8),
+        0 0 30px rgba(16, 185, 129, 0.2);
+}
+
+/* Grid Overlay */
+.gridOverlay {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    z-index: 1;
+}
+
+/* Safe Zone Overlay */
+.safeZoneOverlay {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    z-index: 2;
+}
+
+.safeZone {
+    position: absolute;
+    border: 1px dashed;
+    pointer-events: none;
+}
+
+.safeZoneLabel {
+    position: absolute;
+    top: 4px;
+    left: 8px;
+    font-size: 10px;
+    font-family: monospace;
+    opacity: 0.8;
+}
+
+.centerCrosshair {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    width: 40px;
+    height: 40px;
+    pointer-events: none;
+}
+
+.crosshairH {
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 50%;
+    height: 1px;
+    background: rgba(59, 130, 246, 0.4);
+}
+
+.crosshairV {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 50%;
+    width: 1px;
+    background: rgba(59, 130, 246, 0.4);
+}
+
+/* Element Base */
+.element {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    user-select: none;
+    transition: box-shadow 0.15s ease;
+}
+
+.element.selected {
+    outline: 2px solid #3b82f6;
+    outline-offset: 2px;
+    box-shadow: 0 0 20px rgba(59, 130, 246, 0.4) !important;
+}
+
+.resizeHandle {
+    position: absolute;
+    right: -4px;
+    bottom: -4px;
+    width: 12px;
+    height: 12px;
+    background: #3b82f6;
+    border: 2px solid #ffffff;
+    border-radius: 2px;
+    cursor: nwse-resize;
+}
+
+/* Lower Third */
+.lowerThird {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 12px 24px;
+    height: 100%;
+    width: 100%;
+}
+
+.l3Title {
+    font-weight: 700;
+    line-height: 1.2;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+.l3Subtitle {
+    opacity: 0.85;
+    line-height: 1.3;
+    margin-top: 4px;
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+}
+
+/* Ticker */
+.tickerLabel {
+    display: flex;
+    align-items: center;
+    height: 100%;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+
+.tickerContent {
+    display: flex;
+    align-items: center;
+    white-space: nowrap;
+    padding: 0 24px;
+}
+
+.tickerContent.tickerAnimated {
+    animation: tickerScroll linear infinite;
+}
+
+@keyframes tickerScroll {
+    0% {
+        transform: translateX(100%);
+    }
+    100% {
+        transform: translateX(-100%);
+    }
+}
+
+/* Bug */
+.bug {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.bugImage {
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: contain;
+}
+
+/* Custom Content */
+.customContent {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    height: 100%;
+    width: 100%;
+    padding: 20px;
+    font-weight: 700;
+    text-shadow: 0 2px 8px rgba(0, 0, 0, 0.4);
+}
+
+/* Resolution Indicator */
+.resolutionIndicator {
+    position: absolute;
+    bottom: 8px;
+    right: 8px;
+    padding: 4px 8px;
+    background: rgba(15, 23, 42, 0.8);
+    border: 1px solid rgba(59, 130, 246, 0.3);
+    border-radius: 4px;
+    font-size: 11px;
+    font-family: monospace;
+    color: #94a3b8;
+}
+
+/* Animation keyframes for loop effects */
+@keyframes pulse {
+    0%, 100% {
+        opacity: 1;
+    }
+    50% {
+        opacity: 0.7;
+    }
+}
+
+@keyframes glowPulse {
+    0%, 100% {
+        filter: brightness(1);
+        box-shadow: 0 0 20px currentColor;
+    }
+    50% {
+        filter: brightness(1.2);
+        box-shadow: 0 0 40px currentColor;
+    }
+}
+
+@keyframes shimmer {
+    0% {
+        background-position: -200% 0;
+    }
+    100% {
+        background-position: 200% 0;
+    }
+}
+
+@keyframes bounce {
+    0%, 100% {
+        transform: translateY(0);
+    }
+    50% {
+        transform: translateY(-5px);
+    }
+}

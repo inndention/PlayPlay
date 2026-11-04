@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=1920, initial-scale=1.0">
+    <title>Ticker</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            width: 1920px;
+            height: 1080px;
+            overflow: hidden;
+            background: transparent;
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+        }
+
+        .ticker-container {
+            position: absolute;
+            bottom: 60px;
+            left: 0;
+            right: 0;
+            height: 50px;
+            background: rgba(0, 217, 255, 0.15);
+            backdrop-filter: blur(10px);
+            border-top: 2px solid rgba(0, 217, 255, 0.5);
+            border-bottom: 2px solid rgba(0, 217, 255, 0.3);
+            overflow: hidden;
+            box-shadow: 0 -4px 24px rgba(0, 217, 255, 0.2);
+        }
+
+        .ticker-wrapper {
+            display: flex;
+            align-items: center;
+            height: 100%;
+            white-space: nowrap;
+            animation: scroll 30s linear infinite;
+        }
+
+        @keyframes scroll {
+            0% {
+                transform: translateX(100%);
+            }
+
+            100% {
+                transform: translateX(-100%);
+            }
+        }
+
+        .ticker-label {
+            background: linear-gradient(135deg, #00d9ff 0%, #a855f7 100%);
+            padding: 0 20px;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            font-weight: 700;
+            font-size: 20px;
+            color: white;
+            letter-spacing: 2px;
+            margin-right: 30px;
+            box-shadow: 4px 0 12px rgba(0, 217, 255, 0.3);
+        }
+
+        .ticker-text {
+            font-size: 22px;
+            font-weight: 500;
+            color: white;
+            text-shadow: 0 2px 8px rgba(0, 0, 0, 0.5);
+            padding: 0 40px;
+            letter-spacing: 0.5px;
+        }
+
+        .ticker-separator {
+            color: rgba(0, 217, 255, 0.8);
+            font-size: 24px;
+            margin: 0 20px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="ticker-container">
+        <div class="ticker-wrapper" id="tickerWrapper">
+            <span class="ticker-label">BREAKING</span>
+            <span class="ticker-text" id="tickerText">Breaking news update</span>
+        </div>
+    </div>
+
+    <script>
+        // Parse URL parameters
+        const params = new URLSearchParams(window.location.search);
+        const text = params.get('text') || 'Breaking news update';
+        const speed = parseInt(params.get('speed') || '30'); // Animation duration in seconds
+        const label = params.get('label') || 'BREAKING';
+
+        // Update content
+        document.querySelector('.ticker-label').textContent = label;
+        document.getElementById('tickerText').textContent = text;
+
+        // Adjust animation speed
+        const wrapper = document.getElementById('tickerWrapper');
+        wrapper.style.animationDuration = `${speed}s`;
+
+        // Duplicate text for seamless loop
+        const tickerContent = wrapper.innerHTML;
+        wrapper.innerHTML = tickerContent + '<span class="ticker-separator">●</span>' + tickerContent;
+    </script>
+</body>
+
+</html>

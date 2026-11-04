@@ -1,0 +1,326 @@
+/* OBSController - OBS Control Panel Styles */
+
+.container {
+    display: flex;
+    flex-direction: column;
+    background: var(--surface);
+    border-radius: var(--radius-md);
+    overflow: hidden;
+}
+
+.header {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.5rem 0.75rem;
+    background: linear-gradient(180deg, var(--surface-highlight) 0%, var(--surface) 100%);
+    border-bottom: 1px solid var(--border);
+    font-size: 0.85rem;
+    font-weight: 700;
+    color: var(--text-primary);
+}
+
+.tabBar {
+    display: flex;
+    gap: 0.25rem;
+    padding: 0.35rem 0.75rem;
+    background: var(--surface);
+    border-bottom: 1px solid var(--border);
+}
+
+.tab {
+    padding: 0.4rem 0.65rem;
+    border-radius: var(--radius-sm);
+    border: 1px solid var(--border);
+    background: var(--surface-highlight);
+    color: var(--text-primary);
+    font-size: 0.8rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.15s;
+}
+
+.tab:hover {
+    background: var(--surface);
+    color: var(--text-primary);
+}
+
+.tabActive {
+    background: var(--accent);
+    color: var(--text-on-accent);
+    border-color: var(--accent);
+}
+
+.session {
+    border-bottom: 1px solid var(--border);
+}
+
+.session:last-child {
+    border-bottom: none;
+}
+
+.sessionHeader {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    width: 100%;
+    padding: 0.5rem 0.75rem;
+    background: transparent;
+    border: none;
+    color: var(--text-primary);
+    font-size: 0.8rem;
+    cursor: pointer;
+    transition: background 0.15s;
+}
+
+.sessionHeader:hover {
+    background: var(--surface-highlight);
+}
+
+.statusDot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: var(--text-muted);
+}
+
+.statusDot.connected {
+    background: var(--success);
+    box-shadow: 0 0 6px var(--success);
+}
+
+.sessionName {
+    flex: 1;
+    text-align: left;
+    font-weight: 600;
+}
+
+.sessionStatus {
+    display: flex;
+    gap: 0.3rem;
+}
+
+.recording {
+    color: var(--danger);
+    animation: pulse 1s infinite;
+}
+
+.streaming {
+    color: var(--success);
+    animation: pulse 1.5s infinite;
+}
+
+@keyframes pulse {
+
+    0%,
+    100% {
+        opacity: 1;
+    }
+
+    50% {
+        opacity: 0.5;
+    }
+}
+
+.sessionContent {
+    padding: 0.5rem 0.75rem;
+    background: var(--background);
+}
+
+.connectionRow {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    margin-bottom: 0.5rem;
+}
+
+.hostInfo {
+    font-size: 0.7rem;
+    color: var(--text-muted);
+    font-family: var(--font-mono);
+}
+
+.controlRow {
+    display: flex;
+    gap: 0.5rem;
+    margin-bottom: 0.5rem;
+}
+
+.btn {
+    display: flex;
+    align-items: center;
+    gap: 0.3rem;
+    padding: 0.35rem 0.6rem;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-sm);
+    color: var(--text-primary);
+    font-size: 0.7rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.15s;
+}
+
+.btn:hover {
+    background: var(--surface-highlight);
+}
+
+.btnPrimary {
+    background: var(--accent);
+    border-color: var(--accent);
+    color: white;
+}
+
+.btnPrimary:hover {
+    background: #1d4ed8;
+}
+
+.btnDanger {
+    background: transparent;
+    border-color: var(--danger);
+    color: var(--danger);
+}
+
+.btnDanger:hover {
+    background: rgba(239, 68, 68, 0.1);
+}
+
+.btnActive {
+    background: var(--danger);
+    border-color: var(--danger);
+    color: white;
+    animation: pulse 1s infinite;
+}
+
+.scenesSection {
+    margin-top: 0.5rem;
+}
+
+.scenesHeader {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 0.7rem;
+    color: var(--text-muted);
+    margin-bottom: 0.25rem;
+}
+
+.refreshBtn {
+    background: transparent;
+    border: none;
+    color: var(--text-muted);
+    cursor: pointer;
+    padding: 0.2rem;
+    border-radius: 3px;
+}
+
+.refreshBtn:hover {
+    color: var(--text-primary);
+    background: var(--surface-highlight);
+}
+
+.scenesList {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.25rem;
+}
+
+.sceneBtn {
+    padding: 0.25rem 0.5rem;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-sm);
+    color: var(--text-secondary);
+    font-size: 0.65rem;
+    cursor: pointer;
+    transition: all 0.15s;
+}
+
+.sceneBtn:hover {
+    background: var(--surface-highlight);
+    color: var(--text-primary);
+}
+
+.activeScene {
+    background: var(--accent);
+    border-color: var(--accent);
+    color: white;
+}
+
+.noScenes {
+    font-size: 0.65rem;
+    color: var(--text-muted);
+    font-style: italic;
+}
+
+.empty {
+    color: var(--text-muted);
+    font-size: 0.75rem;
+}
+
+/* Custom Commands */
+.commandsSection {
+    margin-top: 1rem;
+    border-top: 1px solid var(--border);
+    padding-top: 0.75rem;
+}
+
+.commandsHeader {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 0.7rem;
+    color: var(--text-muted);
+    margin-bottom: 0.5rem;
+}
+
+.commandList {
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+}
+
+.commandRow {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.25rem 0.5rem;
+    background: var(--surface);
+    border-radius: var(--radius-sm);
+    border: 1px solid var(--border);
+}
+
+.commandLabel {
+    flex: 1;
+    font-size: 0.7rem;
+    color: var(--text-primary);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.commandForm {
+    margin-top: 0.5rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.4rem;
+    background: var(--background);
+    padding: 0.5rem;
+    border-radius: var(--radius-sm);
+    border: 1px solid var(--border);
+}
+
+.formInput {
+    width: 100%;
+    padding: 0.3rem;
+    font-size: 0.7rem;
+    border: 1px solid var(--border);
+    border-radius: 2px;
+    background: var(--surface);
+    color: var(--text-primary);
+}
+
+.formRow {
+    display: flex;
+    gap: 0.5rem;
+}

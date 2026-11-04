@@ -1,0 +1,11 @@
+[Global]
+Type=5
+XPos=65
+YPos=50
+Trans1=0
+BTrans=1
+DTrans=0
+FontName=Consolas
+FontSize=36
+FontColor=16711680
+BFarbe=16777215

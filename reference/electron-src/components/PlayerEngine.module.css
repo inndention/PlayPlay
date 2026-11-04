@@ -1,0 +1,686 @@
+/* PlayerEngine - Professional Broadcast Player */
+
+.container {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    background: #000;
+    overflow: visible;
+}
+
+.video {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: auto;
+    width: calc(100% - var(--audio-rail-width, 0px));
+    height: 100%;
+    object-fit: contain;
+    object-position: center center;
+    transition: opacity 0.3s ease-in-out;
+}
+
+.active {
+    opacity: 1;
+    z-index: 2;
+}
+
+.inactive {
+    opacity: 0;
+    z-index: 1;
+}
+
+/* Standby Screen */
+.idle {
+    position: absolute;
+    top: 50%;
+    left: calc((100% - var(--audio-rail-width, 0px)) / 2);
+    transform: translate(-50%, -50%);
+    color: #444;
+    font-family: var(--font-mono);
+    font-size: 1.5rem;
+    font-weight: 700;
+    letter-spacing: 0.2em;
+    z-index: 5;
+    text-align: center;
+}
+
+/* Error Display */
+.error {
+    position: absolute;
+    top: 50%;
+    left: calc((100% - var(--audio-rail-width, 0px)) / 2);
+    transform: translate(-50%, -50%);
+    background: rgba(239, 68, 68, 0.9);
+    color: white;
+    padding: 1rem 2rem;
+    border-radius: 8px;
+    font-size: 0.9rem;
+    font-weight: 600;
+    z-index: 50;
+    text-align: center;
+}
+
+/* GAP Screen */
+.gapScreen {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: var(--audio-rail-width, 0px);
+    bottom: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(135deg, #1a1a1f 0%, #0a0a0c 100%);
+    z-index: 10;
+}
+
+.gapPattern {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: repeating-linear-gradient(45deg,
+            transparent,
+            transparent 20px,
+            rgba(245, 158, 11, 0.03) 20px,
+            rgba(245, 158, 11, 0.03) 40px);
+}
+
+.gapText {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--warning);
+    letter-spacing: 0.2em;
+    text-shadow: 0 0 30px rgba(245, 158, 11, 0.3);
+    z-index: 1;
+}
+
+.gapDuration {
+    font-family: var(--font-mono);
+    font-size: 3rem;
+    font-weight: 700;
+    color: rgba(245, 158, 11, 0.8);
+    margin-top: 0.5rem;
+    z-index: 1;
+}
+
+/* Progress Overlay */
+.progressOverlay {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: var(--audio-rail-width, 0px);
+    padding: 0.5rem;
+    background: linear-gradient(transparent, rgba(0, 0, 0, 0.8));
+    z-index: 20;
+}
+
+.progressBar {
+    height: 4px;
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: 2px;
+    overflow: hidden;
+    margin-bottom: 0.25rem;
+}
+
+.progressFill {
+    height: 100%;
+    background: linear-gradient(90deg, var(--accent), #60a5fa);
+    border-radius: 2px;
+    transition: width 0.1s linear;
+}
+
+.timeInfo {
+    display: flex;
+    justify-content: space-between;
+    font-family: var(--font-mono);
+    font-size: 0.7rem;
+}
+
+.elapsed {
+    color: rgba(255, 255, 255, 0.6);
+}
+
+.remaining {
+    color: var(--accent);
+    font-weight: 600;
+}
+
+/* Tally Light (Red indicator when live) */
+.tallyLight {
+    position: absolute;
+    top: 8px;
+    right: calc(var(--audio-rail-width, 0px) + 8px);
+    width: 12px;
+    height: 12px;
+    background: var(--danger);
+    border-radius: 50%;
+    z-index: 30;
+    box-shadow: 0 0 8px var(--danger), 0 0 20px var(--danger);
+    animation: tallyPulse 1s infinite;
+}
+
+@keyframes tallyPulse {
+
+    0%,
+    100% {
+        opacity: 1;
+        box-shadow: 0 0 8px var(--danger), 0 0 20px var(--danger);
+    }
+
+    50% {
+        opacity: 0.7;
+        box-shadow: 0 0 4px var(--danger), 0 0 10px var(--danger);
+    }
+}
+
+/* Audio Controls */
+.audioControls {
+    position: absolute;
+    top: 6px;
+    bottom: 6px;
+    right: 6px;
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    justify-content: space-between;
+    gap: 6px;
+    background: linear-gradient(180deg, rgba(3, 8, 20, 0.92), rgba(10, 16, 30, 0.9));
+    border: 1px solid rgba(148, 163, 184, 0.35);
+    backdrop-filter: blur(10px);
+    padding: 6px 5px;
+    border-radius: 8px;
+    z-index: 25;
+    width: calc(var(--audio-rail-width, 86px) - 12px);
+    max-width: calc(var(--audio-rail-width, 86px) - 12px);
+    height: auto;
+}
+
+.audioControlsGutter {
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: auto;
+    width: var(--audio-rail-width, 96px);
+    max-width: var(--audio-rail-width, 96px);
+    height: 100%;
+    border: 0;
+    border-radius: 0;
+    background: linear-gradient(180deg, rgba(4, 8, 18, 0.98), rgba(12, 18, 32, 0.96));
+    backdrop-filter: none;
+    gap: 8px;
+    padding: 10px 8px;
+}
+
+.audioTopButtons {
+    display: flex;
+    justify-content: space-between;
+    gap: 6px;
+}
+
+.muteBtn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: transparent;
+    border: none;
+    color: #fff;
+    cursor: pointer;
+    padding: 4px;
+    border-radius: 4px;
+    transition: background 0.2s;
+}
+
+.toggleOn {
+    background: rgba(34, 197, 94, 0.18);
+    border: 1px solid rgba(34, 197, 94, 0.5);
+}
+
+.toggleOff {
+    background: rgba(239, 68, 68, 0.15);
+    border: 1px solid rgba(239, 68, 68, 0.45);
+}
+
+.muteBtn:hover {
+    background: rgba(255, 255, 255, 0.2);
+}
+
+.volumeSlider {
+    width: 52px;
+    height: 4px;
+    -webkit-appearance: none;
+    appearance: none;
+    background: rgba(255, 255, 255, 0.3);
+    border-radius: 2px;
+    cursor: pointer;
+}
+
+.volumeSlider::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 12px;
+    height: 12px;
+    background: #fff;
+    border-radius: 50%;
+    cursor: pointer;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+}
+
+.volumeSlider::-moz-range-thumb {
+    width: 12px;
+    height: 12px;
+    background: #fff;
+    border-radius: 50%;
+    cursor: pointer;
+    border: none;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+}
+
+.audioMeterPro {
+    display: flex;
+    align-items: stretch;
+    justify-content: center;
+    gap: 1px;
+    min-width: 0;
+    flex: 1;
+}
+
+.meterChannelVertical {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 3px;
+}
+
+.meterLabel {
+    font-size: 0.58rem;
+    color: rgba(255, 255, 255, 0.72);
+    font-family: var(--font-mono);
+    width: auto;
+    letter-spacing: 0.08em;
+}
+
+.meterBarVertical {
+    position: relative;
+    width: 22px;
+    height: 100%;
+    background: rgba(20, 25, 38, 0.95);
+    border: 1px solid rgba(71, 85, 105, 0.55);
+    border-radius: 3px;
+    overflow: hidden;
+}
+
+.audioControlsGutter .meterBarVertical {
+    width: 26px;
+}
+
+.audioControlsGutter .audioMeterPro {
+    gap: 7px;
+}
+
+.audioControlsGutter .audioBottomButtons {
+    padding-top: 6px;
+    border-top: 1px solid rgba(148, 163, 184, 0.22);
+}
+
+.audioControlsGutter .monitorBlock {
+    margin-top: 4px;
+}
+
+.audioControlsGutter .monitorSelect {
+    height: 18px;
+    font-size: 0.48rem;
+}
+
+.audioControlsGutter .muteBtn {
+    width: 28px;
+    height: 28px;
+    padding: 0;
+}
+
+.meterSegments {
+    position: absolute;
+    inset: 1px;
+    display: flex;
+    flex-direction: column-reverse;
+    gap: 1px;
+}
+
+.meterSegment {
+    width: 100%;
+    flex: 1;
+    border-radius: 1px;
+    transition: background-color 0.04s linear;
+}
+
+.segOff {
+    background: rgba(30, 41, 59, 0.65);
+}
+
+.segGreen {
+    background: #39ff14;
+}
+
+.segYellow {
+    background: #f4ea2a;
+}
+
+.segRed {
+    background: #ff4d2e;
+}
+
+.meterPeakVertical {
+    position: absolute;
+    left: -1px;
+    right: -1px;
+    height: 2px;
+    background: #e2e8f0;
+    transition: bottom 0.05s linear;
+    box-shadow: 0 0 6px rgba(226, 232, 240, 0.85);
+}
+
+.gainBlock {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 4px;
+    min-width: 30px;
+}
+
+.volumeBlock {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0;
+    min-width: 20px;
+}
+
+.volumeSliderVertical {
+    appearance: auto;
+    writing-mode: vertical-lr;
+    direction: rtl;
+    width: 20px;
+    height: 100%;
+    cursor: ns-resize;
+}
+
+.audioBottomButtons {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 3px;
+    flex-wrap: nowrap;
+}
+
+.gainLabel {
+    font-size: 0.56rem;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    color: #93c5fd;
+}
+
+.gainSliderVertical {
+    appearance: auto;
+    writing-mode: vertical-lr;
+    direction: rtl;
+    width: 18px;
+    height: 58px;
+    cursor: ns-resize;
+}
+
+.gainValue {
+    font-size: 0.56rem;
+    font-family: var(--font-mono);
+    color: rgba(255, 255, 255, 0.75);
+}
+
+.volumeLabel {
+    font-size: 0.65rem;
+    color: rgba(255, 255, 255, 0.7);
+    font-family: var(--font-mono);
+    min-width: 28px;
+    text-align: right;
+}
+
+.normalizeToggle {
+    display: inline-flex;
+    align-items: center;
+    gap: 2px;
+    font-size: 0.47rem;
+    color: rgba(255, 255, 255, 0.8);
+    letter-spacing: 0.06em;
+    font-weight: 600;
+    justify-content: center;
+}
+
+.monitorBlock {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 2px;
+}
+
+.monitorSelect {
+    width: 100%;
+    max-width: 100%;
+    height: 20px;
+    border: 1px solid rgba(255, 255, 255, 0.22);
+    border-radius: 4px;
+    background: rgba(0, 0, 0, 0.55);
+    color: rgba(255, 255, 255, 0.85);
+    font-size: 0.52rem;
+    padding: 0 2px;
+}
+
+.monitorUnavailable {
+    font-size: 0.62rem;
+    color: rgba(255, 255, 255, 0.5);
+}
+
+.monitorAudioElement {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    opacity: 0;
+    pointer-events: none;
+}
+
+/* Hardware Acceleration Badge */
+.hwAccelBadge {
+    position: absolute;
+    top: 8px;
+    left: calc((100% - var(--audio-rail-width, 0px)) / 2);
+    transform: translateX(-50%);
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    background: linear-gradient(135deg, rgba(34, 197, 94, 0.2), rgba(34, 197, 94, 0.1));
+    border: 1px solid rgba(34, 197, 94, 0.4);
+    padding: 3px 8px;
+    border-radius: 4px;
+    font-size: 0.6rem;
+    font-weight: 600;
+    color: #4ade80;
+    letter-spacing: 0.5px;
+    z-index: 25;
+}
+
+.hwAccelBadge svg {
+    color: #22c55e;
+}
+
+/* Enhancement Toggle Button */
+.enhancementToggle {
+    position: absolute;
+    top: 8px;
+    right: calc(var(--audio-rail-width, 0px) + 30px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 28px;
+    height: 28px;
+    background: rgba(0, 0, 0, 0.6);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 6px;
+    color: #94a3b8;
+    cursor: pointer;
+    transition: all 0.2s;
+    z-index: 25;
+}
+
+.enhancementToggle:hover {
+    background: rgba(129, 140, 248, 0.2);
+    border-color: #818cf8;
+    color: #a5b4fc;
+}
+
+/* Enhancement Panel */
+.enhancementPanel {
+    position: absolute;
+    top: 44px;
+    right: calc(var(--audio-rail-width, 0px) + 8px);
+    width: 240px;
+    background: rgba(15, 15, 26, 0.95);
+    backdrop-filter: blur(12px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 10px;
+    z-index: 100;
+    overflow: hidden;
+}
+
+.enhancementHeader {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 14px;
+    background: rgba(255, 255, 255, 0.03);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+.enhancementHeader span {
+    font-size: 0.75rem;
+    font-weight: 600;
+    color: #e2e8f0;
+}
+
+.enhancementHeader button {
+    background: none;
+    border: none;
+    color: #64748b;
+    font-size: 1.1rem;
+    cursor: pointer;
+    padding: 0;
+    line-height: 1;
+}
+
+.enhancementHeader button:hover {
+    color: #f8fafc;
+}
+
+.presetButtons {
+    display: flex;
+    gap: 4px;
+    padding: 10px;
+    flex-wrap: wrap;
+}
+
+.presetBtn {
+    flex: 1;
+    min-width: 50px;
+    padding: 6px 8px;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 5px;
+    color: #94a3b8;
+    font-size: 0.65rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.presetBtn:hover {
+    background: rgba(255, 255, 255, 0.1);
+    color: #f8fafc;
+}
+
+.presetBtn.active {
+    background: linear-gradient(135deg, rgba(129, 140, 248, 0.2), rgba(167, 139, 250, 0.1));
+    border-color: #818cf8;
+    color: #a5b4fc;
+}
+
+.enhancementSettings {
+    padding: 10px 14px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.settingRow {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 8px;
+}
+
+.settingRow > span:first-child {
+    font-size: 0.7rem;
+    color: #94a3b8;
+    flex-shrink: 0;
+}
+
+.settingRow select {
+    flex: 1;
+    padding: 4px 8px;
+    background: rgba(15, 23, 42, 0.8);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 4px;
+    color: #e2e8f0;
+    font-size: 0.7rem;
+    cursor: pointer;
+    outline: none;
+}
+
+.settingRow select:focus {
+    border-color: #818cf8;
+}
+
+.settingRow input[type="range"] {
+    flex: 1;
+    height: 4px;
+    -webkit-appearance: none;
+    appearance: none;
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: 2px;
+    cursor: pointer;
+}
+
+.settingRow input[type="range"]::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 10px;
+    height: 10px;
+    background: #818cf8;
+    border-radius: 50%;
+    cursor: pointer;
+}
+
+.settingRow input[type="range"]::-moz-range-thumb {
+    width: 10px;
+    height: 10px;
+    background: #818cf8;
+    border-radius: 50%;
+    cursor: pointer;
+    border: none;
+}
+
+.settingValue {
+    font-size: 0.65rem;
+    color: #64748b;
+    min-width: 32px;
+    text-align: right;
+    font-family: var(--font-mono);
+}

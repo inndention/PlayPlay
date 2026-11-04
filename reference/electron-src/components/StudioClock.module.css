@@ -1,0 +1,88 @@
+/* StudioClock - Professional Broadcast Timecode Display */
+
+.container {
+    display: flex;
+    gap: 1.5rem;
+    background: linear-gradient(180deg, #0a0a0c 0%, #000000 100%);
+    padding: 0.75rem 1.25rem;
+    border-radius: var(--radius-md);
+    border: 1px solid #222;
+    font-family: var(--font-mono);
+    align-items: center;
+    justify-content: center;
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.05), 0 4px 12px rgba(0, 0, 0, 0.5);
+}
+
+.divider {
+    width: 1px;
+    height: 40px;
+    background: linear-gradient(180deg, transparent, #333, transparent);
+}
+
+.mainTime,
+.countdown {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.label {
+    font-size: 0.55rem;
+    color: #555;
+    font-weight: 700;
+    letter-spacing: 0.15em;
+    margin-bottom: 0.15rem;
+}
+
+.timeDisplay {
+    font-size: 1.6rem;
+    font-weight: 700;
+    color: #f0f0f0;
+    text-shadow: 0 0 20px rgba(255, 255, 255, 0.2);
+    display: flex;
+    align-items: baseline;
+}
+
+.millis {
+    font-size: 1rem;
+    color: #666;
+    margin-left: 2px;
+}
+
+.utcLine {
+    font-size: 0.65rem;
+    color: #6b7280;
+    margin-top: 0.2rem;
+    letter-spacing: 0.04em;
+}
+
+.countdownDisplay {
+    font-size: 1.6rem;
+    font-weight: 700;
+    color: var(--accent);
+    text-shadow: 0 0 20px rgba(59, 130, 246, 0.3);
+    transition: color 0.3s, text-shadow 0.3s;
+}
+
+.warning {
+    color: var(--warning);
+    text-shadow: 0 0 20px rgba(245, 158, 11, 0.4);
+}
+
+.critical {
+    color: var(--danger);
+    text-shadow: 0 0 25px rgba(239, 68, 68, 0.5);
+    animation: criticalPulse 0.5s infinite;
+}
+
+@keyframes criticalPulse {
+
+    0%,
+    100% {
+        opacity: 1;
+    }
+
+    50% {
+        opacity: 0.6;
+    }
+}

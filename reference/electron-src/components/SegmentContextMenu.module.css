@@ -1,0 +1,221 @@
+.menu {
+    position: fixed;
+    z-index: 2000;
+    min-width: 200px;
+    max-width: 280px;
+    background: #1a1a1a;
+    border: 1px solid #333;
+    border-radius: 8px;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.5);
+    overflow: hidden;
+    font-size: 0.85rem;
+}
+
+.header {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.75rem 1rem;
+    background: #151515;
+    border-bottom: 1px solid #222;
+    font-weight: 500;
+    color: #fff;
+}
+
+.segmentBadge {
+    padding: 0.2rem 0.5rem;
+    border-radius: 4px;
+    font-size: 0.75rem;
+    font-weight: 600;
+    color: #fff;
+}
+
+.segmentTime {
+    margin-left: auto;
+    font-size: 0.75rem;
+    color: #666;
+    font-family: monospace;
+}
+
+.menuItem {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    width: 100%;
+    padding: 0.65rem 1rem;
+    background: transparent;
+    border: none;
+    color: #ccc;
+    cursor: pointer;
+    text-align: left;
+    font-size: 0.85rem;
+    transition: all 0.15s;
+}
+
+.menuItem:hover {
+    background: #222;
+    color: #fff;
+}
+
+.menuItem.danger {
+    color: #ef4444;
+}
+
+.menuItem.danger:hover {
+    background: #ef444420;
+}
+
+.chevron {
+    margin-left: auto;
+    color: #555;
+}
+
+.divider {
+    height: 1px;
+    background: #222;
+    margin: 0.25rem 0;
+}
+
+.menuItemWithSubmenu {
+    position: relative;
+}
+
+.colorPicker {
+    position: absolute;
+    top: 0;
+    left: 100%;
+    margin-left: 4px;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 4px;
+    padding: 0.5rem;
+    background: #1a1a1a;
+    border: 1px solid #333;
+    border-radius: 8px;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.3);
+}
+
+.colorSwatch {
+    width: 24px;
+    height: 24px;
+    border: 2px solid transparent;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: all 0.15s;
+}
+
+.colorSwatch:hover {
+    transform: scale(1.1);
+    border-color: #fff;
+}
+
+.saveDialog {
+    padding: 0.75rem 1rem;
+    background: #151515;
+    border-top: 1px solid #222;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.saveInput {
+    width: 100%;
+    padding: 0.5rem 0.75rem;
+    background: #1a1a1a;
+    border: 1px solid #333;
+    border-radius: 4px;
+    color: #fff;
+    font-size: 0.85rem;
+}
+
+.saveInput:focus {
+    outline: none;
+    border-color: #3b82f6;
+}
+
+.saveColorRow {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.8rem;
+    color: #888;
+}
+
+.colorPickerInline {
+    display: flex;
+    gap: 4px;
+}
+
+.colorSwatchSmall {
+    width: 18px;
+    height: 18px;
+    border: 2px solid transparent;
+    border-radius: 3px;
+    cursor: pointer;
+    transition: all 0.15s;
+}
+
+.colorSwatchSmall:hover {
+    transform: scale(1.1);
+}
+
+.colorSwatchSmall.selected {
+    border-color: #fff;
+    box-shadow: 0 0 0 2px rgba(255, 255, 255, 0.3);
+}
+
+.saveBtn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    padding: 0.5rem 1rem;
+    background: #3b82f6;
+    border: none;
+    border-radius: 4px;
+    color: #fff;
+    cursor: pointer;
+    font-size: 0.85rem;
+    font-weight: 500;
+    transition: all 0.15s;
+}
+
+.saveBtn:hover {
+    background: #2563eb;
+}
+
+.segmentList {
+    padding: 0.5rem 1rem;
+}
+
+.segmentListHeader {
+    display: block;
+    font-size: 0.75rem;
+    color: #666;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    margin-bottom: 0.5rem;
+}
+
+.segmentListItem {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.35rem 0;
+    font-size: 0.8rem;
+    color: #aaa;
+}
+
+.segmentDot {
+    width: 8px;
+    height: 8px;
+    border-radius: 2px;
+}
+
+.segmentDuration {
+    margin-left: auto;
+    font-size: 0.7rem;
+    color: #555;
+    font-family: monospace;
+}
+

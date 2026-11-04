@@ -1,0 +1,269 @@
+{
+ "_comment": "stripFences / salvageJson answers of starmedia src/openrouter.ts for these inputs (tools/studio/scripts/export-salvage-golden.mjs). out = JSON.stringify of the salvaged value, null when salvageJson returned undefined.",
+ "version": 1,
+ "source": {
+  "file": "src/openrouter.ts",
+  "commit": "3141d6b7489b5181ce39c0ab56e70f0fe60c1278 2026-10-23",
+  "sha256": "d193c620a443967922e9c9b263435395b6a1f6dcca60015702338b8f5c38f1a7"
+ },
+ "cases": [
+  {
+   "in": "{\"a\":1}",
+   "strip": "{\"a\":1}",
+   "out": "{\"a\":1}",
+   "undefined": false
+  },
+  {
+   "in": "```json\n{\"a\":1}\n```",
+   "strip": "{\"a\":1}",
+   "out": "{\"a\":1}",
+   "undefined": false
+  },
+  {
+   "in": "```\n[1,2]\n```",
+   "strip": "[1,2]",
+   "out": "[1,2]",
+   "undefined": false
+  },
+  {
+   "in": "Here is the plan: {\"a\":[1,2,3]} hope it helps",
+   "strip": "Here is the plan: {\"a\":[1,2,3]} hope it helps",
+   "out": "{\"a\":[1,2,3]}",
+   "undefined": false
+  },
+  {
+   "in": "{\"items\":[{\"x\":1},{\"x\":2},{\"x\":",
+   "strip": "{\"items\":[{\"x\":1},{\"x\":2},{\"x\":",
+   "out": "{\"items\":[{\"x\":1},{\"x\":2}]}",
+   "undefined": false
+  },
+  {
+   "in": "{\"items\":[1,2,3",
+   "strip": "{\"items\":[1,2,3",
+   "out": "{\"items\":[1,2]}",
+   "undefined": false
+  },
+  {
+   "in": "[{\"a\":\"b\"},{\"a\":\"c",
+   "strip": "[{\"a\":\"b\"},{\"a\":\"c",
+   "out": "[{\"a\":\"b\"}]",
+   "undefined": false
+  },
+  {
+   "in": "{\"a\":\"b\",\"c\":",
+   "strip": "{\"a\":\"b\",\"c\":",
+   "out": null,
+   "undefined": true
+  },
+  {
+   "in": "no json here",
+   "strip": "no json here",
+   "out": null,
+   "undefined": true
+  },
+  {
+   "in": "",
+   "strip": "",
+   "out": null,
+   "undefined": true
+  },
+  {
+   "in": "{\"a\": \"x}y\", \"b\": [1, {\"c\": \"d\\\"e\"}, 3",
+   "strip": "{\"a\": \"x}y\", \"b\": [1, {\"c\": \"d\\\"e\"}, 3",
+   "out": "{\"a\":\"x}y\",\"b\":[1,{\"c\":\"d\\\"e\"}]}",
+   "undefined": false
+  },
+  {
+   "in": "  ```json {\"k\":true}```  ",
+   "strip": "{\"k\":true}",
+   "out": "{\"k\":true}",
+   "undefined": false
+  },
+  {
+   "in": "prefix [1, 2, ",
+   "strip": "prefix [1, 2,",
+   "out": "[1,2]",
+   "undefined": false
+  },
+  {
+   "in": "{\"s\":\"é \"}",
+   "strip": "{\"s\":\"é \"}",
+   "out": "{\"s\":\"é \"}",
+   "undefined": false
+  },
+  {
+   "in": "[[1,2],[3,",
+   "strip": "[[1,2],[3,",
+   "out": "[[1,2],[3]]",
+   "undefined": false
+  },
+  {
+   "in": "{\"a\":{\"b\":{\"c\":1}},\"d\":[",
+   "strip": "{\"a\":{\"b\":{\"c\":1}},\"d\":[",
+   "out": "{\"a\":{\"b\":{\"c\":1}}}",
+   "undefined": false
+  },
+  {
+   "in": "text } then {\"ok\":1}",
+   "strip": "text } then {\"ok\":1}",
+   "out": "{\"ok\":1}",
+   "undefined": false
+  },
+  {
+   "in": "{\"a\":1}}",
+   "strip": "{\"a\":1}}",
+   "out": null,
+   "undefined": true
+  },
+  {
+   "in": "[1,2]]",
+   "strip": "[1,2]]",
+   "out": null,
+   "undefined": true
+  },
+  {
+   "in": "{\"a\":[{\"b\":1}, {\"c\":2}],",
+   "strip": "{\"a\":[{\"b\":1}, {\"c\":2}],",
+   "out": "{\"a\":[{\"b\":1},{\"c\":2}]}",
+   "undefined": false
+  },
+  {
+   "in": "{",
+   "strip": "{",
+   "out": null,
+   "undefined": true
+  },
+  {
+   "in": "[",
+   "strip": "[",
+   "out": null,
+   "undefined": true
+  },
+  {
+   "in": "{\"x\":[1,2],\"y\":\"open",
+   "strip": "{\"x\":[1,2],\"y\":\"open",
+   "out": "{\"x\":[1,2]}",
+   "undefined": false
+  },
+  {
+   "in": "\"just a string\"",
+   "strip": "\"just a string\"",
+   "out": "\"just a string\"",
+   "undefined": false
+  },
+  {
+   "in": "42",
+   "strip": "42",
+   "out": "42",
+   "undefined": false
+  },
+  {
+   "in": "true trailing",
+   "strip": "true trailing",
+   "out": null,
+   "undefined": true
+  },
+  {
+   "in": "{\"a\":1, \"b\":2,\n \"list\": [ \"p\", \"q\", ",
+   "strip": "{\"a\":1, \"b\":2,\n \"list\": [ \"p\", \"q\",",
+   "out": "{\"a\":1,\"b\":2,\"list\":[\"p\",\"q\"]}",
+   "undefined": false
+  },
+  {
+   "in": "```json\n{\"a\":1}",
+   "strip": "```json\n{\"a\":1}",
+   "out": "{\"a\":1}",
+   "undefined": false
+  },
+  {
+   "in": "{\"t\":\"a\\\\\"}  more",
+   "strip": "{\"t\":\"a\\\\\"}  more",
+   "out": "{\"t\":\"a\\\\\"}",
+   "undefined": false
+  },
+  {
+   "in": "[{\"a\":1},{\"b\":[1,2,{\"c\":",
+   "strip": "[{\"a\":1},{\"b\":[1,2,{\"c\":",
+   "out": "[{\"a\":1},{\"b\":[1,2]}]",
+   "undefined": false
+  },
+  {
+   "in": "x{\"a\":[1,{\"b\":[2,[3,",
+   "strip": "x{\"a\":[1,{\"b\":[2,[3,",
+   "out": "{\"a\":[1,{\"b\":[2,[3]]}]}",
+   "undefined": false
+  },
+  {
+   "in": "```JSON\n{\"a\":1}\n```",
+   "strip": "JSON\n{\"a\":1}",
+   "out": "{\"a\":1}",
+   "undefined": false
+  },
+  {
+   "in": "``````",
+   "strip": "",
+   "out": null,
+   "undefined": true
+  },
+  {
+   "in": "```json```",
+   "strip": "",
+   "out": null,
+   "undefined": true
+  },
+  {
+   "in": "````",
+   "strip": "````",
+   "out": null,
+   "undefined": true
+  },
+  {
+   "in": "﻿ {\"bom\":true} 　",
+   "strip": "{\"bom\":true}",
+   "out": "{\"bom\":true}",
+   "undefined": false
+  },
+  {
+   "in": "Sure!\n```json\n{\"shots\":[{\"n\":1},{\"n\":2},{\"n\":",
+   "strip": "Sure!\n```json\n{\"shots\":[{\"n\":1},{\"n\":2},{\"n\":",
+   "out": "{\"shots\":[{\"n\":1},{\"n\":2}]}",
+   "undefined": false
+  },
+  {
+   "in": "[1, 2, 3]] trailing",
+   "strip": "[1, 2, 3]] trailing",
+   "out": null,
+   "undefined": true
+  },
+  {
+   "in": "{\"deep\":[[[[1,2],[3",
+   "strip": "{\"deep\":[[[[1,2],[3",
+   "out": "{\"deep\":[[[[1,2]]]]}",
+   "undefined": false
+  },
+  {
+   "in": "{\"k\":[1,2],}",
+   "strip": "{\"k\":[1,2],}",
+   "out": null,
+   "undefined": true
+  },
+  {
+   "in": "[\"a\\u0041b\", \"c",
+   "strip": "[\"a\\u0041b\", \"c",
+   "out": "[\"aAb\"]",
+   "undefined": false
+  },
+  {
+   "in": "null",
+   "strip": "null",
+   "out": "null",
+   "undefined": false
+  },
+  {
+   "in": "{\"n\":-0.5e3,\"m\":[true,false,null,",
+   "strip": "{\"n\":-0.5e3,\"m\":[true,false,null,",
+   "out": "{\"n\":-500,\"m\":[true,false,null]}",
+   "undefined": false
+  }
+ ]
+}

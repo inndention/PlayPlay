@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=1920, initial-scale=1.0">
+    <title>Recording Indicator</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            width: 1920px;
+            height: 1080px;
+            overflow: hidden;
+            background: transparent;
+            font-family: 'Courier New', 'Consolas', monospace;
+        }
+
+        .rec-container {
+            position: absolute;
+            top: 30px;
+            right: 30px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            background: rgba(0, 0, 0, 0.85);
+            padding: 12px 20px;
+            border-radius: 8px;
+            border: 2px solid #DC2626;
+            box-shadow: 0 4px 16px rgba(220, 38, 38, 0.5);
+        }
+
+        .rec-dot {
+            width: 14px;
+            height: 14px;
+            background: #DC2626;
+            border-radius: 50%;
+            animation: blink 1.5s infinite;
+        }
+
+        @keyframes blink {
+
+            0%,
+            100% {
+                opacity: 1;
+            }
+
+            50% {
+                opacity: 0.3;
+            }
+        }
+
+        .rec-text {
+            font-size: 24px;
+            font-weight: 700;
+            color: #DC2626;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        .timer {
+            font-size: 22px;
+            font-weight: 700;
+            color: white;
+            margin-left: 8px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="rec-container">
+        <div class="rec-dot"></div>
+        <div class="rec-text">REC</div>
+        <div class="timer" id="timer">00:00:00</div>
+    </div>
+
+    <script>
+        const params = new URLSearchParams(window.location.search);
+        const showTimer = params.get('showTimer') !== 'false';
+
+        const timerElement = document.getElementById('timer');
+
+        if (!showTimer) {
+            timerElement.style.display = 'none';
+        } else {
+            let seconds = 0;
+
+            setInterval(() => {
+                seconds++;
+                const hours = Math.floor(seconds / 3600);
+                const minutes = Math.floor((seconds % 3600) / 60);
+                const secs = seconds % 60;
+
+                timerElement.textContent =
+                    `${hours.toString().padStart(2, '0')}:${minutes.toString().padStart(2, '0')}:${secs.toString().padStart(2, '0')}`;
+            }, 1000);
+        }
+    </script>
+</body>
+
+</html>

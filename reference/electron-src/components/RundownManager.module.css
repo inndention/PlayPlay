@@ -1,0 +1,493 @@
+/* ============================================
+   RUNDOWN MANAGER
+   Professional Broadcast Rundown Interface
+   ============================================ */
+
+.container {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    background: var(--background);
+    color: var(--text-primary);
+    font-family: var(--font-sans);
+    overflow: hidden;
+}
+
+/* ============================================
+   HEADER
+   ============================================ */
+
+.header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: var(--space-3) var(--space-4);
+    background: var(--surface);
+    border-bottom: 1px solid var(--border);
+}
+
+.headerLeft,
+.headerRight {
+    display: flex;
+    align-items: center;
+    gap: var(--space-3);
+}
+
+.headerCenter {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+}
+
+.title {
+    display: flex;
+    align-items: center;
+    gap: var(--space-2);
+    font-size: 16px;
+    font-weight: 600;
+}
+
+.title svg {
+    color: var(--accent);
+}
+
+.rundownStatus {
+    display: flex;
+    align-items: center;
+    gap: var(--space-1);
+    padding: var(--space-1) var(--space-3);
+    font-size: 10px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    border-radius: var(--radius-full);
+    background: var(--surface-highlight);
+    color: var(--text-secondary);
+}
+
+.rundownStatus.draft { background: var(--surface-highlight); color: var(--text-secondary); }
+.rundownStatus.ready { background: var(--cued); color: white; }
+.rundownStatus.on-air { background: var(--on-air); color: white; animation: pulseOnAir 2s infinite; }
+.rundownStatus.done { background: var(--ready); color: var(--text-inverse); }
+
+.liveDot {
+    width: 6px;
+    height: 6px;
+    background: white;
+    border-radius: 50%;
+    animation: livePulse 1s infinite;
+}
+
+@keyframes pulseOnAir {
+    0%, 100% { box-shadow: 0 0 0 0 var(--on-air-pulse); }
+    50% { box-shadow: 0 0 0 6px transparent; }
+}
+
+@keyframes livePulse {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.5; }
+}
+
+/* Show Timing */
+.showTiming {
+    display: flex;
+    gap: var(--space-4);
+    padding: var(--space-2) var(--space-4);
+    background: var(--surface-elevated);
+    border-radius: var(--radius-md);
+}
+
+.timeBlock {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.timeLabel {
+    font-size: 9px;
+    font-weight: 600;
+    color: var(--text-muted);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+
+.timeValue {
+    font-family: var(--font-mono);
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--text-primary);
+}
+
+.addBtn {
+    display: flex;
+    align-items: center;
+    gap: var(--space-2);
+    padding: var(--space-2) var(--space-3);
+    background: var(--accent);
+    color: var(--accent-foreground);
+    font-size: 12px;
+    font-weight: 600;
+    border: none;
+    border-radius: var(--radius-md);
+    cursor: pointer;
+    transition: all var(--duration-fast);
+}
+
+.addBtn:hover {
+    background: var(--accent-hover);
+}
+
+/* ============================================
+   PROGRESS BAR
+   ============================================ */
+
+.progressBar {
+    position: relative;
+    height: 24px;
+    background: var(--surface);
+    border-bottom: 1px solid var(--border);
+}
+
+.progressFill {
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    background: var(--accent);
+    transition: width var(--duration-slow);
+}
+
+.progressLabel {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 11px;
+    font-weight: 500;
+    color: var(--text-secondary);
+    z-index: 1;
+}
+
+/* ============================================
+   COLUMN HEADERS
+   ============================================ */
+
+.columnHeaders {
+    display: grid;
+    grid-template-columns: 50px 30px 50px 1fr 80px 80px 80px 90px 100px;
+    gap: var(--space-2);
+    padding: var(--space-2) var(--space-4);
+    background: var(--surface-elevated);
+    border-bottom: 1px solid var(--border);
+    font-size: 10px;
+    font-weight: 700;
+    color: var(--text-muted);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+
+/* ============================================
+   SEGMENTS LIST
+   ============================================ */
+
+.segmentsList {
+    flex: 1;
+    overflow-y: auto;
+    padding: var(--space-2);
+}
+
+/* Segment Row */
+.segmentRow {
+    display: grid;
+    grid-template-columns: 50px 30px 50px 1fr 80px 80px 80px 90px 100px;
+    gap: var(--space-2);
+    padding: var(--space-2);
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-md);
+    margin-bottom: var(--space-2);
+    cursor: pointer;
+    transition: all var(--duration-fast);
+    position: relative;
+}
+
+.segmentRow:hover {
+    border-color: var(--border-bright);
+}
+
+.segmentRow.selected {
+    border-color: var(--accent);
+    box-shadow: 0 0 0 2px var(--accent-muted);
+}
+
+.segmentRow.current {
+    border-color: var(--on-air);
+    box-shadow: 0 0 0 2px var(--on-air-pulse);
+}
+
+/* Status Variants */
+.statuspending { opacity: 0.7; }
+.statusready { border-left: 3px solid var(--cued); }
+.statuson-air { 
+    border-left: 3px solid var(--on-air); 
+    background: rgba(255, 45, 85, 0.05);
+}
+.statusdone { 
+    opacity: 0.5; 
+    border-left: 3px solid var(--ready);
+}
+.statusskipped { 
+    opacity: 0.4; 
+    text-decoration: line-through;
+}
+.statusheld { 
+    border-left: 3px solid var(--warning);
+    background: rgba(255, 214, 10, 0.05);
+}
+
+/* Segment Handle */
+.segmentHandle {
+    display: flex;
+    align-items: center;
+    gap: var(--space-1);
+    color: var(--text-muted);
+    cursor: grab;
+}
+
+.segmentHandle:active {
+    cursor: grabbing;
+}
+
+.segmentOrder {
+    font-family: var(--font-mono);
+    font-size: 12px;
+    font-weight: 600;
+}
+
+/* Expand Button */
+.expandBtn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: transparent;
+    border: none;
+    color: var(--text-muted);
+    cursor: pointer;
+    transition: color var(--duration-fast);
+}
+
+.expandBtn:hover {
+    color: var(--text-primary);
+}
+
+/* Segment Type */
+.segmentType {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 28px;
+    height: 28px;
+    border-radius: var(--radius-sm);
+    color: white;
+}
+
+.typesegment { background: var(--tl-video); }
+.typebreak { background: var(--standby); }
+.typelive { background: var(--on-air); }
+.typepackage { background: var(--tl-program); }
+.typegraphics { background: var(--tl-graphics); }
+.typefloat { background: var(--cued); }
+
+/* Segment Info */
+.segmentInfo {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    overflow: hidden;
+}
+
+.segmentTitle {
+    display: flex;
+    align-items: center;
+    gap: var(--space-2);
+    font-size: 13px;
+    font-weight: 600;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.lockIcon {
+    color: var(--warning);
+    flex-shrink: 0;
+}
+
+.segmentSlug {
+    font-size: 11px;
+    color: var(--text-secondary);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+/* Timing Info */
+.timingInfo {
+    display: contents;
+}
+
+.timingCell {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.timingLabel {
+    font-size: 9px;
+    font-weight: 600;
+    color: var(--text-muted);
+    text-transform: uppercase;
+}
+
+.timingValue {
+    font-family: var(--font-mono);
+    font-size: 12px;
+    font-weight: 500;
+    color: var(--text-primary);
+}
+
+.overTime {
+    color: var(--error);
+}
+
+.underTime {
+    color: var(--ready);
+}
+
+/* Status Badge */
+.statusBadge {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: var(--space-1);
+    padding: var(--space-1) var(--space-2);
+    font-size: 10px;
+    font-weight: 700;
+    text-transform: uppercase;
+    border-radius: var(--radius-sm);
+}
+
+.badgepending { background: var(--surface-highlight); color: var(--text-secondary); }
+.badgeready { background: var(--cued); color: white; }
+.badgeon-air { background: var(--on-air); color: white; }
+.badgedone { background: var(--ready); color: var(--text-inverse); }
+.badgeskipped { background: var(--surface-highlight); color: var(--text-muted); }
+.badgeheld { background: var(--warning); color: var(--text-inverse); }
+
+/* Quick Actions */
+.quickActions {
+    display: flex;
+    align-items: center;
+    gap: var(--space-1);
+    opacity: 0;
+    transition: opacity var(--duration-fast);
+}
+
+.quickActions.visible {
+    opacity: 1;
+}
+
+.actionBtn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 28px;
+    height: 28px;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-sm);
+    color: var(--text-secondary);
+    cursor: pointer;
+    transition: all var(--duration-fast);
+}
+
+.actionBtn:hover {
+    background: var(--surface-highlight);
+    color: var(--text-primary);
+    border-color: var(--border-bright);
+}
+
+/* Segment Items */
+.segmentItems {
+    grid-column: 1 / -1;
+    margin-top: var(--space-2);
+    padding-top: var(--space-2);
+    border-top: 1px solid var(--border-subtle);
+}
+
+.itemRow {
+    display: flex;
+    align-items: center;
+    gap: var(--space-3);
+    padding: var(--space-1) var(--space-2);
+    margin-left: 80px;
+    font-size: 12px;
+    border-radius: var(--radius-sm);
+    transition: background var(--duration-fast);
+}
+
+.itemRow:hover {
+    background: var(--surface-highlight);
+}
+
+.itemIcon {
+    color: var(--text-muted);
+}
+
+.itemTitle {
+    flex: 1;
+    color: var(--text-secondary);
+}
+
+.itemDuration {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    color: var(--text-muted);
+}
+
+.itemStatus {
+    font-size: 10px;
+    font-weight: 600;
+    text-transform: uppercase;
+    padding: 2px 6px;
+    border-radius: var(--radius-xs);
+}
+
+.itemStatus.ready { background: var(--surface-highlight); color: var(--text-secondary); }
+.itemStatus.cued { background: var(--cued); color: white; }
+.itemStatus.on-air { background: var(--on-air); color: white; }
+.itemStatus.done { background: var(--ready); color: var(--text-inverse); }
+
+/* ============================================
+   FOOTER
+   ============================================ */
+
+.footer {
+    padding: var(--space-2) var(--space-4);
+    background: var(--surface);
+    border-top: 1px solid var(--border);
+}
+
+.footerStats {
+    display: flex;
+    align-items: center;
+    gap: var(--space-3);
+    font-size: 11px;
+    color: var(--text-secondary);
+}
+
+.footerStats .overTime {
+    color: var(--error);
+    font-weight: 600;
+}

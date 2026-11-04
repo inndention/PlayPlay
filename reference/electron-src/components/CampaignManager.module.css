@@ -1,0 +1,328 @@
+.campaignManager {
+    padding: 20px;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 24px;
+}
+
+.header h2 {
+    margin: 0;
+    font-size: 24px;
+    font-weight: 600;
+}
+
+.controls {
+    display: flex;
+    gap: 12px;
+    align-items: center;
+}
+
+.modeToggle {
+    padding: 6px 12px;
+    border: 1px solid var(--border-color, #333);
+    background: var(--bg-secondary, #1a1a1a);
+    color: var(--text-secondary, #aaa);
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 13px;
+    transition: all 0.15s ease;
+}
+
+.modeToggle:hover {
+    background: var(--bg-hover, #252525);
+}
+
+.modeToggle.active {
+    background: var(--accent, #3b82f6);
+    color: white;
+    border-color: var(--accent, #3b82f6);
+}
+
+.createBtn {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    padding: 8px 16px;
+    background: var(--accent, #3b82f6);
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 14px;
+    font-weight: 500;
+    transition: all 0.15s ease;
+}
+
+.createBtn:hover {
+    background: var(--accent-hover, #2563eb);
+    transform: translateY(-1px);
+}
+
+.formOverlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.7);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+}
+
+.form {
+    background: var(--bg-primary, #1a1a1a);
+    border: 1px solid var(--border-color, #333);
+    border-radius: 8px;
+    width: 90%;
+    max-width: 600px;
+    max-height: 90vh;
+    overflow-y: auto;
+}
+
+.formHeader {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px;
+    border-bottom: 1px solid var(--border-color, #333);
+}
+
+.formHeader h3 {
+    margin: 0;
+    font-size: 18px;
+}
+
+.closeBtn {
+    background: none;
+    border: none;
+    color: var(--text-secondary, #aaa);
+    cursor: pointer;
+    padding: 4px;
+    display: flex;
+    align-items: center;
+    transition: color 0.15s ease;
+}
+
+.closeBtn:hover {
+    color: var(--text-primary, #fff);
+}
+
+.formFields {
+    padding: 20px;
+}
+
+.field {
+    margin-bottom: 16px;
+}
+
+.field label {
+    display: block;
+    margin-bottom: 6px;
+    font-size: 13px;
+    font-weight: 500;
+    color: var(--text-secondary, #aaa);
+}
+
+.field input,
+.field select {
+    width: 100%;
+    padding: 8px 12px;
+    background: var(--bg-secondary, #0f0f0f);
+    border: 1px solid var(--border-color, #333);
+    border-radius: 4px;
+    color: var(--text-primary, #fff);
+    font-size: 14px;
+}
+
+.field input:focus,
+.field select:focus {
+    outline: none;
+    border-color: var(--accent, #3b82f6);
+}
+
+.row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+}
+
+.formActions {
+    display: flex;
+    justify-content: flex-end;
+    gap: 12px;
+    margin-top: 24px;
+    padding-top: 20px;
+    border-top: 1px solid var(--border-color, #333);
+}
+
+.cancelBtn,
+.saveBtn {
+    padding: 8px 16px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 14px;
+    font-weight: 500;
+    transition: all 0.15s ease;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.cancelBtn {
+    background: var(--bg-secondary, #1a1a1a);
+    color: var(--text-primary, #fff);
+    border: 1px solid var(--border-color, #333);
+}
+
+.cancelBtn:hover {
+    background: var(--bg-hover, #252525);
+}
+
+.saveBtn {
+    background: var(--accent, #3b82f6);
+    color: white;
+}
+
+.saveBtn:hover {
+    background: var(--accent-hover, #2563eb);
+    transform: translateY(-1px);
+}
+
+.campaignList {
+    flex: 1;
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.empty {
+    text-align: center;
+    padding: 60px 20px;
+    color: var(--text-secondary, #aaa);
+}
+
+.campaignCard {
+    background: var(--bg-secondary, #1a1a1a);
+    border: 1px solid var(--border-color, #333);
+    border-radius: 8px;
+    padding: 20px;
+    transition: all 0.15s ease;
+}
+
+.campaignCard:hover {
+    border-color: var(--accent, #3b82f6);
+    transform: translateY(-2px);
+}
+
+.campaignHeader {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 16px;
+}
+
+.campaignHeader h3 {
+    margin: 0 0 4px 0;
+    font-size: 18px;
+    font-weight: 600;
+}
+
+.clientName {
+    font-size: 13px;
+    margin: 0;
+}
+
+.campaignActions {
+    display: flex;
+    gap: 8px;
+}
+
+.iconBtn {
+    background: none;
+    border: none;
+    color: var(--text-secondary, #aaa);
+    cursor: pointer;
+    padding: 6px;
+    display: flex;
+    align-items: center;
+    border-radius: 4px;
+    transition: all 0.15s ease;
+}
+
+.iconBtn:hover {
+    background: var(--bg-hover, #252525);
+    color: var(--text-primary, #fff);
+}
+
+.campaignDetails {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 16px;
+    margin-bottom: 12px;
+}
+
+.detail {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 13px;
+    color: var(--text-secondary, #aaa);
+}
+
+.progressBar {
+    position: relative;
+    height: 24px;
+    background: var(--bg-primary, #0f0f0f);
+    border-radius: 4px;
+    overflow: hidden;
+    margin-top: 12px;
+}
+
+.progressFill {
+    height: 100%;
+    background: linear-gradient(90deg, var(--accent, #3b82f6), var(--accent-hover, #2563eb));
+    transition: width 0.3s ease;
+}
+
+.progressText {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 11px;
+    font-weight: 600;
+    color: white;
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.5);
+}
+
+.advancedInfo {
+    margin-top: 16px;
+    padding-top: 16px;
+    border-top: 1px solid var(--border-color, #333);
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.infoItem {
+    font-size: 12px;
+    color: var(--text-secondary, #aaa);
+}
+
+.infoItem strong {
+    color: var(--text-primary, #fff);
+    margin-right: 6px;
+}
+
+

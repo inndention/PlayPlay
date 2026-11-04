@@ -1,0 +1,336 @@
+.container {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    background: var(--background);
+    color: var(--text-primary);
+}
+
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 1.5rem;
+    background: linear-gradient(135deg, #1e40af 0%, #1e3a8a 100%);
+    color: white;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    font-size: 1.25rem;
+    font-weight: 700;
+}
+
+.badge {
+    font-size: 0.7rem;
+    font-weight: 600;
+    padding: 0.2rem 0.5rem;
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: 4px;
+    margin-left: 0.5rem;
+}
+
+.stats {
+    display: flex;
+    gap: 1rem;
+}
+
+.statCard {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.5rem 1rem;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 8px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.statInfo {
+    display: flex;
+    flex-direction: column;
+}
+
+.statValue {
+    font-weight: 700;
+    font-size: 1.1rem;
+}
+
+.statLabel {
+    font-size: 0.75rem;
+    opacity: 0.85;
+}
+
+.tabs {
+    display: flex;
+    gap: 0.25rem;
+    padding: 0.5rem 1rem;
+    background: var(--surface);
+    border-bottom: 1px solid var(--border);
+}
+
+.tabs button {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.6rem 1rem;
+    background: transparent;
+    border: 1px solid transparent;
+    border-radius: var(--radius-sm);
+    color: var(--text-secondary);
+    font-size: 0.9rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.15s;
+}
+
+.tabs button:hover {
+    background: var(--surface-highlight);
+    color: var(--text-primary);
+}
+
+.tabActive {
+    background: var(--accent) !important;
+    color: white !important;
+    border-color: var(--accent) !important;
+}
+
+.controls {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    padding: 0.75rem 1rem;
+    background: var(--surface);
+    border-bottom: 1px solid var(--border);
+}
+
+.filterGroup {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.85rem;
+    color: var(--text-secondary);
+}
+
+.filterGroup label {
+    display: flex;
+    align-items: center;
+    gap: 0.35rem;
+}
+
+.filterGroup input[type="date"],
+.filterGroup select {
+    padding: 0.4rem 0.6rem;
+    border: 1px solid var(--border);
+    border-radius: var(--radius-sm);
+    background: var(--background);
+    color: var(--text-primary);
+}
+
+.refreshBtn {
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+    padding: 0.5rem 0.75rem;
+    background: var(--surface-highlight);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-sm);
+    color: var(--text-primary);
+    font-size: 0.85rem;
+    cursor: pointer;
+}
+
+.refreshBtn:hover:not(:disabled) {
+    background: var(--accent);
+    color: white;
+    border-color: var(--accent);
+}
+
+.refreshBtn:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+}
+
+.content {
+    flex: 1;
+    padding: 1rem;
+    overflow: auto;
+}
+
+.actions {
+    margin-bottom: 1rem;
+}
+
+.summaryGrid {
+    display: grid;
+    grid-template-columns: minmax(260px, 0.75fr) minmax(420px, 1.4fr);
+    gap: 1rem;
+    align-items: start;
+}
+
+.summaryPanel,
+.aiPanel {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-md);
+    padding: 1rem;
+}
+
+.summaryPanel h3,
+.aiPanel h3 {
+    margin: 0 0 0.75rem;
+    font-size: 1rem;
+}
+
+.summaryPanel dl {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    gap: 0.55rem 1rem;
+    margin: 0;
+    font-size: 0.9rem;
+}
+
+.summaryPanel dt {
+    color: var(--text-secondary);
+}
+
+.summaryPanel dd {
+    margin: 0;
+    font-weight: 700;
+}
+
+.tableWrapCompact {
+    max-height: 360px;
+    overflow: auto;
+    border: 1px solid var(--border);
+    border-radius: var(--radius-sm);
+}
+
+.aiPanel {
+    grid-column: 1 / -1;
+}
+
+.aiPanel pre {
+    margin: 0;
+    white-space: pre-wrap;
+    font-family: inherit;
+    line-height: 1.5;
+    color: var(--text-secondary);
+}
+
+.exportBtn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.5rem 1rem;
+    background: var(--accent);
+    color: white;
+    border: none;
+    border-radius: var(--radius-md);
+    font-size: 0.9rem;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+.exportBtn:hover {
+    filter: brightness(1.1);
+}
+
+.tableWrap {
+    overflow-x: auto;
+    border: 1px solid var(--border);
+    border-radius: var(--radius-md);
+    background: var(--surface);
+}
+
+.table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.85rem;
+}
+
+.table th,
+.table td {
+    padding: 0.5rem 0.75rem;
+    text-align: left;
+    border-bottom: 1px solid var(--border);
+}
+
+.table th {
+    background: var(--surface-highlight);
+    font-weight: 600;
+    color: var(--text-primary);
+}
+
+.table td code {
+    font-size: 0.8rem;
+    background: var(--background);
+    padding: 0.15rem 0.35rem;
+    border-radius: 4px;
+}
+
+.note {
+    margin-top: 0.5rem;
+    font-size: 0.85rem;
+    color: var(--text-secondary);
+}
+
+.loading {
+    padding: 2rem;
+    text-align: center;
+    color: var(--text-secondary);
+}
+
+.generateSection {
+    max-width: 560px;
+}
+
+.generateSection p {
+    margin-bottom: 1rem;
+    color: var(--text-secondary);
+}
+
+.primaryBtn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.75rem 1.25rem;
+    background: var(--accent);
+    color: white;
+    border: none;
+    border-radius: var(--radius-md);
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+.primaryBtn:hover {
+    filter: brightness(1.1);
+}
+
+.exportStack {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+}
+
+.help {
+    margin-top: 1.5rem;
+    font-size: 0.8rem;
+    color: var(--text-muted);
+}
+
+.help code {
+    background: var(--surface-highlight);
+    padding: 0.15rem 0.35rem;
+    border-radius: 4px;
+    font-size: 0.85rem;
+}
+
+@media (max-width: 900px) {
+    .summaryGrid {
+        grid-template-columns: 1fr;
+    }
+}

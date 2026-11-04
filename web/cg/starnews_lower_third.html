@@ -1,0 +1,19 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=1920, initial-scale=1">
+<title>Star News lower third</title>
+<style>
+html,body{margin:0;width:1920px;height:1080px;overflow:hidden;background:transparent;font-family:Arial,Helvetica,sans-serif}
+.strap{position:absolute;left:96px;bottom:84px;width:1240px;min-height:134px;display:flex;filter:drop-shadow(0 4px 8px rgba(0,0,0,.65));animation:enter .42s cubic-bezier(.22,1,.36,1) both}
+.brand{width:226px;flex:none;background:#000;display:flex;justify-content:center;align-items:center;border-left:6px solid #e6c264;box-sizing:border-box}
+.brand img{width:100%;height:134px;object-fit:contain}
+.copy{min-width:0;flex:1;position:relative;overflow:hidden;background:linear-gradient(100deg,rgba(18,24,35,.96),rgba(27,35,48,.94));border-bottom:5px solid #bd1732;box-sizing:border-box;padding:15px 30px 18px;display:flex;flex-direction:column;justify-content:center;gap:5px}
+.copy:after{content:"";position:absolute;bottom:0;left:0;width:120px;height:3px;background:#e6c264;opacity:.7;animation:accent 9s ease-in-out infinite alternate}
+.name,.title,.detail{overflow:hidden;text-overflow:ellipsis;white-space:nowrap;color:#ededed;text-shadow:0 2px 3px #161616}
+.name{font-size:43px;font-weight:800}.title{font-size:30px;font-weight:600}.detail{font-size:28px;color:#d0d6dc}
+@keyframes enter{from{opacity:0;transform:translateX(-48px)}to{opacity:1;transform:translateX(0)}}
+@keyframes accent{from{transform:translateX(0);opacity:.45}to{transform:translateX(750px);opacity:.9}}
+@media(prefers-reduced-motion:reduce){.strap,.copy:after{animation:none}}
+</style></head><body>
+<div data-cg-root><div class="strap"><div class="brand"><img src="assets/starnews-logo.png" alt="Star News"></div><div class="copy"><div class="name" data-field="name">STAR NEWS</div><div class="title" data-field="title">Your local news</div><div class="detail" data-field="detail" data-hide-empty></div></div></div></div>
+<script src="js/cg-animations.js"></script><script src="js/cg-fields.js"></script>
+<script src="js/starnews-runtime.js"></script></body></html>

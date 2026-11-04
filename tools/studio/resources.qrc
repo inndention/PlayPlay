@@ -1,0 +1,15 @@
+<!-- PlayPlayStudio resources (compiled into PlayPlayStudioLib by AUTORCC; studio::StudioService and the store
+     migrations initialise them). Paths are relative to tools/studio. -->
+<RCC>
+    <qresource prefix="/studio">
+        <file alias="home.html">src/app/home.html</file>
+        <file alias="store/schema.sql">src/store/schema.sql</file>
+        <!-- ST-25: the runtime data exported from StarMedia (tools/studio/scripts/export-starmedia-data.mjs) and the
+             schema studio::data checks them against (core/datafiles.h) -->
+        <file alias="data/schema.json">data/schema.json</file>
+        <file alias="data/model-limits.json">data/model-limits.json</file>
+        <file alias="data/model-prompts.json">data/model-prompts.json</file>
+        <file alias="data/realpeople.json">data/realpeople.json</file>
+        <file alias="data/styles.json">data/styles.json</file>
+    </qresource>
+</RCC>

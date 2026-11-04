@@ -1,0 +1,72 @@
+/* ResizableColumns - Column resizer styles */
+
+.container {
+    flex: 1;
+    overflow: hidden;
+    position: relative;
+}
+
+.container.dragging {
+    cursor: col-resize;
+}
+
+.column {
+    overflow: hidden;
+    position: relative;
+}
+
+/* Resizer Handle */
+.resizer {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    width: 9px;
+    margin-left: -4px;
+    cursor: col-resize;
+    z-index: 10;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: transparent;
+    transition: background 0.15s;
+}
+
+.resizer:hover {
+    background: rgba(59, 130, 246, 0.1);
+}
+
+.resizer.active {
+    background: rgba(59, 130, 246, 0.2);
+}
+
+.resizerHandle {
+    width: 3px;
+    height: 40px;
+    max-height: 60%;
+    background: var(--border);
+    border-radius: 2px;
+    transition: all 0.15s;
+    opacity: 0;
+}
+
+.resizer:hover .resizerHandle,
+.resizer.active .resizerHandle {
+    opacity: 1;
+    background: var(--accent);
+    height: 60px;
+    box-shadow: 0 0 8px rgba(59, 130, 246, 0.4);
+}
+
+/* Visual indicator line during drag */
+.resizer.active::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 50%;
+    width: 1px;
+    background: var(--accent);
+    transform: translateX(-50%);
+}
+
+

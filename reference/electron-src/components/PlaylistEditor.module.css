@@ -1,0 +1,985 @@
+/* PlaylistEditor - Professional Broadcast Rundown */
+
+.container {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    background: var(--surface);
+    border-radius: var(--radius-md);
+    border: 1px solid var(--border);
+    overflow: hidden;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+}
+
+.header {
+    padding: 0.75rem 1rem;
+    background: linear-gradient(180deg, var(--surface-highlight) 0%, var(--surface) 100%);
+    border-bottom: 1px solid var(--border);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.headerTitle {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.85rem;
+    font-weight: 700;
+    color: var(--text-primary);
+    letter-spacing: 0.1em;
+}
+
+.headerIcon {
+    color: var(--accent);
+}
+
+.headerMeta {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.syncBar {
+    padding: 0.5rem 1rem;
+    background: var(--surface-highlight);
+    border-bottom: 1px solid var(--border);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+}
+
+.syncButtons {
+    display: flex;
+    gap: 0.5rem;
+}
+
+.syncBtn {
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+    padding: 0.4rem 0.75rem;
+    background: var(--background);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-sm);
+    color: var(--text-secondary);
+    font-size: 0.75rem;
+    cursor: pointer;
+    transition: all 0.15s;
+}
+
+.syncBtn:hover:not(:disabled) {
+    background: var(--surface);
+    border-color: var(--accent);
+    color: var(--accent);
+}
+
+.syncBtn:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+.syncError {
+    color: var(--danger);
+    font-size: 0.75rem;
+    padding: 0.25rem 0.5rem;
+    background: rgba(239, 68, 68, 0.1);
+    border-radius: var(--radius-sm);
+}
+
+.syncSuccess {
+    color: var(--success);
+    font-size: 0.75rem;
+    padding: 0.25rem 0.5rem;
+    background: rgba(34, 197, 94, 0.1);
+    border-radius: var(--radius-sm);
+}
+
+.syncBtnActive {
+    background: var(--accent);
+    color: var(--text-on-accent);
+}
+
+/* PSIP Program Guide */
+.psipGuide {
+    background: var(--surface-highlight);
+    border-top: 1px solid var(--border);
+    border-bottom: 1px solid var(--border);
+    max-height: 300px;
+    overflow-y: auto;
+}
+
+.psipGuideHeader {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.75rem 1rem;
+    background: var(--surface);
+    border-bottom: 1px solid var(--border);
+    font-weight: 600;
+    font-size: 0.85rem;
+    position: sticky;
+    top: 0;
+    z-index: 10;
+}
+
+.psipEventCount {
+    margin-left: auto;
+    font-size: 0.75rem;
+    color: var(--accent);
+    font-weight: 600;
+}
+
+.psipEventsList {
+    padding: 0.5rem;
+}
+
+.psipEmpty {
+    padding: 2rem;
+    text-align: center;
+    color: var(--text-secondary);
+    font-style: italic;
+}
+
+.psipEvent {
+    display: grid;
+    grid-template-columns: auto auto 1fr;
+    gap: 0.75rem;
+    padding: 0.75rem;
+    background: var(--background);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-sm);
+    margin-bottom: 0.5rem;
+    transition: all 0.2s;
+}
+
+.psipEvent:hover {
+    background: var(--surface);
+    border-color: var(--accent);
+}
+
+.psipEventTime {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.8rem;
+    font-weight: 600;
+    color: var(--accent);
+    white-space: nowrap;
+}
+
+.psipEventDuration {
+    font-size: 0.75rem;
+    color: var(--text-secondary);
+    white-space: nowrap;
+}
+
+.psipEventTitle {
+    grid-column: 1 / -1;
+    font-weight: 600;
+    font-size: 0.9rem;
+    margin-top: 0.25rem;
+}
+
+.psipEventDesc {
+    grid-column: 1 / -1;
+    font-size: 0.8rem;
+    color: var(--text-secondary);
+    margin-top: 0.25rem;
+    line-height: 1.4;
+}
+
+.psipEventRating {
+    grid-column: 1 / -1;
+    display: inline-block;
+    font-size: 0.7rem;
+    padding: 0.125rem 0.5rem;
+    background: var(--accent);
+    color: var(--text-on-accent);
+    border-radius: var(--radius-xs);
+    margin-top: 0.5rem;
+    width: fit-content;
+}
+
+.metaItem {
+    font-size: 0.7rem;
+    color: var(--text-secondary);
+    font-family: var(--font-mono);
+}
+
+.metaDivider {
+    color: var(--border);
+}
+
+.list {
+    flex: 1;
+    overflow-y: auto;
+    padding: 0.5rem;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    min-height: 0; /* Important for flex child scrolling */
+}
+
+/* Individual playlist item */
+.item {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    background: var(--background);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-sm);
+    padding: 0.5rem 0.75rem;
+    transition: all 0.2s cubic-bezier(0.34, 1.56, 0.64, 1);
+    position: relative;
+}
+
+.itemThumb {
+    flex-shrink: 0;
+    width: 72px;
+    height: 40px;
+    border-radius: 4px;
+    overflow: hidden;
+    background: var(--surface);
+}
+
+.thumbVideo {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+.thumbPlaceholder {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: rgba(255, 255, 255, 0.8);
+}
+
+.itemImminent {
+    animation-name: playlistNextFlash;
+    animation-iteration-count: infinite;
+    animation-timing-function: ease-in-out;
+}
+
+@keyframes playlistNextFlash {
+    0%, 100% {
+        background-color: transparent;
+        box-shadow: none;
+    }
+    50% {
+        background-color: rgba(245, 158, 11, 0.25);
+        box-shadow: 0 0 12px rgba(245, 158, 11, 0.5);
+    }
+}
+
+.item:hover {
+    border-color: var(--accent);
+    background: rgba(59, 130, 246, 0.05);
+    transform: translateX(4px);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+}
+
+.itemActive {
+    border-color: var(--accent);
+    background: rgba(59, 130, 246, 0.1);
+    box-shadow: 0 0 0 1px var(--accent), 0 0 12px rgba(59, 130, 246, 0.2);
+    animation: activePulse 2s ease-in-out infinite;
+}
+
+@keyframes activePulse {
+    0%, 100% {
+        box-shadow: 0 0 0 1px var(--accent), 0 0 12px rgba(59, 130, 246, 0.2);
+    }
+    50% {
+        box-shadow: 0 0 0 1px var(--accent), 0 0 20px rgba(59, 130, 246, 0.4);
+    }
+}
+
+.itemFixed {
+    border-left: 3px solid var(--warning);
+}
+
+.dragHandle {
+    cursor: grab;
+    color: var(--text-muted);
+    padding: 0.25rem;
+    opacity: 0.5;
+    transition: opacity 0.15s;
+}
+
+.item:hover .dragHandle {
+    opacity: 1;
+}
+
+.dragHandle:active {
+    cursor: grabbing;
+}
+
+.itemIndex {
+    font-size: 0.7rem;
+    color: var(--text-muted);
+    min-width: 20px;
+    text-align: center;
+    font-family: var(--font-mono);
+}
+
+.itemTime {
+    display: flex;
+    align-items: center;
+    gap: 0.25rem;
+    font-family: var(--font-mono);
+    font-size: 0.8rem;
+    color: var(--accent);
+    min-width: 80px;
+}
+
+.typeBadge {
+    font-size: 0.6rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    padding: 0.2rem 0.4rem;
+    border-radius: 2px;
+    background: var(--surface-highlight);
+    color: var(--text-secondary);
+    min-width: 60px;
+    text-align: center;
+}
+
+.typeBadgeAd {
+    background: rgba(239, 68, 68, 0.15);
+    color: var(--danger);
+}
+
+.typeBadgePromo {
+    background: rgba(34, 197, 94, 0.15);
+    color: var(--success);
+}
+
+.typeBadgeId {
+    background: rgba(59, 130, 246, 0.15);
+    color: var(--accent);
+}
+
+.typeBadgeBumper {
+    background: rgba(245, 158, 11, 0.15);
+    color: var(--warning);
+}
+
+.itemTitle {
+    flex: 1;
+    font-size: 0.85rem;
+    font-weight: 500;
+    color: var(--text-primary);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.segmentTag {
+    display: inline-flex;
+    margin-left: 0.45rem;
+    padding: 0.1rem 0.35rem;
+    border: 1px solid rgba(245, 158, 11, 0.6);
+    border-radius: var(--radius-sm);
+    color: #f59e0b;
+    background: rgba(245, 158, 11, 0.12);
+    font-size: 0.65rem;
+    font-weight: 700;
+    vertical-align: middle;
+}
+
+.itemDuration {
+    font-family: var(--font-mono);
+    color: var(--text-secondary);
+    font-size: 0.8rem;
+    min-width: 50px;
+    text-align: right;
+}
+
+.timeLineMeta {
+    margin-top: 0.2rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.12rem;
+}
+
+.timePair,
+.timePairActual {
+    font-size: 0.67rem;
+    font-family: var(--font-mono);
+}
+
+.timePair {
+    color: var(--text-secondary);
+}
+
+.timePairActual {
+    color: #93c5fd;
+}
+
+.lockBtn,
+.removeBtn {
+    background: transparent;
+    border: none;
+    color: var(--text-muted);
+    cursor: pointer;
+    padding: 0.3rem;
+    border-radius: var(--radius-sm);
+    opacity: 0.5;
+    transition: all 0.15s;
+}
+
+.item:hover .lockBtn,
+.item:hover .removeBtn {
+    opacity: 1;
+}
+
+.lockBtn:hover {
+    background: rgba(245, 158, 11, 0.1);
+    color: var(--warning);
+}
+
+.lockBtnActive {
+    color: var(--warning);
+    opacity: 1;
+}
+
+.removeBtn:hover {
+    background: rgba(239, 68, 68, 0.1);
+    color: var(--danger);
+}
+
+/* Item action buttons row */
+.itemActions {
+    display: flex;
+    align-items: center;
+    gap: 0.15rem;
+    opacity: 0;
+    transition: opacity 0.15s;
+}
+
+.item:hover .itemActions {
+    opacity: 1;
+}
+
+.actionBtn {
+    background: transparent;
+    border: 1px solid transparent;
+    color: var(--text-muted);
+    cursor: pointer;
+    padding: 0.25rem;
+    border-radius: var(--radius-sm);
+    transition: all 0.15s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 24px;
+    height: 24px;
+}
+
+.actionBtn:hover:not(:disabled) {
+    background: var(--surface-highlight);
+    border-color: var(--border);
+    color: var(--text-primary);
+}
+
+.actionBtn:disabled {
+    opacity: 0.3;
+    cursor: not-allowed;
+}
+
+.actionBtn.skipBtn {
+    color: var(--warning);
+}
+
+.actionBtn.skipBtn:hover {
+    background: rgba(245, 158, 11, 0.1);
+    color: var(--warning);
+    border-color: var(--warning);
+}
+
+.actionBtn.deleteAction:hover {
+    background: rgba(239, 68, 68, 0.1);
+    color: var(--danger);
+    border-color: var(--danger);
+}
+
+.deleteBtn {
+    background: transparent;
+    border: none;
+    color: var(--text-muted);
+    cursor: pointer;
+    padding: 0.25rem;
+    border-radius: var(--radius-sm);
+    opacity: 0;
+    transition: all 0.15s;
+}
+
+.item:hover .deleteBtn {
+    opacity: 1;
+}
+
+.deleteBtn:hover {
+    background: rgba(239, 68, 68, 0.1);
+    color: var(--danger);
+}
+
+/* Skipped item state */
+.item.skipped {
+    opacity: 0.5;
+    background: repeating-linear-gradient(
+        45deg,
+        transparent,
+        transparent 4px,
+        rgba(128, 128, 128, 0.05) 4px,
+        rgba(128, 128, 128, 0.05) 8px
+    );
+    border-style: dashed;
+}
+
+.skippedBadge {
+    display: flex;
+    align-items: center;
+    gap: 0.2rem;
+    font-size: 0.65rem;
+    font-weight: 600;
+    color: var(--text-muted);
+    background: rgba(128, 128, 128, 0.2);
+    padding: 0.15rem 0.35rem;
+    border-radius: var(--radius-sm);
+    text-transform: uppercase;
+}
+
+/* Add button in header */
+.addBtn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--accent);
+    border: none;
+    color: white;
+    cursor: pointer;
+    padding: 0.35rem;
+    border-radius: var(--radius-sm);
+    transition: all 0.15s;
+}
+
+.addBtn:hover {
+    background: var(--accent-hover);
+    transform: scale(1.05);
+}
+
+.snapBtn {
+    padding: 0.25rem;
+    background: transparent;
+    border: none;
+    color: var(--text-secondary);
+    cursor: pointer;
+    border-radius: var(--radius-sm);
+    transition: all 0.15s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0.5;
+}
+
+.item:hover .snapBtn {
+    opacity: 1;
+}
+
+.snapBtn:hover {
+    background: var(--surface-highlight);
+    color: var(--accent);
+}
+
+.timeInOutBtn {
+    padding: 0.25rem;
+    background: transparent;
+    border: none;
+    color: var(--text-secondary);
+    cursor: pointer;
+    border-radius: var(--radius-sm);
+    transition: all 0.15s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0.5;
+}
+
+.item:hover .timeInOutBtn {
+    opacity: 1;
+}
+
+.timeInOutBtn:hover {
+    background: var(--surface-highlight);
+    color: var(--text-primary);
+}
+
+.timeInOutBtnActive {
+    background: var(--accent);
+    color: white;
+    opacity: 1;
+}
+
+.timeInOutPanel {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-sm);
+    padding: 0.75rem;
+    margin-top: 0.25rem;
+    z-index: 10;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.segmentEditorOverlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.8);
+    z-index: 1000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 2rem;
+}
+
+.segmentEditorContainer {
+    width: 90vw;
+    height: 90vh;
+    max-width: 1400px;
+    max-height: 900px;
+    background: var(--surface);
+    border-radius: var(--radius-md);
+    border: 1px solid var(--border);
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.5);
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+}
+
+.segmentEditorHeader {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.75rem 1rem;
+    background: var(--surface-highlight);
+    border-bottom: 1px solid var(--border);
+    font-weight: 600;
+}
+
+.closeBtn {
+    background: transparent;
+    border: none;
+    color: var(--text-secondary);
+    cursor: pointer;
+    padding: 0.25rem;
+    border-radius: var(--radius-sm);
+    transition: all 0.15s;
+}
+
+.closeBtn:hover {
+    background: var(--surface);
+    color: var(--text-primary);
+}
+
+.timeInOutRow {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.5rem;
+}
+
+.timeInOutRow label {
+    font-size: 0.75rem;
+    color: var(--text-secondary);
+    font-weight: 500;
+}
+
+.timeInOutRow input {
+    flex: 1;
+    max-width: 100px;
+    padding: 0.25rem 0.5rem;
+    background: var(--background);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-sm);
+    color: var(--text-primary);
+    font-size: 0.85rem;
+    font-family: var(--font-mono);
+}
+
+.timeInOutRow input:focus {
+    outline: none;
+    border-color: var(--accent);
+}
+
+.clearTimeInOutBtn {
+    padding: 0.25rem 0.5rem;
+    background: var(--background);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-sm);
+    color: var(--text-secondary);
+    font-size: 0.75rem;
+    cursor: pointer;
+    transition: all 0.15s;
+}
+
+.clearTimeInOutBtn:hover {
+    background: var(--surface-highlight);
+    color: var(--text-primary);
+}
+
+.timePicker {
+    position: absolute;
+    right: 60px;
+    background: var(--surface);
+    border: 1px solid var(--accent);
+    border-radius: var(--radius-sm);
+    padding: 0.25rem;
+    z-index: 10;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
+}
+
+.timePicker input {
+    background: var(--background);
+    border: 1px solid var(--border);
+    color: var(--text-primary);
+    padding: 0.3rem 0.5rem;
+    border-radius: var(--radius-sm);
+    font-family: var(--font-mono);
+}
+
+/* GAP Item */
+.gapItem {
+    position: relative;
+    display: flex;
+    align-items: center;
+    background: repeating-linear-gradient(45deg,
+            transparent,
+            transparent 8px,
+            rgba(245, 158, 11, 0.1) 8px,
+            rgba(245, 158, 11, 0.1) 16px);
+    border: 1px dashed var(--warning);
+    border-radius: var(--radius-sm);
+    padding: 0.5rem 0.75rem;
+    overflow: hidden;
+}
+
+.gapStripes {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    opacity: 0.1;
+}
+
+.gapContent {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    z-index: 1;
+    width: 100%;
+}
+
+.gapLabel {
+    font-size: 0.7rem;
+    font-weight: 700;
+    color: var(--warning);
+    letter-spacing: 0.1em;
+    min-width: 80px;
+}
+
+.gapDuration {
+    font-family: var(--font-mono);
+    color: var(--warning);
+    font-size: 0.85rem;
+}
+
+.gapTime {
+    font-family: var(--font-mono);
+    color: var(--text-muted);
+    font-size: 0.75rem;
+    margin-left: auto;
+}
+
+/* Empty State */
+.emptyState {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 3rem;
+    color: var(--text-muted);
+    text-align: center;
+}
+
+.emptyIcon {
+    font-size: 2rem;
+    margin-bottom: 0.5rem;
+    opacity: 0.5;
+}
+
+.emptyHint {
+    font-size: 0.75rem;
+    margin-top: 0.25rem;
+    opacity: 0.7;
+}
+
+/* Legacy */
+.meta {
+    font-size: 0.75rem;
+    color: var(--text-secondary);
+    font-weight: 400;
+}
+
+.index {
+    font-size: 0.7rem;
+    color: var(--text-muted);
+}
+
+.time {
+    font-family: var(--font-mono);
+    font-size: 0.85rem;
+    color: var(--accent);
+}
+
+/* Next item – subtle left border until imminent */
+.itemNext {
+    border-left: 3px solid rgba(239, 68, 68, 0.35);
+}
+
+/* Next item – imminent (active item has ≤30s left) */
+.itemNextImminent {
+    border-color: var(--danger);
+    background: rgba(239, 68, 68, 0.1);
+    border-left-width: 3px;
+    animation-name: nextFlashRed;
+    animation-iteration-count: infinite;
+    animation-timing-function: ease-in-out;
+}
+
+@keyframes nextFlashRed {
+    0%, 100% {
+        background-color: rgba(239, 68, 68, 0.1);
+        box-shadow: 0 0 8px rgba(239, 68, 68, 0.2);
+    }
+    50% {
+        background-color: rgba(239, 68, 68, 0.28);
+        box-shadow: 0 0 18px rgba(239, 68, 68, 0.55);
+    }
+}
+
+/* Playhead bar between header and list */
+.playhead {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.5rem;
+    padding: 0.35rem 0.75rem;
+    background: linear-gradient(90deg, rgba(59, 130, 246, 0.12) 0%, transparent 100%);
+    border-bottom: 1px solid rgba(59, 130, 246, 0.18);
+    min-height: 30px;
+    font-size: 0.72rem;
+}
+
+.playheadCurrent {
+    display: flex;
+    align-items: center;
+    gap: 0.35rem;
+    color: var(--accent);
+    overflow: hidden;
+    flex: 1;
+    min-width: 0;
+}
+
+.playheadTitle {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    font-weight: 600;
+    color: var(--text-primary);
+}
+
+.playheadCountdown {
+    font-family: var(--font-mono);
+    font-weight: 700;
+    font-size: 0.75rem;
+    color: var(--accent);
+    flex-shrink: 0;
+}
+
+.playheadNext {
+    display: flex;
+    align-items: center;
+    gap: 0.3rem;
+    color: var(--text-muted);
+    font-size: 0.68rem;
+    overflow: hidden;
+    max-width: 44%;
+    flex-shrink: 0;
+}
+
+.playheadNextTitle {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    color: var(--text-secondary);
+}
+
+/* IN/OUT times row */
+.inOutTimes {
+    display: flex;
+    align-items: center;
+    gap: 0.25rem;
+    margin-top: 0.12rem;
+    font-family: var(--font-mono);
+}
+
+.inOutLabel {
+    font-size: 0.57rem;
+    font-weight: 700;
+    color: var(--text-muted);
+    letter-spacing: 0.03em;
+}
+
+.inOutValue {
+    font-size: 0.62rem;
+    color: var(--text-secondary);
+}
+
+.inOutSep {
+    font-size: 0.6rem;
+    color: var(--border);
+    margin: 0 0.1rem;
+}
+
+/* Type-specific metadata */
+.typeMeta {
+    display: flex;
+    flex-direction: column;
+    gap: 0.08rem;
+    margin-top: 0.15rem;
+}
+
+.typeMeta span {
+    font-size: 0.6rem;
+    font-family: var(--font-mono);
+    color: var(--text-muted);
+    line-height: 1.35;
+    letter-spacing: 0.01em;
+}

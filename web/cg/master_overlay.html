@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=1920, initial-scale=1.0">
+    <title>Master Overlay</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            width: 1920px;
+            height: 1080px;
+            overflow: hidden;
+            background: transparent;
+            font-family: 'Inter', sans-serif;
+        }
+
+        .master-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            pointer-events: none;
+        }
+
+        /* Bug/Logo - Top Right */
+        .bug-container {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            opacity: 0;
+            animation: fadeIn 0.5s ease-out 0.3s forwards;
+        }
+
+        @keyframes fadeIn {
+            to {
+                opacity: 1;
+            }
+        }
+
+        .bug {
+            width: 120px;
+            height: 120px;
+            background: linear-gradient(135deg, rgba(0, 217, 255, 0.15) 0%, rgba(168, 85, 247, 0.15) 100%);
+            backdrop-filter: blur(10px);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 4px 20px rgba(0, 217, 255, 0.3);
+            border: 2px solid rgba(0, 217, 255, 0.4);
+        }
+
+        .bug-text {
+            font-size: 32px;
+            font-weight: 800;
+            background: linear-gradient(135deg, #00d9ff 0%, #a855f7 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        /* Clock - Top Left */
+        .clock-container {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            opacity: 0;
+            animation: fadeIn 0.5s ease-out 0.5s forwards;
+        }
+
+        .clock {
+            background: rgba(10, 10, 15, 0.85);
+            backdrop-filter: blur(15px);
+            padding: 12px 24px;
+            border-radius: 8px;
+            border: 1px solid rgba(0, 217, 255, 0.3);
+            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.6);
+        }
+
+        .clock-time {
+            font-size: 28px;
+            font-weight: 600;
+            color: #00d9ff;
+            font-family: 'JetBrains Mono', monospace;
+        }
+
+        /* Frame Border */
+        .frame-border {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            pointer-events: none;
+            opacity: 0;
+            animation: fadeIn 0.5s ease-out 0.7s forwards;
+        }
+
+        .frame-border::before,
+        .frame-border::after {
+            content: '';
+            position: absolute;
+            background: linear-gradient(90deg, #00d9ff 0%, #a855f7 100%);
+        }
+
+        .frame-border::before {
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+        }
+
+        .frame-border::after {
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="master-overlay" id="overlay">
+        <!-- Bug/Logo -->
+        <div class="bug-container" id="bugContainer">
+            <div class="bug">
+                <div class="bug-text" id="bugText">LIVE</div>
+            </div>
+        </div>
+
+        <!-- Clock -->
+        <div class="clock-container" id="clockContainer">
+            <div class="clock">
+                <div class="clock-time" id="clockTime">00:00:00</div>
+            </div>
+        </div>
+
+        <!-- Frame Border -->
+        <div class="frame-border" id="frameBorder"></div>
+    </div>
+
+    <script>
+        const params = new URLSearchParams(window.location.search);
+        const showBug = params.get('showBug') !== 'false';
+        const showClock = params.get('showClock') !== 'false';
+        const showBorder = params.get('showBorder') !== 'false';
+        const bugText = params.get('bugText') || 'LIVE';
+
+        // Show/hide elements
+        if (!showBug) document.getElementById('bugContainer').style.display = 'none';
+        if (!showClock) document.getElementById('clockContainer').style.display = 'none';
+        if (!showBorder) document.getElementById('frameBorder').style.display = 'none';
+
+        // Set bug text
+        document.getElementById('bugText').textContent = bugText;
+
+        // Update clock
+        function updateClock() {
+            const now = new Date();
+            const hours = String(now.getHours()).padStart(2, '0');
+            const minutes = String(now.getMinutes()).padStart(2, '0');
+            const seconds = String(now.getSeconds()).padStart(2, '0');
+            document.getElementById('clockTime').textContent = `${hours}:${minutes}:${seconds}`;
+        }
+
+        if (showClock) {
+            updateClock();
+            setInterval(updateClock, 1000);
+        }
+    </script>
+</body>
+
+</html>

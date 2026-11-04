@@ -1,0 +1,670 @@
+.page {
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+    background: #0f0f0f;
+    color: #e0e0e0;
+    overflow: hidden;
+}
+
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1.5rem 2rem;
+    background: #1a1a1a;
+    border-bottom: 1px solid #2a2a2a;
+}
+
+.headerLeft {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.backBtn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 36px;
+    height: 36px;
+    background: #1f1f1f;
+    border: 1px solid #2a2a2a;
+    border-radius: 6px;
+    color: #aaa;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.backBtn:hover {
+    background: #2a2a2a;
+    border-color: #3a3a3a;
+    color: #fff;
+}
+
+.headerLeft h1 {
+    margin: 0;
+    font-size: 1.75rem;
+    font-weight: 600;
+}
+
+.urlDisplay {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.5rem 0.75rem;
+    background: #151515;
+    border: 1px solid #2a2a2a;
+    border-radius: 6px;
+    margin-right: 0.75rem;
+}
+
+.urlLabel {
+    font-size: 0.85rem;
+    color: #888;
+}
+
+.urlCode {
+    font-family: monospace;
+    font-size: 0.85rem;
+    color: #4a9eff;
+    background: #0f0f0f;
+    padding: 0.25rem 0.5rem;
+    border-radius: 4px;
+}
+
+.subtitle {
+    margin: 0.25rem 0 0 0;
+    color: #888;
+    font-size: 0.9rem;
+}
+
+.headerActions {
+    display: flex;
+    gap: 0.75rem;
+}
+
+.layout {
+    display: grid;
+    grid-template-columns: 280px 1fr 400px;
+    height: calc(100vh - 80px);
+    overflow: hidden;
+}
+
+.sidebar {
+    background: #151515;
+    border-right: 1px solid #2a2a2a;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+}
+
+.sectionHeader {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem;
+    border-bottom: 1px solid #2a2a2a;
+}
+
+.sectionHeader h3 {
+    margin: 0;
+    font-size: 1rem;
+    font-weight: 600;
+}
+
+.searchBox {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.75rem;
+    margin: 0.5rem;
+    background: #1a1a1a;
+    border-radius: 6px;
+    border: 1px solid #2a2a2a;
+}
+
+.searchBox input {
+    flex: 1;
+    background: transparent;
+    border: none;
+    color: #e0e0e0;
+    outline: none;
+    font-size: 0.9rem;
+}
+
+.clientList {
+    flex: 1;
+    overflow-y: auto;
+    padding: 0.5rem;
+}
+
+.clientCard {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    padding: 0.75rem;
+    background: #1a1a1a;
+    border: 1px solid #2a2a2a;
+    border-radius: 8px;
+    margin-bottom: 0.5rem;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.clientCard:hover {
+    background: #1f1f1f;
+    border-color: #3a3a3a;
+}
+
+.clientCard.active {
+    background: #2a2a2a;
+    border-color: #4a9eff;
+}
+
+.clientColor {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    flex-shrink: 0;
+}
+
+.clientInfo {
+    flex: 1;
+    min-width: 0;
+}
+
+.clientName {
+    font-weight: 500;
+    font-size: 0.95rem;
+    margin-bottom: 0.25rem;
+}
+
+.clientMeta {
+    font-size: 0.8rem;
+    color: #888;
+}
+
+.mainContent {
+    display: flex;
+    flex-direction: column;
+    overflow-y: auto;
+    padding: 1.5rem;
+    background: #0f0f0f;
+}
+
+.contentHeader {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1.5rem;
+}
+
+.contentHeader h2 {
+    margin: 0;
+    font-size: 1.25rem;
+}
+
+.stats {
+    color: #888;
+    font-size: 0.9rem;
+}
+
+.assignmentList {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+}
+
+.assignmentCard {
+    background: #1a1a1a;
+    border: 1px solid #2a2a2a;
+    border-radius: 8px;
+    padding: 1rem;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.assignmentCard:hover {
+    background: #1f1f1f;
+    border-color: #3a3a3a;
+}
+
+.assignmentCard.selected {
+    background: #2a2a2a;
+    border-color: #4a9eff;
+}
+
+.assignmentHeader {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 0.75rem;
+}
+
+.assignmentMedia {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    flex: 1;
+}
+
+.assignmentTitle {
+    font-weight: 500;
+    font-size: 0.95rem;
+    margin-bottom: 0.25rem;
+}
+
+.assignmentClient {
+    font-size: 0.85rem;
+    color: #888;
+}
+
+.assignmentActions {
+    display: flex;
+    gap: 0.25rem;
+}
+
+.assignmentRules {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+    padding-top: 0.75rem;
+    border-top: 1px solid #2a2a2a;
+}
+
+.ruleItem {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.85rem;
+    color: #aaa;
+}
+
+.editorPanel {
+    background: #151515;
+    border-left: 1px solid #2a2a2a;
+    display: flex;
+    flex-direction: column;
+    overflow-y: auto;
+    min-height: 0;
+    overscroll-behavior: contain;
+}
+
+.editorHeader {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem;
+    border-bottom: 1px solid #2a2a2a;
+}
+
+.editorHeader h3 {
+    margin: 0;
+    font-size: 1.1rem;
+}
+
+.editorContent {
+    padding: 1rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+.formSection {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+}
+
+.label {
+    font-size: 0.9rem;
+    font-weight: 500;
+    color: #ccc;
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+}
+
+.hint {
+    font-size: 0.8rem;
+    font-weight: normal;
+    color: #666;
+}
+
+.select,
+.input,
+.textarea {
+    padding: 0.6rem;
+    background: #1a1a1a;
+    border: 1px solid #2a2a2a;
+    border-radius: 6px;
+    color: #e0e0e0;
+    font-size: 0.9rem;
+    outline: none;
+    transition: border-color 0.2s;
+    font-family: inherit;
+}
+
+.select:focus,
+.input:focus,
+.textarea:focus {
+    border-color: #4a9eff;
+}
+
+.textarea {
+    resize: vertical;
+    min-height: 80px;
+}
+
+.mediaPreview {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.5rem;
+    background: #1f1f1f;
+    border-radius: 6px;
+    font-size: 0.85rem;
+}
+
+.duration {
+    margin-left: auto;
+    color: #888;
+}
+
+.hourGrid {
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    gap: 0.5rem;
+}
+
+.hourButton {
+    padding: 0.5rem;
+    background: #1a1a1a;
+    border: 1px solid #2a2a2a;
+    border-radius: 6px;
+    color: #aaa;
+    cursor: pointer;
+    font-size: 0.85rem;
+    transition: all 0.2s;
+}
+
+.hourButton:hover {
+    background: #1f1f1f;
+    border-color: #3a3a3a;
+}
+
+.hourButton.selected {
+    background: #4a9eff;
+    border-color: #4a9eff;
+    color: #fff;
+}
+
+.dayGrid {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    gap: 0.5rem;
+}
+
+.dayButton {
+    padding: 0.6rem 0.4rem;
+    background: #1a1a1a;
+    border: 1px solid #2a2a2a;
+    border-radius: 6px;
+    color: #aaa;
+    cursor: pointer;
+    font-size: 0.85rem;
+    transition: all 0.2s;
+}
+
+.dayButton:hover {
+    background: #1f1f1f;
+    border-color: #3a3a3a;
+}
+
+.dayButton.selected {
+    background: #22c55e;
+    border-color: #22c55e;
+    color: #fff;
+}
+
+.frequencyGrid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0.75rem;
+}
+
+.frequencyField {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.frequencyField label {
+    font-size: 0.85rem;
+    color: #aaa;
+}
+
+.sectionActions {
+    display: flex;
+    gap: 0.5rem;
+}
+
+.btnLink {
+    background: transparent;
+    border: none;
+    color: #4a9eff;
+    cursor: pointer;
+    font-size: 0.85rem;
+    padding: 0.25rem 0.5rem;
+    transition: color 0.2s;
+}
+
+.btnLink:hover {
+    color: #6bb4ff;
+}
+
+.editorActions {
+    display: flex;
+    gap: 0.75rem;
+    padding-top: 1rem;
+    border-top: 1px solid #2a2a2a;
+}
+
+.btnPrimary,
+.btnSecondary {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.6rem 1.25rem;
+    border: none;
+    border-radius: 6px;
+    font-size: 0.9rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.btnPrimary {
+    background: #4a9eff;
+    color: #fff;
+    flex: 1;
+}
+
+.btnPrimary:hover {
+    background: #3a8eef;
+}
+
+.btnPrimary:disabled {
+    background: #2a2a2a;
+    color: #666;
+    cursor: not-allowed;
+}
+
+.btnSecondary {
+    background: #1a1a1a;
+    border: 1px solid #2a2a2a;
+    color: #e0e0e0;
+}
+
+.btnSecondary:hover {
+    background: #1f1f1f;
+    border-color: #3a3a3a;
+}
+
+.btnIcon,
+.btnIconSmall {
+    background: transparent;
+    border: 1px solid #2a2a2a;
+    color: #aaa;
+    padding: 0.4rem;
+    border-radius: 6px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.2s;
+}
+
+.btnIcon:hover,
+.btnIconSmall:hover {
+    background: #1f1f1f;
+    border-color: #3a3a3a;
+    color: #fff;
+}
+
+.btnIconSmall {
+    padding: 0.3rem;
+}
+
+.empty {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 3rem 1rem;
+    text-align: center;
+    color: #666;
+}
+
+.empty p {
+    margin: 0.5rem 0;
+}
+
+.emptyHint {
+    font-size: 0.85rem;
+    color: #555;
+}
+
+.reportPanel {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.9);
+    z-index: 1000;
+    display: flex;
+    flex-direction: column;
+    padding: 2rem;
+    overflow-y: auto;
+}
+
+.reportHeader {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 2rem;
+    padding-bottom: 1rem;
+    border-bottom: 1px solid #2a2a2a;
+}
+
+.reportHeader h2 {
+    margin: 0;
+    font-size: 1.5rem;
+}
+
+.reportContent {
+    max-width: 1200px;
+    margin: 0 auto;
+    width: 100%;
+}
+
+.reportSection {
+    margin-bottom: 2rem;
+    background: #1a1a1a;
+    border: 1px solid #2a2a2a;
+    border-radius: 8px;
+    padding: 1.5rem;
+}
+
+.reportSection h3 {
+    margin: 0 0 1rem 0;
+    font-size: 1.1rem;
+    color: #4a9eff;
+}
+
+.reportStats {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1rem;
+}
+
+.reportStat {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.statLabel {
+    font-size: 0.85rem;
+    color: #888;
+}
+
+.statValue {
+    font-size: 2rem;
+    font-weight: 600;
+    color: #fff;
+}
+
+.reportTable {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.reportRow {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.75rem;
+    background: #151515;
+    border-radius: 6px;
+}
+
+.reportClientName {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-weight: 500;
+}
+
+.reportColorDot {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+}
+
+.reportLabel {
+    color: #ccc;
+}
+
+.reportCount {
+    color: #4a9eff;
+    font-weight: 500;
+}
+
+
+
+/* Keep editor usable in constrained layouts */
+.editorContent{min-height:0;}

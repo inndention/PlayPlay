@@ -1,0 +1,63 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>PLAY PLAY CG output</title>
+<style>
+  html, body { margin: 0; width: 1920px; height: 1080px; overflow: hidden; background: transparent; }
+  body.keyed { background: #00ff00; }
+  iframe { position: absolute; inset: 0; width: 1920px; height: 1080px; border: 0; background: transparent; }
+  #status { position: absolute; left: 8px; top: 8px; font: 12px monospace; color: #fff; background: rgba(0,0,0,.6); padding: 2px 6px; border-radius: 3px; display: none; }
+  body.debug #status { display: block; }
+</style>
+</head>
+<body>
+<!--
+  HTML CG output page: load this in a browser source (OBS, vMix, an NDI browser tool, or the engine's
+  WebEngine layer when built with PLAYPLAY_WITH_WEBENGINE). It follows one channel's "cgHtml" state
+  on the Supervisor: ?channel=main[&token=...][&key=1 for a green key][&debug=1].
+  Each deployed template is loaded in its own iframe; a new deploy fades the previous one out.
+-->
+<div id="status"></div>
+<script>
+(function () {
+  const q = new URLSearchParams(location.search);
+  const channel = q.get('channel') || 'main';
+  const requestedOutput = Number(q.get('output') || 1);
+  const output = Number.isInteger(requestedOutput) && requestedOutput >= 1 && requestedOutput <= 8 ? requestedOutput : 1;
+  const token = q.get('token') || '';
+  if (q.get('key') === '1') document.body.classList.add('keyed');
+  if (q.get('debug') === '1') document.body.classList.add('debug');
+  const status = document.getElementById('status');
+  let current = null, currentUrl = '';
+  function show(state) {
+    const url = state && state.url ? state.url : '';
+    if (url === currentUrl) return;
+    currentUrl = url;
+    if (current) { const old = current; old.style.transition = 'opacity .4s'; old.style.opacity = '0'; setTimeout(() => old.remove(), 450); current = null; }
+    if (!url) { status.textContent = channel + ': clear'; return; }
+    const f = document.createElement('iframe');
+    f.src = url; f.allowTransparency = true; f.style.opacity = '0'; f.style.transition = 'opacity .25s';
+    f.onload = () => { f.style.opacity = '1'; };
+    document.body.appendChild(f); current = f;
+    status.textContent = channel + ': ' + (state.template || url);
+  }
+  const hdr = token ? { Authorization: 'Bearer ' + token } : {};
+  function poll() { fetch('/api/v1/cg/html/' + encodeURIComponent(channel) + '?output=' + output, { headers: hdr }).then(r => r.json()).then(show).catch(() => {}); }
+  poll();
+  let ws;
+  function connect() {
+    fetch('/api/v1/status', { headers: hdr }).then(r => r.json()).then(st => {
+      const port = st.wsPort || 7701;
+      ws = new WebSocket((location.protocol === 'https:' ? 'wss://' : 'ws://') + location.hostname + ':' + port + '/' + (token ? '?token=' + encodeURIComponent(token) : ''));
+      ws.onopen = () => ws.send(JSON.stringify({ type: 'subscribe', rate: 'low' }));
+      ws.onmessage = ev => { let m; try { m = JSON.parse(ev.data); } catch { return; } if (m.type === 'cgHtml' && m.channelId === channel && Number(m.output || 1) === output) show(m); };
+      ws.onclose = () => setTimeout(connect, 2500);
+    }).catch(() => setTimeout(connect, 2500));
+  }
+  connect();
+  setInterval(poll, 15000);
+})();
+</script>
+</body>
+</html>

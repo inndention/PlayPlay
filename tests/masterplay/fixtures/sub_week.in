@@ -1,0 +1,31 @@
+﻿0000-00-00T06:00:00	Name=Morning	EventDuration=01:00:00	PlayMode=1
+S:\Shows\Morning.mpg
+0000-00-00T09:00:00	EventDuration=03:00:00	PlayMode=2
+S:\Fill\Loop A.mpg
+S:\Fill\Loop B.mpg
+0000-00-02T06:00:00	Name=Monday Show	EventDuration=01:00:00	PlayMode=1
+S:\Shows\Monday.mpg
+0000-00-04T12:00:00	EventType=1	Name=Noon News	EventDuration=00:30:00	PlayMode=1
+S:\News\Open.mpg
+!InsertPlaylist C:\Sync\NEWS HUB\sub_news.in	LoadingMode=7
+S:\News\Close.mpg
+0000-00-04T19:00:00	EventDuration=00:10:00	PlayMode=1
+!InsertPlaylist C:\Sync\NEWS HUB\sub_news_inner.in
+0000-00-05T12:00:00	EventDuration=00:30:00	PlayMode=1
+S:\Shows\Before Change.mpg
+!ChangePlaylist C:\Sync\NEWS HUB\sub_evening.in
+S:\Shows\Never One.mpg
+S:\Shows\Never Two.mpg
+0000-00-05T20:00:00	EventDuration=01:00:00	PlayMode=1
+S:\Shows\Thursday Night.mpg
+0000-00-06T12:00:00	EventDuration=00:30:00	PlayMode=1
+!InsertPlaylist sub_cycle_a.in
+!InsertPlaylist C:\Sync\NEWS HUB\sub_missing.in
+S:\Shows\Friday.mpg
+0000-00-07T23:00:00	EventType=2	Name=Late Movie	EventDuration=02:30:00	PlayMode=1
+S:\Movies\Feature.mpg
+2025-09-10T06:00:00	Name=Ribbon Cutting	EventDuration=00:30:00	PlayMode=1
+S:\Specials\Ribbon.mpg
+2025-09-10T22:00:00	Name=Special Night	EventDuration=04:00:00	PlayMode=2
+!Repeat
+S:\Specials\Night Loop.mpg

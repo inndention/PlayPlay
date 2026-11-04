@@ -1,0 +1,10 @@
+00/00/0000 00:00:00	EventDuration=24:00:00	PlayMode=2
+!Repeat
+S:\Fill\Loop.mpg
+01/00/0000 06:00:00	Name=Café – Früh	EventDuration=00:30:00	PlayMode=1
+S:\COMMERCIALS 2025\Joe’s Diner € 5.mpg	actinout=0
+!ShowCrawl Wetter: 72° über München …	cfg=D:\Masterplay\OSD\DefaultCrawl.osd
+03/04/2025 10:00:00	EventDuration=00:05:00	PlayMode=1
+S:\Specials\Mañana “quoted”.mpg
+S:\Specials\undefined  bytes.mpg
+99/99/9999 00:00:00

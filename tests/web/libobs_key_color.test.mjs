@@ -1,0 +1,24 @@
+import assert from 'node:assert/strict';
+
+globalThis.window = globalThis;
+globalThis.pp = { render() {}, toast() {} };
+const { ppExtLibObs } = await import('../../web/libobs.js');
+Object.assign(pp, ppExtLibObs);
+const filter = { id: 'chroma_key_filter_v2', settings: {} };
+LO.draft = { spec: { scenes: [{ items: [{ filters: [filter] }] }] } };
+pp.loKeyColor(0, 0, 0, '#123456');
+assert.equal(filter.settings.key_color_type, 'custom');
+assert.equal(filter.settings.key_color, '#123456');
+pp.loKeyColor(0, 0, 0, 'invalid');
+assert.equal(filter.settings.key_color, '#123456');
+globalThis.EyeDropper = class { async open() { return { sRGBHex: '#abcdef' }; } };
+await pp.loPickKeyColor(0, 0, 0);
+assert.equal(filter.settings.key_color, '#abcdef');
+let resolve;
+globalThis.EyeDropper = class { open() { return new Promise(r => { resolve = r; }); } };
+const pending = pp.loPickKeyColor(0, 0, 0);
+LO.draft = { spec: { scenes: [{ items: [{ filters: [{ id: 'chroma_key_filter_v2', settings: {} }] }] }] } };
+resolve({ sRGBHex: '#ffffff' });
+await pending;
+assert.equal(LO.draft.spec.scenes[0].items[0].filters[0].settings.key_color, undefined);
+console.log('Chroma key color and eyedropper checks passed');

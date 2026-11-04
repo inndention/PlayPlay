@@ -1,0 +1,362 @@
+/* StudioDirectorPanel.module.css */
+
+.panel {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    background: linear-gradient(165deg, #0d0f1a 0%, #111827 100%);
+    color: #e2e8f0;
+    font-family: 'Inter', 'Segoe UI', sans-serif;
+    overflow: hidden;
+}
+
+/* ── Header ── */
+.header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px 16px;
+    background: rgba(255, 255, 255, 0.04);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+    flex-shrink: 0;
+}
+
+.title {
+    font-size: 15px;
+    font-weight: 700;
+    letter-spacing: 0.01em;
+    color: #f8fafc;
+}
+
+.siteSelect {
+    background: rgba(255, 255, 255, 0.07);
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    border-radius: 6px;
+    color: #e2e8f0;
+    font-size: 12px;
+    padding: 4px 8px;
+    cursor: pointer;
+    outline: none;
+}
+
+.siteSelect:focus {
+    border-color: #6366f1;
+}
+
+/* ── Body ── */
+.body {
+    display: flex;
+    flex: 1;
+    overflow: hidden;
+    gap: 0;
+}
+
+/* ── Left col ── */
+.cueCol {
+    width: 320px;
+    flex-shrink: 0;
+    overflow-y: auto;
+    padding: 12px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    border-right: 1px solid rgba(255, 255, 255, 0.07);
+}
+
+.cueCol::-webkit-scrollbar { width: 4px; }
+.cueCol::-webkit-scrollbar-track { background: transparent; }
+.cueCol::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.12); border-radius: 2px; }
+
+/* ── Section ── */
+.section {
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 255, 255, 0.07);
+    border-radius: 10px;
+    padding: 10px 12px;
+    display: flex;
+    flex-direction: column;
+    gap: 7px;
+}
+
+.sectionTitle {
+    font-size: 11px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: #94a3b8;
+    margin: 0 0 2px;
+}
+
+.sectionTitle.urgent {
+    color: #ef4444;
+}
+
+/* ── Cue grid ── */
+.cueGrid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 6px;
+}
+
+/* ── Cue button ── */
+.cueBtn {
+    background: rgba(99, 102, 241, 0.15);
+    border: 1px solid rgba(99, 102, 241, 0.3);
+    border-radius: 7px;
+    color: #c7d2fe;
+    font-size: 11px;
+    font-weight: 600;
+    padding: 8px 6px;
+    cursor: pointer;
+    transition: background 0.15s, border-color 0.15s, transform 0.1s;
+    text-align: center;
+    line-height: 1.3;
+}
+
+.cueBtn:hover:not(:disabled) {
+    background: rgba(99, 102, 241, 0.3);
+    border-color: #6366f1;
+    transform: translateY(-1px);
+}
+
+.cueBtn:active:not(:disabled) {
+    transform: translateY(0);
+}
+
+.cueBtn:disabled {
+    opacity: 0.4;
+    cursor: not-allowed;
+}
+
+.cueBtnRed {
+    background: rgba(239, 68, 68, 0.15);
+    border-color: rgba(239, 68, 68, 0.35);
+    color: #fca5a5;
+}
+
+.cueBtnRed:hover:not(:disabled) {
+    background: rgba(239, 68, 68, 0.3);
+    border-color: #ef4444;
+}
+
+.cueBtnGreen {
+    background: rgba(34, 197, 94, 0.15);
+    border-color: rgba(34, 197, 94, 0.35);
+    color: #86efac;
+}
+
+.cueBtnGreen:hover:not(:disabled) {
+    background: rgba(34, 197, 94, 0.3);
+    border-color: #22c55e;
+}
+
+.fullWidth {
+    grid-column: 1 / -1;
+}
+
+/* ── Input / textarea ── */
+.input,
+.textarea {
+    background: rgba(0, 0, 0, 0.3);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 6px;
+    color: #e2e8f0;
+    font-size: 12px;
+    padding: 7px 10px;
+    outline: none;
+    width: 100%;
+    box-sizing: border-box;
+    transition: border-color 0.15s;
+    font-family: inherit;
+}
+
+.input:focus,
+.textarea:focus {
+    border-color: #6366f1;
+}
+
+.textarea {
+    resize: vertical;
+    min-height: 64px;
+}
+
+/* ── Live shot list ── */
+.liveList {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.liveItem {
+    display: flex;
+    align-items: center;
+    gap: 7px;
+    background: rgba(34, 197, 94, 0.1);
+    border: 1px solid rgba(34, 197, 94, 0.25);
+    border-radius: 6px;
+    padding: 5px 8px;
+    font-size: 11px;
+}
+
+.liveDot {
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    background: #22c55e;
+    animation: pulse 1.2s ease-in-out infinite;
+    flex-shrink: 0;
+}
+
+@keyframes pulse {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.3; }
+}
+
+.releaseBtn {
+    margin-left: auto;
+    background: rgba(239, 68, 68, 0.2);
+    border: 1px solid rgba(239, 68, 68, 0.3);
+    border-radius: 4px;
+    color: #fca5a5;
+    font-size: 10px;
+    font-weight: 600;
+    padding: 2px 8px;
+    cursor: pointer;
+    transition: background 0.15s;
+}
+
+.releaseBtn:hover:not(:disabled) {
+    background: rgba(239, 68, 68, 0.4);
+}
+
+/* ── Log col ── */
+.logCol {
+    flex: 1;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    padding: 12px;
+    gap: 10px;
+}
+
+.lastCopyBox {
+    background: rgba(99, 102, 241, 0.1);
+    border: 1px solid rgba(99, 102, 241, 0.25);
+    border-radius: 10px;
+    padding: 10px 14px;
+    flex-shrink: 0;
+}
+
+.lastCopyLabel {
+    font-size: 10px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.07em;
+    color: #818cf8;
+    display: block;
+    margin-bottom: 4px;
+}
+
+.lastCopyText {
+    font-size: 13px;
+    color: #e0e7ff;
+    font-style: italic;
+    margin: 0;
+    line-height: 1.5;
+}
+
+.logHeader {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-shrink: 0;
+}
+
+.logTitle {
+    font-size: 12px;
+    font-weight: 600;
+    color: #94a3b8;
+    text-transform: uppercase;
+    letter-spacing: 0.07em;
+}
+
+.clearBtn {
+    background: transparent;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 4px;
+    color: #64748b;
+    font-size: 10px;
+    padding: 2px 8px;
+    cursor: pointer;
+    transition: color 0.15s, border-color 0.15s;
+}
+
+.clearBtn:hover {
+    color: #94a3b8;
+    border-color: rgba(255, 255, 255, 0.2);
+}
+
+.logList {
+    flex: 1;
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.logList::-webkit-scrollbar { width: 4px; }
+.logList::-webkit-scrollbar-track { background: transparent; }
+.logList::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.1); border-radius: 2px; }
+
+.emptyLog {
+    color: #475569;
+    font-size: 12px;
+    text-align: center;
+    margin-top: 32px;
+}
+
+.logEntry {
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 255, 255, 0.06);
+    border-radius: 8px;
+    padding: 8px 12px;
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    animation: slideIn 0.2s ease;
+}
+
+@keyframes slideIn {
+    from { opacity: 0; transform: translateY(4px); }
+    to   { opacity: 1; transform: translateY(0); }
+}
+
+.logEntry:first-child {
+    border-color: rgba(99, 102, 241, 0.3);
+    background: rgba(99, 102, 241, 0.07);
+}
+
+.logTime {
+    font-size: 10px;
+    color: #475569;
+    font-variant-numeric: tabular-nums;
+}
+
+.logKind {
+    font-size: 11px;
+    font-weight: 600;
+    color: #818cf8;
+}
+
+.logSite {
+    font-size: 10px;
+    color: #64748b;
+}
+
+.logCopy {
+    font-size: 12px;
+    color: #cbd5e1;
+    font-style: italic;
+    margin: 2px 0 0;
+    line-height: 1.5;
+}

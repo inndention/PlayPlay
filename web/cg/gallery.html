@@ -1,0 +1,435 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=1920, initial-scale=1.0">
+    <title>Graphics Gallery - Thumbnails & Previews</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html, body {
+            background: #0F172A;
+            color: #E8E8E8;
+            font-family: 'Arial', sans-serif;
+            padding: 40px;
+        }
+
+        .gallery-header {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+
+        .gallery-header h1 {
+            font-size: 48px;
+            font-weight: 900;
+            background: linear-gradient(135deg, #00D9FF, #A855F7);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 10px;
+        }
+
+        .gallery-header p {
+            font-size: 18px;
+            color: #A0A0A0;
+        }
+
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(380px, 1fr));
+            gap: 30px;
+            max-width: 1600px;
+            margin: 0 auto;
+        }
+
+        .gallery-card {
+            background: linear-gradient(135deg, rgba(0, 217, 255, 0.05) 0%, rgba(168, 85, 247, 0.05) 100%);
+            border: 2px solid rgba(0, 217, 255, 0.3);
+            border-radius: 8px;
+            overflow: hidden;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .gallery-card:hover {
+            border-color: #00D9FF;
+            box-shadow: 0 0 30px rgba(0, 217, 255, 0.3);
+            transform: translateY(-5px);
+        }
+
+        .card-preview {
+            width: 100%;
+            height: 200px;
+            background: #1A2E4A;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 80px;
+            border-bottom: 2px solid rgba(0, 217, 255, 0.2);
+            overflow: hidden;
+            position: relative;
+        }
+
+        .card-preview.lower-third {
+            background: linear-gradient(135deg, #00D9FF 0%, #A855F7 100%);
+        }
+
+        .card-preview.logo {
+            background: linear-gradient(135deg, rgba(0, 217, 255, 0.2), rgba(168, 85, 247, 0.2));
+            border: 3px solid #00D9FF;
+        }
+
+        .card-preview.space {
+            background: radial-gradient(ellipse at center, #1A4D6D 0%, #0A0E27 100%);
+        }
+
+        .card-preview.holiday {
+            background: linear-gradient(135deg, #2D8C3C, #8B0000, #FFD700);
+        }
+
+        .card-preview.industry {
+            background: linear-gradient(135deg, #D32F2F, #424242, #1B5E20, #1A237E);
+        }
+
+        .card-preview.emergency {
+            background: linear-gradient(135deg, #0D47A1, #C62828);
+            animation: lightPulse 1s ease-in-out infinite;
+        }
+
+        @keyframes lightPulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.7; }
+        }
+
+        .card-preview.scifi {
+            background: linear-gradient(135deg, #0A0E27, #1A4D6D);
+            border: 2px solid #00D9FF;
+        }
+
+        .card-content {
+            padding: 20px;
+        }
+
+        .card-title {
+            font-size: 20px;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 8px;
+            color: #00D9FF;
+        }
+
+        .card-description {
+            font-size: 14px;
+            color: #A0A0A0;
+            margin-bottom: 15px;
+            line-height: 1.5;
+        }
+
+        .card-url {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 12px;
+        }
+
+        .card-url input {
+            flex: 1;
+            padding: 8px 12px;
+            background: rgba(0, 217, 255, 0.05);
+            border: 1px solid rgba(0, 217, 255, 0.2);
+            color: #E8E8E8;
+            border-radius: 4px;
+            font-size: 12px;
+            font-family: 'Courier New', monospace;
+        }
+
+        .card-url button {
+            padding: 8px 16px;
+            background: #00D9FF;
+            color: #0F172A;
+            border: none;
+            border-radius: 4px;
+            font-weight: 700;
+            font-size: 12px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .card-url button:hover {
+            background: #A855F7;
+        }
+
+        .card-actions {
+            display: flex;
+            gap: 10px;
+        }
+
+        .btn {
+            flex: 1;
+            padding: 10px;
+            font-size: 12px;
+            font-weight: 700;
+            text-transform: uppercase;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .btn-preview {
+            background: #00D9FF;
+            color: #0F172A;
+        }
+
+        .btn-preview:hover {
+            background: #00E8FF;
+            box-shadow: 0 0 15px rgba(0, 217, 255, 0.4);
+        }
+
+        .btn-fullscreen {
+            background: #A855F7;
+            color: white;
+        }
+
+        .btn-fullscreen:hover {
+            background: #B86FFF;
+            box-shadow: 0 0 15px rgba(168, 85, 247, 0.4);
+        }
+
+        .category {
+            margin-bottom: 80px;
+        }
+
+        .category-title {
+            font-size: 32px;
+            font-weight: 800;
+            text-transform: uppercase;
+            color: #FFD700;
+            margin-bottom: 30px;
+            padding-bottom: 15px;
+            border-bottom: 3px solid rgba(255, 215, 0, 0.3);
+        }
+
+        .stats {
+            background: rgba(0, 217, 255, 0.05);
+            border: 1px solid rgba(0, 217, 255, 0.2);
+            border-radius: 8px;
+            padding: 20px;
+            margin-bottom: 60px;
+        }
+
+        .stats-item {
+            display: inline-block;
+            margin-right: 40px;
+            font-size: 18px;
+        }
+
+        .stats-number {
+            color: #00D9FF;
+            font-weight: 900;
+            font-size: 28px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="gallery-header">
+        <h1>📺 Broadcast Graphics Gallery</h1>
+        <p>Professional lower thirds, logos, 3D effects, seasonal themes, industry graphics & emergency services</p>
+    </div>
+
+    <div class="stats">
+        <div class="stats-item">
+            <div class="stats-number">7</div>
+            <div>New Templates</div>
+        </div>
+        <div class="stats-item">
+            <div class="stats-number">20+</div>
+            <div>Variants</div>
+        </div>
+        <div class="stats-item">
+            <div class="stats-number">100%</div>
+            <div>Broadcast Safe</div>
+        </div>
+    </div>
+
+    <!-- LOWER THIRDS -->
+    <div class="category">
+        <h2 class="category-title">📛 Lower Thirds</h2>
+        <div class="gallery-grid">
+            <div class="gallery-card">
+                <div class="card-preview lower-third">JOHN SMITH</div>
+                <div class="card-content">
+                    <div class="card-title">Professional Angled</div>
+                    <div class="card-description">Modern lower third with angled clip-path, gradient background, shimmer effect, and accent bar.</div>
+                    <div class="card-url">
+                        <input type="text" value="lower_third_professional_angled.html" readonly>
+                        <button onclick="copyToClipboard(this)">Copy</button>
+                    </div>
+                    <div class="card-actions">
+                        <button class="btn btn-preview" onclick="openPreview('lower_third_professional_angled.html?name=John%20Smith&title=Chief%20Correspondent')">Preview</button>
+                        <button class="btn btn-fullscreen" onclick="window.open('lower_third_professional_angled.html?name=John%20Smith&title=Chief%20Correspondent', '_blank')">Fullscreen</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- LOGOS & ALPHKEY -->
+    <div class="category">
+        <h2 class="category-title">🎯 Logos & Alphkey</h2>
+        <div class="gallery-grid">
+            <div class="gallery-card">
+                <div class="card-preview logo">LOGO</div>
+                <div class="card-content">
+                    <div class="card-title">Logo Corner Frame</div>
+                    <div class="card-description">Top-right corner logo display with alphkey support, glow effect, corner accents, and backdrop blur.</div>
+                    <div class="card-url">
+                        <input type="text" value="logo_alphkey_corner.html" readonly>
+                        <button onclick="copyToClipboard(this)">Copy</button>
+                    </div>
+                    <div class="card-actions">
+                        <button class="btn btn-preview" onclick="openPreview('logo_alphkey_corner.html')">Preview</button>
+                        <button class="btn btn-fullscreen" onclick="window.open('logo_alphkey_corner.html', '_blank')">Fullscreen</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 3D SPACE & AMBIENT -->
+    <div class="category">
+        <h2 class="category-title">🚀 3D Space & Ambient Effects</h2>
+        <div class="gallery-grid">
+            <div class="gallery-card">
+                <div class="card-preview space">00:00:30</div>
+                <div class="card-content">
+                    <div class="card-title">Space Countdown</div>
+                    <div class="card-description">3D space scene with starfield, animated clouds, orbital rings, and countdown timer. Perfect for show intros.</div>
+                    <div class="card-url">
+                        <input type="text" value="space_ambient_countdown.html?seconds=30" readonly>
+                        <button onclick="copyToClipboard(this)">Copy</button>
+                    </div>
+                    <div class="card-actions">
+                        <button class="btn btn-preview" onclick="openPreview('space_ambient_countdown.html?seconds=30')">Preview</button>
+                        <button class="btn btn-fullscreen" onclick="window.open('space_ambient_countdown.html?seconds=30', '_blank')">Fullscreen</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- SEASONAL & HOLIDAYS -->
+    <div class="category">
+        <h2 class="category-title">🎄 Seasonal & Holiday Graphics</h2>
+        <div class="gallery-grid">
+            <div class="gallery-card">
+                <div class="card-preview holiday"></div>
+                <div class="card-content">
+                    <div class="card-title">Seasonal Pack</div>
+                    <div class="card-description">6 holiday themes: Christmas, Halloween, New Year, Thanksgiving, Summer, Spring. With animated effects (snow, confetti, etc).</div>
+                    <div class="card-url">
+                        <input type="text" value="seasonal_holiday_pack.html?holiday=christmas" readonly>
+                        <button onclick="copyToClipboard(this)">Copy</button>
+                    </div>
+                    <div class="card-actions">
+                        <button class="btn btn-preview" onclick="openPreview('seasonal_holiday_pack.html?holiday=christmas')">Christmas</button>
+                        <button class="btn btn-fullscreen" onclick="window.open('seasonal_holiday_pack.html?holiday=halloween', '_blank')">Halloween</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <p style="margin-top: 20px; color: #A0A0A0; font-size: 14px;">
+            <strong>Variants:</strong> ?holiday=christmas | halloween | newyear | thanksgiving | summer | spring
+        </p>
+    </div>
+
+    <!-- INDUSTRY THEMED -->
+    <div class="category">
+        <h2 class="category-title">⚙️ Industry Themed Graphics</h2>
+        <div class="gallery-grid">
+            <div class="gallery-card">
+                <div class="card-preview industry"></div>
+                <div class="card-content">
+                    <div class="card-title">Industry Pack</div>
+                    <div class="card-description">4 industry themes: Auto/Motorsports, Manufacturing, Technology, Agriculture. Each with branded colors and icons.</div>
+                    <div class="card-url">
+                        <input type="text" value="industry_themed_pack.html?industry=auto" readonly>
+                        <button onclick="copyToClipboard(this)">Copy</button>
+                    </div>
+                    <div class="card-actions">
+                        <button class="btn btn-preview" onclick="openPreview('industry_themed_pack.html?industry=auto')">Motorsports</button>
+                        <button class="btn btn-fullscreen" onclick="window.open('industry_themed_pack.html?industry=tech', '_blank')">Technology</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <p style="margin-top: 20px; color: #A0A0A0; font-size: 14px;">
+            <strong>Variants:</strong> ?industry=auto | manufacturing | tech | agriculture
+        </p>
+    </div>
+
+    <!-- EMERGENCY SERVICES -->
+    <div class="category">
+        <h2 class="category-title">🚨 Emergency & Government Services</h2>
+        <div class="gallery-grid">
+            <div class="gallery-card">
+                <div class="card-preview emergency"></div>
+                <div class="card-content">
+                    <div class="card-title">Emergency Services Pack</div>
+                    <div class="card-description">5 government & emergency themes: Police, Sheriff, State Troopers, Fire, City Gov. With blue light pulsing effects.</div>
+                    <div class="card-url">
+                        <input type="text" value="emergency_services_pack.html?service=police" readonly>
+                        <button onclick="copyToClipboard(this)">Copy</button>
+                    </div>
+                    <div class="card-actions">
+                        <button class="btn btn-preview" onclick="openPreview('emergency_services_pack.html?service=police')">Police</button>
+                        <button class="btn btn-fullscreen" onclick="window.open('emergency_services_pack.html?service=fire', '_blank')">Fire</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <p style="margin-top: 20px; color: #A0A0A0; font-size: 14px;">
+            <strong>Variants:</strong> ?service=police | sheriff | trooper | fire | gov
+        </p>
+    </div>
+
+    <!-- SCIFI EFFECTS -->
+    <div class="category">
+        <h2 class="category-title">✨ SciFi Phase In/Out Effects</h2>
+        <div class="gallery-grid">
+            <div class="gallery-card">
+                <div class="card-preview scifi">INCOMING</div>
+                <div class="card-content">
+                    <div class="card-title">Phase In/Out (Star Trek)</div>
+                    <div class="card-description">Advanced sci-fi transporter effect with particle animations, scan lines, glow, and 3D skew transformations. Interactive controls included.</div>
+                    <div class="card-url">
+                        <input type="text" value="scifi_phase_inout.html" readonly>
+                        <button onclick="copyToClipboard(this)">Copy</button>
+                    </div>
+                    <div class="card-actions">
+                        <button class="btn btn-preview" onclick="openPreview('scifi_phase_inout.html')">Preview</button>
+                        <button class="btn btn-fullscreen" onclick="window.open('scifi_phase_inout.html', '_blank')">Fullscreen</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function copyToClipboard(btn) {
+            const input = btn.previousElementSibling;
+            input.select();
+            document.execCommand('copy');
+            const originalText = btn.textContent;
+            btn.textContent = '✓ Copied';
+            setTimeout(() => btn.textContent = originalText, 2000);
+        }
+
+        function openPreview(url) {
+            const fullUrl = 'http://localhost:3060/' + url;
+            window.open(fullUrl, 'preview', 'width=960,height=540');
+        }
+    </script>
+</body>
+
+</html>

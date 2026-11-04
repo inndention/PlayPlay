@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=1920, initial-scale=1.0">
+    <title>End Credits</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            width: 1920px;
+            height: 1080px;
+            overflow: hidden;
+            background: linear-gradient(180deg, #0a0a0f 0%, #14141f 50%, #0a0a0f 100%);
+            font-family: 'Georgia', 'Times New Roman', serif;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .credits-container {
+            text-align: center;
+            animation: scrollUp 60s linear infinite;
+            position: absolute;
+            bottom: -100%;
+            width: 100%;
+        }
+
+        @keyframes scrollUp {
+            from {
+                bottom: -100%;
+            }
+
+            to {
+                bottom: 100%;
+            }
+        }
+
+        .credit-block {
+            margin-bottom: 80px;
+        }
+
+        .credit-role {
+            font-size: 32px;
+            font-weight: 700;
+            color: #00D9FF;
+            text-transform: uppercase;
+            letter-spacing: 4px;
+            margin-bottom: 16px;
+        }
+
+        .credit-name {
+            font-size: 44px;
+            font-weight: 400;
+            color: white;
+            margin-bottom: 8px;
+        }
+
+        .spacer {
+            height: 120px;
+        }
+
+        .title-block {
+            font-size: 64px;
+            font-weight: 900;
+            color: white;
+            margin: 100px 0;
+            text-shadow: 0 4px 16px rgba(0, 217, 255, 0.5);
+        }
+    </style>
+</head>
+
+<body>
+    <div class="credits-container" id="credits">
+        <div class="spacer"></div>
+        <!-- Credits will be populated here -->
+    </div>
+
+    <script>
+        const params = new URLSearchParams(window.location.search);
+        const creditsParam = params.get('credits') || 'Producer: John Doe\nDirector: Jane Smith\nEditor: Bob Johnson';
+
+        const creditsContainer = document.getElementById('credits');
+        const lines = creditsParam.split('\n');
+
+        lines.forEach(line => {
+            const trimmed = line.trim();
+            if (!trimmed) return;
+
+            if (trimmed.includes(':')) {
+                const [role, name] = trimmed.split(':');
+                const block = document.createElement('div');
+                block.className = 'credit-block';
+                block.innerHTML = `
+                    <div class="credit-role">${role.trim()}</div>
+                    <div class="credit-name">${name.trim()}</div>
+                `;
+                creditsContainer.appendChild(block);
+            } else {
+                const block = document.createElement('div');
+                block.className = 'title-block';
+                block.textContent = trimmed;
+                creditsContainer.appendChild(block);
+            }
+        });
+
+        // Add final spacer
+        const finalSpacer = document.createElement('div');
+        finalSpacer.className = 'spacer';
+        creditsContainer.appendChild(finalSpacer);
+    </script>
+</body>
+
+</html>

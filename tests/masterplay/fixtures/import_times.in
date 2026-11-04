@@ -1,0 +1,38 @@
+﻿0000-00-00T00:00:00	EventType=2	Name=Overnight	EventDuration=01:40:30	PlayMode=1
+D:\Media\Prog\Movie.mpg
+D:\Media\Spots\Spot A.mpg
+!ShowLogo	f=D:\Media\Logos\bug.png	Layer=1
+D:\Media\Prog\Talk.mpg
+0000-00-02T08:30:00	Name=Breakfast	EventDuration=00:45:00	PlayMode=1
+D:\Media\Prog\News Hour.mpg
+0000-00-02T09:07:00	Name=Morning Edition	EventDuration=01:00:00	PlayMode=1
+D:\Media\Prog\Morning Show.mpg
+D:\Media\Spots\Spot B.mpg
+D:\Media\Spots\Spot A.mpg
+D:\Media\Prog\Doc.mpg
+D:\Media\Prog\Talk.mpg
+0000-00-02T10:07:00	EventType=1	Name=Midday	EventDuration=01:00:00	PlayMode=1
+D:\Media\Prog\Weather.mpg
+D:\Media\Spots\Spot A.mpg
+D:\Media\Prog\News Hour.mpg
+D:\Media\Spots\Spot B.mpg
+D:\Media\Prog\Weather.mpg
+0000-00-02T11:07:00	EventType=1	EventDuration=00:55:00	PlayMode=1
+D:\Media\Prog\Morning Show.mpg
+D:\Media\Prog\Doc.mpg
+0000-00-02T12:00:00	EventType=2	Name=Afternoon Movie	EventDuration=01:30:00	PlayMode=1
+D:\Media\Prog\Movie.mpg
+D:\Media\Spots\Spot A.mpg
+0000-00-02T13:20:00	EventDuration=02:10:00	PlayMode=1
+D:\Media\Prog\Talk.mpg
+D:\Media\Spots\Spot B.mpg
+!Info	Name=Card follows
+D:\Media\Missing\Gone.mpg
+D:\Media\Stills\Card.png[00:00:20;00]
+D:\Media\Prog\Doc.mpg
+D:\Media\Prog\Movie.mpg	Name=Matinee Movie
+D:\Media\Spots\Spot A.mpg
+0000-00-02T16:00:00	EventDuration=00:05:00	PlayMode=1
+D:\Media\Prog\Weather.mpg
+0000-00-07T23:30:00	Name=Late Movie	EventDuration=01:30:00	PlayMode=1
+D:\Media\Prog\Movie.mpg

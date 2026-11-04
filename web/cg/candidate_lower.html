@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=1920, initial-scale=1.0">
+    <title>Candidate Lower Third</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            width: 1920px; height: 1080px; overflow: hidden;
+            background: transparent;
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+        }
+        .lower-third {
+            position: absolute;
+            bottom: 120px;
+        }
+        .pos-left   { left: 60px; }
+        .pos-center { left: 50%; transform: translateX(-50%); }
+        .pos-right  { right: 60px; }
+        .card {
+            display: flex;
+            align-items: stretch;
+            overflow: hidden;
+            border-radius: 6px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.5);
+        }
+        .party-stripe {
+            width: 10px;
+            flex-shrink: 0;
+        }
+        .name-block {
+            background: rgba(5, 10, 20, 0.92);
+            padding: 16px 48px 16px 28px;
+            backdrop-filter: blur(12px);
+            border-top: 1px solid rgba(255,255,255,0.07);
+        }
+        .candidate-name {
+            font-size: 52px;
+            font-weight: 800;
+            color: #fff;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            line-height: 1;
+        }
+        .candidate-sub {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            margin-top: 8px;
+        }
+        .candidate-title {
+            font-size: 22px;
+            font-weight: 400;
+            color: #cbd5e1;
+            letter-spacing: 0.3px;
+        }
+        .party-badge {
+            font-size: 14px;
+            font-weight: 700;
+            padding: 3px 12px;
+            border-radius: 3px;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            color: #fff;
+        }
+        .state-label {
+            font-size: 16px;
+            color: #64748b;
+            font-weight: 500;
+        }
+    </style>
+</head>
+<body>
+    <div class="lower-third pos-left" id="lowerThird" data-cg-auto>
+        <div class="card">
+            <div class="party-stripe" id="partyStripe"></div>
+            <div class="name-block">
+                <div class="candidate-name" id="nameText" data-field="name">Sen. Jane Smith</div>
+                <div class="candidate-sub">
+                    <span class="party-badge" id="partyBadge">DEM</span>
+                    <span class="candidate-title" id="titleText" data-field="position">U.S. Senate Candidate</span>
+                    <span class="state-label" id="stateText" data-field="state">California</span>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="js/cg-animations.js"></script>
+    <script>
+        const p = new URLSearchParams(window.location.search);
+        const name     = p.get('name')     || 'Sen. Jane Smith';
+        const position = p.get('position') || 'left';
+        const title    = p.get('title')    || 'U.S. Senate Candidate';
+        const party    = p.get('party')    || 'DEM';
+        const state    = p.get('state')    || 'California';
+        const color    = p.get('color')    || '2563eb';
+
+        document.getElementById('nameText').textContent  = name;
+        document.getElementById('titleText').textContent = title;
+        document.getElementById('partyBadge').textContent = party;
+        document.getElementById('stateText').textContent = state;
+
+        const c = '#' + color.replace('#','');
+        document.getElementById('partyStripe').style.background = c;
+        document.getElementById('partyBadge').style.background  = c;
+
+        const el = document.getElementById('lowerThird');
+        el.classList.remove('pos-left','pos-center','pos-right');
+        el.classList.add('pos-' + position);
+    </script>
+</body>
+</html>

@@ -1,0 +1,481 @@
+/* ============================================
+   OUTPUT ROUTER MATRIX
+   Professional Signal Routing Interface
+   ============================================ */
+
+.container {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    background: var(--background);
+    color: var(--text-primary);
+    font-family: var(--font-sans);
+    overflow: hidden;
+}
+
+/* ============================================
+   HEADER
+   ============================================ */
+
+.header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: var(--space-3) var(--space-4);
+    background: var(--surface);
+    border-bottom: 1px solid var(--border);
+}
+
+.headerLeft,
+.headerRight {
+    display: flex;
+    align-items: center;
+    gap: var(--space-3);
+}
+
+.headerCenter {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+}
+
+.title {
+    display: flex;
+    align-items: center;
+    gap: var(--space-2);
+    font-size: 16px;
+    font-weight: 600;
+}
+
+.title svg {
+    color: var(--accent);
+}
+
+.stats {
+    font-size: 12px;
+    color: var(--text-secondary);
+    padding: var(--space-1) var(--space-2);
+    background: var(--surface-highlight);
+    border-radius: var(--radius-sm);
+}
+
+/* Quick Take */
+.quickTake {
+    display: flex;
+    align-items: center;
+    gap: var(--space-2);
+    padding: var(--space-2);
+    background: var(--surface-elevated);
+    border-radius: var(--radius-md);
+}
+
+.takeSelection {
+    display: flex;
+    align-items: center;
+    gap: var(--space-2);
+    color: var(--text-secondary);
+}
+
+.takeSelect {
+    padding: var(--space-2) var(--space-3);
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-md);
+    color: var(--text-primary);
+    font-size: 12px;
+    min-width: 120px;
+}
+
+.takeBtn {
+    display: flex;
+    align-items: center;
+    gap: var(--space-1);
+    padding: var(--space-2) var(--space-4);
+    background: var(--on-air);
+    color: white;
+    font-size: 12px;
+    font-weight: 700;
+    border: none;
+    border-radius: var(--radius-md);
+    cursor: pointer;
+    transition: all var(--duration-fast);
+}
+
+.takeBtn:hover:not(:disabled) {
+    background: #ff4060;
+    box-shadow: 0 0 20px var(--on-air-glow);
+}
+
+.takeBtn:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+/* Options */
+.optionBtn,
+.viewBtn {
+    display: flex;
+    align-items: center;
+    gap: var(--space-1);
+    padding: var(--space-2);
+    background: transparent;
+    border: 1px solid var(--border);
+    border-radius: var(--radius-md);
+    color: var(--text-secondary);
+    font-size: 11px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all var(--duration-fast);
+}
+
+.optionBtn:hover,
+.viewBtn:hover {
+    background: var(--surface-highlight);
+    color: var(--text-primary);
+}
+
+.optionBtn.active,
+.viewBtn.active {
+    background: var(--accent-muted);
+    color: var(--accent);
+    border-color: var(--accent);
+}
+
+.divider {
+    width: 1px;
+    height: 24px;
+    background: var(--border);
+}
+
+/* ============================================
+   PRESETS BAR
+   ============================================ */
+
+.presetsBar {
+    display: flex;
+    align-items: center;
+    gap: var(--space-2);
+    padding: var(--space-2) var(--space-4);
+    background: var(--surface-elevated);
+    border-bottom: 1px solid var(--border);
+}
+
+.presetsLabel {
+    font-size: 11px;
+    font-weight: 600;
+    color: var(--text-secondary);
+    text-transform: uppercase;
+}
+
+.presetBtn {
+    padding: var(--space-1) var(--space-3);
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-sm);
+    color: var(--text-primary);
+    font-size: 11px;
+    cursor: pointer;
+    transition: all var(--duration-fast);
+}
+
+.presetBtn:hover:not(:disabled) {
+    background: var(--surface-highlight);
+    border-color: var(--accent);
+}
+
+.presetBtn:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+.savePresetBtn {
+    display: flex;
+    align-items: center;
+    gap: var(--space-1);
+    padding: var(--space-1) var(--space-2);
+    background: transparent;
+    border: 1px dashed var(--border);
+    border-radius: var(--radius-sm);
+    color: var(--text-secondary);
+    font-size: 11px;
+    cursor: pointer;
+    margin-left: auto;
+}
+
+.savePresetBtn:hover {
+    border-color: var(--accent);
+    color: var(--accent);
+}
+
+/* ============================================
+   MATRIX VIEW
+   ============================================ */
+
+.matrixContainer {
+    flex: 1;
+    overflow: auto;
+    padding: var(--space-2);
+}
+
+.matrix {
+    display: grid;
+    gap: 2px;
+    width: fit-content;
+    min-width: 100%;
+}
+
+/* Dynamically set grid columns based on destinations count */
+.matrix {
+    grid-template-columns: 120px repeat(var(--dest-count, 8), 60px);
+}
+
+/* Corner Cell */
+.cornerCell {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: var(--space-2);
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-sm);
+    font-size: 9px;
+    color: var(--text-muted);
+    text-transform: uppercase;
+}
+
+/* Destination Headers */
+.destHeader {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: var(--space-1);
+    padding: var(--space-2);
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-sm);
+    min-height: 60px;
+}
+
+.destIcon {
+    color: var(--accent);
+}
+
+.destName {
+    font-size: 10px;
+    font-weight: 600;
+    text-align: center;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 100%;
+}
+
+.lockIcon {
+    color: var(--warning);
+}
+
+/* Source Headers */
+.srcHeader {
+    display: flex;
+    align-items: center;
+    gap: var(--space-2);
+    padding: var(--space-2);
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-sm);
+}
+
+.srcIcon {
+    color: var(--text-secondary);
+}
+
+.srcName {
+    flex: 1;
+    font-size: 11px;
+    font-weight: 500;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.srcStatus {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+}
+
+.srcStatus.active { background: var(--ready); box-shadow: 0 0 6px var(--ready-glow); }
+.srcStatus.standby { background: var(--standby); }
+.srcStatus.offline { background: var(--surface-highlight); }
+.srcStatus.error { background: var(--error); }
+
+/* Status colors */
+.statusactive { border-left: 2px solid var(--ready); }
+.statusstandby { border-left: 2px solid var(--standby); }
+.statusoffline { opacity: 0.5; }
+
+/* Crosspoints */
+.crosspoint {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 60px;
+    height: 40px;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-sm);
+    color: var(--text-muted);
+    cursor: pointer;
+    transition: all var(--duration-fast);
+}
+
+.crosspoint:hover:not(.locked) {
+    background: var(--surface-highlight);
+    border-color: var(--accent);
+}
+
+.crosspoint.active {
+    background: var(--accent);
+    border-color: var(--accent);
+    color: white;
+    box-shadow: 0 0 10px var(--accent-glow);
+}
+
+.crosspoint.locked {
+    cursor: not-allowed;
+    opacity: 0.5;
+}
+
+/* ============================================
+   LIST VIEW
+   ============================================ */
+
+.listContainer {
+    flex: 1;
+    overflow-y: auto;
+    padding: var(--space-2);
+}
+
+.listRow {
+    display: flex;
+    align-items: center;
+    gap: var(--space-3);
+    padding: var(--space-3);
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-md);
+    margin-bottom: var(--space-2);
+}
+
+.listDest {
+    display: flex;
+    align-items: center;
+    gap: var(--space-2);
+    min-width: 150px;
+    font-size: 13px;
+    font-weight: 500;
+}
+
+.lockBtn,
+.unlockBtn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 24px;
+    height: 24px;
+    background: transparent;
+    border: none;
+    border-radius: var(--radius-sm);
+    cursor: pointer;
+    transition: all var(--duration-fast);
+}
+
+.lockBtn {
+    color: var(--warning);
+}
+
+.unlockBtn {
+    color: var(--text-muted);
+}
+
+.lockBtn:hover,
+.unlockBtn:hover {
+    background: var(--surface-highlight);
+}
+
+.listArrow {
+    color: var(--text-muted);
+}
+
+.listSource {
+    display: flex;
+    align-items: center;
+    gap: var(--space-2);
+    flex: 1;
+    font-size: 13px;
+}
+
+.noSource {
+    color: var(--text-muted);
+    font-style: italic;
+}
+
+.listSelect {
+    padding: var(--space-2) var(--space-3);
+    background: var(--surface-elevated);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-md);
+    color: var(--text-primary);
+    font-size: 12px;
+    min-width: 150px;
+}
+
+.listSelect:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+/* ============================================
+   STATUS BAR
+   ============================================ */
+
+.statusBar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: var(--space-2) var(--space-4);
+    background: var(--surface);
+    border-top: 1px solid var(--border);
+    font-size: 11px;
+    color: var(--text-secondary);
+}
+
+.statusLeft,
+.statusRight {
+    display: flex;
+    align-items: center;
+    gap: var(--space-4);
+}
+
+.statusItem {
+    display: flex;
+    align-items: center;
+    gap: var(--space-1);
+}
+
+.afvStatus {
+    padding: var(--space-1) var(--space-2);
+    border-radius: var(--radius-sm);
+    font-weight: 600;
+    text-transform: uppercase;
+}
+
+.afvStatus.on {
+    background: var(--ready);
+    color: var(--text-inverse);
+}
+
+.afvStatus.off {
+    background: var(--surface-highlight);
+    color: var(--text-muted);
+}

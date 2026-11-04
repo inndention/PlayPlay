@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=1920, initial-scale=1.0">
+    <title>Minimal Score Bug</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            width: 1920px;
+            height: 1080px;
+            overflow: hidden;
+            background: transparent;
+            font-family: 'Rajdhani', 'Arial', sans-serif;
+        }
+
+        .score-container {
+            position: absolute;
+            top: 30px;
+            right: 30px;
+            display: flex;
+            align-items: center;
+            gap: 2px;
+            background: rgba(0, 0, 0, 0.75);
+            padding: 12px 20px;
+            border-radius: 8px;
+            border: 1px solid rgba(168, 85, 247, 0.5);
+            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.6);
+            animation: fadeIn 0.4s ease-out;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateX(50px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        .team {
+            font-size: 22px;
+            font-weight: 700;
+            color: white;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            padding: 0 12px;
+        }
+
+        .score {
+            font-size: 36px;
+            font-weight: 900;
+            color: #A855F7;
+            min-width: 50px;
+            text-align: center;
+        }
+
+        .score.winning {
+            color: #10B981;
+        }
+
+        .vs {
+            font-size: 16px;
+            color: rgba(255, 255, 255, 0.5);
+            font-weight: 700;
+            padding: 0 8px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="score-container">
+        <div class="team" id="team1">TEAM A</div>
+        <div class="score" id="score1">0</div>
+        <div class="vs">—</div>
+        <div class="score" id="score2">0</div>
+        <div class="team" id="team2">TEAM B</div>
+    </div>
+
+    <script>
+        const params = new URLSearchParams(window.location.search);
+        const team1 = params.get('team1') || 'TEAM A';
+        const score1 = parseInt(params.get('score1') || '0');
+        const team2 = params.get('team2') || 'TEAM B';
+        const score2 = parseInt(params.get('score2') || '0');
+
+        document.getElementById('team1').textContent = team1.toUpperCase();
+        document.getElementById('score1').textContent = score1;
+        document.getElementById('team2').textContent = team2.toUpperCase();
+        document.getElementById('score2').textContent = score2;
+
+        // Highlight winning score
+        if (score1 > score2) {
+            document.getElementById('score1').classList.add('winning');
+        } else if (score2 > score1) {
+            document.getElementById('score2').classList.add('winning');
+        }
+    </script>
+</body>
+
+</html>

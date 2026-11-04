@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=1920, initial-scale=1.0">
+    <title>Logo Bug</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            width: 1920px;
+            height: 1080px;
+            overflow: hidden;
+            background: transparent;
+        }
+
+        .bug-container {
+            position: absolute;
+            padding: 20px;
+            background: rgba(0, 0, 0, 0.3);
+            backdrop-filter: blur(10px);
+            border-radius: 12px;
+            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.4);
+            animation: fadeIn 0.5s ease-out forwards;
+            opacity: 0;
+        }
+
+        @keyframes fadeIn {
+            to {
+                opacity: 1;
+            }
+        }
+
+        .bug-container.top-left {
+            top: 30px;
+            left: 30px;
+        }
+
+        .bug-container.top-right {
+            top: 30px;
+            right: 30px;
+        }
+
+        .bug-container.bottom-left {
+            bottom: 90px;
+            left: 30px;
+        }
+
+        .bug-container.bottom-right {
+            bottom: 90px;
+            right: 30px;
+        }
+
+        .logo {
+            max-width: 180px;
+            max-height: 100px;
+            object-fit: contain;
+        }
+
+        .placeholder {
+            width: 180px;
+            height: 80px;
+            background: linear-gradient(135deg, #00D9FF 0%, #A855F7 100%);
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 48px;
+            font-weight: 900;
+            color: white;
+            font-family: 'Arial Black', sans-serif;
+            text-shadow: 0 2px 8px rgba(0, 0, 0, 0.5);
+        }
+    </style>
+</head>
+
+<body>
+    <div class="bug-container" id="bugContainer">
+        <img class="logo" id="logoImg" style="display: none;">
+        <div class="placeholder" id="placeholder">LOGO</div>
+    </div>
+
+    <script>
+        const params = new URLSearchParams(window.location.search);
+        const logo = params.get('logo') || '';
+        const position = params.get('position') || 'top-right';
+
+        const container = document.getElementById('bugContainer');
+        const logoImg = document.getElementById('logoImg');
+        const placeholder = document.getElementById('placeholder');
+
+        container.classList.add(position);
+
+        if (logo) {
+            logoImg.src = logo;
+            logoImg.style.display = 'block';
+            placeholder.style.display = 'none';
+        }
+    </script>
+</body>
+
+</html>

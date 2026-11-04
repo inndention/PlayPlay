@@ -1,0 +1,432 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=1920, initial-scale=1.0">
+    <title>AI Weather Forecast with Voice</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            width: 1920px;
+            height: 1080px;
+            overflow: hidden;
+            background: linear-gradient(135deg, #0f2027 0%, #203a43 50%, #2c5364 100%);
+            font-family: 'Roboto', 'Arial', sans-serif;
+            color: white;
+        }
+
+        .forecast-container {
+            width: 100%;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            padding: 60px;
+            animation: fadeIn 1s ease-out;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+
+            to {
+                opacity: 1;
+            }
+        }
+
+        /* Voice indicator */
+        .voice-indicator {
+            position: absolute;
+            top: 30px;
+            right: 30px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            background: rgba(0, 217, 255, 0.2);
+            backdrop-filter: blur(20px);
+            padding: 12px 24px;
+            border-radius: 30px;
+            border: 2px solid rgba(0, 217, 255, 0.5);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .voice-indicator.speaking {
+            opacity: 1;
+        }
+
+        .voice-waves {
+            display: flex;
+            gap: 4px;
+            height: 24px;
+            align-items: center;
+        }
+
+        .voice-wave {
+            width: 3px;
+            background: #00D9FF;
+            border-radius: 3px;
+            animation: wave 0.6s ease-in-out infinite;
+        }
+
+        .voice-wave:nth-child(1) {
+            animation-delay: 0s;
+            height: 40%;
+        }
+
+        .voice-wave:nth-child(2) {
+            animation-delay: 0.1s;
+            height: 70%;
+        }
+
+        .voice-wave:nth-child(3) {
+            animation-delay: 0.2s;
+            height: 100%;
+        }
+
+        .voice-wave:nth-child(4) {
+            animation-delay: 0.3s;
+            height: 70%;
+        }
+
+        .voice-wave:nth-child(5) {
+            animation-delay: 0.4s;
+            height: 40%;
+        }
+
+        @keyframes wave {
+
+            0%,
+            100% {
+                transform: scaleY(1);
+            }
+
+            50% {
+                transform: scaleY(0.3);
+            }
+        }
+
+        .voice-text {
+            font-size: 14px;
+            font-weight: 600;
+            color: #00D9FF;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        /* Rest of styles from previous template */
+        .header {
+            display: flex;
+            align-items: center;
+            gap: 30px;
+            margin-bottom: 40px;
+            padding-bottom: 20px;
+            border-bottom: 3px solid rgba(255, 215, 0, 0.5);
+        }
+
+        .weather-icon-large {
+            width: 120px;
+            height: 120px;
+            filter: drop-shadow(0 0 20px rgba(255, 215, 0, 0.5));
+        }
+
+        .header-text {
+            flex: 1;
+        }
+
+        .location-name {
+            font-size: 42px;
+            font-weight: 900;
+            color: #FFD700;
+            text-shadow: 0 0 30px rgba(255, 215, 0, 0.5);
+            margin-bottom: 8px;
+        }
+
+        .current-temp {
+            font-size: 72px;
+            font-weight: 900;
+            color: white;
+            text-shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
+        }
+
+        .current-desc {
+            font-size: 32px;
+            color: rgba(255, 255, 255, 0.9);
+            font-weight: 300;
+        }
+
+        .ai-overview {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(20px);
+            border-radius: 20px;
+            padding: 30px 40px;
+            margin-bottom: 30px;
+            border: 2px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .ai-label {
+            font-size: 18px;
+            color: #00D9FF;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: 12px;
+        }
+
+        .ai-text {
+            font-size: 24px;
+            line-height: 1.6;
+            color: white;
+            font-weight: 300;
+        }
+
+        .forecast-grid {
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            gap: 20px;
+            flex: 1;
+        }
+
+        .day-card {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(20px);
+            border-radius: 16px;
+            padding: 24px;
+            border: 2px solid rgba(255, 255, 255, 0.2);
+            text-align: center;
+            transition: transform 0.3s ease;
+            animation: slideUp 0.6s ease-out backwards;
+        }
+
+        @keyframes slideUp {
+            from {
+                opacity: 0;
+                transform: translateY(50px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .day-card:nth-child(1) {
+            animation-delay: 0.1s;
+        }
+
+        .day-card:nth-child(2) {
+            animation-delay: 0.2s;
+        }
+
+        .day-card:nth-child(3) {
+            animation-delay: 0.3s;
+        }
+
+        .day-card:nth-child(4) {
+            animation-delay: 0.4s;
+        }
+
+        .day-card:nth-child(5) {
+            animation-delay: 0.5s;
+        }
+
+        .day-name {
+            font-size: 24px;
+            font-weight: 700;
+            margin-bottom: 12px;
+            color: #FFD700;
+            text-transform: uppercase;
+        }
+
+        .day-icon {
+            width: 80px;
+            height: 80px;
+            margin: 12px auto;
+            filter: drop-shadow(0 0 10px rgba(255, 255, 255, 0.3));
+        }
+
+        .day-temps {
+            font-size: 28px;
+            font-weight: 700;
+            margin: 12px 0;
+        }
+
+        .temp-high {
+            color: #FF6B6B;
+        }
+
+        .temp-low {
+            color: #4ECDC4;
+            font-size: 22px;
+        }
+
+        .day-desc {
+            font-size: 16px;
+            color: rgba(255, 255, 255, 0.8);
+            margin-top: 8px;
+        }
+
+        .footer {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 20px;
+            padding-top: 20px;
+            border-top: 2px solid rgba(255, 255, 255, 0.2);
+            font-size: 16px;
+            color: rgba(255, 255, 255, 0.7);
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Voice indicator -->
+    <div class="voice-indicator" id="voiceIndicator">
+        <div class="voice-waves">
+            <div class="voice-wave"></div>
+            <div class="voice-wave"></div>
+            <div class="voice-wave"></div>
+            <div class="voice-wave"></div>
+            <div class="voice-wave"></div>
+        </div>
+        <div class="voice-text">AI Meteorologist</div>
+    </div>
+
+    <!-- Hidden audio element for voice narration -->
+    <audio id="voiceAudio" preload="auto"></audio>
+
+    <div class="forecast-container">
+        <div class="header">
+            <img class="weather-icon-large" id="currentIcon" src="" alt="Weather">
+            <div class="header-text">
+                <div class="location-name" id="locationName">Loading...</div>
+                <div class="current-temp" id="currentTemp">--°</div>
+                <div class="current-desc" id="currentDesc">Loading conditions...</div>
+            </div>
+        </div>
+
+        <div class="ai-overview">
+            <div class="ai-label">🤖 AI Meteorologist Analysis</div>
+            <div class="ai-text" id="aiOverview">Analyzing weather patterns and generating forecast...</div>
+        </div>
+
+        <div class="forecast-grid" id="forecastGrid">
+            <!-- Day cards will be inserted here -->
+        </div>
+
+        <div class="footer">
+            <div id="aiAdvice"></div>
+            <div id="timestamp"></div>
+        </div>
+    </div>
+
+    <script>
+        const params = new URLSearchParams(window.location.search);
+        const location = params.get('location') || 'martinsville';
+        const autoPlay = params.get('autoplay') !== 'false'; // Default true
+
+        const voiceAudio = document.getElementById('voiceAudio');
+        const voiceIndicator = document.getElementById('voiceIndicator');
+
+        // Voice audio event listeners
+        voiceAudio.addEventListener('playing', () => {
+            voiceIndicator.classList.add('speaking');
+        });
+
+        voiceAudio.addEventListener('ended', () => {
+            voiceIndicator.classList.remove('speaking');
+        });
+
+        voiceAudio.addEventListener('pause', () => {
+            voiceIndicator.classList.remove('speaking');
+        });
+
+        async function loadForecast() {
+            try {
+                // Fetch AI-powered forecast with voice
+                const response = await fetch(`http://localhost:5000/api/weather/ai-forecast/${location}`);
+                const data = await response.json();
+
+                if (!data.success) {
+                    throw new Error('Failed to load forecast');
+                }
+
+                const forecast = data.data;
+
+                // Update current conditions
+                document.getElementById('locationName').textContent = forecast.location;
+                document.getElementById('currentTemp').textContent = `${forecast.current.temp}°`;
+                document.getElementById('currentDesc').textContent = forecast.current.description;
+                document.getElementById('currentIcon').src = `https://openweathermap.org/img/wn/${forecast.current.icon}@2x.png`;
+
+                // Update AI overview
+                if (forecast.ai_analysis && forecast.ai_analysis.overview) {
+                    document.getElementById('aiOverview').textContent = forecast.ai_analysis.overview;
+                }
+
+                // Update AI advice
+                if (forecast.ai_analysis && forecast.ai_analysis.advice) {
+                    document.getElementById('aiAdvice').textContent = `💡 ${forecast.ai_analysis.advice}`;
+                }
+
+                // Load voice narration if available
+                if (forecast.voice_url && autoPlay) {
+                    voiceAudio.src = `http://localhost:5000${forecast.voice_url}`;
+                    // Auto-play after a short delay
+                    setTimeout(() => {
+                        voiceAudio.play().catch(err => {
+                            console.log('Autoplay prevented - user interaction required');
+                        });
+                    }, 1000);
+                }
+
+                // Build forecast cards
+                const grid = document.getElementById('forecastGrid');
+                grid.innerHTML = '';
+
+                forecast.forecast.forEach(day => {
+                    const card = document.createElement('div');
+                    card.className = 'day-card';
+                    card.innerHTML = `
+                        <div class="day-name">${day.day_name}</div>
+                        <img class="day-icon" src="https://openweathermap.org/img/wn/${day.icon}@2x.png" alt="${day.description}">
+                        <div class="day-temps">
+                            <div class="temp-high">${day.temp_high}°</div>
+                            <div class="temp-low">${day.temp_low}°</div>
+                        </div>
+                        <div class="day-desc">${day.description}</div>
+                    `;
+                    grid.appendChild(card);
+                });
+
+                // Update timestamp
+                const now = new Date();
+                document.getElementById('timestamp').textContent = `Updated: ${now.toLocaleTimeString('en-US')}`;
+
+            } catch (error) {
+                console.error('Error loading forecast:', error);
+                document.getElementById('aiOverview').textContent = 'Unable to load forecast. Please check your connection.';
+            }
+        }
+
+        // Load forecast on page load
+        loadForecast();
+
+        // Auto-refresh every 10 minutes
+        setInterval(loadForecast, 600000);
+
+        // Add click handler to replay voice
+        document.addEventListener('click', () => {
+            if (voiceAudio.src && voiceAudio.paused) {
+                voiceAudio.play();
+            }
+        });
+    </script>
+</body>
+
+</html>

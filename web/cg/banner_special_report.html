@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=1920, initial-scale=1.0">
+    <title>Special Report Banner</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            width: 1920px;
+            height: 1080px;
+            overflow: hidden;
+            background: transparent;
+            font-family: 'Georgia', 'Times New Roman', serif;
+        }
+
+        .banner-container {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(180deg, rgba(0, 0, 0, 0.95) 0%, rgba(10, 10, 15, 0.9) 100%);
+            border-bottom: 4px solid #FFD700;
+            box-shadow: 0 4px 32px rgba(0, 0, 0, 0.8);
+            animation: slideDown 0.6s ease-out forwards;
+            transform: translateY(-100%);
+        }
+
+        @keyframes slideDown {
+            to {
+                transform: translateY(0);
+            }
+        }
+
+        .top-bar {
+            height: 8px;
+            background: linear-gradient(90deg, #FFD700 0%, #FFA500 100%);
+        }
+
+        .content {
+            padding: 20px 60px;
+            display: flex;
+            align-items: center;
+            gap: 30px;
+        }
+
+        .logo-section {
+            width: 100px;
+            height: 100px;
+            background: linear-gradient(135deg, #FFD700 0%, #FFA500 100%);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 36px;
+            font-weight: 900;
+            color: white;
+            box-shadow: 0 4px 16px rgba(255, 215, 0, 0.4);
+            flex-shrink: 0;
+        }
+
+        .text-section {
+            flex: 1;
+        }
+
+        .title {
+            font-size: 42px;
+            font-weight: 700;
+            color: #FFD700;
+            text-transform: uppercase;
+            letter-spacing: 4px;
+            margin-bottom: 8px;
+            text-shadow: 0 2px 8px rgba(255, 215, 0, 0.5);
+        }
+
+        .subtitle {
+            font-size: 24px;
+            font-weight: 400;
+            color: rgba(255, 255, 255, 0.9);
+            font-style: italic;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="banner-container">
+        <div class="top-bar"></div>
+        <div class="content">
+            <div class="logo-section">
+                <span>SR</span>
+            </div>
+            <div class="text-section">
+                <div class="title" id="titleText">SPECIAL REPORT</div>
+                <div class="subtitle" id="subtitleText">In-Depth Coverage</div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const params = new URLSearchParams(window.location.search);
+        const title = params.get('title') || 'SPECIAL REPORT';
+        const subtitle = params.get('subtitle') || 'In-Depth Coverage';
+
+        document.getElementById('titleText').textContent = title.toUpperCase();
+        document.getElementById('subtitleText').textContent = subtitle;
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,418 @@
+/* ============================================
+   QUICK ACCESS PANEL
+   Professional Hot-Key Panel
+   ============================================ */
+
+.container {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    background: var(--surface);
+    border-radius: var(--radius-lg);
+    border: 1px solid var(--border);
+    overflow: hidden;
+}
+
+/* ============================================
+   HEADER
+   ============================================ */
+
+.header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: var(--space-3);
+    background: var(--surface-elevated);
+    border-bottom: 1px solid var(--border);
+}
+
+.headerLeft,
+.headerRight {
+    display: flex;
+    align-items: center;
+    gap: var(--space-3);
+}
+
+.title {
+    display: flex;
+    align-items: center;
+    gap: var(--space-2);
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--text-primary);
+}
+
+.title svg {
+    color: var(--accent);
+}
+
+.clock {
+    font-family: var(--font-mono);
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--text-secondary);
+}
+
+.editToggle {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 32px;
+    height: 32px;
+    background: transparent;
+    border: 1px solid var(--border);
+    border-radius: var(--radius-md);
+    color: var(--text-secondary);
+    cursor: pointer;
+    transition: all var(--duration-fast);
+}
+
+.editToggle:hover {
+    background: var(--surface-highlight);
+    color: var(--text-primary);
+}
+
+.editToggle.active {
+    background: var(--accent-muted);
+    color: var(--accent);
+    border-color: var(--accent);
+}
+
+/* ============================================
+   CATEGORIES
+   ============================================ */
+
+.categoriesContainer {
+    flex: 1;
+    overflow-y: auto;
+    padding: var(--space-2);
+}
+
+.category {
+    margin-bottom: var(--space-2);
+}
+
+.categoryHeader {
+    display: flex;
+    align-items: center;
+    gap: var(--space-2);
+    width: 100%;
+    padding: var(--space-2) var(--space-3);
+    background: var(--background);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-md);
+    color: var(--text-secondary);
+    font-size: 12px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    cursor: pointer;
+    transition: all var(--duration-fast);
+}
+
+.categoryHeader:hover {
+    background: var(--surface-highlight);
+    color: var(--text-primary);
+}
+
+.categoryCount {
+    margin-left: auto;
+    padding: 2px 8px;
+    background: var(--surface-highlight);
+    border-radius: var(--radius-full);
+    font-size: 10px;
+}
+
+/* ============================================
+   BUTTONS GRID
+   ============================================ */
+
+.buttonsGrid {
+    display: grid;
+    gap: var(--space-2);
+    padding: var(--space-2);
+    background: var(--background);
+    border: 1px solid var(--border);
+    border-top: none;
+    border-radius: 0 0 var(--radius-md) var(--radius-md);
+}
+
+/* ============================================
+   QUICK BUTTON
+   ============================================ */
+
+.quickButton {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: var(--space-1);
+    padding: var(--space-3);
+    background: var(--surface);
+    border: 2px solid var(--border);
+    border-radius: var(--radius-lg);
+    cursor: pointer;
+    transition: all var(--duration-fast);
+    user-select: none;
+}
+
+.quickButton:hover:not(.disabled):not(.locked) {
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-lg);
+}
+
+.quickButton:active:not(.disabled):not(.locked),
+.quickButton.pressed {
+    transform: translateY(0);
+    box-shadow: var(--shadow-sm);
+}
+
+/* Button Sizes */
+.sizesmall {
+    padding: var(--space-2);
+}
+
+.sizemedium {
+    padding: var(--space-3);
+}
+
+.sizelarge {
+    padding: var(--space-4);
+    grid-column: span 2;
+}
+
+/* Button Colors */
+.colorred {
+    border-color: var(--on-air);
+    color: var(--on-air);
+}
+
+.colorred:hover:not(.disabled) {
+    background: rgba(255, 45, 85, 0.1);
+    box-shadow: 0 0 20px var(--on-air-glow);
+}
+
+.colorgreen {
+    border-color: var(--ready);
+    color: var(--ready);
+}
+
+.colorgreen:hover:not(.disabled) {
+    background: rgba(48, 209, 88, 0.1);
+    box-shadow: 0 0 20px var(--ready-glow);
+}
+
+.colorblue {
+    border-color: var(--accent);
+    color: var(--accent);
+}
+
+.colorblue:hover:not(.disabled) {
+    background: var(--accent-muted);
+    box-shadow: var(--shadow-glow-accent);
+}
+
+.coloryellow {
+    border-color: var(--warning);
+    color: var(--warning);
+}
+
+.coloryellow:hover:not(.disabled) {
+    background: rgba(255, 214, 10, 0.1);
+    box-shadow: 0 0 20px var(--warning-glow);
+}
+
+.colororange {
+    border-color: var(--standby);
+    color: var(--standby);
+}
+
+.colororange:hover:not(.disabled) {
+    background: rgba(255, 149, 0, 0.1);
+    box-shadow: 0 0 20px var(--standby-glow);
+}
+
+.colorpurple {
+    border-color: var(--cued);
+    color: var(--cued);
+}
+
+.colorpurple:hover:not(.disabled) {
+    background: rgba(94, 92, 230, 0.1);
+    box-shadow: 0 0 20px var(--cued-glow);
+}
+
+.colorcyan {
+    border-color: var(--accent);
+    color: var(--accent);
+}
+
+.colorcyan:hover:not(.disabled) {
+    background: var(--accent-muted);
+}
+
+.colorneutral {
+    border-color: var(--border);
+    color: var(--text-secondary);
+}
+
+.colorneutral:hover:not(.disabled) {
+    background: var(--surface-highlight);
+    border-color: var(--border-bright);
+    color: var(--text-primary);
+}
+
+/* Toggle State */
+.toggled {
+    background: currentColor !important;
+    color: var(--text-inverse) !important;
+}
+
+.toggled .buttonIcon,
+.toggled .buttonLabel {
+    color: var(--text-inverse);
+}
+
+.toggleIndicator {
+    position: absolute;
+    top: var(--space-1);
+    right: var(--space-1);
+    width: 8px;
+    height: 8px;
+    background: var(--ready);
+    border-radius: 50%;
+    box-shadow: 0 0 8px var(--ready-glow);
+}
+
+/* Disabled State */
+.disabled {
+    opacity: 0.4;
+    cursor: not-allowed;
+}
+
+/* Locked State */
+.locked {
+    opacity: 0.6;
+    cursor: not-allowed;
+}
+
+.locked::after {
+    content: '🔒';
+    position: absolute;
+    top: var(--space-1);
+    right: var(--space-1);
+    font-size: 10px;
+}
+
+/* Button Content */
+.buttonContent {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: var(--space-1);
+}
+
+.buttonIcon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.buttonLabel {
+    font-size: 10px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+
+.buttonShortcut {
+    position: absolute;
+    bottom: var(--space-1);
+    right: var(--space-1);
+    padding: 2px 4px;
+    background: var(--surface-highlight);
+    border-radius: var(--radius-xs);
+    font-size: 8px;
+    font-weight: 600;
+    color: var(--text-muted);
+}
+
+/* Edit Mode */
+.editMode {
+    animation: editPulse 1.5s ease-in-out infinite;
+}
+
+@keyframes editPulse {
+    0%, 100% { box-shadow: 0 0 0 0 var(--accent-muted); }
+    50% { box-shadow: 0 0 0 4px var(--accent-muted); }
+}
+
+.editOverlay {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(0, 0, 0, 0.5);
+    border-radius: inherit;
+    color: white;
+    opacity: 0;
+    transition: opacity var(--duration-fast);
+}
+
+.editMode:hover .editOverlay {
+    opacity: 1;
+}
+
+/* Add Button */
+.addButton {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: var(--space-3);
+    background: transparent;
+    border: 2px dashed var(--border);
+    border-radius: var(--radius-lg);
+    color: var(--text-muted);
+    cursor: pointer;
+    transition: all var(--duration-fast);
+}
+
+.addButton:hover {
+    border-color: var(--accent);
+    color: var(--accent);
+    background: var(--accent-muted);
+}
+
+/* ============================================
+   STATUS BAR
+   ============================================ */
+
+.statusBar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: var(--space-2) var(--space-3);
+    background: var(--surface-elevated);
+    border-top: 1px solid var(--border);
+    font-size: 11px;
+    color: var(--text-muted);
+}
+
+.statusItem {
+    display: flex;
+    align-items: center;
+    gap: var(--space-1);
+}
+
+.editIndicator {
+    display: flex;
+    align-items: center;
+    gap: var(--space-1);
+    padding: var(--space-1) var(--space-2);
+    background: var(--accent-muted);
+    color: var(--accent);
+    border-radius: var(--radius-sm);
+    font-weight: 600;
+}

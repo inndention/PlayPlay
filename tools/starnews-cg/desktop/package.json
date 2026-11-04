@@ -1,0 +1,11 @@
+{
+  "name": "star-news-cg-desktop",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Star News broadcast graphics desktop studio",
+  "main": "main.js",
+  "scripts": {"start": "electron .", "dist": "electron-builder --win --dir", "test": "node --test tests/*.test.js"},
+  "dependencies": {"yauzl": "3.2.0"},
+  "devDependencies": {"electron": "37.10.3", "electron-builder": "26.0.12"},
+  "build": {"appId": "com.starnews.cgstudio", "productName": "Star News CG Studio", "files": ["main.js", "preload.js", "relay.js", "nc-results.js", "ui/**/*", "package.json"], "win": {"target": ["dir"]}}
+}

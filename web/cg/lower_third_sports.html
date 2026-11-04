@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=1920, initial-scale=1.0">
+    <title>Lower Third - Sports</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            width: 1920px;
+            height: 1080px;
+            overflow: hidden;
+            background: transparent;
+            font-family: 'Arial Black', 'Impact', sans-serif;
+        }
+
+        .lower-third {
+            position: absolute;
+            bottom: 80px;
+            left: -900px;
+            animation: slideIn 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55) forwards;
+        }
+
+        @keyframes slideIn {
+            to {
+                left: 0px;
+            }
+        }
+
+        .container {
+            display: flex;
+            align-items: stretch;
+            height: 100px;
+            position: relative;
+        }
+
+        .stripe {
+            width: 15px;
+            background: linear-gradient(180deg, #ff0055 0%, #ff6600 100%);
+            box-shadow: 0 0 30px rgba(255, 0, 85, 0.8);
+            animation: stripeGlow 2s ease-in-out infinite;
+        }
+
+        @keyframes stripeGlow {
+
+            0%,
+            100% {
+                box-shadow: 0 0 30px rgba(255, 0, 85, 0.8);
+            }
+
+            50% {
+                box-shadow: 0 0 50px rgba(255, 0, 85, 1);
+            }
+        }
+
+        .content {
+            background: linear-gradient(135deg, rgba(0, 0, 0, 0.95) 0%, rgba(20, 20, 20, 0.9) 100%);
+            padding: 15px 60px 15px 30px;
+            clip-path: polygon(0 0, calc(100% - 40px) 0, 100% 100%, 0 100%);
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            min-width: 550px;
+        }
+
+        .content::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            right: 0;
+            bottom: 0;
+            width: 50px;
+            background: linear-gradient(90deg, transparent 0%, rgba(255, 0, 85, 0.3) 100%);
+        }
+
+        .name {
+            font-size: 40px;
+            font-weight: 900;
+            color: #ffffff;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            text-shadow: 3px 3px 0px #ff0055, -1px -1px 0px rgba(0, 0, 0, 0.5);
+            margin-bottom: 2px;
+        }
+
+        .title {
+            font-size: 24px;
+            font-weight: 700;
+            color: #ff6600;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);
+        }
+    </style>
+</head>
+
+<body>
+    <div class="lower-third" id="lowerThird">
+        <div class="container">
+            <div class="stripe"></div>
+            <div class="content">
+                <div class="name" id="nameText">Mike Anderson</div>
+                <div class="title" id="titleText">Sports Analyst</div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const params = new URLSearchParams(window.location.search);
+        const name = params.get('name') || 'Mike Anderson';
+        const title = params.get('title') || 'Sports Analyst';
+
+        document.getElementById('nameText').textContent = name;
+        document.getElementById('titleText').textContent = title;
+    </script>
+</body>
+
+</html>

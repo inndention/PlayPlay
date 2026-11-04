@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=1920, initial-scale=1.0">
+    <title>Sports Scores Ticker</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            width: 1920px;
+            height: 1080px;
+            overflow: hidden;
+            background: transparent;
+            font-family: 'Roboto', 'Arial', sans-serif;
+        }
+
+        .ticker-container {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 70px;
+            background: linear-gradient(90deg, rgba(10, 10, 15, 0.95) 0%, rgba(20, 20, 30, 0.95) 100%);
+            border-top: 4px solid #00D9FF;
+            box-shadow: 0 -4px 24px rgba(0, 0, 0, 0.6);
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+        }
+
+        .ticker-label {
+            background: linear-gradient(135deg, #00D9FF 0%, #0099CC 100%);
+            padding: 0 30px;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            font-size: 22px;
+            font-weight: 900;
+            color: white;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            flex-shrink: 0;
+            box-shadow: 4px 0 12px rgba(0, 0, 0, 0.3);
+        }
+
+        .ticker-content {
+            flex: 1;
+            overflow: hidden;
+            position: relative;
+            height: 100%;
+        }
+
+        .ticker-scroll {
+            position: absolute;
+            display: flex;
+            gap: 50px;
+            padding: 0 40px;
+            animation: scroll 30s linear infinite;
+            align-items: center;
+            height: 100%;
+        }
+
+        @keyframes scroll {
+            0% {
+                transform: translateX(0);
+            }
+
+            100% {
+                transform: translateX(-50%);
+            }
+        }
+
+        .score-item {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            flex-shrink: 0;
+            background: rgba(255, 255, 255, 0.05);
+            padding: 8px 20px;
+            border-radius: 8px;
+            border: 1px solid rgba(0, 217, 255, 0.3);
+        }
+
+        .team {
+            font-size: 20px;
+            font-weight: 700;
+            color: white;
+            min-width: 60px;
+            text-align: center;
+        }
+
+        .score {
+            font-size: 28px;
+            font-weight: 900;
+            color: #00D9FF;
+            min-width: 40px;
+            text-align: center;
+        }
+
+        .vs {
+            font-size: 16px;
+            color: rgba(255, 255, 255, 0.5);
+            font-weight: 600;
+        }
+
+        .winner {
+            color: #10B981;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="ticker-container">
+        <div class="ticker-label">SCORES</div>
+        <div class="ticker-content">
+            <div class="ticker-scroll" id="tickerScroll"></div>
+        </div>
+    </div>
+
+    <script>
+        const params = new URLSearchParams(window.location.search);
+        const scoresParam = params.get('scores') || '[{"team1":"NYK","score1":98,"team2":"LAL","score2":102}]';
+
+        let scores = [];
+        try {
+            scores = JSON.parse(scoresParam);
+        } catch (e) {
+            scores = [{ "team1": "NYK", "score1": 98, "team2": "LAL", "score2": 102 }];
+        }
+
+        const container = document.getElementById('tickerScroll');
+
+        // Duplicate scores for seamless loop
+        const allScores = [...scores, ...scores];
+
+        allScores.forEach(game => {
+            const item = document.createElement('div');
+            item.className = 'score-item';
+
+            const team1Winner = game.score1 > game.score2;
+            const team2Winner = game.score2 > game.score1;
+
+            item.innerHTML = `
+                <div class="team ${team1Winner ? 'winner' : ''}">${game.team1}</div>
+                <div class="score ${team1Winner ? 'winner' : ''}">${game.score1}</div>
+                <div class="vs">-</div>
+                <div class="score ${team2Winner ? 'winner' : ''}">${game.score2}</div>
+                <div class="team ${team2Winner ? 'winner' : ''}">${game.team2}</div>
+            `;
+
+            container.appendChild(item);
+        });
+    </script>
+</body>
+
+</html>

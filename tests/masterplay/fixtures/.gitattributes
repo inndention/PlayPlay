@@ -1,0 +1,3 @@
+# MasterPlay fixtures are compared byte for byte (BOMs, CRLF / LF / mixed line ends, no final newline, cp1252 and
+# UTF-16). The repository default (* text=auto, core.autocrlf) would rewrite their line ends, so nothing here is text.
+* -text
